@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Mention, ProposalValidation } from "@/lib/types";
+import { Mention, ProposalValidation, MODEL_OPTIONS } from "@/lib/types";
 import { SentimentBadge } from "@/components/SentimentBadge";
 import { ConfidenceRing } from "@/components/ConfidenceRing";
 
@@ -37,6 +37,7 @@ export default function ProposalsPage() {
           source_text: proposal.mention.original_text,
           proposed_area: proposal.mention.proposed_area || proposal.mention.area,
           proposed_dimension: proposal.mention.proposed_dimension || proposal.mention.dimension,
+          model: validationModel,
         }),
       });
 
@@ -63,16 +64,33 @@ export default function ProposalsPage() {
     try { sessionStorage.setItem("semantic-proposals", JSON.stringify(data)); } catch {}
   };
 
+  const [validationModel, setValidationModel] = useState("claude-sonnet");
   const pendingCount = proposals.filter((p) => ["pending", "validating", "validated"].includes(p.status)).length;
 
   return (
     <div className="pt-8">
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold tracking-tight mb-1">Subtopic Proposals</h1>
-        <p className="text-sm text-text-muted">
-          New subtopics proposed by the extraction engine when no pool match was found.
-          {pendingCount > 0 && <span className="text-labs-yellow ml-1">{pendingCount} pending review</span>}
-        </p>
+      <div className="mb-8 flex items-start justify-between">
+        <div>
+          <h1 className="text-2xl font-bold tracking-tight mb-1">Subtopic Proposals</h1>
+          <p className="text-sm text-text-muted">
+            New subtopics proposed by the extraction engine when no pool match was found.
+            {pendingCount > 0 && <span className="text-labs-yellow ml-1">{pendingCount} pending review</span>}
+          </p>
+        </div>
+        {proposals.length > 0 && (
+          <div className="flex items-center gap-2 shrink-0">
+            <span className="text-[11px] uppercase tracking-wider text-text-dim">Validation model</span>
+            <select
+              value={validationModel}
+              onChange={(e) => setValidationModel(e.target.value)}
+              className="px-2.5 py-1.5 bg-surface-2 border border-border rounded-md text-xs text-text-muted"
+            >
+              {MODEL_OPTIONS.map((opt) => (
+                <option key={opt.id} value={opt.id}>{opt.label}</option>
+              ))}
+            </select>
+          </div>
+        )}
       </div>
 
       {proposals.length === 0 ? (
@@ -158,7 +176,7 @@ export default function ProposalsPage() {
                       disabled={proposal.status === "validating"}
                       className="px-3 py-1.5 bg-accent/15 hover:bg-accent/25 text-accent-light text-xs font-medium rounded transition-colors disabled:opacity-40"
                     >
-                      {proposal.status === "validating" ? "Validating..." : "Validate (Sonnet)"}
+                      {proposal.status === "validating" ? "Validating..." : `Validate (${MODEL_OPTIONS.find((m) => m.id === validationModel)?.label || validationModel})`}
                     </button>
                   )}
                   <button

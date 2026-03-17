@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import Anthropic from "@anthropic-ai/sdk";
 import { buildExtractionSystemPrompt } from "@/lib/prompts";
+import { callLLM } from "@/lib/llm";
 import { Mention, ReviewAnalysis, Subtopic } from "@/lib/types";
 import poolData from "@/data/subtopics_pool.json";
 
@@ -10,39 +10,28 @@ export async function POST(req: NextRequest) {
   const start = Date.now();
 
   try {
-    const { text, reviewId } = await req.json();
+    const { text, reviewId, model = "claude-haiku" } = await req.json();
 
     if (!text || typeof text !== "string") {
       return NextResponse.json({ error: "Missing review text" }, { status: 400 });
     }
 
-    const apiKey = process.env.ANTHROPIC_API_KEY;
-    if (!apiKey) {
-      return NextResponse.json({ error: "ANTHROPIC_API_KEY not configured" }, { status: 500 });
-    }
-
-    const client = new Anthropic({ apiKey });
     const systemPrompt = buildExtractionSystemPrompt(pool);
 
-    const response = await client.messages.create({
-      model: "claude-haiku-4-5-20251001",
-      max_tokens: 4096,
-      system: systemPrompt,
-      messages: [{ role: "user", content: text }],
+    const { text: rawText, modelUsed } = await callLLM({
+      modelId: model,
+      systemPrompt,
+      userMessage: text,
+      maxTokens: 4096,
     });
-
-    const rawContent = response.content[0];
-    if (rawContent.type !== "text") {
-      return NextResponse.json({ error: "Unexpected response type" }, { status: 500 });
-    }
 
     let parsed: { source_language: string; mentions: Mention[] };
     try {
-      const cleaned = rawContent.text.replace(/```json\n?/g, "").replace(/```\n?/g, "").trim();
+      const cleaned = rawText.replace(/```json\n?/g, "").replace(/```\n?/g, "").trim();
       parsed = JSON.parse(cleaned);
     } catch {
       return NextResponse.json(
-        { error: "Failed to parse LLM response", raw: rawContent.text },
+        { error: "Failed to parse LLM response", raw: rawText },
         { status: 500 }
       );
     }
@@ -70,7 +59,7 @@ export async function POST(req: NextRequest) {
       mentions,
       overall_sentiment: { polarity: overallPolarity, score: Math.round(score * 100) / 100 },
       processing_time_ms: Date.now() - start,
-      model_used: "claude-haiku-4-5-20251001",
+      model_used: modelUsed,
     };
 
     return NextResponse.json(result);

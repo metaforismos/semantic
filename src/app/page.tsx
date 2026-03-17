@@ -11,7 +11,7 @@ export default function AnalysisPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleAnalyze = async (text: string) => {
+  const handleAnalyze = async (text: string, model: string) => {
     setIsLoading(true);
     setError(null);
     setAnalysis(null);
@@ -20,7 +20,7 @@ export default function AnalysisPage() {
       const res = await fetch("/api/analyze", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text, reviewId: `review-${Date.now()}` }),
+        body: JSON.stringify({ text, reviewId: `review-${Date.now()}`, model }),
       });
 
       const data = await res.json();

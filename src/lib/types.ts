@@ -73,3 +73,42 @@ export const DIMENSIONS = [
 
 export type Area = (typeof AREAS)[number];
 export type Dimension = (typeof DIMENSIONS)[number];
+
+// Model configuration
+export type ModelProvider = "claude" | "gemini";
+
+export interface ModelOption {
+  id: string;
+  label: string;
+  provider: ModelProvider;
+  modelId: string;
+  description: string;
+}
+
+export const MODEL_OPTIONS: ModelOption[] = [
+  {
+    id: "claude-haiku",
+    label: "Claude Haiku 3.5",
+    provider: "claude",
+    modelId: "claude-haiku-4-5-20251001",
+    description: "Fast extraction — Anthropic",
+  },
+  {
+    id: "claude-sonnet",
+    label: "Claude Sonnet 4",
+    provider: "claude",
+    modelId: "claude-sonnet-4-20250514",
+    description: "High reasoning — Anthropic",
+  },
+  {
+    id: "gemini-flash",
+    label: "Gemini 2.5 Flash",
+    provider: "gemini",
+    modelId: "gemini-2.5-flash",
+    description: "Fast & capable — Google",
+  },
+];
+
+export function getModelOption(id: string): ModelOption | undefined {
+  return MODEL_OPTIONS.find((m) => m.id === id);
+}

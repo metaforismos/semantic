@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { SampleReview } from "@/lib/types";
+import { SampleReview, MODEL_OPTIONS } from "@/lib/types";
 import sampleData from "@/data/sample_reviews.json";
 
 const samples = sampleData as SampleReview[];
@@ -11,16 +11,17 @@ const langFlags: Record<string, string> = {
 };
 
 interface ReviewInputProps {
-  onAnalyze: (text: string) => void;
+  onAnalyze: (text: string, model: string) => void;
   isLoading: boolean;
 }
 
 export function ReviewInput({ onAnalyze, isLoading }: ReviewInputProps) {
   const [text, setText] = useState("");
+  const [model, setModel] = useState("claude-haiku");
 
   const handleSubmit = () => {
     if (text.trim() && !isLoading) {
-      onAnalyze(text.trim());
+      onAnalyze(text.trim(), model);
     }
   };
 
@@ -40,6 +41,30 @@ export function ReviewInput({ onAnalyze, isLoading }: ReviewInputProps) {
         className="flex-1 min-h-[200px] w-full bg-surface-2 border border-border rounded-lg p-4 text-sm text-text placeholder:text-text-dim resize-none focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/25 transition-colors"
         disabled={isLoading}
       />
+
+      {/* Model selector */}
+      <div className="mt-3">
+        <div className="text-[11px] uppercase tracking-wider text-text-dim mb-1.5">Model</div>
+        <div className="flex gap-1.5">
+          {MODEL_OPTIONS.map((opt) => (
+            <button
+              key={opt.id}
+              onClick={() => setModel(opt.id)}
+              disabled={isLoading}
+              className={`flex-1 px-2 py-2 rounded-md text-xs font-medium border transition-colors disabled:opacity-40 ${
+                model === opt.id
+                  ? "bg-accent/15 border-accent/40 text-accent-light"
+                  : "bg-surface-2 border-border text-text-muted hover:bg-surface-3"
+              }`}
+            >
+              <div className="truncate">{opt.label}</div>
+              <div className={`text-[10px] mt-0.5 ${model === opt.id ? "text-accent-light/60" : "text-text-dim"}`}>
+                {opt.description}
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
 
       <button
         onClick={handleSubmit}
