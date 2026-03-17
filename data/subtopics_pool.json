@@ -1,0 +1,4448 @@
+[
+  {
+    "subtopic": "accessible-wheelchair",
+    "area": "Accessibility",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "missing-ramp",
+    "area": "Accessibility",
+    "dimension": "Availability",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "steep-stairs",
+    "area": "Accessibility",
+    "dimension": "Convenience",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "absent-wheelchair",
+    "area": "Accessibility",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "modern-bathroom",
+    "area": "Bathroom",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "modern-shower",
+    "area": "Bathroom",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "inaccessible-bathroom",
+    "area": "Bathroom",
+    "dimension": "Availability",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "clean-bathroom",
+    "area": "Bathroom",
+    "dimension": "Cleanliness",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "dirty-bathroom",
+    "area": "Bathroom",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "moldy-bathroom",
+    "area": "Bathroom",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "broken-toilet",
+    "area": "Bathroom",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "clogged-drain",
+    "area": "Bathroom",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "good-pressure",
+    "area": "Bathroom",
+    "dimension": "Condition",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "great-pressure",
+    "area": "Bathroom",
+    "dimension": "Condition",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "leaky-faucet",
+    "area": "Bathroom",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "low-pressure",
+    "area": "Bathroom",
+    "dimension": "Condition",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "running-toilet",
+    "area": "Bathroom",
+    "dimension": "Condition",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "strong-flush",
+    "area": "Bathroom",
+    "dimension": "Condition",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "weak-flush",
+    "area": "Bathroom",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "weak-pressure",
+    "area": "Bathroom",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "cramped-bathroom",
+    "area": "Bathroom",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "small-bathroom",
+    "area": "Bathroom",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "small-tub",
+    "area": "Bathroom",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "spacious-bathroom",
+    "area": "Bathroom",
+    "dimension": "Size",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "cold-shower",
+    "area": "Bathroom",
+    "dimension": "Temperature",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "cold-tub",
+    "area": "Bathroom",
+    "dimension": "Temperature",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "hot-shower",
+    "area": "Bathroom",
+    "dimension": "Temperature",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "hot-tub",
+    "area": "Bathroom",
+    "dimension": "Temperature",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "boring-activity",
+    "area": "Entertainment",
+    "dimension": "Ambiance",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "boring-entertainment",
+    "area": "Entertainment",
+    "dimension": "Ambiance",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "boring-event",
+    "area": "Entertainment",
+    "dimension": "Ambiance",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "boring-game",
+    "area": "Entertainment",
+    "dimension": "Ambiance",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "boring-show",
+    "area": "Entertainment",
+    "dimension": "Ambiance",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "entertaining-show",
+    "area": "Entertainment",
+    "dimension": "Ambiance",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "fun-activity",
+    "area": "Entertainment",
+    "dimension": "Ambiance",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "fun-club",
+    "area": "Entertainment",
+    "dimension": "Ambiance",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "fun-entertainment",
+    "area": "Entertainment",
+    "dimension": "Ambiance",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "fun-event",
+    "area": "Entertainment",
+    "dimension": "Ambiance",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "fun-fiesta",
+    "area": "Entertainment",
+    "dimension": "Ambiance",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "fun-game",
+    "area": "Entertainment",
+    "dimension": "Ambiance",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "fun-party",
+    "area": "Entertainment",
+    "dimension": "Ambiance",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "fun-show",
+    "area": "Entertainment",
+    "dimension": "Ambiance",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "live-entertainment",
+    "area": "Entertainment",
+    "dimension": "Ambiance",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "live-music",
+    "area": "Entertainment",
+    "dimension": "Ambiance",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "pleasant-music",
+    "area": "Entertainment",
+    "dimension": "Ambiance",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "terrible-music",
+    "area": "Entertainment",
+    "dimension": "Ambiance",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "available-tour",
+    "area": "Entertainment",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "exclusive-club",
+    "area": "Entertainment",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "free-activity",
+    "area": "Entertainment",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "free-tour",
+    "area": "Entertainment",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "private-party",
+    "area": "Entertainment",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "broken-game",
+    "area": "Entertainment",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "loud-fiesta",
+    "area": "Entertainment",
+    "dimension": "Noise",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "loud-music",
+    "area": "Entertainment",
+    "dimension": "Noise",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "loud-party",
+    "area": "Entertainment",
+    "dimension": "Noise",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "absent-tour",
+    "area": "Entertainment",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "disorganized-event",
+    "area": "Entertainment",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "disorganized-fiesta",
+    "area": "Entertainment",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "informative-tour",
+    "area": "Entertainment",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "small-club",
+    "area": "Entertainment",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "short-show",
+    "area": "Entertainment",
+    "dimension": "Speed",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "short-tour",
+    "area": "Entertainment",
+    "dimension": "Speed",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "expensive-activity",
+    "area": "Entertainment",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "expensive-club",
+    "area": "Entertainment",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "expensive-tour",
+    "area": "Entertainment",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "limited-entertainment",
+    "area": "Entertainment",
+    "dimension": "Variety",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "beautiful-bar",
+    "area": "F&B",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "beautiful-restaurant",
+    "area": "F&B",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "available-table",
+    "area": "F&B",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "free-bottle",
+    "area": "F&B",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "free-breakfast",
+    "area": "F&B",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "free-drink",
+    "area": "F&B",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "free-snack",
+    "area": "F&B",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "free-wine",
+    "area": "F&B",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "missing-option",
+    "area": "F&B",
+    "dimension": "Availability",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "open-bar",
+    "area": "F&B",
+    "dimension": "Availability",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "scarce-fruit",
+    "area": "F&B",
+    "dimension": "Availability",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "clean-cup",
+    "area": "F&B",
+    "dimension": "Cleanliness",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "clean-glass",
+    "area": "F&B",
+    "dimension": "Cleanliness",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "clean-plate",
+    "area": "F&B",
+    "dimension": "Cleanliness",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "clean-table",
+    "area": "F&B",
+    "dimension": "Cleanliness",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "dirty-cup",
+    "area": "F&B",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "dirty-dish",
+    "area": "F&B",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "dirty-glass",
+    "area": "F&B",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "dirty-plate",
+    "area": "F&B",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "dirty-table",
+    "area": "F&B",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "crowded-restaurant",
+    "area": "F&B",
+    "dimension": "Comfort",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "broken-glass",
+    "area": "F&B",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "weak-cocktail",
+    "area": "F&B",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "weak-coffee",
+    "area": "F&B",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "allergic-reaction",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "bad-taste",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "bland-food",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "burnt-food",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "delicious-breakfast",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "delicious-buffet",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "delicious-cocktail",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "delicious-cuisine",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "delicious-dinner",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "delicious-dish",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "delicious-drink",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "delicious-food",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "delicious-fruit",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "delicious-juice",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "delicious-lunch",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "delicious-meal",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "delicious-meat",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "delicious-menu",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "delicious-restaurant",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "delicious-snack",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "diluted-juice",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "flat-beer",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "flavorful-dinner",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "fresh-bread",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "fresh-breakfast",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "fresh-coffee",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "fresh-egg",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "fresh-food",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "fresh-fruit",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "fresh-ingredient",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "fresh-juice",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "generous-portion",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "healthy-food",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "meager-portion",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "mediocre-buffet",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "overcooked-egg",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "overcooked-food",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "overcooked-meat",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "rotten-fruit",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "stale-bread",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "stale-ingredient",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "stale-snack",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "tasteless-dinner",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "tough-meat",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "undercooked-food",
+    "area": "F&B",
+    "dimension": "Food Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "loud-bar",
+    "area": "F&B",
+    "dimension": "Noise",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "accommodating-kitchen",
+    "area": "F&B",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "friendly-bar",
+    "area": "F&B",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "friendly-restaurant",
+    "area": "F&B",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "ignored-allergy",
+    "area": "F&B",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "large-cup",
+    "area": "F&B",
+    "dimension": "Size",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "large-portion",
+    "area": "F&B",
+    "dimension": "Size",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "small-bar",
+    "area": "F&B",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "small-bottle",
+    "area": "F&B",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "small-buffet",
+    "area": "F&B",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "small-cup",
+    "area": "F&B",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "small-plate",
+    "area": "F&B",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "small-portion",
+    "area": "F&B",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "small-snack",
+    "area": "F&B",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "small-table",
+    "area": "F&B",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "early-dinner",
+    "area": "F&B",
+    "dimension": "Speed",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "fast-kitchen",
+    "area": "F&B",
+    "dimension": "Speed",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "late-breakfast",
+    "area": "F&B",
+    "dimension": "Speed",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "late-lunch",
+    "area": "F&B",
+    "dimension": "Speed",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "long-queue",
+    "area": "F&B",
+    "dimension": "Speed",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "slow-kitchen",
+    "area": "F&B",
+    "dimension": "Speed",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "cold-beer",
+    "area": "F&B",
+    "dimension": "Temperature",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "cold-breakfast",
+    "area": "F&B",
+    "dimension": "Temperature",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "cold-coffee",
+    "area": "F&B",
+    "dimension": "Temperature",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "cold-food",
+    "area": "F&B",
+    "dimension": "Temperature",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "cold-lunch",
+    "area": "F&B",
+    "dimension": "Temperature",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "hot-breakfast",
+    "area": "F&B",
+    "dimension": "Temperature",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "hot-coffee",
+    "area": "F&B",
+    "dimension": "Temperature",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "hot-food",
+    "area": "F&B",
+    "dimension": "Temperature",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "warm-beer",
+    "area": "F&B",
+    "dimension": "Temperature",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "warm-food",
+    "area": "F&B",
+    "dimension": "Temperature",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "warm-juice",
+    "area": "F&B",
+    "dimension": "Temperature",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "warm-wine",
+    "area": "F&B",
+    "dimension": "Temperature",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "expensive-cocktail",
+    "area": "F&B",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "expensive-dinner",
+    "area": "F&B",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "expensive-drink",
+    "area": "F&B",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "expensive-restaurant",
+    "area": "F&B",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "overpriced-food",
+    "area": "F&B",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "diverse-menu",
+    "area": "F&B",
+    "dimension": "Variety",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "extensive-buffet",
+    "area": "F&B",
+    "dimension": "Variety",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "limited-board",
+    "area": "F&B",
+    "dimension": "Variety",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "limited-breakfast",
+    "area": "F&B",
+    "dimension": "Variety",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "limited-menu",
+    "area": "F&B",
+    "dimension": "Variety",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "limited-restaurant",
+    "area": "F&B",
+    "dimension": "Variety",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "local-breakfast",
+    "area": "F&B",
+    "dimension": "Variety",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "local-cuisine",
+    "area": "F&B",
+    "dimension": "Variety",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "local-dish",
+    "area": "F&B",
+    "dimension": "Variety",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "local-food",
+    "area": "F&B",
+    "dimension": "Variety",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "repetitive-menu",
+    "area": "F&B",
+    "dimension": "Variety",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "standard-breakfast",
+    "area": "F&B",
+    "dimension": "Variety",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "vegan-option",
+    "area": "F&B",
+    "dimension": "Variety",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "beautiful-building",
+    "area": "Facilities",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "beautiful-courtyard",
+    "area": "Facilities",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "beautiful-garden",
+    "area": "Facilities",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "beautiful-grounds",
+    "area": "Facilities",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "beautiful-lobby",
+    "area": "Facilities",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "beautiful-property",
+    "area": "Facilities",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "beautiful-resort",
+    "area": "Facilities",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "beautiful-rooftop",
+    "area": "Facilities",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "lush-garden",
+    "area": "Facilities",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "lush-grounds",
+    "area": "Facilities",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "luxurious-hotel",
+    "area": "Facilities",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "modern-amenity",
+    "area": "Facilities",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "modern-building",
+    "area": "Facilities",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "modern-facility",
+    "area": "Facilities",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "modern-gym",
+    "area": "Facilities",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "modern-hotel",
+    "area": "Facilities",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "outdated-building",
+    "area": "Facilities",
+    "dimension": "Aesthetics",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "chaotic-hotel",
+    "area": "Facilities",
+    "dimension": "Ambiance",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "peaceful-resort",
+    "area": "Facilities",
+    "dimension": "Ambiance",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "missing-amenity",
+    "area": "Facilities",
+    "dimension": "Availability",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "stocked-amenity",
+    "area": "Facilities",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "clean-facility",
+    "area": "Facilities",
+    "dimension": "Cleanliness",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "clean-grounds",
+    "area": "Facilities",
+    "dimension": "Cleanliness",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "clean-gym",
+    "area": "Facilities",
+    "dimension": "Cleanliness",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "dirty-grounds",
+    "area": "Facilities",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "busy-resort",
+    "area": "Facilities",
+    "dimension": "Comfort",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "comfortable-lounge",
+    "area": "Facilities",
+    "dimension": "Comfort",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "crowded-lobby",
+    "area": "Facilities",
+    "dimension": "Comfort",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "crowded-lounge",
+    "area": "Facilities",
+    "dimension": "Comfort",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "crowded-rooftop",
+    "area": "Facilities",
+    "dimension": "Comfort",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "overcrowded-hotel",
+    "area": "Facilities",
+    "dimension": "Comfort",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "bad-shape",
+    "area": "Facilities",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "broken-elevator",
+    "area": "Facilities",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "broken-machine",
+    "area": "Facilities",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "functional-machine",
+    "area": "Facilities",
+    "dimension": "Condition",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "neglected-courtyard",
+    "area": "Facilities",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "neglected-garden",
+    "area": "Facilities",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "neglected-grounds",
+    "area": "Facilities",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "old-building",
+    "area": "Facilities",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "old-facility",
+    "area": "Facilities",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "old-hotel",
+    "area": "Facilities",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "perfect-shape",
+    "area": "Facilities",
+    "dimension": "Condition",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "useless-feature",
+    "area": "Facilities",
+    "dimension": "Condition",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "worn-shape",
+    "area": "Facilities",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "convenient-machine",
+    "area": "Facilities",
+    "dimension": "Convenience",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "noisy-environment",
+    "area": "Facilities",
+    "dimension": "Noise",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "noisy-hotel",
+    "area": "Facilities",
+    "dimension": "Noise",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "noisy-machine",
+    "area": "Facilities",
+    "dimension": "Noise",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "dark-hallway",
+    "area": "Facilities",
+    "dimension": "Safety",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "secure-property",
+    "area": "Facilities",
+    "dimension": "Safety",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "narrow-hallway",
+    "area": "Facilities",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "small-courtyard",
+    "area": "Facilities",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "small-elevator",
+    "area": "Facilities",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "small-garden",
+    "area": "Facilities",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "small-gym",
+    "area": "Facilities",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "small-lobby",
+    "area": "Facilities",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "small-lounge",
+    "area": "Facilities",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "small-rooftop",
+    "area": "Facilities",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "fast-elevator",
+    "area": "Facilities",
+    "dimension": "Speed",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "slow-elevator",
+    "area": "Facilities",
+    "dimension": "Speed",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "wasteful-resort",
+    "area": "Facilities",
+    "dimension": "Sustainability",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "expensive-hotel",
+    "area": "Facilities",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "expensive-resort",
+    "area": "Facilities",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "basic-amenity",
+    "area": "Facilities",
+    "dimension": "Variety",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "basic-gym",
+    "area": "Facilities",
+    "dimension": "Variety",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "chaotic-checkin",
+    "area": "Front Desk",
+    "dimension": "Ambiance",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "bad-key",
+    "area": "Front Desk",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "efficient-checkin",
+    "area": "Front Desk",
+    "dimension": "Condition",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "lost-key",
+    "area": "Front Desk",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "denied-request",
+    "area": "Front Desk",
+    "dimension": "Convenience",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "denied-upgrade",
+    "area": "Front Desk",
+    "dimension": "Convenience",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "easy-check",
+    "area": "Front Desk",
+    "dimension": "Convenience",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "flexible-checkin",
+    "area": "Front Desk",
+    "dimension": "Convenience",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "multiple-request",
+    "area": "Front Desk",
+    "dimension": "Convenience",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "strict-checkin",
+    "area": "Front Desk",
+    "dimension": "Convenience",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "successful-upgrade",
+    "area": "Front Desk",
+    "dimension": "Convenience",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "clear-communication",
+    "area": "Front Desk",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "clear-notice",
+    "area": "Front Desk",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "friendly-concierge",
+    "area": "Front Desk",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "friendly-receptionist",
+    "area": "Front Desk",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "helpful-concierge",
+    "area": "Front Desk",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "helpful-receptionist",
+    "area": "Front Desk",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "lost-booking",
+    "area": "Front Desk",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "missed-wakeup",
+    "area": "Front Desk",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "missing-reservation",
+    "area": "Front Desk",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "reliable-wakeup",
+    "area": "Front Desk",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "rude-concierge",
+    "area": "Front Desk",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "rude-receptionist",
+    "area": "Front Desk",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "short-notice",
+    "area": "Front Desk",
+    "dimension": "Service Quality",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "unhelpful-concierge",
+    "area": "Front Desk",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "vague-notice",
+    "area": "Front Desk",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "wrong-reservation",
+    "area": "Front Desk",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "delayed-communication",
+    "area": "Front Desk",
+    "dimension": "Speed",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "early-checkin",
+    "area": "Front Desk",
+    "dimension": "Speed",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "late-check",
+    "area": "Front Desk",
+    "dimension": "Speed",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "late-checkout",
+    "area": "Front Desk",
+    "dimension": "Speed",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "long-wait",
+    "area": "Front Desk",
+    "dimension": "Speed",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "quick-check",
+    "area": "Front Desk",
+    "dimension": "Speed",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "quick-request",
+    "area": "Front Desk",
+    "dimension": "Speed",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "slow-check",
+    "area": "Front Desk",
+    "dimension": "Speed",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "smooth-checkin",
+    "area": "Front Desk",
+    "dimension": "Speed",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "beautiful-setting",
+    "area": "General Experience",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "beautiful-view",
+    "area": "General Experience",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "bad-vibe",
+    "area": "General Experience",
+    "dimension": "Ambiance",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "memorable-anniversary",
+    "area": "General Experience",
+    "dimension": "Ambiance",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "relaxing-atmosphere",
+    "area": "General Experience",
+    "dimension": "Ambiance",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "romantic-setting",
+    "area": "General Experience",
+    "dimension": "Ambiance",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "ruined-anniversary",
+    "area": "General Experience",
+    "dimension": "Ambiance",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "stressful-atmosphere",
+    "area": "General Experience",
+    "dimension": "Ambiance",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "unromantic-setting",
+    "area": "General Experience",
+    "dimension": "Ambiance",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "friendly-atmosphere",
+    "area": "General Experience",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "daily-housekeeping",
+    "area": "Housekeeping",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "extra-towel",
+    "area": "Housekeeping",
+    "dimension": "Availability",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "missing-soap",
+    "area": "Housekeeping",
+    "dimension": "Availability",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "missing-towel",
+    "area": "Housekeeping",
+    "dimension": "Availability",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "skipped-housekeeping",
+    "area": "Housekeeping",
+    "dimension": "Availability",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "bad-smell",
+    "area": "Housekeeping",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "chemical-smell",
+    "area": "Housekeeping",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "clean-towel",
+    "area": "Housekeeping",
+    "dimension": "Cleanliness",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "dirty-towel",
+    "area": "Housekeeping",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "fresh-smell",
+    "area": "Housekeeping",
+    "dimension": "Cleanliness",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "musty-smell",
+    "area": "Housekeeping",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "pleasant-smell",
+    "area": "Housekeeping",
+    "dimension": "Cleanliness",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "stained-towel",
+    "area": "Housekeeping",
+    "dimension": "Cleanliness",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "efficient-housekeeping",
+    "area": "Housekeeping",
+    "dimension": "Condition",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "old-towel",
+    "area": "Housekeeping",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "ignored-dnd",
+    "area": "Housekeeping",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "thorough-housekeeping",
+    "area": "Housekeeping",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "infrequent-housekeeping",
+    "area": "Housekeeping",
+    "dimension": "Speed",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "late-housekeeping",
+    "area": "Housekeeping",
+    "dimension": "Speed",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "rare-cleaning",
+    "area": "Housekeeping",
+    "dimension": "Speed",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "fun-playground",
+    "area": "Kids & Family",
+    "dimension": "Ambiance",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "available-babysitting",
+    "area": "Kids & Family",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "available-crib",
+    "area": "Kids & Family",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "available-play",
+    "area": "Kids & Family",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "kid-friendly",
+    "area": "Kids & Family",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "missing-crib",
+    "area": "Kids & Family",
+    "dimension": "Availability",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "missing-playground",
+    "area": "Kids & Family",
+    "dimension": "Availability",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "absent-play",
+    "area": "Kids & Family",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "unavailable-babysitting",
+    "area": "Kids & Family",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "available-laundry",
+    "area": "Laundry",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "missing-iron",
+    "area": "Laundry",
+    "dimension": "Availability",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "clean-laundry",
+    "area": "Laundry",
+    "dimension": "Cleanliness",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "broken-iron",
+    "area": "Laundry",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "damaged-laundry",
+    "area": "Laundry",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "fast-laundry",
+    "area": "Laundry",
+    "dimension": "Speed",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "slow-laundry",
+    "area": "Laundry",
+    "dimension": "Speed",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "expensive-laundry",
+    "area": "Laundry",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "beautiful-location",
+    "area": "Location",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "grand-entrance",
+    "area": "Location",
+    "dimension": "Aesthetics",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "rich-culture",
+    "area": "Location",
+    "dimension": "Ambiance",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "free-access",
+    "area": "Location",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "overcrowded-attraction",
+    "area": "Location",
+    "dimension": "Comfort",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "bad-location",
+    "area": "Location",
+    "dimension": "Convenience",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "convenient-access",
+    "area": "Location",
+    "dimension": "Convenience",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "convenient-distance",
+    "area": "Location",
+    "dimension": "Convenience",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "convenient-entrance",
+    "area": "Location",
+    "dimension": "Convenience",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "convenient-location",
+    "area": "Location",
+    "dimension": "Convenience",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "convenient-shop",
+    "area": "Location",
+    "dimension": "Convenience",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "convenient-store",
+    "area": "Location",
+    "dimension": "Convenience",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "convenient-transportation",
+    "area": "Location",
+    "dimension": "Convenience",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "difficult-access",
+    "area": "Location",
+    "dimension": "Convenience",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "difficult-distance",
+    "area": "Location",
+    "dimension": "Convenience",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "distant-attraction",
+    "area": "Location",
+    "dimension": "Convenience",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "easy-access",
+    "area": "Location",
+    "dimension": "Convenience",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "long-distance",
+    "area": "Location",
+    "dimension": "Convenience",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "remote-location",
+    "area": "Location",
+    "dimension": "Convenience",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "noisy-location",
+    "area": "Location",
+    "dimension": "Noise",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "quiet-location",
+    "area": "Location",
+    "dimension": "Noise",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "safe-neighborhood",
+    "area": "Location",
+    "dimension": "Safety",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "unsafe-area",
+    "area": "Location",
+    "dimension": "Safety",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "unsafe-neighborhood",
+    "area": "Location",
+    "dimension": "Safety",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "friendly-vendor",
+    "area": "Location",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "rude-vendor",
+    "area": "Location",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "narrow-entrance",
+    "area": "Location",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "small-market",
+    "area": "Location",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "small-shop",
+    "area": "Location",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "small-store",
+    "area": "Location",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "slow-transportation",
+    "area": "Location",
+    "dimension": "Speed",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "expensive-market",
+    "area": "Location",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "expensive-shop",
+    "area": "Location",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "expensive-store",
+    "area": "Location",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "expensive-transportation",
+    "area": "Location",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "expensive-vendor",
+    "area": "Location",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "hidden-entrance",
+    "area": "Location",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "limited-access",
+    "area": "Location",
+    "dimension": "Variety",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "local-attraction",
+    "area": "Location",
+    "dimension": "Variety",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "local-market",
+    "area": "Location",
+    "dimension": "Variety",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "local-shop",
+    "area": "Location",
+    "dimension": "Variety",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "local-vendor",
+    "area": "Location",
+    "dimension": "Variety",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "annoying-bug",
+    "area": "Maintenance",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "annoying-mosquito",
+    "area": "Maintenance",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "dusty-renovation",
+    "area": "Maintenance",
+    "dimension": "Cleanliness",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "large-bug",
+    "area": "Maintenance",
+    "dimension": "Cleanliness",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "persistent-ant",
+    "area": "Maintenance",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "sewage-smell",
+    "area": "Maintenance",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "visible-cockroach",
+    "area": "Maintenance",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "visible-rodent",
+    "area": "Maintenance",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "leaky-ceiling",
+    "area": "Maintenance",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "peeling-paint",
+    "area": "Maintenance",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "delayed-maintenance",
+    "area": "Maintenance",
+    "dimension": "Speed",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "constant-noise",
+    "area": "Noise",
+    "dimension": "Noise",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "construction-noise",
+    "area": "Noise",
+    "dimension": "Noise",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "disruptive-construction",
+    "area": "Noise",
+    "dimension": "Noise",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "disturbed-sleep",
+    "area": "Noise",
+    "dimension": "Noise",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "loud-noise",
+    "area": "Noise",
+    "dimension": "Noise",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "neighbor-noise",
+    "area": "Noise",
+    "dimension": "Noise",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "noisy-construction",
+    "area": "Noise",
+    "dimension": "Noise",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "street-noise",
+    "area": "Noise",
+    "dimension": "Noise",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "traffic-noise",
+    "area": "Noise",
+    "dimension": "Noise",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "available-taxi",
+    "area": "Parking & Transport",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "free-parking",
+    "area": "Parking & Transport",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "free-shuttle",
+    "area": "Parking & Transport",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "free-transfer",
+    "area": "Parking & Transport",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "crowded-parking",
+    "area": "Parking & Transport",
+    "dimension": "Comfort",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "convenient-shuttle",
+    "area": "Parking & Transport",
+    "dimension": "Convenience",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "difficult-parking",
+    "area": "Parking & Transport",
+    "dimension": "Convenience",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "easy-parking",
+    "area": "Parking & Transport",
+    "dimension": "Convenience",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "safe-parking",
+    "area": "Parking & Transport",
+    "dimension": "Safety",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "unsafe-parking",
+    "area": "Parking & Transport",
+    "dimension": "Safety",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "unavailable-taxi",
+    "area": "Parking & Transport",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "late-shuttle",
+    "area": "Parking & Transport",
+    "dimension": "Speed",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "late-transfer",
+    "area": "Parking & Transport",
+    "dimension": "Speed",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "reliable-bus",
+    "area": "Parking & Transport",
+    "dimension": "Speed",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "reliable-shuttle",
+    "area": "Parking & Transport",
+    "dimension": "Speed",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "unreliable-bus",
+    "area": "Parking & Transport",
+    "dimension": "Speed",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "unreliable-shuttle",
+    "area": "Parking & Transport",
+    "dimension": "Speed",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "expensive-parking",
+    "area": "Parking & Transport",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "expensive-transfer",
+    "area": "Parking & Transport",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "expensive-valet",
+    "area": "Parking & Transport",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "limited-parking",
+    "area": "Parking & Transport",
+    "dimension": "Variety",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "allowed-pet",
+    "area": "Pet Policy",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "prohibited-pet",
+    "area": "Pet Policy",
+    "dimension": "Availability",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "restricted-pet",
+    "area": "Pet Policy",
+    "dimension": "Availability",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "dirty-pet",
+    "area": "Pet Policy",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "friendly-pet",
+    "area": "Pet Policy",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "beautiful-beach",
+    "area": "Pool & Beach",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "beautiful-pool",
+    "area": "Pool & Beach",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "accessible-pool",
+    "area": "Pool & Beach",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "available-lounger",
+    "area": "Pool & Beach",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "available-umbrella",
+    "area": "Pool & Beach",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "hot-spring",
+    "area": "Pool & Beach",
+    "dimension": "Availability",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "missing-umbrella",
+    "area": "Pool & Beach",
+    "dimension": "Availability",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "algae-pool",
+    "area": "Pool & Beach",
+    "dimension": "Cleanliness",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "clean-beach",
+    "area": "Pool & Beach",
+    "dimension": "Cleanliness",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "clean-pool",
+    "area": "Pool & Beach",
+    "dimension": "Cleanliness",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "clean-sand",
+    "area": "Pool & Beach",
+    "dimension": "Cleanliness",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "clean-water",
+    "area": "Pool & Beach",
+    "dimension": "Cleanliness",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "clear-water",
+    "area": "Pool & Beach",
+    "dimension": "Cleanliness",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "dirty-pool",
+    "area": "Pool & Beach",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "dirty-sand",
+    "area": "Pool & Beach",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "dirty-water",
+    "area": "Pool & Beach",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "fresh-water",
+    "area": "Pool & Beach",
+    "dimension": "Cleanliness",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "comfortable-seating",
+    "area": "Pool & Beach",
+    "dimension": "Comfort",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "crowded-beach",
+    "area": "Pool & Beach",
+    "dimension": "Comfort",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "crowded-pool",
+    "area": "Pool & Beach",
+    "dimension": "Comfort",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "uncomfortable-seating",
+    "area": "Pool & Beach",
+    "dimension": "Comfort",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "broken-lounger",
+    "area": "Pool & Beach",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "maintained-beach",
+    "area": "Pool & Beach",
+    "dimension": "Condition",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "neglected-beach",
+    "area": "Pool & Beach",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "quiet-beach",
+    "area": "Pool & Beach",
+    "dimension": "Noise",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "rough-wave",
+    "area": "Pool & Beach",
+    "dimension": "Safety",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "safe-pool",
+    "area": "Pool & Beach",
+    "dimension": "Safety",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "unsafe-pool",
+    "area": "Pool & Beach",
+    "dimension": "Safety",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "ample-seating",
+    "area": "Pool & Beach",
+    "dimension": "Size",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "deep-pool",
+    "area": "Pool & Beach",
+    "dimension": "Size",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "shallow-pool",
+    "area": "Pool & Beach",
+    "dimension": "Size",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "cold-pool",
+    "area": "Pool & Beach",
+    "dimension": "Temperature",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "cold-water",
+    "area": "Pool & Beach",
+    "dimension": "Temperature",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "heated-pool",
+    "area": "Pool & Beach",
+    "dimension": "Temperature",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "hot-water",
+    "area": "Pool & Beach",
+    "dimension": "Temperature",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "unheated-pool",
+    "area": "Pool & Beach",
+    "dimension": "Temperature",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "warm-pool",
+    "area": "Pool & Beach",
+    "dimension": "Temperature",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "limited-seating",
+    "area": "Pool & Beach",
+    "dimension": "Variety",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "beautiful-balcony",
+    "area": "Room",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "beautiful-decor",
+    "area": "Room",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "beautiful-decoration",
+    "area": "Room",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "beautiful-design",
+    "area": "Room",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "beautiful-patio",
+    "area": "Room",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "beautiful-suite",
+    "area": "Room",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "beautiful-terrace",
+    "area": "Room",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "bright-room",
+    "area": "Room",
+    "dimension": "Aesthetics",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "dark-room",
+    "area": "Room",
+    "dimension": "Aesthetics",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "dull-decor",
+    "area": "Room",
+    "dimension": "Aesthetics",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "modern-decor",
+    "area": "Room",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "modern-design",
+    "area": "Room",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "modern-furniture",
+    "area": "Room",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "natural-light",
+    "area": "Room",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "outdated-decor",
+    "area": "Room",
+    "dimension": "Aesthetics",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "outdated-decoration",
+    "area": "Room",
+    "dimension": "Aesthetics",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "outdated-design",
+    "area": "Room",
+    "dimension": "Aesthetics",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "outdated-room",
+    "area": "Room",
+    "dimension": "Aesthetics",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "outdated-style",
+    "area": "Room",
+    "dimension": "Aesthetics",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "panoramic-view",
+    "area": "Room",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "partial-view",
+    "area": "Room",
+    "dimension": "Aesthetics",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "small-view",
+    "area": "Room",
+    "dimension": "Aesthetics",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "vibrant-decor",
+    "area": "Room",
+    "dimension": "Aesthetics",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "accessible-room",
+    "area": "Room",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "available-chair",
+    "area": "Room",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "available-charger",
+    "area": "Room",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "available-outlet",
+    "area": "Room",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "empty-minibar",
+    "area": "Room",
+    "dimension": "Availability",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "equipped-room",
+    "area": "Room",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "extra-pillow",
+    "area": "Room",
+    "dimension": "Availability",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "missing-charger",
+    "area": "Room",
+    "dimension": "Availability",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "missing-curtain",
+    "area": "Room",
+    "dimension": "Availability",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "missing-remote",
+    "area": "Room",
+    "dimension": "Availability",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "missing-safe",
+    "area": "Room",
+    "dimension": "Availability",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "scarce-outlet",
+    "area": "Room",
+    "dimension": "Availability",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "stocked-minibar",
+    "area": "Room",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "unprepared-room",
+    "area": "Room",
+    "dimension": "Availability",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "cigarette-smell",
+    "area": "Room",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "clean-air",
+    "area": "Room",
+    "dimension": "Cleanliness",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "clean-bed",
+    "area": "Room",
+    "dimension": "Cleanliness",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "clean-carpet",
+    "area": "Room",
+    "dimension": "Cleanliness",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "clean-floor",
+    "area": "Room",
+    "dimension": "Cleanliness",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "clean-sheet",
+    "area": "Room",
+    "dimension": "Cleanliness",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "clean-tile",
+    "area": "Room",
+    "dimension": "Cleanliness",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "clean-wall",
+    "area": "Room",
+    "dimension": "Cleanliness",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "clean-window",
+    "area": "Room",
+    "dimension": "Cleanliness",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "dirty-balcony",
+    "area": "Room",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "dirty-bed",
+    "area": "Room",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "dirty-carpet",
+    "area": "Room",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "dirty-floor",
+    "area": "Room",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "dirty-patio",
+    "area": "Room",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "dirty-sheet",
+    "area": "Room",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "dirty-terrace",
+    "area": "Room",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "dirty-tile",
+    "area": "Room",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "dirty-wall",
+    "area": "Room",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "dirty-window",
+    "area": "Room",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "fresh-air",
+    "area": "Room",
+    "dimension": "Cleanliness",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "infested-room",
+    "area": "Room",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "musty-room",
+    "area": "Room",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "stained-sheet",
+    "area": "Room",
+    "dimension": "Cleanliness",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "stale-air",
+    "area": "Room",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "stuffy-room",
+    "area": "Room",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "comfortable-bed",
+    "area": "Room",
+    "dimension": "Comfort",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "comfortable-chair",
+    "area": "Room",
+    "dimension": "Comfort",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "comfortable-furniture",
+    "area": "Room",
+    "dimension": "Comfort",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "comfortable-pillow",
+    "area": "Room",
+    "dimension": "Comfort",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "comfortable-sofa",
+    "area": "Room",
+    "dimension": "Comfort",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "comfortable-temperature",
+    "area": "Room",
+    "dimension": "Comfort",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "hard-bed",
+    "area": "Room",
+    "dimension": "Comfort",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "hard-chair",
+    "area": "Room",
+    "dimension": "Comfort",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "hard-pillow",
+    "area": "Room",
+    "dimension": "Comfort",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "heavy-door",
+    "area": "Room",
+    "dimension": "Comfort",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "thin-blanket",
+    "area": "Room",
+    "dimension": "Comfort",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "thin-door",
+    "area": "Room",
+    "dimension": "Comfort",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "thin-pillow",
+    "area": "Room",
+    "dimension": "Comfort",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "thin-sheet",
+    "area": "Room",
+    "dimension": "Comfort",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "thin-wall",
+    "area": "Room",
+    "dimension": "Comfort",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "uncomfortable-bed",
+    "area": "Room",
+    "dimension": "Comfort",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "uncomfortable-furniture",
+    "area": "Room",
+    "dimension": "Comfort",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "uncomfortable-sofa",
+    "area": "Room",
+    "dimension": "Comfort",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "uncomfortable-stay",
+    "area": "Room",
+    "dimension": "Comfort",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "broken-ac",
+    "area": "Room",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "broken-chair",
+    "area": "Room",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "broken-door",
+    "area": "Room",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "broken-lamp",
+    "area": "Room",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "broken-lock",
+    "area": "Room",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "broken-tile",
+    "area": "Room",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "broken-window",
+    "area": "Room",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "cracked-wall",
+    "area": "Room",
+    "dimension": "Condition",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "dated-suite",
+    "area": "Room",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "dim-lighting",
+    "area": "Room",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "efficient-ac",
+    "area": "Room",
+    "dimension": "Condition",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "faulty-outlet",
+    "area": "Room",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "great-ac",
+    "area": "Room",
+    "dimension": "Condition",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "old-blanket",
+    "area": "Room",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "old-carpet",
+    "area": "Room",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "old-furniture",
+    "area": "Room",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "poor-lighting",
+    "area": "Room",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "renovated-room",
+    "area": "Room",
+    "dimension": "Condition",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "stuck-door",
+    "area": "Room",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "weak-ac",
+    "area": "Room",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "weak-heating",
+    "area": "Room",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "convenient-outlet",
+    "area": "Room",
+    "dimension": "Convenience",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "fresh-minibar",
+    "area": "Room",
+    "dimension": "Food Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "noisy-ac",
+    "area": "Room",
+    "dimension": "Noise",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "noisy-fridge",
+    "area": "Room",
+    "dimension": "Noise",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "noisy-unit",
+    "area": "Room",
+    "dimension": "Noise",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "quiet-room",
+    "area": "Room",
+    "dimension": "Noise",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "soundproof-room",
+    "area": "Room",
+    "dimension": "Noise",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "locked-door",
+    "area": "Room",
+    "dimension": "Safety",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "slippery-floor",
+    "area": "Room",
+    "dimension": "Safety",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "absent-charger",
+    "area": "Room",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "confusing-layout",
+    "area": "Room",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "wrong-room",
+    "area": "Room",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "adequate-storage",
+    "area": "Room",
+    "dimension": "Size",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "cramped-layout",
+    "area": "Room",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "cramped-room",
+    "area": "Room",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "insufficient-closet",
+    "area": "Room",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "insufficient-heating",
+    "area": "Room",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "large-window",
+    "area": "Room",
+    "dimension": "Size",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "practical-layout",
+    "area": "Room",
+    "dimension": "Size",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "small-balcony",
+    "area": "Room",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "small-bedroom",
+    "area": "Room",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "small-fridge",
+    "area": "Room",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "small-patio",
+    "area": "Room",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "small-suite",
+    "area": "Room",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "small-terrace",
+    "area": "Room",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "small-window",
+    "area": "Room",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "spacious-room",
+    "area": "Room",
+    "dimension": "Size",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "cold-temperature",
+    "area": "Room",
+    "dimension": "Temperature",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "conditioned-air",
+    "area": "Room",
+    "dimension": "Temperature",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "cool-fridge",
+    "area": "Room",
+    "dimension": "Temperature",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "hot-air",
+    "area": "Room",
+    "dimension": "Temperature",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "hot-temperature",
+    "area": "Room",
+    "dimension": "Temperature",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "perfect-temperature",
+    "area": "Room",
+    "dimension": "Temperature",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "sufficient-heating",
+    "area": "Room",
+    "dimension": "Temperature",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "unconditioned-air",
+    "area": "Room",
+    "dimension": "Temperature",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "expensive-minibar",
+    "area": "Room",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "overpriced-minibar",
+    "area": "Room",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "missing-camera",
+    "area": "Safety & Security",
+    "dimension": "Availability",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "excellent-security",
+    "area": "Safety & Security",
+    "dimension": "Safety",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "reliable-guard",
+    "area": "Safety & Security",
+    "dimension": "Safety",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "absent-guard",
+    "area": "Safety & Security",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "beautiful-spa",
+    "area": "Spa & Wellness",
+    "dimension": "Aesthetics",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "relaxing-spa",
+    "area": "Spa & Wellness",
+    "dimension": "Ambiance",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "available-sauna",
+    "area": "Spa & Wellness",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "available-yoga",
+    "area": "Spa & Wellness",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "clean-spa",
+    "area": "Spa & Wellness",
+    "dimension": "Cleanliness",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "dirty-spa",
+    "area": "Spa & Wellness",
+    "dimension": "Cleanliness",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "crowded-spa",
+    "area": "Spa & Wellness",
+    "dimension": "Comfort",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "broken-sauna",
+    "area": "Spa & Wellness",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "absent-yoga",
+    "area": "Spa & Wellness",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "professional-massage",
+    "area": "Spa & Wellness",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "small-spa",
+    "area": "Spa & Wellness",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "rushed-massage",
+    "area": "Spa & Wellness",
+    "dimension": "Speed",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "short-massage",
+    "area": "Spa & Wellness",
+    "dimension": "Speed",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "expensive-massage",
+    "area": "Spa & Wellness",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "expensive-spa",
+    "area": "Spa & Wellness",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "expensive-treatment",
+    "area": "Spa & Wellness",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "absent-host",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "absent-staff",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "attentive-butler",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "attentive-server",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "bad-attitude",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "cold-hospitality",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "dishonest-staff",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "exceptional-staff",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "forgotten-birthday",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "friendly-attitude",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "friendly-bartender",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "friendly-employee",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "friendly-host",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "friendly-manager",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "friendly-personnel",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "friendly-server",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "friendly-service",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "friendly-smile",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "friendly-staff",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "friendly-team",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "friendly-worker",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "hardworking-worker",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "helpful-employee",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "helpful-manager",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "helpful-personnel",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "helpful-service",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "helpful-staff",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "helpful-team",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "impatient-staff",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "indifferent-care",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "indifferent-staff",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "knowledgeable-guide",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "knowledgeable-staff",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "lazy-employee",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "lazy-worker",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "little-attention",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "monolingual-staff",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "multilingual-staff",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "overwhelmed-staff",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "patient-staff",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "personal-attention",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "positive-attitude",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "proactive-staff",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "professional-service",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "professional-staff",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "rude-attitude",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "rude-bartender",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "rude-butler",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "rude-comment",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "rude-employee",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "rude-guide",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "rude-manager",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "rude-personnel",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "rude-server",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "rude-service",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "rude-staff",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "rude-team",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "rude-worker",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "unavailable-butler",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "unavailable-help",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "uncooperative-team",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "undertrained-staff",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "unhelpful-management",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "unhelpful-personnel",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "unhelpful-service",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "unhelpful-staff",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "uninformative-guide",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "unprofessional-staff",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "unresponsive-manager",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "unwelcoming-host",
+    "area": "Staff",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "quick-help",
+    "area": "Staff",
+    "dimension": "Speed",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "quick-service",
+    "area": "Staff",
+    "dimension": "Speed",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "slow-bartender",
+    "area": "Staff",
+    "dimension": "Speed",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "slow-server",
+    "area": "Staff",
+    "dimension": "Speed",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "slow-service",
+    "area": "Staff",
+    "dimension": "Speed",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "excessive-plastic",
+    "area": "Sustainability",
+    "dimension": "Sustainability",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "friendly-eco",
+    "area": "Sustainability",
+    "dimension": "Sustainability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "recycling-available",
+    "area": "Sustainability",
+    "dimension": "Sustainability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "sustainable-practice",
+    "area": "Sustainability",
+    "dimension": "Sustainability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "unfriendly-eco",
+    "area": "Sustainability",
+    "dimension": "Sustainability",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "outdated-phone",
+    "area": "Technology",
+    "dimension": "Aesthetics",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "outdated-tv",
+    "area": "Technology",
+    "dimension": "Aesthetics",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "free-wifi",
+    "area": "Technology",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "missing-adapter",
+    "area": "Technology",
+    "dimension": "Availability",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "broken-tv",
+    "area": "Technology",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "functional-wifi",
+    "area": "Technology",
+    "dimension": "Condition",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "old-tv",
+    "area": "Technology",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "smart-tv",
+    "area": "Technology",
+    "dimension": "Condition",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "weak-wifi",
+    "area": "Technology",
+    "dimension": "Condition",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "large-tv",
+    "area": "Technology",
+    "dimension": "Size",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "small-tv",
+    "area": "Technology",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "fast-wifi",
+    "area": "Technology",
+    "dimension": "Speed",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "slow-internet",
+    "area": "Technology",
+    "dimension": "Speed",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "slow-wifi",
+    "area": "Technology",
+    "dimension": "Speed",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "exclusive-perk",
+    "area": "Value",
+    "dimension": "Availability",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "extra-charge",
+    "area": "Value",
+    "dimension": "Availability",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "good-value",
+    "area": "Value",
+    "dimension": "Condition",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "full-refund",
+    "area": "Value",
+    "dimension": "Convenience",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "unavailable-perk",
+    "area": "Value",
+    "dimension": "Service Quality",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "small-bonus",
+    "area": "Value",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "small-perk",
+    "area": "Value",
+    "dimension": "Size",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "delayed-refund",
+    "area": "Value",
+    "dimension": "Speed",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "affordable-price",
+    "area": "Value",
+    "dimension": "Value",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "correct-bill",
+    "area": "Value",
+    "dimension": "Value",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "disputed-charge",
+    "area": "Value",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "expensive-inclusive",
+    "area": "Value",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "expensive-package",
+    "area": "Value",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "expensive-price",
+    "area": "Value",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "fair-charge",
+    "area": "Value",
+    "dimension": "Value",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "hidden-fee",
+    "area": "Value",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "high-price",
+    "area": "Value",
+    "dimension": "Value",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "low-charge",
+    "area": "Value",
+    "dimension": "Value",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "overcharged-bill",
+    "area": "Value",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "partial-refund",
+    "area": "Value",
+    "dimension": "Value",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "surprise-fee",
+    "area": "Value",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "transparent-pricing",
+    "area": "Value",
+    "dimension": "Value",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "unfair-rate",
+    "area": "Value",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "useless-bonus",
+    "area": "Value",
+    "dimension": "Value",
+    "default_polarity": "context-dependent"
+  },
+  {
+    "subtopic": "wrong-charge",
+    "area": "Value",
+    "dimension": "Value",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "comprehensive-inclusive",
+    "area": "Value",
+    "dimension": "Variety",
+    "default_polarity": "positive"
+  },
+  {
+    "subtopic": "limited-inclusive",
+    "area": "Value",
+    "dimension": "Variety",
+    "default_polarity": "negative"
+  },
+  {
+    "subtopic": "limited-package",
+    "area": "Value",
+    "dimension": "Variety",
+    "default_polarity": "negative"
+  }
+]

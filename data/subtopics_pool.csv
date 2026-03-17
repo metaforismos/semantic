@@ -1,0 +1,742 @@
+subtopic,area,dimension,default_polarity
+accessible-wheelchair,Accessibility,Availability,positive
+missing-ramp,Accessibility,Availability,negative
+steep-stairs,Accessibility,Convenience,negative
+absent-wheelchair,Accessibility,Service Quality,negative
+modern-bathroom,Bathroom,Aesthetics,positive
+modern-shower,Bathroom,Aesthetics,positive
+inaccessible-bathroom,Bathroom,Availability,negative
+clean-bathroom,Bathroom,Cleanliness,positive
+dirty-bathroom,Bathroom,Cleanliness,negative
+moldy-bathroom,Bathroom,Cleanliness,negative
+broken-toilet,Bathroom,Condition,negative
+clogged-drain,Bathroom,Condition,negative
+good-pressure,Bathroom,Condition,positive
+great-pressure,Bathroom,Condition,positive
+leaky-faucet,Bathroom,Condition,negative
+low-pressure,Bathroom,Condition,context-dependent
+running-toilet,Bathroom,Condition,context-dependent
+strong-flush,Bathroom,Condition,positive
+weak-flush,Bathroom,Condition,negative
+weak-pressure,Bathroom,Condition,negative
+cramped-bathroom,Bathroom,Size,negative
+small-bathroom,Bathroom,Size,negative
+small-tub,Bathroom,Size,negative
+spacious-bathroom,Bathroom,Size,positive
+cold-shower,Bathroom,Temperature,context-dependent
+cold-tub,Bathroom,Temperature,context-dependent
+hot-shower,Bathroom,Temperature,context-dependent
+hot-tub,Bathroom,Temperature,context-dependent
+boring-activity,Entertainment,Ambiance,negative
+boring-entertainment,Entertainment,Ambiance,negative
+boring-event,Entertainment,Ambiance,negative
+boring-game,Entertainment,Ambiance,negative
+boring-show,Entertainment,Ambiance,negative
+entertaining-show,Entertainment,Ambiance,positive
+fun-activity,Entertainment,Ambiance,positive
+fun-club,Entertainment,Ambiance,positive
+fun-entertainment,Entertainment,Ambiance,positive
+fun-event,Entertainment,Ambiance,positive
+fun-fiesta,Entertainment,Ambiance,positive
+fun-game,Entertainment,Ambiance,positive
+fun-party,Entertainment,Ambiance,positive
+fun-show,Entertainment,Ambiance,positive
+live-entertainment,Entertainment,Ambiance,positive
+live-music,Entertainment,Ambiance,positive
+pleasant-music,Entertainment,Ambiance,positive
+terrible-music,Entertainment,Ambiance,negative
+available-tour,Entertainment,Availability,positive
+exclusive-club,Entertainment,Availability,positive
+free-activity,Entertainment,Availability,positive
+free-tour,Entertainment,Availability,positive
+private-party,Entertainment,Availability,positive
+broken-game,Entertainment,Condition,negative
+loud-fiesta,Entertainment,Noise,negative
+loud-music,Entertainment,Noise,negative
+loud-party,Entertainment,Noise,negative
+absent-tour,Entertainment,Service Quality,negative
+disorganized-event,Entertainment,Service Quality,negative
+disorganized-fiesta,Entertainment,Service Quality,negative
+informative-tour,Entertainment,Service Quality,positive
+small-club,Entertainment,Size,negative
+short-show,Entertainment,Speed,context-dependent
+short-tour,Entertainment,Speed,context-dependent
+expensive-activity,Entertainment,Value,negative
+expensive-club,Entertainment,Value,negative
+expensive-tour,Entertainment,Value,negative
+limited-entertainment,Entertainment,Variety,negative
+beautiful-bar,F&B,Aesthetics,positive
+beautiful-restaurant,F&B,Aesthetics,positive
+available-table,F&B,Availability,positive
+free-bottle,F&B,Availability,positive
+free-breakfast,F&B,Availability,positive
+free-drink,F&B,Availability,positive
+free-snack,F&B,Availability,positive
+free-wine,F&B,Availability,positive
+missing-option,F&B,Availability,negative
+open-bar,F&B,Availability,context-dependent
+scarce-fruit,F&B,Availability,negative
+clean-cup,F&B,Cleanliness,positive
+clean-glass,F&B,Cleanliness,positive
+clean-plate,F&B,Cleanliness,positive
+clean-table,F&B,Cleanliness,positive
+dirty-cup,F&B,Cleanliness,negative
+dirty-dish,F&B,Cleanliness,negative
+dirty-glass,F&B,Cleanliness,negative
+dirty-plate,F&B,Cleanliness,negative
+dirty-table,F&B,Cleanliness,negative
+crowded-restaurant,F&B,Comfort,negative
+broken-glass,F&B,Condition,negative
+weak-cocktail,F&B,Condition,negative
+weak-coffee,F&B,Condition,negative
+allergic-reaction,F&B,Food Quality,context-dependent
+bad-taste,F&B,Food Quality,negative
+bland-food,F&B,Food Quality,negative
+burnt-food,F&B,Food Quality,negative
+delicious-breakfast,F&B,Food Quality,positive
+delicious-buffet,F&B,Food Quality,positive
+delicious-cocktail,F&B,Food Quality,positive
+delicious-cuisine,F&B,Food Quality,positive
+delicious-dinner,F&B,Food Quality,positive
+delicious-dish,F&B,Food Quality,positive
+delicious-drink,F&B,Food Quality,positive
+delicious-food,F&B,Food Quality,positive
+delicious-fruit,F&B,Food Quality,positive
+delicious-juice,F&B,Food Quality,positive
+delicious-lunch,F&B,Food Quality,positive
+delicious-meal,F&B,Food Quality,positive
+delicious-meat,F&B,Food Quality,positive
+delicious-menu,F&B,Food Quality,positive
+delicious-restaurant,F&B,Food Quality,positive
+delicious-snack,F&B,Food Quality,positive
+diluted-juice,F&B,Food Quality,negative
+flat-beer,F&B,Food Quality,negative
+flavorful-dinner,F&B,Food Quality,positive
+fresh-bread,F&B,Food Quality,positive
+fresh-breakfast,F&B,Food Quality,positive
+fresh-coffee,F&B,Food Quality,positive
+fresh-egg,F&B,Food Quality,positive
+fresh-food,F&B,Food Quality,positive
+fresh-fruit,F&B,Food Quality,positive
+fresh-ingredient,F&B,Food Quality,positive
+fresh-juice,F&B,Food Quality,positive
+generous-portion,F&B,Food Quality,positive
+healthy-food,F&B,Food Quality,positive
+meager-portion,F&B,Food Quality,negative
+mediocre-buffet,F&B,Food Quality,negative
+overcooked-egg,F&B,Food Quality,negative
+overcooked-food,F&B,Food Quality,negative
+overcooked-meat,F&B,Food Quality,negative
+rotten-fruit,F&B,Food Quality,negative
+stale-bread,F&B,Food Quality,negative
+stale-ingredient,F&B,Food Quality,negative
+stale-snack,F&B,Food Quality,negative
+tasteless-dinner,F&B,Food Quality,context-dependent
+tough-meat,F&B,Food Quality,negative
+undercooked-food,F&B,Food Quality,negative
+loud-bar,F&B,Noise,negative
+accommodating-kitchen,F&B,Service Quality,positive
+friendly-bar,F&B,Service Quality,positive
+friendly-restaurant,F&B,Service Quality,positive
+ignored-allergy,F&B,Service Quality,negative
+large-cup,F&B,Size,context-dependent
+large-portion,F&B,Size,context-dependent
+small-bar,F&B,Size,negative
+small-bottle,F&B,Size,negative
+small-buffet,F&B,Size,negative
+small-cup,F&B,Size,negative
+small-plate,F&B,Size,negative
+small-portion,F&B,Size,negative
+small-snack,F&B,Size,negative
+small-table,F&B,Size,negative
+early-dinner,F&B,Speed,context-dependent
+fast-kitchen,F&B,Speed,positive
+late-breakfast,F&B,Speed,context-dependent
+late-lunch,F&B,Speed,context-dependent
+long-queue,F&B,Speed,context-dependent
+slow-kitchen,F&B,Speed,negative
+cold-beer,F&B,Temperature,context-dependent
+cold-breakfast,F&B,Temperature,context-dependent
+cold-coffee,F&B,Temperature,context-dependent
+cold-food,F&B,Temperature,context-dependent
+cold-lunch,F&B,Temperature,context-dependent
+hot-breakfast,F&B,Temperature,context-dependent
+hot-coffee,F&B,Temperature,context-dependent
+hot-food,F&B,Temperature,context-dependent
+warm-beer,F&B,Temperature,context-dependent
+warm-food,F&B,Temperature,context-dependent
+warm-juice,F&B,Temperature,context-dependent
+warm-wine,F&B,Temperature,context-dependent
+expensive-cocktail,F&B,Value,negative
+expensive-dinner,F&B,Value,negative
+expensive-drink,F&B,Value,negative
+expensive-restaurant,F&B,Value,negative
+overpriced-food,F&B,Value,negative
+diverse-menu,F&B,Variety,positive
+extensive-buffet,F&B,Variety,positive
+limited-board,F&B,Variety,negative
+limited-breakfast,F&B,Variety,negative
+limited-menu,F&B,Variety,negative
+limited-restaurant,F&B,Variety,negative
+local-breakfast,F&B,Variety,context-dependent
+local-cuisine,F&B,Variety,context-dependent
+local-dish,F&B,Variety,context-dependent
+local-food,F&B,Variety,context-dependent
+repetitive-menu,F&B,Variety,negative
+standard-breakfast,F&B,Variety,context-dependent
+vegan-option,F&B,Variety,positive
+beautiful-building,Facilities,Aesthetics,positive
+beautiful-courtyard,Facilities,Aesthetics,positive
+beautiful-garden,Facilities,Aesthetics,positive
+beautiful-grounds,Facilities,Aesthetics,positive
+beautiful-lobby,Facilities,Aesthetics,positive
+beautiful-property,Facilities,Aesthetics,positive
+beautiful-resort,Facilities,Aesthetics,positive
+beautiful-rooftop,Facilities,Aesthetics,positive
+lush-garden,Facilities,Aesthetics,positive
+lush-grounds,Facilities,Aesthetics,positive
+luxurious-hotel,Facilities,Aesthetics,positive
+modern-amenity,Facilities,Aesthetics,positive
+modern-building,Facilities,Aesthetics,positive
+modern-facility,Facilities,Aesthetics,positive
+modern-gym,Facilities,Aesthetics,positive
+modern-hotel,Facilities,Aesthetics,positive
+outdated-building,Facilities,Aesthetics,negative
+chaotic-hotel,Facilities,Ambiance,negative
+peaceful-resort,Facilities,Ambiance,positive
+missing-amenity,Facilities,Availability,negative
+stocked-amenity,Facilities,Availability,positive
+clean-facility,Facilities,Cleanliness,positive
+clean-grounds,Facilities,Cleanliness,positive
+clean-gym,Facilities,Cleanliness,positive
+dirty-grounds,Facilities,Cleanliness,negative
+busy-resort,Facilities,Comfort,context-dependent
+comfortable-lounge,Facilities,Comfort,positive
+crowded-lobby,Facilities,Comfort,negative
+crowded-lounge,Facilities,Comfort,negative
+crowded-rooftop,Facilities,Comfort,negative
+overcrowded-hotel,Facilities,Comfort,negative
+bad-shape,Facilities,Condition,negative
+broken-elevator,Facilities,Condition,negative
+broken-machine,Facilities,Condition,negative
+functional-machine,Facilities,Condition,positive
+neglected-courtyard,Facilities,Condition,negative
+neglected-garden,Facilities,Condition,negative
+neglected-grounds,Facilities,Condition,negative
+old-building,Facilities,Condition,negative
+old-facility,Facilities,Condition,negative
+old-hotel,Facilities,Condition,negative
+perfect-shape,Facilities,Condition,positive
+useless-feature,Facilities,Condition,context-dependent
+worn-shape,Facilities,Condition,negative
+convenient-machine,Facilities,Convenience,positive
+noisy-environment,Facilities,Noise,negative
+noisy-hotel,Facilities,Noise,negative
+noisy-machine,Facilities,Noise,negative
+dark-hallway,Facilities,Safety,negative
+secure-property,Facilities,Safety,positive
+narrow-hallway,Facilities,Size,negative
+small-courtyard,Facilities,Size,negative
+small-elevator,Facilities,Size,negative
+small-garden,Facilities,Size,negative
+small-gym,Facilities,Size,negative
+small-lobby,Facilities,Size,negative
+small-lounge,Facilities,Size,negative
+small-rooftop,Facilities,Size,negative
+fast-elevator,Facilities,Speed,positive
+slow-elevator,Facilities,Speed,negative
+wasteful-resort,Facilities,Sustainability,negative
+expensive-hotel,Facilities,Value,negative
+expensive-resort,Facilities,Value,negative
+basic-amenity,Facilities,Variety,context-dependent
+basic-gym,Facilities,Variety,context-dependent
+chaotic-checkin,Front Desk,Ambiance,negative
+bad-key,Front Desk,Condition,negative
+efficient-checkin,Front Desk,Condition,positive
+lost-key,Front Desk,Condition,negative
+denied-request,Front Desk,Convenience,negative
+denied-upgrade,Front Desk,Convenience,negative
+easy-check,Front Desk,Convenience,positive
+flexible-checkin,Front Desk,Convenience,positive
+multiple-request,Front Desk,Convenience,context-dependent
+strict-checkin,Front Desk,Convenience,context-dependent
+successful-upgrade,Front Desk,Convenience,positive
+clear-communication,Front Desk,Service Quality,positive
+clear-notice,Front Desk,Service Quality,positive
+friendly-concierge,Front Desk,Service Quality,positive
+friendly-receptionist,Front Desk,Service Quality,positive
+helpful-concierge,Front Desk,Service Quality,positive
+helpful-receptionist,Front Desk,Service Quality,positive
+lost-booking,Front Desk,Service Quality,negative
+missed-wakeup,Front Desk,Service Quality,negative
+missing-reservation,Front Desk,Service Quality,negative
+reliable-wakeup,Front Desk,Service Quality,positive
+rude-concierge,Front Desk,Service Quality,negative
+rude-receptionist,Front Desk,Service Quality,negative
+short-notice,Front Desk,Service Quality,context-dependent
+unhelpful-concierge,Front Desk,Service Quality,negative
+vague-notice,Front Desk,Service Quality,negative
+wrong-reservation,Front Desk,Service Quality,negative
+delayed-communication,Front Desk,Speed,negative
+early-checkin,Front Desk,Speed,context-dependent
+late-check,Front Desk,Speed,context-dependent
+late-checkout,Front Desk,Speed,context-dependent
+long-wait,Front Desk,Speed,context-dependent
+quick-check,Front Desk,Speed,positive
+quick-request,Front Desk,Speed,positive
+slow-check,Front Desk,Speed,negative
+smooth-checkin,Front Desk,Speed,positive
+beautiful-setting,General Experience,Aesthetics,positive
+beautiful-view,General Experience,Aesthetics,positive
+bad-vibe,General Experience,Ambiance,negative
+memorable-anniversary,General Experience,Ambiance,positive
+relaxing-atmosphere,General Experience,Ambiance,positive
+romantic-setting,General Experience,Ambiance,positive
+ruined-anniversary,General Experience,Ambiance,negative
+stressful-atmosphere,General Experience,Ambiance,negative
+unromantic-setting,General Experience,Ambiance,negative
+friendly-atmosphere,General Experience,Service Quality,positive
+daily-housekeeping,Housekeeping,Availability,positive
+extra-towel,Housekeeping,Availability,negative
+missing-soap,Housekeeping,Availability,negative
+missing-towel,Housekeeping,Availability,negative
+skipped-housekeeping,Housekeeping,Availability,negative
+bad-smell,Housekeeping,Cleanliness,negative
+chemical-smell,Housekeeping,Cleanliness,negative
+clean-towel,Housekeeping,Cleanliness,positive
+dirty-towel,Housekeeping,Cleanliness,negative
+fresh-smell,Housekeeping,Cleanliness,positive
+musty-smell,Housekeeping,Cleanliness,negative
+pleasant-smell,Housekeeping,Cleanliness,positive
+stained-towel,Housekeeping,Cleanliness,context-dependent
+efficient-housekeeping,Housekeeping,Condition,positive
+old-towel,Housekeeping,Condition,negative
+ignored-dnd,Housekeeping,Service Quality,negative
+thorough-housekeeping,Housekeeping,Service Quality,positive
+infrequent-housekeeping,Housekeeping,Speed,negative
+late-housekeeping,Housekeeping,Speed,context-dependent
+rare-cleaning,Housekeeping,Speed,negative
+fun-playground,Kids & Family,Ambiance,positive
+available-babysitting,Kids & Family,Availability,positive
+available-crib,Kids & Family,Availability,positive
+available-play,Kids & Family,Availability,positive
+kid-friendly,Kids & Family,Availability,positive
+missing-crib,Kids & Family,Availability,negative
+missing-playground,Kids & Family,Availability,negative
+absent-play,Kids & Family,Service Quality,negative
+unavailable-babysitting,Kids & Family,Service Quality,negative
+available-laundry,Laundry,Availability,positive
+missing-iron,Laundry,Availability,negative
+clean-laundry,Laundry,Cleanliness,positive
+broken-iron,Laundry,Condition,negative
+damaged-laundry,Laundry,Condition,negative
+fast-laundry,Laundry,Speed,positive
+slow-laundry,Laundry,Speed,negative
+expensive-laundry,Laundry,Value,negative
+beautiful-location,Location,Aesthetics,positive
+grand-entrance,Location,Aesthetics,context-dependent
+rich-culture,Location,Ambiance,context-dependent
+free-access,Location,Availability,positive
+overcrowded-attraction,Location,Comfort,negative
+bad-location,Location,Convenience,negative
+convenient-access,Location,Convenience,positive
+convenient-distance,Location,Convenience,positive
+convenient-entrance,Location,Convenience,positive
+convenient-location,Location,Convenience,positive
+convenient-shop,Location,Convenience,positive
+convenient-store,Location,Convenience,positive
+convenient-transportation,Location,Convenience,positive
+difficult-access,Location,Convenience,context-dependent
+difficult-distance,Location,Convenience,context-dependent
+distant-attraction,Location,Convenience,context-dependent
+easy-access,Location,Convenience,positive
+long-distance,Location,Convenience,context-dependent
+remote-location,Location,Convenience,context-dependent
+noisy-location,Location,Noise,negative
+quiet-location,Location,Noise,positive
+safe-neighborhood,Location,Safety,positive
+unsafe-area,Location,Safety,negative
+unsafe-neighborhood,Location,Safety,negative
+friendly-vendor,Location,Service Quality,positive
+rude-vendor,Location,Service Quality,negative
+narrow-entrance,Location,Size,negative
+small-market,Location,Size,negative
+small-shop,Location,Size,negative
+small-store,Location,Size,negative
+slow-transportation,Location,Speed,negative
+expensive-market,Location,Value,negative
+expensive-shop,Location,Value,negative
+expensive-store,Location,Value,negative
+expensive-transportation,Location,Value,negative
+expensive-vendor,Location,Value,negative
+hidden-entrance,Location,Value,negative
+limited-access,Location,Variety,negative
+local-attraction,Location,Variety,context-dependent
+local-market,Location,Variety,context-dependent
+local-shop,Location,Variety,context-dependent
+local-vendor,Location,Variety,context-dependent
+annoying-bug,Maintenance,Cleanliness,negative
+annoying-mosquito,Maintenance,Cleanliness,negative
+dusty-renovation,Maintenance,Cleanliness,context-dependent
+large-bug,Maintenance,Cleanliness,context-dependent
+persistent-ant,Maintenance,Cleanliness,negative
+sewage-smell,Maintenance,Cleanliness,negative
+visible-cockroach,Maintenance,Cleanliness,negative
+visible-rodent,Maintenance,Cleanliness,negative
+leaky-ceiling,Maintenance,Condition,negative
+peeling-paint,Maintenance,Condition,negative
+delayed-maintenance,Maintenance,Speed,negative
+constant-noise,Noise,Noise,negative
+construction-noise,Noise,Noise,context-dependent
+disruptive-construction,Noise,Noise,negative
+disturbed-sleep,Noise,Noise,context-dependent
+loud-noise,Noise,Noise,negative
+neighbor-noise,Noise,Noise,context-dependent
+noisy-construction,Noise,Noise,negative
+street-noise,Noise,Noise,context-dependent
+traffic-noise,Noise,Noise,context-dependent
+available-taxi,Parking & Transport,Availability,positive
+free-parking,Parking & Transport,Availability,positive
+free-shuttle,Parking & Transport,Availability,positive
+free-transfer,Parking & Transport,Availability,positive
+crowded-parking,Parking & Transport,Comfort,negative
+convenient-shuttle,Parking & Transport,Convenience,positive
+difficult-parking,Parking & Transport,Convenience,context-dependent
+easy-parking,Parking & Transport,Convenience,positive
+safe-parking,Parking & Transport,Safety,positive
+unsafe-parking,Parking & Transport,Safety,negative
+unavailable-taxi,Parking & Transport,Service Quality,negative
+late-shuttle,Parking & Transport,Speed,context-dependent
+late-transfer,Parking & Transport,Speed,context-dependent
+reliable-bus,Parking & Transport,Speed,positive
+reliable-shuttle,Parking & Transport,Speed,positive
+unreliable-bus,Parking & Transport,Speed,context-dependent
+unreliable-shuttle,Parking & Transport,Speed,context-dependent
+expensive-parking,Parking & Transport,Value,negative
+expensive-transfer,Parking & Transport,Value,negative
+expensive-valet,Parking & Transport,Value,negative
+limited-parking,Parking & Transport,Variety,negative
+allowed-pet,Pet Policy,Availability,positive
+prohibited-pet,Pet Policy,Availability,negative
+restricted-pet,Pet Policy,Availability,negative
+dirty-pet,Pet Policy,Cleanliness,negative
+friendly-pet,Pet Policy,Service Quality,positive
+beautiful-beach,Pool & Beach,Aesthetics,positive
+beautiful-pool,Pool & Beach,Aesthetics,positive
+accessible-pool,Pool & Beach,Availability,positive
+available-lounger,Pool & Beach,Availability,positive
+available-umbrella,Pool & Beach,Availability,positive
+hot-spring,Pool & Beach,Availability,context-dependent
+missing-umbrella,Pool & Beach,Availability,negative
+algae-pool,Pool & Beach,Cleanliness,context-dependent
+clean-beach,Pool & Beach,Cleanliness,positive
+clean-pool,Pool & Beach,Cleanliness,positive
+clean-sand,Pool & Beach,Cleanliness,positive
+clean-water,Pool & Beach,Cleanliness,positive
+clear-water,Pool & Beach,Cleanliness,positive
+dirty-pool,Pool & Beach,Cleanliness,negative
+dirty-sand,Pool & Beach,Cleanliness,negative
+dirty-water,Pool & Beach,Cleanliness,negative
+fresh-water,Pool & Beach,Cleanliness,positive
+comfortable-seating,Pool & Beach,Comfort,positive
+crowded-beach,Pool & Beach,Comfort,negative
+crowded-pool,Pool & Beach,Comfort,negative
+uncomfortable-seating,Pool & Beach,Comfort,negative
+broken-lounger,Pool & Beach,Condition,negative
+maintained-beach,Pool & Beach,Condition,positive
+neglected-beach,Pool & Beach,Condition,negative
+quiet-beach,Pool & Beach,Noise,positive
+rough-wave,Pool & Beach,Safety,negative
+safe-pool,Pool & Beach,Safety,positive
+unsafe-pool,Pool & Beach,Safety,negative
+ample-seating,Pool & Beach,Size,context-dependent
+deep-pool,Pool & Beach,Size,context-dependent
+shallow-pool,Pool & Beach,Size,context-dependent
+cold-pool,Pool & Beach,Temperature,context-dependent
+cold-water,Pool & Beach,Temperature,context-dependent
+heated-pool,Pool & Beach,Temperature,positive
+hot-water,Pool & Beach,Temperature,context-dependent
+unheated-pool,Pool & Beach,Temperature,context-dependent
+warm-pool,Pool & Beach,Temperature,context-dependent
+limited-seating,Pool & Beach,Variety,negative
+beautiful-balcony,Room,Aesthetics,positive
+beautiful-decor,Room,Aesthetics,positive
+beautiful-decoration,Room,Aesthetics,positive
+beautiful-design,Room,Aesthetics,positive
+beautiful-patio,Room,Aesthetics,positive
+beautiful-suite,Room,Aesthetics,positive
+beautiful-terrace,Room,Aesthetics,positive
+bright-room,Room,Aesthetics,context-dependent
+dark-room,Room,Aesthetics,negative
+dull-decor,Room,Aesthetics,context-dependent
+modern-decor,Room,Aesthetics,positive
+modern-design,Room,Aesthetics,positive
+modern-furniture,Room,Aesthetics,positive
+natural-light,Room,Aesthetics,positive
+outdated-decor,Room,Aesthetics,negative
+outdated-decoration,Room,Aesthetics,negative
+outdated-design,Room,Aesthetics,negative
+outdated-room,Room,Aesthetics,negative
+outdated-style,Room,Aesthetics,negative
+panoramic-view,Room,Aesthetics,positive
+partial-view,Room,Aesthetics,context-dependent
+small-view,Room,Aesthetics,negative
+vibrant-decor,Room,Aesthetics,context-dependent
+accessible-room,Room,Availability,positive
+available-chair,Room,Availability,positive
+available-charger,Room,Availability,positive
+available-outlet,Room,Availability,positive
+empty-minibar,Room,Availability,negative
+equipped-room,Room,Availability,positive
+extra-pillow,Room,Availability,negative
+missing-charger,Room,Availability,negative
+missing-curtain,Room,Availability,negative
+missing-remote,Room,Availability,negative
+missing-safe,Room,Availability,negative
+scarce-outlet,Room,Availability,negative
+stocked-minibar,Room,Availability,positive
+unprepared-room,Room,Availability,negative
+cigarette-smell,Room,Cleanliness,negative
+clean-air,Room,Cleanliness,positive
+clean-bed,Room,Cleanliness,positive
+clean-carpet,Room,Cleanliness,positive
+clean-floor,Room,Cleanliness,positive
+clean-sheet,Room,Cleanliness,positive
+clean-tile,Room,Cleanliness,positive
+clean-wall,Room,Cleanliness,positive
+clean-window,Room,Cleanliness,positive
+dirty-balcony,Room,Cleanliness,negative
+dirty-bed,Room,Cleanliness,negative
+dirty-carpet,Room,Cleanliness,negative
+dirty-floor,Room,Cleanliness,negative
+dirty-patio,Room,Cleanliness,negative
+dirty-sheet,Room,Cleanliness,negative
+dirty-terrace,Room,Cleanliness,negative
+dirty-tile,Room,Cleanliness,negative
+dirty-wall,Room,Cleanliness,negative
+dirty-window,Room,Cleanliness,negative
+fresh-air,Room,Cleanliness,positive
+infested-room,Room,Cleanliness,negative
+musty-room,Room,Cleanliness,negative
+stained-sheet,Room,Cleanliness,context-dependent
+stale-air,Room,Cleanliness,negative
+stuffy-room,Room,Cleanliness,negative
+comfortable-bed,Room,Comfort,positive
+comfortable-chair,Room,Comfort,positive
+comfortable-furniture,Room,Comfort,positive
+comfortable-pillow,Room,Comfort,positive
+comfortable-sofa,Room,Comfort,positive
+comfortable-temperature,Room,Comfort,positive
+hard-bed,Room,Comfort,negative
+hard-chair,Room,Comfort,negative
+hard-pillow,Room,Comfort,negative
+heavy-door,Room,Comfort,negative
+thin-blanket,Room,Comfort,negative
+thin-door,Room,Comfort,negative
+thin-pillow,Room,Comfort,negative
+thin-sheet,Room,Comfort,negative
+thin-wall,Room,Comfort,negative
+uncomfortable-bed,Room,Comfort,negative
+uncomfortable-furniture,Room,Comfort,negative
+uncomfortable-sofa,Room,Comfort,negative
+uncomfortable-stay,Room,Comfort,negative
+broken-ac,Room,Condition,negative
+broken-chair,Room,Condition,negative
+broken-door,Room,Condition,negative
+broken-lamp,Room,Condition,negative
+broken-lock,Room,Condition,negative
+broken-tile,Room,Condition,negative
+broken-window,Room,Condition,negative
+cracked-wall,Room,Condition,context-dependent
+dated-suite,Room,Condition,negative
+dim-lighting,Room,Condition,negative
+efficient-ac,Room,Condition,positive
+faulty-outlet,Room,Condition,negative
+great-ac,Room,Condition,positive
+old-blanket,Room,Condition,negative
+old-carpet,Room,Condition,negative
+old-furniture,Room,Condition,negative
+poor-lighting,Room,Condition,negative
+renovated-room,Room,Condition,positive
+stuck-door,Room,Condition,negative
+weak-ac,Room,Condition,negative
+weak-heating,Room,Condition,negative
+convenient-outlet,Room,Convenience,positive
+fresh-minibar,Room,Food Quality,positive
+noisy-ac,Room,Noise,negative
+noisy-fridge,Room,Noise,negative
+noisy-unit,Room,Noise,negative
+quiet-room,Room,Noise,positive
+soundproof-room,Room,Noise,positive
+locked-door,Room,Safety,context-dependent
+slippery-floor,Room,Safety,negative
+absent-charger,Room,Service Quality,negative
+confusing-layout,Room,Service Quality,negative
+wrong-room,Room,Service Quality,negative
+adequate-storage,Room,Size,positive
+cramped-layout,Room,Size,negative
+cramped-room,Room,Size,negative
+insufficient-closet,Room,Size,negative
+insufficient-heating,Room,Size,negative
+large-window,Room,Size,context-dependent
+practical-layout,Room,Size,positive
+small-balcony,Room,Size,negative
+small-bedroom,Room,Size,negative
+small-fridge,Room,Size,negative
+small-patio,Room,Size,negative
+small-suite,Room,Size,negative
+small-terrace,Room,Size,negative
+small-window,Room,Size,negative
+spacious-room,Room,Size,positive
+cold-temperature,Room,Temperature,context-dependent
+conditioned-air,Room,Temperature,context-dependent
+cool-fridge,Room,Temperature,context-dependent
+hot-air,Room,Temperature,context-dependent
+hot-temperature,Room,Temperature,context-dependent
+perfect-temperature,Room,Temperature,positive
+sufficient-heating,Room,Temperature,positive
+unconditioned-air,Room,Temperature,context-dependent
+expensive-minibar,Room,Value,negative
+overpriced-minibar,Room,Value,negative
+missing-camera,Safety & Security,Availability,negative
+excellent-security,Safety & Security,Safety,context-dependent
+reliable-guard,Safety & Security,Safety,positive
+absent-guard,Safety & Security,Service Quality,negative
+beautiful-spa,Spa & Wellness,Aesthetics,positive
+relaxing-spa,Spa & Wellness,Ambiance,positive
+available-sauna,Spa & Wellness,Availability,positive
+available-yoga,Spa & Wellness,Availability,positive
+clean-spa,Spa & Wellness,Cleanliness,positive
+dirty-spa,Spa & Wellness,Cleanliness,negative
+crowded-spa,Spa & Wellness,Comfort,negative
+broken-sauna,Spa & Wellness,Condition,negative
+absent-yoga,Spa & Wellness,Service Quality,negative
+professional-massage,Spa & Wellness,Service Quality,positive
+small-spa,Spa & Wellness,Size,negative
+rushed-massage,Spa & Wellness,Speed,negative
+short-massage,Spa & Wellness,Speed,context-dependent
+expensive-massage,Spa & Wellness,Value,negative
+expensive-spa,Spa & Wellness,Value,negative
+expensive-treatment,Spa & Wellness,Value,negative
+absent-host,Staff,Service Quality,negative
+absent-staff,Staff,Service Quality,negative
+attentive-butler,Staff,Service Quality,positive
+attentive-server,Staff,Service Quality,positive
+bad-attitude,Staff,Service Quality,negative
+cold-hospitality,Staff,Service Quality,context-dependent
+dishonest-staff,Staff,Service Quality,negative
+exceptional-staff,Staff,Service Quality,positive
+forgotten-birthday,Staff,Service Quality,negative
+friendly-attitude,Staff,Service Quality,positive
+friendly-bartender,Staff,Service Quality,positive
+friendly-employee,Staff,Service Quality,positive
+friendly-host,Staff,Service Quality,positive
+friendly-manager,Staff,Service Quality,positive
+friendly-personnel,Staff,Service Quality,positive
+friendly-server,Staff,Service Quality,positive
+friendly-service,Staff,Service Quality,positive
+friendly-smile,Staff,Service Quality,positive
+friendly-staff,Staff,Service Quality,positive
+friendly-team,Staff,Service Quality,positive
+friendly-worker,Staff,Service Quality,positive
+hardworking-worker,Staff,Service Quality,positive
+helpful-employee,Staff,Service Quality,positive
+helpful-manager,Staff,Service Quality,positive
+helpful-personnel,Staff,Service Quality,positive
+helpful-service,Staff,Service Quality,positive
+helpful-staff,Staff,Service Quality,positive
+helpful-team,Staff,Service Quality,positive
+impatient-staff,Staff,Service Quality,context-dependent
+indifferent-care,Staff,Service Quality,negative
+indifferent-staff,Staff,Service Quality,negative
+knowledgeable-guide,Staff,Service Quality,positive
+knowledgeable-staff,Staff,Service Quality,positive
+lazy-employee,Staff,Service Quality,negative
+lazy-worker,Staff,Service Quality,negative
+little-attention,Staff,Service Quality,context-dependent
+monolingual-staff,Staff,Service Quality,negative
+multilingual-staff,Staff,Service Quality,positive
+overwhelmed-staff,Staff,Service Quality,negative
+patient-staff,Staff,Service Quality,positive
+personal-attention,Staff,Service Quality,context-dependent
+positive-attitude,Staff,Service Quality,context-dependent
+proactive-staff,Staff,Service Quality,positive
+professional-service,Staff,Service Quality,positive
+professional-staff,Staff,Service Quality,positive
+rude-attitude,Staff,Service Quality,negative
+rude-bartender,Staff,Service Quality,negative
+rude-butler,Staff,Service Quality,negative
+rude-comment,Staff,Service Quality,negative
+rude-employee,Staff,Service Quality,negative
+rude-guide,Staff,Service Quality,negative
+rude-manager,Staff,Service Quality,negative
+rude-personnel,Staff,Service Quality,negative
+rude-server,Staff,Service Quality,negative
+rude-service,Staff,Service Quality,negative
+rude-staff,Staff,Service Quality,negative
+rude-team,Staff,Service Quality,negative
+rude-worker,Staff,Service Quality,negative
+unavailable-butler,Staff,Service Quality,negative
+unavailable-help,Staff,Service Quality,negative
+uncooperative-team,Staff,Service Quality,negative
+undertrained-staff,Staff,Service Quality,negative
+unhelpful-management,Staff,Service Quality,negative
+unhelpful-personnel,Staff,Service Quality,negative
+unhelpful-service,Staff,Service Quality,negative
+unhelpful-staff,Staff,Service Quality,negative
+uninformative-guide,Staff,Service Quality,negative
+unprofessional-staff,Staff,Service Quality,negative
+unresponsive-manager,Staff,Service Quality,negative
+unwelcoming-host,Staff,Service Quality,negative
+quick-help,Staff,Speed,positive
+quick-service,Staff,Speed,positive
+slow-bartender,Staff,Speed,negative
+slow-server,Staff,Speed,negative
+slow-service,Staff,Speed,negative
+excessive-plastic,Sustainability,Sustainability,negative
+friendly-eco,Sustainability,Sustainability,positive
+recycling-available,Sustainability,Sustainability,positive
+sustainable-practice,Sustainability,Sustainability,positive
+unfriendly-eco,Sustainability,Sustainability,context-dependent
+outdated-phone,Technology,Aesthetics,negative
+outdated-tv,Technology,Aesthetics,negative
+free-wifi,Technology,Availability,positive
+missing-adapter,Technology,Availability,negative
+broken-tv,Technology,Condition,negative
+functional-wifi,Technology,Condition,positive
+old-tv,Technology,Condition,negative
+smart-tv,Technology,Condition,positive
+weak-wifi,Technology,Condition,negative
+large-tv,Technology,Size,context-dependent
+small-tv,Technology,Size,negative
+fast-wifi,Technology,Speed,positive
+slow-internet,Technology,Speed,negative
+slow-wifi,Technology,Speed,negative
+exclusive-perk,Value,Availability,positive
+extra-charge,Value,Availability,negative
+good-value,Value,Condition,positive
+full-refund,Value,Convenience,context-dependent
+unavailable-perk,Value,Service Quality,negative
+small-bonus,Value,Size,negative
+small-perk,Value,Size,negative
+delayed-refund,Value,Speed,negative
+affordable-price,Value,Value,positive
+correct-bill,Value,Value,positive
+disputed-charge,Value,Value,negative
+expensive-inclusive,Value,Value,negative
+expensive-package,Value,Value,negative
+expensive-price,Value,Value,negative
+fair-charge,Value,Value,positive
+hidden-fee,Value,Value,negative
+high-price,Value,Value,context-dependent
+low-charge,Value,Value,context-dependent
+overcharged-bill,Value,Value,negative
+partial-refund,Value,Value,context-dependent
+surprise-fee,Value,Value,negative
+transparent-pricing,Value,Value,positive
+unfair-rate,Value,Value,negative
+useless-bonus,Value,Value,context-dependent
+wrong-charge,Value,Value,negative
+comprehensive-inclusive,Value,Variety,positive
+limited-inclusive,Value,Variety,negative
+limited-package,Value,Variety,negative
