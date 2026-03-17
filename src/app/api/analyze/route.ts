@@ -10,13 +10,13 @@ export async function POST(req: NextRequest) {
   const start = Date.now();
 
   try {
-    const { text, reviewId, model = "claude-haiku" } = await req.json();
+    const { text, reviewId, model = "claude-haiku", customPrompt } = await req.json();
 
     if (!text || typeof text !== "string") {
       return NextResponse.json({ error: "Missing review text" }, { status: 400 });
     }
 
-    const systemPrompt = buildExtractionSystemPrompt(pool);
+    const systemPrompt = buildExtractionSystemPrompt(pool, customPrompt || undefined);
 
     const { text: rawText, modelUsed } = await callLLM({
       modelId: model,

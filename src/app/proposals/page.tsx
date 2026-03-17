@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Mention, ProposalValidation, MODEL_OPTIONS } from "@/lib/types";
 import { SentimentBadge } from "@/components/SentimentBadge";
 import { ConfidenceRing } from "@/components/ConfidenceRing";
+import { usePrompts } from "@/components/PromptContext";
 
 interface Proposal {
   mention: Mention;
@@ -12,6 +13,7 @@ interface Proposal {
 }
 
 export default function ProposalsPage() {
+  const { validationInstructions, isValidationCustom } = usePrompts();
   const [proposals, setProposals] = useState<Proposal[]>(() => {
     if (typeof window === "undefined") return [];
     try {
@@ -38,6 +40,7 @@ export default function ProposalsPage() {
           proposed_area: proposal.mention.proposed_area || proposal.mention.area,
           proposed_dimension: proposal.mention.proposed_dimension || proposal.mention.dimension,
           model: validationModel,
+          customPrompt: isValidationCustom ? validationInstructions : undefined,
         }),
       });
 

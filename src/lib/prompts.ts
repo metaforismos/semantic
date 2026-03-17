@@ -1,15 +1,8 @@
 import { Subtopic } from "./types";
 
-export function buildExtractionSystemPrompt(pool: Subtopic[]): string {
-  const poolCompact = pool.map((s) => `${s.subtopic}|${s.area}|${s.dimension}|${s.default_polarity}`).join("\n");
+// ── Default instruction templates (editable by the user in /prompts) ──
 
-  return `You are a hotel guest review semantic analysis engine. Extract structured opinion units ("mentions") from hotel guest reviews.
-
-## Subtopic Pool (${pool.length} entries)
-Format: subtopic|area|dimension|default_polarity
-${poolCompact}
-
-## Extraction Rules
+export const DEFAULT_EXTRACTION_INSTRUCTIONS = `## Extraction Rules
 
 ### Three-Tier Cascade
 For each opinion unit detected:
@@ -78,18 +71,8 @@ If a clear opinion does NOT match any pool subtopic:
     }
   ]
 }`;
-}
 
-export function buildValidationSystemPrompt(pool: Subtopic[]): string {
-  const poolCompact = pool.map((s) => `${s.subtopic}|${s.area}|${s.dimension}`).join("\n");
-
-  return `You are a taxonomy validator for a hotel semantic analysis system. Validate whether a proposed subtopic should be added to the pool.
-
-## Current Pool (${pool.length} entries)
-Format: subtopic|area|dimension
-${poolCompact}
-
-## Validation Checks
+export const DEFAULT_VALIDATION_INSTRUCTIONS = `## Validation Checks
 1. Is this genuinely new, or a synonym/variant of an existing subtopic?
 2. Does it follow the adjective-noun canonical form?
 3. Is the area assignment correct?
@@ -109,4 +92,31 @@ ${poolCompact}
   ],
   "merge_suggestion": null or "existing-subtopic"
 }`;
+
+// ── Prompt builders (accept optional instruction overrides) ──
+
+export function buildExtractionSystemPrompt(pool: Subtopic[], customInstructions?: string): string {
+  const poolCompact = pool.map((s) => `${s.subtopic}|${s.area}|${s.dimension}|${s.default_polarity}`).join("\n");
+  const instructions = customInstructions || DEFAULT_EXTRACTION_INSTRUCTIONS;
+
+  return `You are a hotel guest review semantic analysis engine. Extract structured opinion units ("mentions") from hotel guest reviews.
+
+## Subtopic Pool (${pool.length} entries)
+Format: subtopic|area|dimension|default_polarity
+${poolCompact}
+
+${instructions}`;
+}
+
+export function buildValidationSystemPrompt(pool: Subtopic[], customInstructions?: string): string {
+  const poolCompact = pool.map((s) => `${s.subtopic}|${s.area}|${s.dimension}`).join("\n");
+  const instructions = customInstructions || DEFAULT_VALIDATION_INSTRUCTIONS;
+
+  return `You are a taxonomy validator for a hotel semantic analysis system. Validate whether a proposed subtopic should be added to the pool.
+
+## Current Pool (${pool.length} entries)
+Format: subtopic|area|dimension
+${poolCompact}
+
+${instructions}`;
 }

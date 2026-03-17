@@ -8,13 +8,13 @@ const pool = poolData as Subtopic[];
 
 export async function POST(req: NextRequest) {
   try {
-    const { proposed_subtopic, source_text, proposed_area, proposed_dimension, model = "claude-sonnet" } = await req.json();
+    const { proposed_subtopic, source_text, proposed_area, proposed_dimension, model = "claude-sonnet", customPrompt } = await req.json();
 
     if (!proposed_subtopic) {
       return NextResponse.json({ error: "Missing proposed_subtopic" }, { status: 400 });
     }
 
-    const systemPrompt = buildValidationSystemPrompt(pool);
+    const systemPrompt = buildValidationSystemPrompt(pool, customPrompt || undefined);
 
     const userMessage = `Proposed Subtopic: ${proposed_subtopic}
 Source text: "${source_text}"

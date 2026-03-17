@@ -5,8 +5,10 @@ import { ReviewInput } from "@/components/ReviewInput";
 import { MentionCard } from "@/components/MentionCard";
 import { AnalysisSummary } from "@/components/AnalysisSummary";
 import { ReviewAnalysis } from "@/lib/types";
+import { usePrompts } from "@/components/PromptContext";
 
 export default function AnalysisPage() {
+  const { extractionInstructions, isExtractionCustom } = usePrompts();
   const [analysis, setAnalysis] = useState<ReviewAnalysis | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -20,7 +22,12 @@ export default function AnalysisPage() {
       const res = await fetch("/api/analyze", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text, reviewId: `review-${Date.now()}`, model }),
+        body: JSON.stringify({
+          text,
+          reviewId: `review-${Date.now()}`,
+          model,
+          customPrompt: isExtractionCustom ? extractionInstructions : undefined,
+        }),
       });
 
       const data = await res.json();
@@ -54,6 +61,12 @@ export default function AnalysisPage() {
         <h1 className="text-2xl font-bold tracking-tight mb-1">Review Analysis</h1>
         <p className="text-sm text-text-muted">
           Paste a guest review to extract structured opinion intelligence across Area, Dimension, and Sentiment axes.
+          {isExtractionCustom && (
+            <span className="ml-2 inline-flex items-center gap-1 text-labs-yellow text-xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-labs-yellow" />
+              Custom prompt active
+            </span>
+          )}
         </p>
       </div>
 
