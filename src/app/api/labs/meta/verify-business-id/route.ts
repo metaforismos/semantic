@@ -58,8 +58,11 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const url = `https://graph.facebook.com/v19.0/${encodeURIComponent(id)}?fields=id,name,category,verification_status&access_token=${encodeURIComponent(token)}`;
-    const res = await fetch(url);
+    const base = `https://graph.facebook.com/v19.0/${encodeURIComponent(id)}`;
+    const auth = `access_token=${encodeURIComponent(token)}`;
+
+    // Step 1: Check if the ID exists at all
+    const res = await fetch(`${base}?fields=id,name&${auth}`);
     const data = await res.json();
 
     if (data.error) {
@@ -69,15 +72,20 @@ export async function POST(request: NextRequest) {
       } satisfies VerificationResult);
     }
 
-    if (data.category) {
+    // Step 2: Try to fetch category — pages have it, business portfolios don't
+    const catRes = await fetch(`${base}?fields=id,name,category&${auth}`);
+    const catData = await catRes.json();
+
+    if (!catData.error && catData.category) {
       return NextResponse.json({
         valid: false,
         type: "page",
-        name: data.name,
-        category: data.category,
+        name: catData.name,
+        category: catData.category,
       } satisfies VerificationResult);
     }
 
+    // No category field → Business Portfolio ID
     return NextResponse.json({
       valid: true,
       type: "business",
