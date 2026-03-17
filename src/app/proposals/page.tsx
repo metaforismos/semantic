@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Mention, ProposalValidation, MODEL_OPTIONS } from "@/lib/types";
 import { SentimentBadge } from "@/components/SentimentBadge";
 import { ConfidenceRing } from "@/components/ConfidenceRing";
@@ -24,6 +24,35 @@ export default function ProposalsPage() {
     }
   });
 
+  const [validationModel, setValidationModel] = useState("claude-sonnet");
+  const [bulkValidating, setBulkValidating] = useState(false);
+  const [bulkProgress, setBulkProgress] = useState<{ current: number; total: number } | null>(null);
+  const [addingToPool, setAddingToPool] = useState(false);
+  const abortRef = useRef<AbortController | null>(null);
+
+  const persistProposals = (data: Proposal[]) => {
+    try { sessionStorage.setItem("semantic-proposals", JSON.stringify(data)); } catch {}
+  };
+
+  const validateOne = async (proposal: Proposal, signal?: AbortSignal): Promise<ProposalValidation> => {
+    const res = await fetch("/api/validate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        proposed_subtopic: proposal.mention.proposed_subtopic,
+        source_text: proposal.mention.original_text,
+        proposed_area: proposal.mention.proposed_area || proposal.mention.area,
+        proposed_dimension: proposal.mention.proposed_dimension || proposal.mention.dimension,
+        model: validationModel,
+        customPrompt: isValidationCustom ? validationInstructions : undefined,
+      }),
+      signal,
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error);
+    return data as ProposalValidation;
+  };
+
   const validate = async (index: number) => {
     const proposal = proposals[index];
     const updated = [...proposals];
@@ -31,28 +60,101 @@ export default function ProposalsPage() {
     setProposals(updated);
 
     try {
-      const res = await fetch("/api/validate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          proposed_subtopic: proposal.mention.proposed_subtopic,
-          source_text: proposal.mention.original_text,
-          proposed_area: proposal.mention.proposed_area || proposal.mention.area,
-          proposed_dimension: proposal.mention.proposed_dimension || proposal.mention.dimension,
-          model: validationModel,
-          customPrompt: isValidationCustom ? validationInstructions : undefined,
-        }),
-      });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error);
-
-      updated[index] = { ...proposal, status: "validated", validation: data };
+      const validation = await validateOne(proposal);
+      updated[index] = { ...proposal, status: "validated", validation };
       setProposals(updated);
       persistProposals(updated);
     } catch {
       updated[index] = { ...proposal, status: "pending" };
       setProposals(updated);
+    }
+  };
+
+  const validateAll = async () => {
+    const pendingIndices = proposals
+      .map((p, i) => ({ p, i }))
+      .filter(({ p }) => p.status === "pending")
+      .map(({ i }) => i);
+
+    if (pendingIndices.length === 0) return;
+
+    abortRef.current?.abort();
+    const controller = new AbortController();
+    abortRef.current = controller;
+
+    setBulkValidating(true);
+    setBulkProgress({ current: 0, total: pendingIndices.length });
+
+    const CONCURRENCY = 2;
+    let completed = 0;
+    const latest = [...proposals];
+
+    // Mark all as validating
+    for (const idx of pendingIndices) {
+      latest[idx] = { ...latest[idx], status: "validating" };
+    }
+    setProposals([...latest]);
+
+    for (let i = 0; i < pendingIndices.length; i += CONCURRENCY) {
+      if (controller.signal.aborted) break;
+
+      const chunk = pendingIndices.slice(i, i + CONCURRENCY);
+      const results = await Promise.allSettled(
+        chunk.map((idx) => validateOne(latest[idx], controller.signal))
+      );
+
+      results.forEach((result, j) => {
+        const idx = chunk[j];
+        if (result.status === "fulfilled") {
+          latest[idx] = { ...latest[idx], status: "validated", validation: result.value };
+        } else {
+          latest[idx] = { ...latest[idx], status: "pending" };
+        }
+        completed++;
+      });
+
+      setBulkProgress({ current: completed, total: pendingIndices.length });
+      setProposals([...latest]);
+      persistProposals(latest);
+
+      if (i + CONCURRENCY < pendingIndices.length) {
+        await new Promise((r) => setTimeout(r, 200));
+      }
+    }
+
+    setBulkValidating(false);
+    setBulkProgress(null);
+  };
+
+  const addApprovedToPool = async () => {
+    const approved = proposals.filter((p) => p.status === "approved");
+    if (approved.length === 0) return;
+
+    setAddingToPool(true);
+    try {
+      const res = await fetch("/api/pool/add", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          subtopics: approved.map((p) => ({
+            subtopic: p.validation?.recommended_subtopic || p.mention.proposed_subtopic,
+            area: p.validation?.recommended_area || p.mention.proposed_area || p.mention.area,
+            dimension: p.validation?.recommended_dimension || p.mention.proposed_dimension || p.mention.dimension,
+            default_polarity: p.validation?.recommended_default_polarity || "context-dependent",
+          })),
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error);
+
+      // Remove approved from proposals list
+      const remaining = proposals.filter((p) => p.status !== "approved");
+      setProposals(remaining);
+      persistProposals(remaining);
+    } catch (err) {
+      console.error("Failed to add to pool:", err);
+    } finally {
+      setAddingToPool(false);
     }
   };
 
@@ -63,12 +165,8 @@ export default function ProposalsPage() {
     persistProposals(updated);
   };
 
-  const persistProposals = (data: Proposal[]) => {
-    try { sessionStorage.setItem("semantic-proposals", JSON.stringify(data)); } catch {}
-  };
-
-  const [validationModel, setValidationModel] = useState("claude-sonnet");
-  const pendingCount = proposals.filter((p) => ["pending", "validating", "validated"].includes(p.status)).length;
+  const pendingCount = proposals.filter((p) => p.status === "pending").length;
+  const approvedCount = proposals.filter((p) => p.status === "approved").length;
 
   return (
     <div className="pt-8">
@@ -78,20 +176,42 @@ export default function ProposalsPage() {
           <p className="text-sm text-text-muted">
             New subtopics proposed by the extraction engine when no pool match was found.
             {pendingCount > 0 && <span className="text-labs-yellow ml-1">{pendingCount} pending review</span>}
+            {approvedCount > 0 && <span className="text-positive ml-1">{approvedCount} approved</span>}
           </p>
         </div>
         {proposals.length > 0 && (
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-2 shrink-0 flex-wrap justify-end">
             <span className="text-[11px] uppercase tracking-wider text-text-dim">Validation model</span>
             <select
               value={validationModel}
               onChange={(e) => setValidationModel(e.target.value)}
+              disabled={bulkValidating}
               className="px-2.5 py-1.5 bg-surface-2 border border-border rounded-md text-xs text-text-muted"
             >
               {MODEL_OPTIONS.map((opt) => (
                 <option key={opt.id} value={opt.id}>{opt.label}</option>
               ))}
             </select>
+            {pendingCount > 0 && (
+              <button
+                onClick={validateAll}
+                disabled={bulkValidating}
+                className="px-3 py-1.5 bg-accent hover:bg-accent-light disabled:opacity-40 text-white text-xs font-semibold rounded-md transition-colors"
+              >
+                {bulkValidating && bulkProgress
+                  ? `Validating ${bulkProgress.current}/${bulkProgress.total}...`
+                  : `Validate All (${pendingCount})`}
+              </button>
+            )}
+            {approvedCount > 0 && (
+              <button
+                onClick={addApprovedToPool}
+                disabled={addingToPool || bulkValidating}
+                className="px-3 py-1.5 bg-positive/80 hover:bg-positive disabled:opacity-40 text-white text-xs font-semibold rounded-md transition-colors"
+              >
+                {addingToPool ? "Adding..." : `Add ${approvedCount} to Pool`}
+              </button>
+            )}
           </div>
         )}
       </div>
