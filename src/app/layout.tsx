@@ -4,8 +4,8 @@ import { Sidebar } from "@/components/Sidebar";
 import { PromptProvider } from "@/components/PromptContext";
 
 export const metadata: Metadata = {
-  title: "Semantic Analysis — myHotel Labs",
-  description: "Three-axis semantic analysis engine for hotel guest reviews",
+  title: "myHotel Labs - Beta Tools for myHotel Team",
+  description: "Beta tools and experimental features for the myHotel team",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
