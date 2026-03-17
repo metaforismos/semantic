@@ -12,7 +12,7 @@ export default function AnalysisPage() {
   const [analyses, setAnalyses] = useState<ReviewAnalysis[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [batchProgress, setBatchProgress] = useState<{ current: number; total: number } | null>(null);
+  const [batchProgress, setBatchProgress] = useState<{ current: number; total: number; failed: number } | null>(null);
   const abortRef = useRef<AbortController | null>(null);
 
   const analyzeOne = useCallback(async (
@@ -49,33 +49,44 @@ export default function AnalysisPage() {
     setIsLoading(true);
     setError(null);
     setAnalyses([]);
-    setBatchProgress(isBatch ? { current: 0, total: reviews.length } : null);
+    setBatchProgress(isBatch ? { current: 0, total: reviews.length, failed: 0 } : null);
 
     const results: ReviewAnalysis[] = new Array(reviews.length);
     let completed = 0;
+    let failed = 0;
 
     try {
-      // Process in chunks of CONCURRENCY
       for (let i = 0; i < reviews.length; i += CONCURRENCY) {
         if (controller.signal.aborted) break;
 
         const chunk = reviews.slice(i, i + CONCURRENCY);
-        const promises = chunk.map((review, j) => {
+        const settled = await Promise.allSettled(
+          chunk.map((review, j) => {
+            const idx = i + j;
+            const reviewId = `review-${Date.now()}-${idx}`;
+            return analyzeOne(review, model, reviewId, controller.signal);
+          })
+        );
+
+        settled.forEach((outcome, j) => {
           const idx = i + j;
-          const reviewId = `review-${Date.now()}-${idx}`;
-          return analyzeOne(review, model, reviewId, controller.signal).then((result) => {
-            results[idx] = result;
+          if (outcome.status === "fulfilled") {
+            results[idx] = outcome.value;
             completed++;
-            if (isBatch) setBatchProgress({ current: completed, total: reviews.length });
-            setAnalyses(results.filter(Boolean));
-          });
+          } else {
+            failed++;
+            console.warn(`Review ${idx + 1} failed: ${outcome.reason?.message || outcome.reason}`);
+          }
+          if (isBatch) setBatchProgress({ current: completed + failed, total: reviews.length, failed });
         });
 
-        await Promise.all(promises);
+        setAnalyses(results.filter(Boolean));
 
-        // Small pause between chunks to avoid rate limits
+        // Adaptive pacing: longer pause for large batches
         if (i + CONCURRENCY < reviews.length) {
-          await new Promise((resolve) => setTimeout(resolve, 200));
+          const basePause = reviews.length > 20 ? 800 : reviews.length > 10 ? 500 : 200;
+          const backoff = failed > 0 ? basePause * 2 : basePause;
+          await new Promise((resolve) => setTimeout(resolve, backoff));
         }
       }
 
@@ -90,6 +101,10 @@ export default function AnalysisPage() {
           const existing = JSON.parse(sessionStorage.getItem("semantic-proposals") || "[]");
           sessionStorage.setItem("semantic-proposals", JSON.stringify([...newProposals, ...existing]));
         } catch {}
+      }
+
+      if (failed > 0) {
+        setError(`${completed} reviews analyzed, ${failed} failed. Successful results are shown below.`);
       }
     } catch (err) {
       if ((err as Error).name === "AbortError") return;

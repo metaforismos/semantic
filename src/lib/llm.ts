@@ -14,6 +14,35 @@ interface CallLLMResult {
   modelUsed: string; // The actual model ID sent to the provider
 }
 
+const MAX_RETRIES = 3;
+const BASE_DELAY_MS = 1000;
+
+async function withRetry<T>(fn: () => Promise<T>, retries = MAX_RETRIES): Promise<T> {
+  let lastError: Error | undefined;
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      return await fn();
+    } catch (err) {
+      lastError = err instanceof Error ? err : new Error(String(err));
+      const isRetryable =
+        lastError.message.includes("overloaded") ||
+        lastError.message.includes("rate") ||
+        lastError.message.includes("529") ||
+        lastError.message.includes("500") ||
+        lastError.message.includes("timeout") ||
+        lastError.message.includes("ECONNRESET") ||
+        lastError.message.includes("fetch failed");
+
+      if (!isRetryable || attempt === retries) throw lastError;
+
+      const delay = BASE_DELAY_MS * Math.pow(2, attempt) + Math.random() * 500;
+      console.log(`[LLM] Retry ${attempt + 1}/${retries} after ${Math.round(delay)}ms — ${lastError.message}`);
+      await new Promise((r) => setTimeout(r, delay));
+    }
+  }
+  throw lastError!;
+}
+
 export async function callLLM({ modelId, systemPrompt, userMessage, maxTokens = 4096 }: CallLLMParams): Promise<CallLLMResult> {
   const option = getModelOption(modelId);
   if (!option) {
@@ -21,11 +50,11 @@ export async function callLLM({ modelId, systemPrompt, userMessage, maxTokens = 
   }
 
   if (option.provider === "claude") {
-    return callClaude({ modelId: option.modelId, systemPrompt, userMessage, maxTokens });
+    return withRetry(() => callClaude({ modelId: option.modelId, systemPrompt, userMessage, maxTokens }));
   }
 
   if (option.provider === "gemini") {
-    return callGemini({ modelId: option.modelId, systemPrompt, userMessage, maxTokens });
+    return withRetry(() => callGemini({ modelId: option.modelId, systemPrompt, userMessage, maxTokens }));
   }
 
   throw new Error(`Unsupported provider: ${option.provider}`);

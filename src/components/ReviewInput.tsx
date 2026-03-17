@@ -13,7 +13,7 @@ const langFlags: Record<string, string> = {
 interface ReviewInputProps {
   onAnalyze: (text: string, model: string) => void;
   isLoading: boolean;
-  batchProgress?: { current: number; total: number } | null;
+  batchProgress?: { current: number; total: number; failed?: number } | null;
 }
 
 export function ReviewInput({ onAnalyze, isLoading, batchProgress }: ReviewInputProps) {
@@ -84,7 +84,7 @@ export function ReviewInput({ onAnalyze, isLoading, batchProgress }: ReviewInput
           <span className="flex items-center justify-center gap-2">
             <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
             {batchProgress && batchProgress.total > 1
-              ? `Analyzing ${batchProgress.current}/${batchProgress.total}...`
+              ? `Analyzing ${batchProgress.current}/${batchProgress.total}${batchProgress.failed ? ` (${batchProgress.failed} failed)` : ""}...`
               : "Analyzing..."}
           </span>
         ) : reviewCount > 1 ? (

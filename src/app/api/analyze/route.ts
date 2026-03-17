@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { buildExtractionSystemPrompt } from "@/lib/prompts";
 import { callLLM } from "@/lib/llm";
+import { safeParseJSON } from "@/lib/parse";
 import { Mention, ReviewAnalysis, Subtopic } from "@/lib/types";
 import poolData from "@/data/subtopics_pool.json";
 
@@ -27,8 +28,7 @@ export async function POST(req: NextRequest) {
 
     let parsed: { source_language: string; mentions: Mention[] };
     try {
-      const cleaned = rawText.replace(/```json\n?/g, "").replace(/```\n?/g, "").trim();
-      parsed = JSON.parse(cleaned);
+      parsed = safeParseJSON(rawText);
     } catch {
       return NextResponse.json(
         { error: "Failed to parse LLM response", raw: rawText },

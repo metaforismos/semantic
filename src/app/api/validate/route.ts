@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { buildValidationSystemPrompt } from "@/lib/prompts";
 import { callLLM } from "@/lib/llm";
+import { safeParseJSON } from "@/lib/parse";
 import { Subtopic, ProposalValidation } from "@/lib/types";
 import poolData from "@/data/subtopics_pool.json";
 
@@ -30,8 +31,7 @@ Suggested dimension: ${proposed_dimension}`;
 
     let parsed: ProposalValidation;
     try {
-      const cleaned = rawText.replace(/```json\n?/g, "").replace(/```\n?/g, "").trim();
-      parsed = JSON.parse(cleaned);
+      parsed = safeParseJSON<ProposalValidation>(rawText);
     } catch {
       return NextResponse.json(
         { error: "Failed to parse LLM response", raw: rawText },
