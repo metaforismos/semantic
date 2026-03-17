@@ -41,7 +41,7 @@ export function MentionCard({ mention, index }: MentionCardProps) {
           </span>
         )}
         {!mention.subtopic && mention.proposed_subtopic && (
-          <span className="px-2 py-0.5 bg-labs-yellow/15 text-labs-yellow text-xs font-mono rounded">
+          <span className="px-2 py-0.5 bg-labs-yellow-bg text-labs-yellow text-xs font-mono rounded">
             ? {mention.proposed_subtopic}
           </span>
         )}

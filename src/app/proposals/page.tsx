@@ -121,7 +121,7 @@ export default function ProposalsPage() {
             >
               <div className="flex items-start justify-between gap-4 mb-3">
                 <div className="flex-1">
-                  <span className="text-xs font-mono text-labs-yellow bg-labs-yellow/10 px-2 py-0.5 rounded">
+                  <span className="text-xs font-mono text-labs-yellow bg-labs-yellow-bg px-2 py-0.5 rounded">
                     {proposal.mention.proposed_subtopic}
                   </span>
                   <p className="text-sm text-text-muted mt-2 italic">

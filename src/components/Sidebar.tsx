@@ -66,7 +66,7 @@ export function Sidebar() {
             <span className="text-sm font-bold tracking-tight text-text-muted group-hover:text-text transition-colors">
               myHotel
             </span>
-            <span className="text-[10px] font-semibold uppercase tracking-[0.15em] bg-labs-yellow/15 text-labs-yellow px-1.5 py-0.5 rounded">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.15em] bg-labs-yellow-bg text-labs-yellow px-1.5 py-0.5 rounded">
               Labs
             </span>
           </Link>
