@@ -19,6 +19,12 @@ const sections: NavSection[] = [
       { href: "/prompts", label: "Prompts" },
     ],
   },
+  {
+    label: "Concierge",
+    items: [
+      { href: "/concierge/meta-id", label: "Meta ID" },
+    ],
+  },
 ];
 
 export function Sidebar() {
