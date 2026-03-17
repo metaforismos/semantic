@@ -13,11 +13,16 @@ const langFlags: Record<string, string> = {
 interface ReviewInputProps {
   onAnalyze: (text: string, model: string) => void;
   isLoading: boolean;
+  batchProgress?: { current: number; total: number } | null;
 }
 
-export function ReviewInput({ onAnalyze, isLoading }: ReviewInputProps) {
+export function ReviewInput({ onAnalyze, isLoading, batchProgress }: ReviewInputProps) {
   const [text, setText] = useState("");
   const [model, setModel] = useState("claude-haiku");
+
+  const reviewCount = text.trim()
+    ? text.split(";").filter((r) => r.trim().length > 0).length
+    : 0;
 
   const handleSubmit = () => {
     if (text.trim() && !isLoading) {
@@ -30,14 +35,18 @@ export function ReviewInput({ onAnalyze, isLoading }: ReviewInputProps) {
       <div className="mb-3 flex items-center justify-between">
         <h2 className="text-sm font-semibold text-text-muted uppercase tracking-wider">Review Input</h2>
         <span className="text-[11px] text-text-dim tabular-nums">
-          {text.length > 0 ? `${text.length} chars` : ""}
+          {text.length > 0
+            ? reviewCount > 1
+              ? `${reviewCount} reviews · ${text.length} chars`
+              : `${text.length} chars`
+            : ""}
         </span>
       </div>
 
       <textarea
         value={text}
         onChange={(e) => setText(e.target.value)}
-        placeholder="Paste a hotel guest review in any language..."
+        placeholder="Paste a hotel guest review in any language...&#10;&#10;Separate multiple reviews with ; to batch analyze."
         className="flex-1 min-h-[200px] w-full bg-surface-2 border border-border rounded-lg p-4 text-sm text-text placeholder:text-text-dim resize-none focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/25 transition-colors"
         disabled={isLoading}
       />
@@ -74,8 +83,12 @@ export function ReviewInput({ onAnalyze, isLoading }: ReviewInputProps) {
         {isLoading ? (
           <span className="flex items-center justify-center gap-2">
             <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-            Analyzing...
+            {batchProgress && batchProgress.total > 1
+              ? `Analyzing ${batchProgress.current}/${batchProgress.total}...`
+              : "Analyzing..."}
           </span>
+        ) : reviewCount > 1 ? (
+          `Analyze ${reviewCount} Reviews`
         ) : (
           "Analyze Review"
         )}
