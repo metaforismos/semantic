@@ -3,6 +3,7 @@ import type {
   ConversationAnalysis,
   PilotReportData,
   DerivationReason,
+  DerivationByTopic,
   TopicCount,
   SuccessCase,
   ImprovementOpportunity,
@@ -48,6 +49,8 @@ export function aggregateReport(
   let llmIAMessages = 0;
   let derivedMessages = 0;
   const derivationReasons = new Map<string, number>();
+  // Track derivations grouped by conversation topic
+  const derivationsByTopic = new Map<string, { count: number; reasons: Map<string, number> }>();
 
   for (const analysis of analyses) {
     for (const iaMsg of analysis.ia_messages) {
@@ -56,6 +59,14 @@ export function aggregateReport(
         derivedMessages++;
         const reason = iaMsg.derivation_reason || "Sin especificar";
         derivationReasons.set(reason, (derivationReasons.get(reason) || 0) + 1);
+        // Group by conversation topics
+        const topics = analysis.topics.length > 0 ? analysis.topics : ["Otro"];
+        for (const topic of topics) {
+          const entry = derivationsByTopic.get(topic) || { count: 0, reasons: new Map() };
+          entry.count++;
+          entry.reasons.set(reason, (entry.reasons.get(reason) || 0) + 1);
+          derivationsByTopic.set(topic, entry);
+        }
       }
     }
   }
@@ -74,6 +85,22 @@ export function aggregateReport(
     }))
     .sort((a, b) => b.count - a.count)
     .slice(0, 20);
+
+  // Group derivations by topic
+  const byTopic: DerivationByTopic[] = [...derivationsByTopic.entries()]
+    .map(([topic, entry]) => ({
+      topic,
+      count: entry.count,
+      pct: derivedMessages > 0 ? entry.count / derivedMessages : 0,
+      reasons: [...entry.reasons.entries()]
+        .map(([reason, count]) => ({
+          reason,
+          count,
+          pct: entry.count > 0 ? count / entry.count : 0,
+        }))
+        .sort((a, b) => b.count - a.count),
+    }))
+    .sort((a, b) => b.count - a.count);
 
   // Satisfaction distribution
   const distribution: Record<string, number> = { "1": 0, "2": 0, "3": 0, "4": 0, "5": 0 };
@@ -192,6 +219,7 @@ export function aggregateReport(
       derivation_rate: {
         rate: Math.round((1 - automationRate) * 100) / 100,
         top_reasons: topReasons,
+        by_topic: byTopic,
       },
       time_saved: timeSaved,
       response_time: responseTime,

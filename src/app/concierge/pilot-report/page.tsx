@@ -198,8 +198,7 @@ export default function PilotReportPage() {
   };
 
   return (
-    <div className="min-h-screen lg:ml-56">
-      <div className="max-w-7xl mx-auto px-4 py-6">
+    <div className="py-6">
         {/* Header */}
         <div className="mb-6">
           <h1 className="text-lg font-bold text-text">Pilot Report</h1>
@@ -209,7 +208,7 @@ export default function PilotReportPage() {
         </div>
 
         {!reportData ? (
-          <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Left panel: Upload */}
             <div className="lg:sticky lg:top-6 lg:self-start space-y-4">
               <div className="bg-surface border border-border rounded-xl p-5">
@@ -330,7 +329,6 @@ export default function PilotReportPage() {
             </div>
           </div>
         )}
-      </div>
     </div>
   );
 }

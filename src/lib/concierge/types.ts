@@ -82,6 +82,13 @@ export interface DerivationReason {
   pct: number;
 }
 
+export interface DerivationByTopic {
+  topic: string;
+  count: number;
+  pct: number;
+  reasons: DerivationReason[];
+}
+
 export interface TopicCount {
   topic: string;
   count: number;
@@ -138,6 +145,7 @@ export interface PilotReportData {
     derivation_rate: {
       rate: number;
       top_reasons: DerivationReason[];
+      by_topic: DerivationByTopic[];
     };
     time_saved: {
       hours: number;

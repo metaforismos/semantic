@@ -250,12 +250,20 @@ export function ReportPDF({ data }: { data: PilotReportData }) {
                 <Text style={s.metricLabel}>Derivados a humano</Text>
               </View>
             </View>
-            <Text style={[s.bold, { fontSize: 8, marginBottom: 4 }]}>Motivos de derivación</Text>
-            {metrics.derivation_rate.top_reasons.map((r, i) => (
-              <View key={i} style={s.derivRow}>
-                <Text style={s.derivCount}>{r.count}</Text>
-                <Text style={s.derivText}>{r.reason}</Text>
-                <Text style={s.derivPct}>{Math.round(r.pct * 100)}%</Text>
+            <Text style={[s.bold, { fontSize: 8, marginBottom: 4 }]}>Derivaciones por tema</Text>
+            {(metrics.derivation_rate.by_topic ?? []).map((t, i) => (
+              <View key={i} style={{ marginBottom: 6 }}>
+                <View style={s.derivRow}>
+                  <Text style={s.derivCount}>{t.count}</Text>
+                  <Text style={[s.derivText, { fontWeight: 700 }]}>{t.topic}</Text>
+                  <Text style={s.derivPct}>{Math.round(t.pct * 100)}%</Text>
+                </View>
+                {t.reasons.map((r, j) => (
+                  <View key={j} style={{ flexDirection: "row", paddingLeft: 24, marginTop: 1 }}>
+                    <Text style={{ fontSize: 7, color: colors.textDim, width: 24 }}>{r.count}×</Text>
+                    <Text style={{ fontSize: 7, color: colors.textMuted, flex: 1 }}>{r.reason}</Text>
+                  </View>
+                ))}
               </View>
             ))}
           </View>

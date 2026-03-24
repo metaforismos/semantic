@@ -272,28 +272,34 @@ export function ReportPreview({ data }: ReportPreviewProps) {
             </div>
           </div>
 
-          <h3 className="text-xs font-semibold text-text mb-3">Motivos de derivación ({metrics.derivation_rate.top_reasons.length})</h3>
-          <div className="space-y-2">
-            {metrics.derivation_rate.top_reasons.map((r, idx) => (
-              <div key={idx} className="flex items-start gap-3 bg-surface-2 rounded-lg p-3">
-                <div className="shrink-0 w-10 text-right">
-                  <span className="text-sm font-bold text-neutral-sent">{r.count}</span>
+          <h3 className="text-xs font-semibold text-text mb-3">Derivaciones por tema ({(metrics.derivation_rate.by_topic ?? []).length})</h3>
+          <div className="space-y-4">
+            {(metrics.derivation_rate.by_topic ?? []).map((t, idx) => (
+              <div key={idx} className="bg-surface-2 rounded-lg p-3">
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="text-sm font-bold text-neutral-sent">{t.count}</span>
+                  <span className="text-sm font-semibold text-text">{t.topic}</span>
+                  <span className="ml-auto text-xs font-medium text-text-muted">
+                    {Math.round(t.pct * 100)}%
+                  </span>
                 </div>
-                <div className="flex-1 min-w-0">
-                  <div className="text-sm text-text">{r.reason}</div>
-                  <div className="mt-1.5 h-1.5 bg-surface-3 rounded-full overflow-hidden">
-                    <div
-                      className="h-full rounded-full"
-                      style={{
-                        width: `${Math.round(r.pct * 100)}%`,
-                        backgroundColor: "var(--color-neutral-sent)",
-                        minWidth: r.pct > 0 ? "4px" : "0",
-                      }}
-                    />
-                  </div>
+                <div className="h-1.5 bg-surface-3 rounded-full overflow-hidden mb-2">
+                  <div
+                    className="h-full rounded-full"
+                    style={{
+                      width: `${Math.round(t.pct * 100)}%`,
+                      backgroundColor: "var(--color-neutral-sent)",
+                      minWidth: t.pct > 0 ? "4px" : "0",
+                    }}
+                  />
                 </div>
-                <div className="shrink-0 text-xs font-medium text-text-muted">
-                  {Math.round(r.pct * 100)}%
+                <div className="space-y-1 pl-4">
+                  {t.reasons.map((r, rIdx) => (
+                    <div key={rIdx} className="flex items-center gap-2 text-xs text-text-muted">
+                      <span className="text-text-dim font-medium">{r.count}×</span>
+                      <span>{r.reason}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             ))}
