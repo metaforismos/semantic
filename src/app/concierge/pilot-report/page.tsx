@@ -164,7 +164,7 @@ export default function PilotReportPage() {
     if (!reportData) return;
     try {
       const fileName = `Reporte_Piloto_${reportData.meta.hotel_name.replace(/\s+/g, "_")}_${reportData.meta.period_end}.pdf`;
-      await exportToPDF("pilot-report", fileName);
+      await exportToPDF(reportData, fileName);
     } catch (err) {
       console.error("PDF export error:", err);
       // Fallback: download JSON if PDF fails

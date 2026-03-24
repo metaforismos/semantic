@@ -73,7 +73,7 @@ export function aggregateReport(
       pct: derivedMessages > 0 ? count / derivedMessages : 0,
     }))
     .sort((a, b) => b.count - a.count)
-    .slice(0, 5);
+    .slice(0, 20);
 
   // Satisfaction distribution
   const distribution: Record<string, number> = { "1": 0, "2": 0, "3": 0, "4": 0, "5": 0 };

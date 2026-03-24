@@ -272,16 +272,32 @@ export function ReportPreview({ data }: ReportPreviewProps) {
             </div>
           </div>
 
-          <h3 className="text-xs font-semibold text-text mb-3">Motivos de derivación</h3>
-          <BarChart
-            items={metrics.derivation_rate.top_reasons.map((r) => ({
-              label: r.reason,
-              value: r.pct,
-              count: r.count,
-            }))}
-            color="var(--color-neutral-sent)"
-            maxItems={20}
-          />
+          <h3 className="text-xs font-semibold text-text mb-3">Motivos de derivación ({metrics.derivation_rate.top_reasons.length})</h3>
+          <div className="space-y-2">
+            {metrics.derivation_rate.top_reasons.map((r, idx) => (
+              <div key={idx} className="flex items-start gap-3 bg-surface-2 rounded-lg p-3">
+                <div className="shrink-0 w-10 text-right">
+                  <span className="text-sm font-bold text-neutral-sent">{r.count}</span>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-sm text-text">{r.reason}</div>
+                  <div className="mt-1.5 h-1.5 bg-surface-3 rounded-full overflow-hidden">
+                    <div
+                      className="h-full rounded-full"
+                      style={{
+                        width: `${Math.round(r.pct * 100)}%`,
+                        backgroundColor: "var(--color-neutral-sent)",
+                        minWidth: r.pct > 0 ? "4px" : "0",
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="shrink-0 text-xs font-medium text-text-muted">
+                  {Math.round(r.pct * 100)}%
+                </div>
+              </div>
+            ))}
+          </div>
           <MetricInfo text="Un mensaje IA se clasifica como 'derivado' cuando redirige al huésped a un ser humano (recepción, extensión telefónica, email, etc.). Cada motivo es una oportunidad de completar la base de conocimiento para resolución directa." />
         </section>
       )}
