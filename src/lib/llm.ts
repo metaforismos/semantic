@@ -1,5 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { GoogleGenAI } from "@google/genai";
+import OpenAI from "openai";
 import { getModelOption } from "./types";
 
 interface CallLLMParams {
@@ -16,6 +17,14 @@ interface CallLLMResult {
 
 const MAX_RETRIES = 3;
 const BASE_DELAY_MS = 1000;
+
+// Fallback chain: if primary provider fails, try these in order
+const FALLBACK_CHAIN: Record<string, string[]> = {
+  "gemini-flash": ["openai-gpt4o-mini", "claude-haiku"],
+  "openai-gpt4o-mini": ["gemini-flash", "claude-haiku"],
+  "claude-haiku": ["gemini-flash", "openai-gpt4o-mini"],
+  "claude-sonnet": ["gemini-flash", "openai-gpt4o-mini"],
+};
 
 async function withRetry<T>(fn: () => Promise<T>, retries = MAX_RETRIES): Promise<T> {
   let lastError: Error | undefined;
@@ -43,7 +52,7 @@ async function withRetry<T>(fn: () => Promise<T>, retries = MAX_RETRIES): Promis
   throw lastError!;
 }
 
-export async function callLLM({ modelId, systemPrompt, userMessage, maxTokens = 4096 }: CallLLMParams): Promise<CallLLMResult> {
+async function callProvider(modelId: string, systemPrompt: string, userMessage: string, maxTokens: number): Promise<CallLLMResult> {
   const option = getModelOption(modelId);
   if (!option) {
     throw new Error(`Unknown model: ${modelId}`);
@@ -57,7 +66,39 @@ export async function callLLM({ modelId, systemPrompt, userMessage, maxTokens = 
     return withRetry(() => callGemini({ modelId: option.modelId, systemPrompt, userMessage, maxTokens }));
   }
 
+  if (option.provider === "openai") {
+    return withRetry(() => callOpenAI({ modelId: option.modelId, systemPrompt, userMessage, maxTokens }));
+  }
+
   throw new Error(`Unsupported provider: ${option.provider}`);
+}
+
+export async function callLLM({ modelId, systemPrompt, userMessage, maxTokens = 4096 }: CallLLMParams): Promise<CallLLMResult> {
+  // Try primary provider
+  try {
+    return await callProvider(modelId, systemPrompt, userMessage, maxTokens);
+  } catch (primaryError) {
+    const primaryMsg = primaryError instanceof Error ? primaryError.message : String(primaryError);
+    console.error(`[LLM] Primary provider ${modelId} failed: ${primaryMsg}`);
+
+    // Try fallback chain
+    const fallbacks = FALLBACK_CHAIN[modelId] || [];
+    for (const fallbackId of fallbacks) {
+      try {
+        console.log(`[LLM] Trying fallback: ${fallbackId}`);
+        const result = await callProvider(fallbackId, systemPrompt, userMessage, maxTokens);
+        console.log(`[LLM] Fallback ${fallbackId} succeeded`);
+        return result;
+      } catch (fallbackError) {
+        const fbMsg = fallbackError instanceof Error ? fallbackError.message : String(fallbackError);
+        console.error(`[LLM] Fallback ${fallbackId} also failed: ${fbMsg}`);
+        // Continue to next fallback
+      }
+    }
+
+    // All providers failed
+    throw new Error(`All LLM providers failed. Primary (${modelId}): ${primaryMsg}`);
+  }
 }
 
 async function callClaude({ modelId, systemPrompt, userMessage, maxTokens }: { modelId: string; systemPrompt: string; userMessage: string; maxTokens: number }): Promise<CallLLMResult> {
@@ -103,6 +144,31 @@ async function callGemini({ modelId, systemPrompt, userMessage, maxTokens }: { m
   const text = response.text;
   if (!text) {
     throw new Error("Empty response from Gemini");
+  }
+
+  return { text, modelUsed: modelId };
+}
+
+async function callOpenAI({ modelId, systemPrompt, userMessage, maxTokens }: { modelId: string; systemPrompt: string; userMessage: string; maxTokens: number }): Promise<CallLLMResult> {
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) {
+    throw new Error("OPENAI_API_KEY not configured");
+  }
+
+  const client = new OpenAI({ apiKey });
+
+  const response = await client.chat.completions.create({
+    model: modelId,
+    max_tokens: maxTokens,
+    messages: [
+      { role: "system", content: systemPrompt },
+      { role: "user", content: userMessage },
+    ],
+  });
+
+  const text = response.choices[0]?.message?.content;
+  if (!text) {
+    throw new Error("Empty response from OpenAI");
   }
 
   return { text, modelUsed: modelId };

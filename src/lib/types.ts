@@ -75,7 +75,7 @@ export type Area = (typeof AREAS)[number];
 export type Dimension = (typeof DIMENSIONS)[number];
 
 // Model configuration
-export type ModelProvider = "claude" | "gemini";
+export type ModelProvider = "claude" | "gemini" | "openai";
 
 export interface ModelOption {
   id: string;
@@ -106,6 +106,13 @@ export const MODEL_OPTIONS: ModelOption[] = [
     provider: "gemini",
     modelId: "gemini-2.5-flash",
     description: "Fast & capable — Google",
+  },
+  {
+    id: "openai-gpt4o-mini",
+    label: "GPT-4o Mini",
+    provider: "openai",
+    modelId: "gpt-4o-mini",
+    description: "Fast & affordable — OpenAI",
   },
 ];
 

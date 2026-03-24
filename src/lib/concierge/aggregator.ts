@@ -87,11 +87,12 @@ export function aggregateReport(
     .slice(0, 20);
 
   // Group derivations by topic
+  const totalTopicDerivations = [...derivationsByTopic.values()].reduce((sum, e) => sum + e.count, 0);
   const byTopic: DerivationByTopic[] = [...derivationsByTopic.entries()]
     .map(([topic, entry]) => ({
       topic,
       count: entry.count,
-      pct: derivedMessages > 0 ? entry.count / derivedMessages : 0,
+      pct: totalTopicDerivations > 0 ? entry.count / totalTopicDerivations : 0,
       reasons: [...entry.reasons.entries()]
         .map(([reason, count]) => ({
           reason,
