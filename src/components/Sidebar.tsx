@@ -22,6 +22,7 @@ const sections: NavSection[] = [
   {
     label: "Concierge",
     items: [
+      { href: "/concierge/pilot-report", label: "Pilot Report" },
       { href: "/concierge/meta-id", label: "Meta ID" },
     ],
   },

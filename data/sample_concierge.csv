@@ -1,0 +1,75 @@
+customer_id	customer_name	conversation_id	external_line	message_type	campaign	template	sent_at	message_order	conversation_text
+684	Las Americas Torre Del Mar	conv001	+56912345678	Campaign	PreStay	welcome_prestay	2026-03-01T10:00:00Z	1	¡Hola! Soy Estrella, la asistente virtual del hotel Las Americas Torre Del Mar. Tu reserva está confirmada para el 3 de marzo. ¿Tienes alguna consulta antes de tu llegada?
+684	Las Americas Torre Del Mar	conv001	+56912345678	Human		 	2026-03-01T10:05:00Z	2	Hola! Sí, quería saber a qué hora es el check-in y si tienen estacionamiento
+684	Las Americas Torre Del Mar	conv001	+56912345678	IA		 	2026-03-01T10:05:08Z	3	¡Hola! El check-in es a partir de las 15:00 hrs. Sí contamos con estacionamiento gratuito para huéspedes, ubicado en el subterráneo del hotel. ¿Alguna otra consulta?
+684	Las Americas Torre Del Mar	conv001	+56912345678	Human		 	2026-03-01T10:06:00Z	4	Perfecto, muchas gracias! Y tienen spa?
+684	Las Americas Torre Del Mar	conv001	+56912345678	IA		 	2026-03-01T10:06:05Z	5	Sí, contamos con un spa completo que incluye piscina temperada, sauna y jacuzzi. El horario es de 07:00 a 22:00 hrs. ¿Te gustaría reservar algún tratamiento?
+684	Las Americas Torre Del Mar	conv001	+56912345678	Human		 	2026-03-01T10:07:00Z	6	No por ahora, pero genial saber. Gracias!
+684	Las Americas Torre Del Mar	conv001	+56912345678	IA		 	2026-03-01T10:07:04Z	7	¡De nada! Te esperamos el 3 de marzo. Cualquier otra consulta, aquí estoy. 😊
+684	Las Americas Torre Del Mar	conv002	+56987654321	Campaign	Welcome	welcome_checkin	2026-03-03T15:30:00Z	1	¡Bienvenido al hotel Las Americas! Soy Estrella. ¿En qué puedo ayudarte durante tu estadía?
+684	Las Americas Torre Del Mar	conv002	+56987654321	Human		 	2026-03-03T15:45:00Z	2	Hola, el wifi no funciona en mi habitación 405
+684	Las Americas Torre Del Mar	conv002	+56987654321	IA		 	2026-03-03T15:45:06Z	3	Lamento el inconveniente. La red WiFi es "LasAmericas_Guest" y la clave es tu número de habitación seguido de tu apellido. Si sigues con problemas, te recomiendo contactar a recepción en la extensión 9 para que envíen soporte técnico.
+684	Las Americas Torre Del Mar	conv002	+56987654321	Human		 	2026-03-03T15:46:00Z	4	Ya probé eso y no funciona
+684	Las Americas Torre Del Mar	conv002	+56987654321	IA		 	2026-03-03T15:46:05Z	5	Entiendo, lamento las molestias. Te sugiero comunicarte directamente con recepción marcando la extensión 9 desde el teléfono de tu habitación. Ellos podrán enviar a un técnico a tu habitación.
+684	Las Americas Torre Del Mar	conv003	+56911111111	Campaign	PreStay	welcome_prestay	2026-03-02T09:00:00Z	1	¡Hola! Soy Estrella del hotel Las Americas. Tu reserva está confirmada. ¿Necesitas algo antes de tu llegada?
+684	Las Americas Torre Del Mar	conv003	+56911111111	Human		 	2026-03-02T09:10:00Z	2	Hola, necesito un transfer desde el aeropuerto. ¿Ofrecen ese servicio?
+684	Las Americas Torre Del Mar	conv003	+56911111111	IA		 	2026-03-02T09:10:07Z	3	¡Sí! Ofrecemos servicio de transfer desde y hacia el aeropuerto. El costo es de $25.000 CLP por trayecto. ¿Te gustaría que lo coordinemos? Necesitaría tu número de vuelo y hora de llegada.
+684	Las Americas Torre Del Mar	conv003	+56911111111	Human		 	2026-03-02T09:12:00Z	4	Sí por favor! Vuelo LA320, llego a las 14:00 el 4 de marzo
+684	Las Americas Torre Del Mar	conv003	+56911111111	IA		 	2026-03-02T09:12:06Z	5	¡Perfecto! He registrado tu solicitud de transfer para el vuelo LA320, llegada a las 14:00 del 4 de marzo. Nuestro chofer te estará esperando en la salida del aeropuerto con un cartel a tu nombre. ¿Alguna otra consulta?
+684	Las Americas Torre Del Mar	conv003	+56911111111	Human		 	2026-03-02T09:13:00Z	6	Genial, muchas gracias!
+684	Las Americas Torre Del Mar	conv003	+56911111111	IA		 	2026-03-02T09:13:04Z	7	¡Con gusto! Nos vemos el 4 de marzo. Buen viaje! ✈️
+684	Las Americas Torre Del Mar	conv004	+56922222222	Campaign	Welcome	welcome_checkin	2026-03-04T16:00:00Z	1	¡Bienvenido! Soy Estrella, tu asistente virtual. ¿Necesitas algo?
+684	Las Americas Torre Del Mar	conv004	+56922222222	Human		 	2026-03-04T16:30:00Z	2	Necesito room service, ¿tienen menú?
+684	Las Americas Torre Del Mar	conv004	+56922222222	IA		 	2026-03-04T16:30:05Z	3	¡Por supuesto! El servicio de Room Service está disponible de 07:00 a 23:00. Puedes ver el menú completo en el QR que está en tu habitación, o puedo ayudarte con las opciones principales. ¿Qué te gustaría pedir?
+684	Las Americas Torre Del Mar	conv004	+56922222222	Human		 	2026-03-04T16:31:00Z	4	Un club sandwich y una coca cola por favor
+684	Las Americas Torre Del Mar	conv004	+56922222222	IA		 	2026-03-04T16:31:06Z	5	He registrado tu pedido: Club Sandwich y Coca-Cola. El tiempo estimado de entrega es de 25-30 minutos. Se cargará a tu cuenta de habitación. ¿Algo más?
+684	Las Americas Torre Del Mar	conv004	+56922222222	Human		 	2026-03-04T16:31:30Z	6	No, eso es todo. Gracias!
+684	Las Americas Torre Del Mar	conv004	+56922222222	IA		 	2026-03-04T16:31:35Z	7	¡Perfecto! Tu pedido llegará en breve. ¡Buen provecho! 🍽️
+684	Las Americas Torre Del Mar	conv005	+56933333333	Campaign	PreStay	welcome_prestay	2026-03-05T08:00:00Z	1	¡Hola! Soy Estrella. Tu reserva en Las Americas está confirmada. ¿Alguna consulta?
+684	Las Americas Torre Del Mar	conv005	+56933333333	Human		 	2026-03-05T08:20:00Z	2	Hola, ¿aceptan mascotas?
+684	Las Americas Torre Del Mar	conv005	+56933333333	IA		 	2026-03-05T08:20:08Z	3	Lamentablemente, no cuento con esa información en mi base de datos. Te recomiendo contactar directamente a recepción al +56 2 2345 6789 para confirmar la política de mascotas del hotel.
+684	Las Americas Torre Del Mar	conv005	+56933333333	Human		 	2026-03-05T08:22:00Z	4	Ok gracias
+684	Las Americas Torre Del Mar	conv006	+56944444444	Campaign	Welcome	welcome_checkin	2026-03-06T14:00:00Z	1	¡Bienvenido a Las Americas! ¿Puedo ayudarte en algo?
+684	Las Americas Torre Del Mar	conv006	+56944444444	Human		 	2026-03-06T14:15:00Z	2	¿A qué hora es el desayuno?
+684	Las Americas Torre Del Mar	conv006	+56944444444	IA		 	2026-03-06T14:15:04Z	3	El desayuno buffet se sirve de 07:00 a 10:30 hrs en el restaurante principal ubicado en el primer piso. ¡Buen provecho!
+684	Las Americas Torre Del Mar	conv006	+56944444444	Human		 	2026-03-06T14:15:30Z	4	Gracias!
+684	Las Americas Torre Del Mar	conv007	+56955555555	Campaign	PreStay	welcome_prestay	2026-03-07T11:00:00Z	1	¡Hola! Reserva confirmada en Las Americas. ¿Necesitas información?
+684	Las Americas Torre Del Mar	conv007	+56955555555	Human		 	2026-03-07T11:30:00Z	2	Sí, ¿tienen gym?
+684	Las Americas Torre Del Mar	conv007	+56955555555	IA		 	2026-03-07T11:30:06Z	3	¡Sí! Contamos con un gimnasio completamente equipado, disponible las 24 horas para nuestros huéspedes. Está ubicado en el piso 2. ¿Alguna otra consulta?
+684	Las Americas Torre Del Mar	conv007	+56955555555	Human		 	2026-03-07T11:31:00Z	4	¿Y piscina?
+684	Las Americas Torre Del Mar	conv007	+56955555555	IA		 	2026-03-07T11:31:05Z	5	Sí, la piscina temperada está en el piso 2 junto al gimnasio. Horario: 07:00 a 22:00 hrs. También hay jacuzzi disponible. ¿Necesitas algo más?
+684	Las Americas Torre Del Mar	conv007	+56955555555	Human		 	2026-03-07T11:32:00Z	6	No, perfecto. Muchas gracias!
+684	Las Americas Torre Del Mar	conv007	+56955555555	IA		 	2026-03-07T11:32:04Z	7	¡De nada! Te esperamos pronto. 😊
+684	Las Americas Torre Del Mar	conv008	+56966666666	Campaign	Welcome	welcome_checkin	2026-03-08T15:00:00Z	1	¡Bienvenido! Soy Estrella. ¿En qué te puedo ayudar?
+684	Las Americas Torre Del Mar	conv008	+56966666666	Human		 	2026-03-08T15:10:00Z	2	Hola, quiero hacer una reserva en el restaurante para esta noche, somos 4
+684	Las Americas Torre Del Mar	conv008	+56966666666	IA		 	2026-03-08T15:10:07Z	3	¡Con gusto! ¿A qué hora les gustaría cenar? El restaurante tiene disponibilidad entre las 19:00 y 22:00 hrs.
+684	Las Americas Torre Del Mar	conv008	+56966666666	Human		 	2026-03-08T15:11:00Z	4	A las 20:00 por favor
+684	Las Americas Torre Del Mar	conv008	+56966666666	IA		 	2026-03-08T15:11:05Z	5	¡Listo! He reservado una mesa para 4 personas a las 20:00 hrs en el restaurante principal. La reserva está a nombre de la habitación. ¿Algún requerimiento especial?
+684	Las Americas Torre Del Mar	conv008	+56966666666	Human		 	2026-03-08T15:11:30Z	6	No, todo bien. Gracias!
+684	Las Americas Torre Del Mar	conv008	+56966666666	IA		 	2026-03-08T15:11:34Z	7	¡Perfecto! Los esperamos a las 20:00. ¡Que disfruten la cena! 🍷
+684	Las Americas Torre Del Mar	conv009	+56977777777	Campaign	PreStay	welcome_prestay	2026-03-09T09:00:00Z	1	¡Hola! Reserva confirmada. ¿Alguna pregunta?
+684	Las Americas Torre Del Mar	conv009	+56977777777	Human		 	2026-03-09T09:05:00Z	2	¿Cuánto cuesta el late checkout?
+684	Las Americas Torre Del Mar	conv009	+56977777777	IA		 	2026-03-09T09:05:07Z	3	El late check-out está sujeto a disponibilidad y tiene un costo adicional. Te recomiendo consultarlo directamente con recepción al momento del check-in para confirmar disponibilidad y precio para tu fecha.
+684	Las Americas Torre Del Mar	conv009	+56977777777	Human		 	2026-03-09T09:06:00Z	4	O sea no me puedes decir el precio?
+684	Las Americas Torre Del Mar	conv009	+56977777777	IA		 	2026-03-09T09:06:06Z	5	Disculpa, no tengo el detalle exacto del precio ya que varía según la temporada y disponibilidad. Te sugiero llamar a recepción al +56 2 2345 6789 o consultar al momento del check-in. Ellos te darán la información exacta.
+684	Las Americas Torre Del Mar	conv010	+56988888888	Campaign	Welcome	welcome_checkin	2026-03-10T16:00:00Z	1	¡Bienvenido a Las Americas! ¿Puedo ayudarte?
+684	Las Americas Torre Del Mar	conv010	+56988888888	Human		 	2026-03-10T16:20:00Z	2	La ducha no tiene agua caliente
+684	Las Americas Torre Del Mar	conv010	+56988888888	IA		 	2026-03-10T16:20:06Z	3	Lamento mucho el inconveniente. Te recomiendo contactar a recepción en la extensión 9 para que envíen a mantención a revisar tu habitación lo antes posible.
+684	Las Americas Torre Del Mar	conv010	+56988888888	Human		 	2026-03-10T16:21:00Z	4	Ya llamé y no contestan
+684	Las Americas Torre Del Mar	conv010	+56988888888	IA		 	2026-03-10T16:21:05Z	5	Entiendo tu frustración. Por favor intenta nuevamente marcando la extensión 9, o puedes bajar directamente a recepción en el lobby. Lamento las molestias.
+684	Las Americas Torre Del Mar	conv011	+56999999999	Campaign	PreStay	welcome_prestay	2026-03-11T10:00:00Z	1	¡Hola! Tu reserva está lista. ¿Alguna consulta?
+684	Las Americas Torre Del Mar	conv011	+56999999999	Human		 	2026-03-11T10:30:00Z	2	Hola! ¿Tienen caja fuerte en las habitaciones?
+684	Las Americas Torre Del Mar	conv011	+56999999999	IA		 	2026-03-11T10:30:05Z	3	¡Sí! Todas nuestras habitaciones cuentan con caja fuerte digital. La encontrarás dentro del closet. Si necesitas ayuda para configurarla, no dudes en consultar.
+684	Las Americas Torre Del Mar	conv011	+56999999999	Human		 	2026-03-11T10:31:00Z	4	Genial, y ¿aceptan dólares?
+684	Las Americas Torre Del Mar	conv011	+56999999999	IA		 	2026-03-11T10:31:06Z	5	Sí, aceptamos pago en dólares estadounidenses. También aceptamos todas las tarjetas de crédito y débito internacionales. ¿Alguna otra pregunta?
+684	Las Americas Torre Del Mar	conv011	+56999999999	Human		 	2026-03-11T10:32:00Z	6	No, todo claro. Gracias!
+684	Las Americas Torre Del Mar	conv011	+56999999999	IA		 	2026-03-11T10:32:04Z	7	¡Con gusto! Te esperamos pronto. 😊
+684	Las Americas Torre Del Mar	conv012	+56900000001	Campaign	Welcome	welcome_checkin	2026-03-12T14:00:00Z	1	¡Bienvenido! Soy Estrella. ¿Necesitas ayuda?
+684	Las Americas Torre Del Mar	conv013	+56900000002	Campaign	PreStay	welcome_prestay	2026-03-13T09:00:00Z	1	¡Hola! Reserva confirmada. ¿Preguntas?
+684	Las Americas Torre Del Mar	conv014	+56900000003	Campaign	Welcome	welcome_checkin	2026-03-14T15:00:00Z	1	¡Bienvenido! ¿Te puedo ayudar?
+684	Las Americas Torre Del Mar	conv014	+56900000003	Human		 	2026-03-14T15:05:00Z	2	¿Dónde puedo encontrar información turística de la ciudad?
+684	Las Americas Torre Del Mar	conv014	+56900000003	IA		 	2026-03-14T15:05:06Z	3	¡Buena pregunta! En recepción tenemos folletos y mapas de la ciudad. También puedo recomendarte algunos lugares: el centro histórico está a 10 minutos caminando, y hay tours en bus turístico que salen desde la plaza principal. ¿Te interesa algún tipo de actividad en particular?
+684	Las Americas Torre Del Mar	conv014	+56900000003	Human		 	2026-03-14T15:06:00Z	4	Museos y restaurantes buenos
+684	Las Americas Torre Del Mar	conv014	+56900000003	IA		 	2026-03-14T15:06:07Z	5	Te recomiendo el Museo de Bellas Artes (a 15 min) y el Museo Precolombino (a 20 min). Para restaurantes, el barrio Lastarria tiene excelentes opciones a solo 10 minutos del hotel. ¿Necesitas direcciones específicas?
+684	Las Americas Torre Del Mar	conv014	+56900000003	Human		 	2026-03-14T15:07:00Z	6	No, con eso me basta. Muchas gracias!
+684	Las Americas Torre Del Mar	conv014	+56900000003	IA		 	2026-03-14T15:07:04Z	7	¡Que disfrutes tu recorrido! Si necesitas algo más, aquí estoy. 🏛️
