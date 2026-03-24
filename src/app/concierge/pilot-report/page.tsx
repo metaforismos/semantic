@@ -90,8 +90,22 @@ export default function PilotReportPage() {
                   total_batches: event.total_batches,
                   message: event.message,
                 });
+              } else if (event.type === "batch_complete") {
+                setProgress((prev) => prev ? {
+                  ...prev,
+                  message: `Lote ${event.batch} completado (${event.count} conversaciones analizadas)`,
+                } : prev);
+              } else if (event.type === "batch_error") {
+                console.warn(`Batch ${event.batch} error:`, event.error);
+                setProgress((prev) => prev ? {
+                  ...prev,
+                  message: `Lote ${event.batch} falló: ${event.error}. Continuando...`,
+                } : prev);
               } else if (event.type === "complete") {
                 allAnalyses = event.analyses;
+                if (event.failed_batches > 0) {
+                  console.warn(`${event.failed_batches} lotes fallaron. ${event.total_analyzed} conversaciones analizadas.`);
+                }
               }
             } catch {
               // Skip malformed events

@@ -3,8 +3,8 @@ import { safeParseJSON } from "@/lib/parse";
 import { buildAnalysisSystemPrompt, buildAnalysisUserMessage } from "@/lib/concierge/prompts";
 import type { Conversation, ConversationAnalysis } from "@/lib/concierge/types";
 
-const BATCH_SIZE = 20;
-const MAX_MESSAGES_FOR_SOLO = 50;
+const BATCH_SIZE = 10; // Smaller batches for reliability with long conversations
+const MAX_MESSAGES_FOR_SOLO = 30;
 
 function createBatches(conversations: Conversation[]): Conversation[][] {
   const batches: Conversation[][] = [];
@@ -12,7 +12,6 @@ function createBatches(conversations: Conversation[]): Conversation[][] {
 
   for (const conv of conversations) {
     if (conv.messages.length > MAX_MESSAGES_FOR_SOLO) {
-      // Long conversations go solo
       if (currentBatch.length > 0) {
         batches.push(currentBatch);
         currentBatch = [];
@@ -58,6 +57,7 @@ export async function POST(request: Request) {
       }
 
       const allAnalyses: ConversationAnalysis[] = [];
+      let failedBatches = 0;
 
       for (let i = 0; i < batches.length; i++) {
         send({
@@ -73,32 +73,54 @@ export async function POST(request: Request) {
             modelId: "gemini-flash",
             systemPrompt,
             userMessage,
-            maxTokens: 8192,
+            maxTokens: 16384,
           });
 
-          const parsed = safeParseJSON<ConversationAnalysis[]>(result.text);
+          let parsed: ConversationAnalysis[];
+          try {
+            parsed = safeParseJSON<ConversationAnalysis[]>(result.text);
+          } catch (parseErr) {
+            // Log the raw response for debugging
+            console.error(`[Batch ${i + 1}] JSON parse failed. Raw response (first 500 chars):`, result.text.substring(0, 500));
+            send({
+              type: "batch_error",
+              batch: i + 1,
+              error: `Error parseando respuesta del LLM: ${(parseErr as Error).message}`,
+            });
+            failedBatches++;
+            continue;
+          }
 
-          if (Array.isArray(parsed)) {
+          if (Array.isArray(parsed) && parsed.length > 0) {
             allAnalyses.push(...parsed);
             send({
               type: "batch_complete",
               batch: i + 1,
               count: parsed.length,
             });
+          } else {
+            console.error(`[Batch ${i + 1}] LLM returned non-array or empty. Raw:`, result.text.substring(0, 300));
+            send({
+              type: "batch_error",
+              batch: i + 1,
+              error: "LLM retornó respuesta vacía o formato inválido.",
+            });
+            failedBatches++;
           }
         } catch (err) {
           const errorMsg = err instanceof Error ? err.message : String(err);
+          console.error(`[Batch ${i + 1}] LLM call failed:`, errorMsg);
           send({
             type: "batch_error",
             batch: i + 1,
             error: errorMsg,
           });
-          // Continue with next batch
+          failedBatches++;
         }
 
-        // Small delay between batches to avoid rate limiting
+        // Delay between batches to avoid rate limiting
         if (i < batches.length - 1) {
-          await new Promise((r) => setTimeout(r, 500));
+          await new Promise((r) => setTimeout(r, 800));
         }
       }
 
@@ -106,6 +128,7 @@ export async function POST(request: Request) {
         type: "complete",
         analyses: allAnalyses,
         total_analyzed: allAnalyses.length,
+        failed_batches: failedBatches,
       });
 
       controller.close();
