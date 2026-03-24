@@ -69,22 +69,23 @@ export function UploadForm({ onParsed, disabled }: UploadFormProps) {
 
   return (
     <div className="space-y-5">
-      {/* Download source link + filter reminder */}
-      <div className="bg-accent/5 border border-accent/15 rounded-lg p-3 space-y-2">
+      {/* Grafana link + filter reminder */}
+      <div className="space-y-2">
         <a
           href="https://union.myhotel.cl/d/e56102e7-33cd-463f-b5d3-efa18b814801/mensajes?orgId=2&from=now%2FM&to=now%2FM&timezone=utc"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-light transition-colors"
+          className="w-full flex items-center justify-center gap-2 py-2 bg-surface border border-border text-sm font-medium text-text rounded-lg hover:bg-surface-2 transition-colors"
         >
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
-            <path d="M8 2v8m0 0l-3-3m3 3l3-3" />
-            <path d="M2 10v2a2 2 0 002 2h8a2 2 0 002-2v-2" />
+            <path d="M6 3H3v10h10v-3" />
+            <path d="M9 2h5v5" />
+            <path d="M14 2L7 9" />
           </svg>
-          Descargar CSV de mensajes desde Grafana
+          Ir a Grafana
         </a>
         <p className="text-[11px] text-text-muted leading-relaxed">
-          Importante: filtra por un solo hotel antes de exportar. Si el CSV contiene mensajes de múltiples hoteles, será rechazado.
+          Filtra por un solo hotel en Grafana antes de exportar el CSV. Si contiene múltiples hoteles, será rechazado.
         </p>
       </div>
 
