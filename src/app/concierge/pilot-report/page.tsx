@@ -18,6 +18,7 @@ export default function PilotReportPage() {
   const [progress, setProgress] = useState<AnalysisProgress | null>(null);
   const [reportData, setReportData] = useState<PilotReportData | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [jsonCopied, setJsonCopied] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
 
   const handleGenerate = useCallback(
@@ -255,12 +256,40 @@ export default function PilotReportPage() {
                   Descargar JSON
                 </button>
                 <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(JSON.stringify(reportData, null, 2));
+                    setJsonCopied(true);
+                    setTimeout(() => setJsonCopied(false), 2000);
+                  }}
+                  className="px-4 py-2 bg-surface-2 border border-border text-text text-sm font-medium rounded-lg hover:bg-surface-3 transition-colors"
+                >
+                  {jsonCopied ? "Copiado!" : "Copiar JSON"}
+                </button>
+                <a
+                  href="https://notebooklm.google.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 bg-surface-2 border border-border text-text text-sm font-medium rounded-lg hover:bg-surface-3 transition-colors inline-flex items-center gap-1.5"
+                >
+                  NotebookLM
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" className="opacity-60">
+                    <path d="M4.5 1.5h6v6" /><path d="M10.5 1.5L4 8" />
+                  </svg>
+                </a>
+                <button
                   onClick={() => { setReportData(null); setProgress(null); }}
                   className="px-4 py-2 text-text-muted text-sm font-medium rounded-lg hover:bg-surface-2 transition-colors"
                 >
                   Nuevo reporte
                 </button>
               </div>
+            </div>
+
+            {/* NotebookLM tip */}
+            <div className="bg-accent/5 border border-accent/15 rounded-lg px-4 py-2.5 flex items-center gap-3">
+              <span className="text-xs text-text-muted">
+                Copia el JSON y pégalo en <strong>NotebookLM</strong> para generar presentaciones, infografías y otros recursos a partir de los datos del reporte.
+              </span>
             </div>
 
             {/* Full-width report */}
