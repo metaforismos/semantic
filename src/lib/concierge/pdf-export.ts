@@ -1,70 +1,45 @@
 /**
- * Resolve all computed colors on an element tree to hex/rgb values.
- * html2canvas doesn't support oklab() colors used by Tailwind v4.
+ * Tailwind v4 compiles hex colors to oklab() which html2canvas can't parse.
+ * Inject raw hex CSS variables directly onto the element to override.
  */
-function resolveColors(element: HTMLElement): () => void {
-  const originals: { el: HTMLElement; prop: string; value: string }[] = [];
-
-  const colorProps = [
-    "color",
-    "background-color",
-    "border-color",
-    "border-top-color",
-    "border-right-color",
-    "border-bottom-color",
-    "border-left-color",
-    "outline-color",
-    "text-decoration-color",
-    "fill",
-    "stroke",
-  ];
-
-  const elements = [element, ...element.querySelectorAll("*")] as HTMLElement[];
-
-  for (const el of elements) {
-    if (!el.style) continue;
-    const computed = getComputedStyle(el);
-
-    for (const prop of colorProps) {
-      const val = computed.getPropertyValue(prop);
-      if (val && (val.includes("oklab") || val.includes("oklch") || val.includes("color("))) {
-        // Save original inline style
-        originals.push({ el, prop, value: el.style.getPropertyValue(prop) });
-
-        // Create a temporary element to resolve the color
-        const temp = document.createElement("div");
-        temp.style.color = val;
-        document.body.appendChild(temp);
-        const resolved = getComputedStyle(temp).color;
-        document.body.removeChild(temp);
-
-        el.style.setProperty(prop, resolved);
-      }
-    }
-  }
-
-  // Return a cleanup function to restore originals
-  return () => {
-    for (const { el, prop, value } of originals) {
-      if (value) {
-        el.style.setProperty(prop, value);
-      } else {
-        el.style.removeProperty(prop);
-      }
-    }
-  };
-}
+const HEX_COLOR_OVERRIDES: Record<string, string> = {
+  "--color-bg": "#f8f8fa",
+  "--color-surface": "#ffffff",
+  "--color-surface-2": "#f0f0f4",
+  "--color-surface-3": "#e6e6ed",
+  "--color-border": "#d4d4de",
+  "--color-border-light": "#c0c0cc",
+  "--color-text": "#1a1a2e",
+  "--color-text-muted": "#5c5c78",
+  "--color-text-dim": "#8c8ca0",
+  "--color-accent": "#4f46e5",
+  "--color-accent-light": "#6366f1",
+  "--color-positive": "#16a34a",
+  "--color-positive-muted": "#dcfce7",
+  "--color-negative": "#dc2626",
+  "--color-negative-muted": "#fee2e2",
+  "--color-neutral-sent": "#ca8a04",
+  "--color-neutral-muted": "#fef9c3",
+  "--color-mild": "#64748b",
+  "--color-moderate": "#475569",
+  "--color-strong": "#1e293b",
+  "--color-labs-yellow": "#b45309",
+  "--color-labs-yellow-bg": "#fef3c7",
+};
 
 export async function exportToPDF(elementId: string, fileName: string): Promise<void> {
   const element = document.getElementById(elementId);
   if (!element) throw new Error(`Element #${elementId} not found`);
 
-  // Dynamic imports to avoid SSR issues
   const html2canvas = (await import("html2canvas")).default;
   const { default: jsPDF } = await import("jspdf");
 
-  // Resolve oklab colors before capture
-  const restoreColors = resolveColors(element);
+  // Override CSS variables with hex values on the element
+  const savedVars: Record<string, string> = {};
+  for (const [key, val] of Object.entries(HEX_COLOR_OVERRIDES)) {
+    savedVars[key] = element.style.getPropertyValue(key);
+    element.style.setProperty(key, val);
+  }
 
   try {
     const canvas = await html2canvas(element, {
@@ -84,11 +59,9 @@ export async function exportToPDF(elementId: string, fileName: string): Promise<
     let position = 0;
     let heightLeft = imgHeight;
 
-    // First page
     pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
     heightLeft -= pageHeight;
 
-    // Additional pages if content overflows
     while (heightLeft > 0) {
       position -= pageHeight;
       pdf.addPage();
@@ -98,6 +71,13 @@ export async function exportToPDF(elementId: string, fileName: string): Promise<
 
     pdf.save(fileName);
   } finally {
-    restoreColors();
+    // Restore original CSS variables
+    for (const [key, val] of Object.entries(savedVars)) {
+      if (val) {
+        element.style.setProperty(key, val);
+      } else {
+        element.style.removeProperty(key);
+      }
+    }
   }
 }
