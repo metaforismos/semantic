@@ -69,6 +69,25 @@ export function UploadForm({ onParsed, disabled }: UploadFormProps) {
 
   return (
     <div className="space-y-5">
+      {/* Download source link + filter reminder */}
+      <div className="bg-accent/5 border border-accent/15 rounded-lg p-3 space-y-2">
+        <a
+          href="https://union.myhotel.cl/d/e56102e7-33cd-463f-b5d3-efa18b814801/mensajes?orgId=2&from=now%2FM&to=now%2FM&timezone=utc"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-light transition-colors"
+        >
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <path d="M8 2v8m0 0l-3-3m3 3l3-3" />
+            <path d="M2 10v2a2 2 0 002 2h8a2 2 0 002-2v-2" />
+          </svg>
+          Descargar CSV de mensajes desde Grafana
+        </a>
+        <p className="text-[11px] text-text-muted leading-relaxed">
+          Importante: filtra por un solo hotel antes de exportar. Si el CSV contiene mensajes de múltiples hoteles, será rechazado.
+        </p>
+      </div>
+
       {/* Drop zone */}
       <div
         className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors cursor-pointer ${
