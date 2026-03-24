@@ -251,7 +251,7 @@ export function parseCSV(content: string): {
       period_end: periodEnd,
       warnings,
       total_rows: rawMessages.length,
-      discarded_rows: discardedRows,
+      discarded_rows: 0,
     },
     errors: warnings.map((w) => ({ type: "warning" as const, message: w })),
   };
