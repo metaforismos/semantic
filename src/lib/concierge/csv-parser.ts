@@ -209,9 +209,7 @@ export function parseCSV(content: string): {
     const firstCampaignIdx = messages.findIndex(
       (m) => m.message_type === "Campaign" || m.message_type === "Survey"
     );
-    const hasHumanAfterCampaign =
-      firstCampaignIdx >= 0 &&
-      messages.some((m, idx) => idx > firstCampaignIdx && m.message_type === "Human");
+    const hasHumanMessage = messages.some((m) => m.message_type === "Human");
 
     const origin = firstCampaignIdx >= 0 ? messages[firstCampaignIdx].campaign || "Sin campaña" : "Sin campaña";
     const externalLine = msgs[0]?.external_line || "";
@@ -222,7 +220,7 @@ export function parseCSV(content: string): {
       customer_name: msgs[0]?.customer_name || "",
       messages,
       origin,
-      is_active: hasHumanAfterCampaign,
+      is_active: hasHumanMessage,
       external_line: externalLine,
     });
   }
