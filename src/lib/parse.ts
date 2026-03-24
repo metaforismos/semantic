@@ -13,8 +13,9 @@ export function safeParseJSON<T = unknown>(raw: string): T {
     // ignore, try recovery strategies
   }
 
-  // Extract JSON object from surrounding text (LLM sometimes adds preamble/epilogue)
-  const jsonMatch = text.match(/\{[\s\S]*\}/);
+  // Extract JSON array or object from surrounding text (LLM sometimes adds preamble/epilogue)
+  // Try array first (most common for batch analysis), then object
+  const jsonMatch = text.match(/\[[\s\S]*\]/) || text.match(/\{[\s\S]*\}/);
   if (jsonMatch) {
     try {
       return JSON.parse(jsonMatch[0]);
