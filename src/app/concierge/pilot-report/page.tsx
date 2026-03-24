@@ -182,65 +182,79 @@ export default function PilotReportPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-6">
-          {/* Left panel: Upload */}
-          <div className="lg:sticky lg:top-6 lg:self-start">
-            <div className="bg-surface border border-border rounded-xl p-5">
-              <h2 className="text-sm font-semibold text-text mb-4">Datos del Piloto</h2>
-              <UploadForm onParsed={handleGenerate} disabled={isProcessing} />
+        {/* Upload form — side-by-side when no report, top bar when report ready */}
+        {!reportData ? (
+          <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-6">
+            <div className="lg:sticky lg:top-6 lg:self-start">
+              <div className="bg-surface border border-border rounded-xl p-5">
+                <h2 className="text-sm font-semibold text-text mb-4">Datos del Piloto</h2>
+                <UploadForm onParsed={handleGenerate} disabled={isProcessing} />
 
-              {isProcessing && (
-                <button
-                  onClick={handleCancel}
-                  className="w-full mt-3 py-2 bg-negative/10 text-negative text-xs font-medium rounded-lg hover:bg-negative/20 transition-colors"
-                >
-                  Cancelar
-                </button>
-              )}
+                {isProcessing && (
+                  <button
+                    onClick={handleCancel}
+                    className="w-full mt-3 py-2 bg-negative/10 text-negative text-xs font-medium rounded-lg hover:bg-negative/20 transition-colors"
+                  >
+                    Cancelar
+                  </button>
+                )}
+              </div>
             </div>
 
-            {/* Export buttons */}
-            {reportData && (
-              <div className="mt-4 space-y-2 animate-fade-in">
+            <div>
+              {progress && <ProgressBar progress={progress} />}
+
+              {progress?.stage === "error" && (
+                <div className="bg-negative-muted border border-negative/20 rounded-lg p-4 mt-4">
+                  <div className="text-sm text-negative">{progress.message}</div>
+                </div>
+              )}
+
+              {!progress && (
+                <div className="flex items-center justify-center h-64 text-text-dim text-sm">
+                  Carga un CSV para generar el reporte.
+                </div>
+              )}
+            </div>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {/* Export bar — compact top bar */}
+            <div className="flex items-center justify-between bg-surface border border-border rounded-xl px-5 py-3">
+              <div className="text-sm text-text">
+                <strong>{reportData.meta.hotel_name}</strong>
+                <span className="text-text-dim ml-2">
+                  {reportData.meta.period_start} — {reportData.meta.period_end}
+                </span>
+              </div>
+              <div className="flex gap-2">
                 <button
                   onClick={handleExportPDF}
-                  className="w-full py-2.5 bg-accent text-white text-sm font-medium rounded-lg hover:bg-accent-light transition-colors"
+                  className="px-4 py-2 bg-accent text-white text-sm font-medium rounded-lg hover:bg-accent-light transition-colors"
                 >
                   Descargar PDF
                 </button>
                 <button
                   onClick={handleExportJSON}
-                  className="w-full py-2.5 bg-surface border border-border text-text text-sm font-medium rounded-lg hover:bg-surface-2 transition-colors"
+                  className="px-4 py-2 bg-surface-2 border border-border text-text text-sm font-medium rounded-lg hover:bg-surface-3 transition-colors"
                 >
                   Descargar JSON
                 </button>
+                <button
+                  onClick={() => { setReportData(null); setProgress(null); }}
+                  className="px-4 py-2 text-text-muted text-sm font-medium rounded-lg hover:bg-surface-2 transition-colors"
+                >
+                  Nuevo reporte
+                </button>
               </div>
-            )}
+            </div>
+
+            {/* Full-width report */}
+            <div className="animate-fade-in">
+              <ReportPreview data={reportData} />
+            </div>
           </div>
-
-          {/* Right panel: Progress + Report */}
-          <div>
-            {progress && !reportData && <ProgressBar progress={progress} />}
-
-            {progress?.stage === "error" && (
-              <div className="bg-negative-muted border border-negative/20 rounded-lg p-4 mt-4">
-                <div className="text-sm text-negative">{progress.message}</div>
-              </div>
-            )}
-
-            {reportData && (
-              <div className="animate-fade-in">
-                <ReportPreview data={reportData} />
-              </div>
-            )}
-
-            {!progress && !reportData && (
-              <div className="flex items-center justify-center h-64 text-text-dim text-sm">
-                Carga un CSV para generar el reporte.
-              </div>
-            )}
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );

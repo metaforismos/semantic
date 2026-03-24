@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import type { PilotReportData } from "@/lib/concierge/types";
 import { DonutChart } from "./DonutChart";
 import { BarChart } from "./BarChart";
@@ -14,14 +15,32 @@ function automationLabel(rate: number): string {
   return "Con alto potencial de crecimiento";
 }
 
-function BigNumber({ value, unit, label }: { value: string; unit?: string; label: string }) {
+function BigNumber({ value, unit, label, tooltip }: { value: string; unit?: string; label: string; tooltip?: string }) {
   return (
-    <div className="bg-surface-2 rounded-lg p-4 text-center">
+    <div className="bg-surface-2 rounded-lg p-4 text-center group relative">
       <div className="text-2xl font-bold text-accent">
         {value}
         {unit && <span className="text-sm font-normal text-text-muted ml-1">{unit}</span>}
       </div>
       <div className="text-xs text-text-dim mt-1">{label}</div>
+      {tooltip && <Tooltip text={tooltip} />}
+    </div>
+  );
+}
+
+function Tooltip({ text }: { text: string }) {
+  return (
+    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-text text-surface text-[10px] leading-relaxed rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10 w-56 text-center shadow-lg">
+      {text}
+      <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-text" />
+    </div>
+  );
+}
+
+function MetricInfo({ text }: { text: string }) {
+  return (
+    <div className="text-[11px] text-text-dim leading-relaxed bg-surface-2 rounded-lg px-3 py-2 mt-3">
+      {text}
     </div>
   );
 }
@@ -38,9 +57,17 @@ function SatisfactionBar({ distribution }: { distribution: Record<string, number
     "5": "#16a34a",
   };
 
+  const labels: Record<string, string> = {
+    "1": "Muy insatisfecho",
+    "2": "Insatisfecho",
+    "3": "Neutral",
+    "4": "Satisfecho",
+    "5": "Muy satisfecho",
+  };
+
   return (
-    <div className="space-y-2">
-      <div className="flex h-8 rounded-lg overflow-hidden">
+    <div className="space-y-3">
+      <div className="flex h-10 rounded-lg overflow-hidden">
         {["1", "2", "3", "4", "5"].map((score) => {
           const count = distribution[score] || 0;
           const pct = (count / total) * 100;
@@ -48,8 +75,8 @@ function SatisfactionBar({ distribution }: { distribution: Record<string, number
           return (
             <div
               key={score}
-              className="flex items-center justify-center text-white text-[10px] font-bold transition-all duration-500"
-              style={{ width: `${pct}%`, backgroundColor: colors[score], minWidth: pct > 0 ? "20px" : "0" }}
+              className="flex items-center justify-center text-white text-xs font-bold transition-all duration-500"
+              style={{ width: `${pct}%`, backgroundColor: colors[score], minWidth: pct > 0 ? "24px" : "0" }}
               title={`Score ${score}: ${count} (${Math.round(pct)}%)`}
             >
               {pct >= 8 && score}
@@ -57,9 +84,22 @@ function SatisfactionBar({ distribution }: { distribution: Record<string, number
           );
         })}
       </div>
-      <div className="flex justify-between text-[10px] text-text-dim">
-        <span>1 - Muy insatisfecho</span>
-        <span>5 - Muy satisfecho</span>
+      {/* Legend */}
+      <div className="grid grid-cols-5 gap-2">
+        {["1", "2", "3", "4", "5"].map((score) => {
+          const count = distribution[score] || 0;
+          const pct = total > 0 ? Math.round((count / total) * 100) : 0;
+          return (
+            <div key={score} className="text-center">
+              <div className="flex items-center justify-center gap-1.5">
+                <div className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: colors[score] }} />
+                <span className="text-xs font-medium text-text">{pct}%</span>
+              </div>
+              <div className="text-[10px] text-text-dim">{labels[score]}</div>
+              <div className="text-[10px] text-text-dim">({count})</div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
@@ -69,7 +109,7 @@ export function ReportPreview({ data }: ReportPreviewProps) {
   const { meta, metrics, success_cases, improvement_opportunities } = data;
 
   return (
-    <div id="pilot-report" className="space-y-6 max-w-4xl mx-auto">
+    <div id="pilot-report" className="space-y-6">
       {/* 1. Header / Cover */}
       <div className="bg-accent text-white rounded-xl p-8 text-center">
         <div className="text-[10px] uppercase tracking-[0.2em] opacity-70 mb-2">myHotel Labs</div>
@@ -110,51 +150,58 @@ export function ReportPreview({ data }: ReportPreviewProps) {
         </div>
       </section>
 
-      {/* 3. Main Metrics */}
+      {/* 3. Main Metrics — 3 donuts (removed valid data rate) */}
       <section className="bg-surface border border-border rounded-xl p-6">
         <h2 className="text-sm font-bold uppercase tracking-wide text-text-dim mb-4">
           Métricas Principales
         </h2>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-          <DonutChart
-            value={metrics.interaction_rate.overall}
-            label="Tasa de Interacción"
-            sublabel={`${metrics.interaction_rate.responded} / ${metrics.interaction_rate.contacted}`}
-          />
-          <DonutChart
-            value={metrics.automation_rate.rate}
-            label="Tasa de Automatización"
-            sublabel={`${metrics.automation_rate.not_derived} / ${metrics.automation_rate.total_ia_messages} msgs`}
-            color="var(--color-positive)"
-          />
-          <DonutChart
-            value={metrics.valid_data_rate.phone}
-            label="Datos Válidos (tel.)"
-            sublabel={metrics.valid_data_rate.note}
-          />
-          <DonutChart
-            value={metrics.inferred_satisfaction.positive_rate}
-            label="Satisfacción Positiva"
-            sublabel={metrics.inferred_satisfaction.positive_label}
-            color="var(--color-positive)"
-          />
+        <div className="grid grid-cols-3 gap-6 mb-6">
+          <div className="group relative flex flex-col items-center">
+            <DonutChart
+              value={metrics.interaction_rate.overall}
+              label="Tasa de Interacción"
+              sublabel={`${metrics.interaction_rate.responded} / ${metrics.interaction_rate.contacted}`}
+            />
+            <Tooltip text="Conversaciones donde el huésped envió al menos 1 mensaje, dividido por el total de conversaciones con campaña enviada." />
+          </div>
+          <div className="group relative flex flex-col items-center">
+            <DonutChart
+              value={metrics.automation_rate.rate}
+              label="Tasa de Automatización"
+              sublabel={`${metrics.automation_rate.not_derived} / ${metrics.automation_rate.total_ia_messages} msgs`}
+              color="var(--color-positive)"
+            />
+            <Tooltip text="Mensajes del concierge que resolvieron la consulta sin derivar al huésped a un ser humano (recepción, extensión, etc.)." />
+          </div>
+          <div className="group relative flex flex-col items-center">
+            <DonutChart
+              value={metrics.inferred_satisfaction.positive_rate}
+              label="Satisfacción Positiva"
+              sublabel={metrics.inferred_satisfaction.positive_label}
+              color="var(--color-positive)"
+            />
+            <Tooltip text="Porcentaje de conversaciones con score de satisfacción 4 o 5 (inferido por IA a partir del tono del huésped)." />
+          </div>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-4">
           <BigNumber
             value={String(metrics.response_time.bot_median_seconds)}
             unit="seg"
-            label={`Tiempo de respuesta ${meta.concierge_name} (vs ${metrics.response_time.human_benchmark_minutes} min humano)`}
+            label={`Tiempo de respuesta ${meta.concierge_name}`}
+            tooltip={`Mediana del tiempo entre un mensaje del huésped y la respuesta del concierge. Benchmark humano: ${metrics.response_time.human_benchmark_minutes} minutos.`}
           />
           <BigNumber
             value={String(metrics.time_saved.hours)}
             unit="hrs"
             label="Tiempo ahorrado"
+            tooltip={`(Total mensajes IA) × (${metrics.response_time.human_benchmark_minutes} min benchmark humano − ${metrics.response_time.bot_median_seconds} seg respuesta bot). Equivale a ${metrics.time_saved.equivalent_manual_tasks} respuestas manuales.`}
           />
           <BigNumber
             value={String(meta.active_conversations)}
             label="Conversaciones activas"
+            tooltip="Conversaciones donde el huésped envió al menos un mensaje."
           />
         </div>
       </section>
@@ -173,6 +220,7 @@ export function ReportPreview({ data }: ReportPreviewProps) {
               sublabel: `${o.responded}/${o.contacted}`,
             }))}
           />
+          <MetricInfo text="Tasa de interacción segmentada por tipo de campaña (PreStay, Welcome, etc.). Muestra qué campañas generan más engagement." />
         </section>
       )}
 
@@ -182,6 +230,7 @@ export function ReportPreview({ data }: ReportPreviewProps) {
           Satisfacción Inferida
         </h2>
         <SatisfactionBar distribution={metrics.inferred_satisfaction.distribution} />
+        <MetricInfo text="Score de satisfacción (1-5) inferido por IA analizando el tono y contenido de los mensajes del huésped en cada conversación. 5 = muy satisfecho (agradecimiento explícito), 4 = satisfecho (consulta resuelta), 3 = neutral, 2 = algo frustrado, 1 = muy insatisfecho (queja explícita)." />
       </section>
 
       {/* 5. Top Topics */}
@@ -198,19 +247,32 @@ export function ReportPreview({ data }: ReportPreviewProps) {
             }))}
             color="var(--color-accent-light)"
           />
+          <MetricInfo text="Temas clasificados por IA a partir del contenido de cada conversación, usando un vocabulario controlado. Una conversación puede tener múltiples temas." />
         </section>
       )}
 
-      {/* 6. Derivation Analysis */}
+      {/* 6. Derivation Analysis — FULL breakdown */}
       {metrics.derivation_rate.top_reasons.length > 0 && (
         <section className="bg-surface border border-border rounded-xl p-6">
           <h2 className="text-sm font-bold uppercase tracking-wide text-text-dim mb-4">
-            Oportunidades de Resolución Directa
+            Análisis de Derivaciones
           </h2>
-          <p className="text-xs text-text-muted mb-4">
-            Motivos por los que {meta.concierge_name} derivó consultas a recepción. Cada motivo representa una oportunidad
-            de mejorar la resolución automática completando la base de conocimiento.
-          </p>
+          <div className="grid grid-cols-3 gap-4 mb-4">
+            <div className="bg-surface-2 rounded-lg p-3 text-center">
+              <div className="text-lg font-bold text-text">{metrics.automation_rate.total_ia_messages}</div>
+              <div className="text-[10px] text-text-dim">Total mensajes IA</div>
+            </div>
+            <div className="bg-positive-muted/50 rounded-lg p-3 text-center">
+              <div className="text-lg font-bold text-positive">{metrics.automation_rate.not_derived}</div>
+              <div className="text-[10px] text-text-dim">Resueltos directamente</div>
+            </div>
+            <div className="bg-neutral-muted/50 rounded-lg p-3 text-center">
+              <div className="text-lg font-bold text-neutral-sent">{metrics.automation_rate.derived}</div>
+              <div className="text-[10px] text-text-dim">Derivados a humano</div>
+            </div>
+          </div>
+
+          <h3 className="text-xs font-semibold text-text mb-3">Motivos de derivación</h3>
           <BarChart
             items={metrics.derivation_rate.top_reasons.map((r) => ({
               label: r.reason,
@@ -218,7 +280,9 @@ export function ReportPreview({ data }: ReportPreviewProps) {
               count: r.count,
             }))}
             color="var(--color-neutral-sent)"
+            maxItems={20}
           />
+          <MetricInfo text="Un mensaje IA se clasifica como 'derivado' cuando redirige al huésped a un ser humano (recepción, extensión telefónica, email, etc.). Cada motivo es una oportunidad de completar la base de conocimiento para resolución directa." />
         </section>
       )}
 
@@ -263,6 +327,7 @@ export function ReportPreview({ data }: ReportPreviewProps) {
               </div>
             ))}
           </div>
+          <MetricInfo text="Conversaciones donde la satisfacción inferida es ≥ 4, no hubo derivación a humano, y el huésped envió 3+ mensajes." />
         </section>
       )}
 
@@ -299,7 +364,7 @@ export function ReportPreview({ data }: ReportPreviewProps) {
         <h2 className="text-sm font-bold uppercase tracking-wide text-accent mb-3">
           Conclusión
         </h2>
-        <p className="text-sm text-text max-w-2xl mx-auto">
+        <p className="text-sm text-text max-w-3xl mx-auto">
           Concierge ({meta.concierge_name}) demostró ser una herramienta efectiva durante el piloto en{" "}
           <strong>{meta.hotel_name}</strong>, resolviendo el{" "}
           <strong>{Math.round(metrics.automation_rate.rate * 100)}%</strong> de las consultas
