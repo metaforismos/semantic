@@ -2,7 +2,7 @@ import { CONCIERGE_TOPICS } from "./types";
 import type { Conversation } from "./types";
 
 export function buildAnalysisSystemPrompt(): string {
-  return `Eres un analista experto en experiencia de huéspedes de hotel. Analizas conversaciones entre huéspedes y un asistente virtual de hotel llamado "Estrella".
+  return `Eres un analista experto en experiencia de huéspedes de hotel. Analizas conversaciones entre huéspedes y un asistente virtual (concierge) de hotel.
 
 Tu tarea es analizar cada conversación y producir un JSON estructurado.
 

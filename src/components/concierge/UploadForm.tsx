@@ -17,6 +17,7 @@ export function UploadForm({ onParsed, disabled }: UploadFormProps) {
   const [errors, setErrors] = useState<CSVValidationError[]>([]);
   const [periodStart, setPeriodStart] = useState("");
   const [periodEnd, setPeriodEnd] = useState("");
+  const [conciergeName, setConciergeName] = useState("");
   const [notes, setNotes] = useState("");
 
   const handleFile = useCallback((file: File) => {
@@ -40,6 +41,20 @@ export function UploadForm({ onParsed, disabled }: UploadFormProps) {
         setPeriodStart(result.period_start);
         setPeriodEnd(result.period_end);
         setErrors(parseErrors.filter((e) => e.type === "warning"));
+
+        // Try to auto-detect concierge name from first IA message
+        // Look for patterns like "Soy X" or "I'm X" in IA messages
+        for (const conv of result.conversations) {
+          for (const msg of conv.messages) {
+            if (msg.message_type === "IA" && msg.text) {
+              const match = msg.text.match(/(?:soy|i'm|i am)\s+(\w+)/i);
+              if (match && match[1].length > 1) {
+                setConciergeName(match[1]);
+                return;
+              }
+            }
+          }
+        }
       }
     };
     reader.readAsText(file);
@@ -60,6 +75,7 @@ export function UploadForm({ onParsed, disabled }: UploadFormProps) {
     onParsed(parseResult, {
       period_start: periodStart,
       period_end: periodEnd,
+      concierge_name: conciergeName,
       notes,
     });
   };
@@ -197,6 +213,23 @@ export function UploadForm({ onParsed, disabled }: UploadFormProps) {
                 onChange={(e) => setPeriodEnd(e.target.value)}
                 className="w-full text-sm border border-border rounded px-3 py-2 bg-surface focus:outline-none focus:border-accent"
               />
+            </div>
+          </div>
+
+          {/* Concierge name */}
+          <div>
+            <label className="block text-xs font-medium text-text-dim mb-1">
+              Nombre del Concierge
+            </label>
+            <input
+              type="text"
+              value={conciergeName}
+              onChange={(e) => setConciergeName(e.target.value)}
+              className="w-full text-sm border border-border rounded px-3 py-2 bg-surface focus:outline-none focus:border-accent"
+              placeholder="Ej: Estrella, Ana, Concierge..."
+            />
+            <div className="text-[10px] text-text-dim mt-0.5">
+              Se auto-detecta del CSV. Editable si no es correcto.
             </div>
           </div>
 

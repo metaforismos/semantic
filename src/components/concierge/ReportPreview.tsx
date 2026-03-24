@@ -87,7 +87,7 @@ export function ReportPreview({ data }: ReportPreviewProps) {
         </h2>
         <div className="space-y-2 text-sm text-text">
           <p>
-            Durante el período de evaluación, Concierge (Estrella) atendió{" "}
+            Durante el período de evaluación, Concierge ({meta.concierge_name}) atendió{" "}
             <strong>{metrics.interaction_rate.responded}</strong> conversaciones activas de{" "}
             <strong>{metrics.interaction_rate.contacted}</strong> huéspedes contactados.
           </p>
@@ -145,7 +145,7 @@ export function ReportPreview({ data }: ReportPreviewProps) {
           <BigNumber
             value={String(metrics.response_time.bot_median_seconds)}
             unit="seg"
-            label={`Tiempo de respuesta Estrella (vs ${metrics.response_time.human_benchmark_minutes} min humano)`}
+            label={`Tiempo de respuesta ${meta.concierge_name} (vs ${metrics.response_time.human_benchmark_minutes} min humano)`}
           />
           <BigNumber
             value={String(metrics.time_saved.hours)}
@@ -208,7 +208,7 @@ export function ReportPreview({ data }: ReportPreviewProps) {
             Oportunidades de Resolución Directa
           </h2>
           <p className="text-xs text-text-muted mb-4">
-            Motivos por los que Estrella derivó consultas a recepción. Cada motivo representa una oportunidad
+            Motivos por los que {meta.concierge_name} derivó consultas a recepción. Cada motivo representa una oportunidad
             de mejorar la resolución automática completando la base de conocimiento.
           </p>
           <BarChart
@@ -300,7 +300,7 @@ export function ReportPreview({ data }: ReportPreviewProps) {
           Conclusión
         </h2>
         <p className="text-sm text-text max-w-2xl mx-auto">
-          Concierge (Estrella) demostró ser una herramienta efectiva durante el piloto en{" "}
+          Concierge ({meta.concierge_name}) demostró ser una herramienta efectiva durante el piloto en{" "}
           <strong>{meta.hotel_name}</strong>, resolviendo el{" "}
           <strong>{Math.round(metrics.automation_rate.rate * 100)}%</strong> de las consultas
           automáticamente y ahorrando <strong>{metrics.time_saved.hours} horas</strong> de trabajo

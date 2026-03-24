@@ -1,6 +1,6 @@
 // Concierge Pilot Report types
 
-export type MessageType = "Campaign" | "Human" | "IA" | "Survey";
+export type MessageType = "Campaign" | "Human" | "IA" | "Survey" | "Automatic";
 
 export interface RawMessage {
   customer_id: number;
@@ -114,6 +114,7 @@ export interface PilotReportData {
     report_version: string;
     total_conversations: number;
     active_conversations: number;
+    concierge_name: string;
     notes: string;
   };
   metrics: {
@@ -162,6 +163,7 @@ export interface PilotReportData {
 export interface UploadFormData {
   period_start: string;
   period_end: string;
+  concierge_name: string;
   notes: string;
 }
 

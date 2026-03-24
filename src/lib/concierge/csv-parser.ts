@@ -16,7 +16,7 @@ const REQUIRED_FIELDS = [
   "conversation_text",
 ];
 
-const VALID_MESSAGE_TYPES: MessageType[] = ["Campaign", "Human", "IA", "Survey"];
+const VALID_MESSAGE_TYPES: MessageType[] = ["Campaign", "Human", "IA", "Survey", "Automatic"];
 
 function detectSeparator(firstLine: string): string {
   if (firstLine.includes("\t")) return "\t";

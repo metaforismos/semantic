@@ -31,6 +31,12 @@ export function aggregateReport(
     analysisMap.set(a.conversation_id, a);
   }
 
+  // Count IA messages directly from CSV (ground truth)
+  const csvIAMessageCount = conversations.reduce(
+    (acc, c) => acc + c.messages.filter((m) => m.message_type === "IA").length,
+    0
+  );
+
   // Quantitative metrics
   const validDataRate = calcValidDataRate(conversations);
   const interactionRate = calcInteractionRate(conversations);
@@ -39,13 +45,13 @@ export function aggregateReport(
 
   // LLM-derived metrics
   // Automation rate (per IA message)
-  let totalIAMessages = 0;
+  let llmIAMessages = 0;
   let derivedMessages = 0;
   const derivationReasons = new Map<string, number>();
 
   for (const analysis of analyses) {
     for (const iaMsg of analysis.ia_messages) {
-      totalIAMessages++;
+      llmIAMessages++;
       if (iaMsg.derived) {
         derivedMessages++;
         const reason = iaMsg.derivation_reason || "Sin especificar";
@@ -54,6 +60,8 @@ export function aggregateReport(
     }
   }
 
+  // Use LLM count if available, otherwise fall back to CSV count
+  const totalIAMessages = llmIAMessages > 0 ? llmIAMessages : csvIAMessageCount;
   const notDerived = totalIAMessages - derivedMessages;
   const automationRate = totalIAMessages > 0 ? notDerived / totalIAMessages : 1;
 
@@ -160,6 +168,7 @@ export function aggregateReport(
       report_version: "1.0",
       total_conversations: conversations.length,
       active_conversations: activeConversations.length,
+      concierge_name: formData.concierge_name || "Concierge",
       notes: formData.notes,
     },
     metrics: {
@@ -178,7 +187,7 @@ export function aggregateReport(
         not_derived: notDerived,
         derived: derivedMessages,
         total_ia_messages: totalIAMessages,
-        label: "mensajes de Estrella que resolvieron sin derivar a un ser humano",
+        label: "mensajes del concierge que se resolvieron sin derivar a un ser humano",
       },
       derivation_rate: {
         rate: Math.round((1 - automationRate) * 100) / 100,
