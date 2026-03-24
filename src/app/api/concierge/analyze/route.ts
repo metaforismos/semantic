@@ -70,7 +70,7 @@ export async function POST(request: Request) {
         try {
           const userMessage = buildAnalysisUserMessage(batches[i]);
           const result = await callLLM({
-            modelId: "claude-sonnet",
+            modelId: "gemini-flash",
             systemPrompt,
             userMessage,
             maxTokens: 8192,
