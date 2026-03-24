@@ -273,27 +273,30 @@ export function ReportPreview({ data }: ReportPreviewProps) {
           </div>
 
           <h3 className="text-xs font-semibold text-text mb-3">Derivaciones por tema ({(metrics.derivation_rate.by_topic ?? []).length})</h3>
-          <div className="space-y-4">
+          <div className="space-y-2">
             {(metrics.derivation_rate.by_topic ?? []).map((t, idx) => (
-              <div key={idx} className="bg-surface-2 rounded-lg p-3">
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="text-sm font-bold text-neutral-sent">{t.count}</span>
-                  <span className="text-sm font-semibold text-text">{t.topic}</span>
-                  <span className="ml-auto text-xs font-medium text-text-muted">
-                    {Math.round(t.pct * 100)}%
-                  </span>
-                </div>
-                <div className="h-1.5 bg-surface-3 rounded-full overflow-hidden mb-2">
-                  <div
-                    className="h-full rounded-full"
-                    style={{
-                      width: `${Math.round(t.pct * 100)}%`,
-                      backgroundColor: "var(--color-neutral-sent)",
-                      minWidth: t.pct > 0 ? "4px" : "0",
-                    }}
-                  />
-                </div>
-                <div className="space-y-1 pl-4">
+              <details key={idx} className="bg-surface-2 rounded-lg group">
+                <summary className="cursor-pointer p-3 list-none [&::-webkit-details-marker]:hidden">
+                  <div className="flex items-center gap-3">
+                    <svg className="w-3.5 h-3.5 text-text-dim transition-transform group-open:rotate-90 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+                    <span className="text-sm font-bold text-neutral-sent">{t.count}</span>
+                    <span className="text-sm font-semibold text-text">{t.topic}</span>
+                    <span className="ml-auto text-xs font-medium text-text-muted">
+                      {Math.round(t.pct * 100)}%
+                    </span>
+                  </div>
+                  <div className="h-1.5 bg-surface-3 rounded-full overflow-hidden mt-2 ml-6">
+                    <div
+                      className="h-full rounded-full"
+                      style={{
+                        width: `${Math.round(t.pct * 100)}%`,
+                        backgroundColor: "var(--color-neutral-sent)",
+                        minWidth: t.pct > 0 ? "4px" : "0",
+                      }}
+                    />
+                  </div>
+                </summary>
+                <div className="space-y-1 pl-10 pr-3 pb-3">
                   {t.reasons.map((r, rIdx) => (
                     <div key={rIdx} className="flex items-center gap-2 text-xs text-text-muted">
                       <span className="text-text-dim font-medium">{r.count}×</span>
@@ -301,7 +304,7 @@ export function ReportPreview({ data }: ReportPreviewProps) {
                     </div>
                   ))}
                 </div>
-              </div>
+              </details>
             ))}
           </div>
           <MetricInfo text="Un mensaje IA se clasifica como 'derivado' cuando redirige al huésped a un ser humano (recepción, extensión telefónica, email, etc.). Cada motivo es una oportunidad de completar la base de conocimiento para resolución directa." />
