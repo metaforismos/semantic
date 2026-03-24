@@ -148,8 +148,14 @@ export default function PilotReportPage() {
 
   const handleExportPDF = async () => {
     if (!reportData) return;
-    const fileName = `Reporte_Piloto_${reportData.meta.hotel_name.replace(/\s+/g, "_")}_${reportData.meta.period_end}.pdf`;
-    await exportToPDF("pilot-report", fileName);
+    try {
+      const fileName = `Reporte_Piloto_${reportData.meta.hotel_name.replace(/\s+/g, "_")}_${reportData.meta.period_end}.pdf`;
+      await exportToPDF("pilot-report", fileName);
+    } catch (err) {
+      console.error("PDF export error:", err);
+      // Fallback: download JSON if PDF fails
+      alert(`Error generando PDF: ${(err as Error).message}. Intenta descargar el JSON.`);
+    }
   };
 
   const handleExportJSON = () => {

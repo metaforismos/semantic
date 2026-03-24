@@ -1,15 +1,17 @@
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
-
 export async function exportToPDF(elementId: string, fileName: string): Promise<void> {
   const element = document.getElementById(elementId);
   if (!element) throw new Error(`Element #${elementId} not found`);
+
+  // Dynamic imports to avoid SSR issues
+  const html2canvas = (await import("html2canvas")).default;
+  const { default: jsPDF } = await import("jspdf");
 
   const canvas = await html2canvas(element, {
     scale: 2,
     useCORS: true,
     logging: false,
     backgroundColor: "#f8f8fa",
+    windowWidth: element.scrollWidth,
   });
 
   const imgData = canvas.toDataURL("image/png");
