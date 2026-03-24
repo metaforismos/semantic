@@ -3,13 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 interface BusinessDetails {
   id: string;
   name?: string;
-  verification_status?: string;
-  two_factor_type?: string;
-  is_hidden?: boolean;
   link?: string;
-  vertical?: string;
   created_time?: string;
-  primary_page?: { id: string; name: string } | null;
 }
 
 interface VerificationResult {
@@ -34,18 +29,6 @@ function isRateLimited(): boolean {
   requestLog.push(now);
   return false;
 }
-
-const BUSINESS_FIELDS = [
-  "id",
-  "name",
-  "verification_status",
-  "two_factor_type",
-  "is_hidden",
-  "link",
-  "vertical",
-  "created_time",
-  "primary_page",
-].join(",");
 
 export async function POST(request: NextRequest) {
   if (isRateLimited()) {
@@ -82,22 +65,21 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const base = `https://graph.facebook.com/v22.0/${encodeURIComponent(id)}`;
+    const base = `https://graph.facebook.com/v19.0/${encodeURIComponent(id)}`;
     const auth = `access_token=${encodeURIComponent(token)}`;
 
-    // Fetch with all business fields
-    const res = await fetch(`${base}?fields=${BUSINESS_FIELDS}&${auth}`);
+    // Step 1: Basic check — does the ID exist?
+    const res = await fetch(`${base}?fields=id,name&${auth}`);
     const data = await res.json();
 
     if (data.error) {
       return NextResponse.json({
         valid: false,
         type: "invalid",
-        error: data.error.message || "not_found",
       } satisfies VerificationResult);
     }
 
-    // Check if it's a page (pages have category field)
+    // Step 2: Check if it's a Facebook Page (pages have category)
     const catRes = await fetch(`${base}?fields=id,name,category&${auth}`);
     const catData = await catRes.json();
 
@@ -110,24 +92,31 @@ export async function POST(request: NextRequest) {
       } satisfies VerificationResult);
     }
 
-    // It's a Business Portfolio — return full details
-    const details: BusinessDetails = {
-      id: data.id,
-      name: data.name,
-      verification_status: data.verification_status,
-      two_factor_type: data.two_factor_type,
-      is_hidden: data.is_hidden,
-      link: data.link,
-      vertical: data.vertical,
-      created_time: data.created_time,
-      primary_page: data.primary_page || null,
-    };
+    // Step 3: Try extended fields (optional — may fail for external businesses)
+    let link: string | undefined;
+    let createdTime: string | undefined;
+    try {
+      const extRes = await fetch(`${base}?fields=link,created_time&${auth}`);
+      const extData = await extRes.json();
+      if (!extData.error) {
+        link = extData.link;
+        createdTime = extData.created_time;
+      }
+    } catch {
+      // Extended fields not available — that's OK
+    }
 
+    // It's a valid Business Portfolio
     return NextResponse.json({
       valid: true,
       type: "business",
       name: data.name,
-      details,
+      details: {
+        id: data.id,
+        name: data.name,
+        link,
+        created_time: createdTime,
+      },
     } satisfies VerificationResult);
   } catch {
     return NextResponse.json(
