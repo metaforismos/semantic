@@ -296,13 +296,27 @@ export function ReportPreview({ data }: ReportPreviewProps) {
                     />
                   </div>
                 </summary>
-                <div className="space-y-1 pl-10 pr-3 pb-3">
-                  {t.reasons.map((r, rIdx) => (
-                    <div key={rIdx} className="flex items-center gap-2 text-xs text-text-muted">
-                      <span className="text-text-dim font-medium">{r.count}×</span>
-                      <span>{r.reason}</span>
+                <div className="pl-10 pr-3 pb-3 space-y-2">
+                  {t.subtopics && t.subtopics.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5">
+                      {t.subtopics.map((st, stIdx) => (
+                        <span
+                          key={stIdx}
+                          className="text-[11px] bg-accent-light/15 text-accent-light font-medium px-2 py-0.5 rounded-full"
+                        >
+                          {st.label} ({st.count})
+                        </span>
+                      ))}
                     </div>
-                  ))}
+                  )}
+                  <div className="space-y-1">
+                    {t.reasons.map((r, rIdx) => (
+                      <div key={rIdx} className="flex items-center gap-2 text-xs text-text-muted">
+                        <span className="text-text-dim font-medium">{r.count}×</span>
+                        <span>{r.reason}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </details>
             ))}

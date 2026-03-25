@@ -49,8 +49,8 @@ export function aggregateReport(
   let llmIAMessages = 0;
   let derivedMessages = 0;
   const derivationReasons = new Map<string, number>();
-  // Track derivations grouped by conversation topic
-  const derivationsByTopic = new Map<string, { count: number; reasons: Map<string, number> }>();
+  // Track derivations grouped by the specific derivation topic (not conversation topics)
+  const derivationsByTopic = new Map<string, { count: number; reasons: Map<string, number>; subtopics: Map<string, number> }>();
 
   for (const analysis of analyses) {
     for (const iaMsg of analysis.ia_messages) {
@@ -59,14 +59,15 @@ export function aggregateReport(
         derivedMessages++;
         const reason = iaMsg.derivation_reason || "Sin especificar";
         derivationReasons.set(reason, (derivationReasons.get(reason) || 0) + 1);
-        // Group by conversation topics
-        const topics = analysis.topics.length > 0 ? analysis.topics : ["Otro"];
-        for (const topic of topics) {
-          const entry = derivationsByTopic.get(topic) || { count: 0, reasons: new Map() };
-          entry.count++;
-          entry.reasons.set(reason, (entry.reasons.get(reason) || 0) + 1);
-          derivationsByTopic.set(topic, entry);
+        // Use per-message derivation_topic; fall back to first conversation topic, then "Otro"
+        const topic = iaMsg.derivation_topic || analysis.topics[0] || "Otro";
+        const entry = derivationsByTopic.get(topic) || { count: 0, reasons: new Map(), subtopics: new Map() };
+        entry.count++;
+        entry.reasons.set(reason, (entry.reasons.get(reason) || 0) + 1);
+        if (iaMsg.derivation_subtopic) {
+          entry.subtopics.set(iaMsg.derivation_subtopic, (entry.subtopics.get(iaMsg.derivation_subtopic) || 0) + 1);
         }
+        derivationsByTopic.set(topic, entry);
       }
     }
   }
@@ -99,6 +100,9 @@ export function aggregateReport(
           count,
           pct: entry.count > 0 ? count / entry.count : 0,
         }))
+        .sort((a, b) => b.count - a.count),
+      subtopics: [...entry.subtopics.entries()]
+        .map(([label, count]) => ({ label, count }))
         .sort((a, b) => b.count - a.count),
     }))
     .sort((a, b) => b.count - a.count);

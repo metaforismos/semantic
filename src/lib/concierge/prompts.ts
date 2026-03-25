@@ -29,6 +29,8 @@ Para cada conversación, determina:
    - **message_order**: int (el message_order del mensaje IA)
    - **derived**: boolean — true si ese mensaje específico deriva al huésped a un ser humano (recepción, extensión, "comuníquese con...", "le sugiero contactar a...", etc.)
    - **derivation_reason**: texto corto si derived == true, vacío si false
+   - **derivation_topic**: si derived == true, el tema ESPECÍFICO del vocabulario controlado al que pertenece ESTA derivación (no los temas generales de la conversación). Debe ser el tema más relevante para el motivo de la derivación.
+   - **derivation_subtopic**: si derived == true, etiqueta corta y concisa del subtema específico (ej: "Spa", "Bar", "Taxi al aeropuerto", "Disponibilidad de habitaciones", "Reserva de mesa"). Máximo 5 palabras.
 
 5. **is_success_case**: boolean — true solo si satisfaction_score >= 4 AND ningún mensaje IA es derivado AND el huésped envió 3+ mensajes.
 
@@ -46,8 +48,8 @@ Responde SOLO con un JSON array. Sin texto adicional. Ejemplo:
     "satisfaction_signal": "Huésped agradeció la información",
     "topics": ["Check-in / Check-out", "Transporte / Transfers"],
     "ia_messages": [
-      { "message_order": 2, "derived": false, "derivation_reason": "" },
-      { "message_order": 4, "derived": true, "derivation_reason": "Derivó a recepción por consulta de reserva" }
+      { "message_order": 2, "derived": false, "derivation_reason": "", "derivation_topic": "", "derivation_subtopic": "" },
+      { "message_order": 4, "derived": true, "derivation_reason": "Derivó a recepción por consulta de reserva", "derivation_topic": "Check-in / Check-out", "derivation_subtopic": "Consulta de reserva" }
     ],
     "is_success_case": false,
     "success_summary": ""

@@ -56,6 +56,8 @@ export interface IAMessageAnalysis {
   message_order: number;
   derived: boolean;
   derivation_reason: string;
+  derivation_topic?: string;
+  derivation_subtopic?: string;
 }
 
 export interface ConversationAnalysis {
@@ -82,11 +84,17 @@ export interface DerivationReason {
   pct: number;
 }
 
+export interface SubtopicCount {
+  label: string;
+  count: number;
+}
+
 export interface DerivationByTopic {
   topic: string;
   count: number;
   pct: number;
   reasons: DerivationReason[];
+  subtopics: SubtopicCount[];
 }
 
 export interface TopicCount {
