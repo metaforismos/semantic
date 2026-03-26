@@ -98,6 +98,7 @@ export async function POST(request: Request) {
               batch: i + 1,
               count: parsed.length,
               model_used: result.modelUsed,
+              analyses: parsed,
             });
           } else {
             console.error(`[Batch ${i + 1}] LLM returned non-array or empty. Raw:`, result.text.substring(0, 300));
@@ -127,7 +128,6 @@ export async function POST(request: Request) {
 
       send({
         type: "complete",
-        analyses: allAnalyses,
         total_analyzed: allAnalyses.length,
         failed_batches: failedBatches,
       });
