@@ -31,7 +31,7 @@ export interface Conversation {
   customer_name: string;
   messages: Message[];
   origin: string; // campaign type of first Campaign/Survey message
-  is_active: boolean; // has at least 1 Human message after first Campaign/Survey
+  is_active: boolean; // has at least 1 Human (guest) message in the conversation
   external_line: string;
 }
 
