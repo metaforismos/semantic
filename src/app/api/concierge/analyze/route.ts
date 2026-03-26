@@ -3,8 +3,12 @@ import { safeParseJSON } from "@/lib/parse";
 import { buildAnalysisSystemPrompt, buildAnalysisUserMessage } from "@/lib/concierge/prompts";
 import type { Conversation, ConversationAnalysis } from "@/lib/concierge/types";
 
+// Allow up to 5 minutes for large datasets (many batches of LLM calls)
+export const maxDuration = 300;
+
 const BATCH_SIZE = 10; // Smaller batches for reliability with long conversations
 const MAX_MESSAGES_FOR_SOLO = 30;
+const KEEPALIVE_INTERVAL_MS = 15_000; // Send keepalive every 15s to prevent timeouts
 
 function createBatches(conversations: Conversation[]): Conversation[][] {
   const batches: Conversation[][] = [];
@@ -55,6 +59,16 @@ export async function POST(request: Request) {
       function send(data: Record<string, unknown>) {
         controller.enqueue(encoder.encode(`data: ${JSON.stringify(data)}\n\n`));
       }
+
+      // Keepalive: send SSE comments periodically to prevent proxy/browser timeouts
+      const keepalive = setInterval(() => {
+        try {
+          controller.enqueue(encoder.encode(": keepalive\n\n"));
+        } catch {
+          // Stream already closed
+          clearInterval(keepalive);
+        }
+      }, KEEPALIVE_INTERVAL_MS);
 
       const allAnalyses: ConversationAnalysis[] = [];
       let failedBatches = 0;
@@ -125,6 +139,8 @@ export async function POST(request: Request) {
           await new Promise((r) => setTimeout(r, 800));
         }
       }
+
+      clearInterval(keepalive);
 
       send({
         type: "complete",

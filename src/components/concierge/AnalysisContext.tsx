@@ -50,7 +50,9 @@ export function AnalysisProvider({ children }: { children: ReactNode }) {
         setProgress({ stage: "metrics", current_batch: 0, total_batches: 0, message: "Calculando métricas cuantitativas..." });
         setProgress({ stage: "llm", current_batch: 0, total_batches: 0, message: "Iniciando análisis con IA..." });
 
-        const serializedConversations = parseResult.conversations.map((c) => ({
+        // Only send active conversations to reduce payload size significantly
+        const activeConversations = parseResult.conversations.filter((c) => c.is_active);
+        const serializedConversations = activeConversations.map((c) => ({
           ...c,
           messages: c.messages.map((m) => ({
             ...m,
