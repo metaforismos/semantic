@@ -38,9 +38,16 @@ function createBatches(conversations: Conversation[]): Conversation[][] {
 }
 
 export async function POST(request: Request) {
-  const { conversations } = (await request.json()) as {
-    conversations: Conversation[];
-  };
+  let conversations: Conversation[];
+  try {
+    const body = await request.json();
+    conversations = body.conversations;
+  } catch (err) {
+    console.error("[Analyze] Failed to parse request body:", err);
+    return new Response(JSON.stringify({ error: "Invalid request body" }), { status: 400 });
+  }
+
+  console.log(`[Analyze] Received ${conversations.length} conversations`);
 
   // Reconstruct Date objects (serialized as strings over JSON)
   for (const conv of conversations) {
@@ -49,6 +56,7 @@ export async function POST(request: Request) {
     }
   }
 
+  // Client should already filter active-only, but keep server-side filter as safety net
   const activeConversations = conversations.filter((c) => c.is_active);
   const batches = createBatches(activeConversations);
   const systemPrompt = buildAnalysisSystemPrompt();
@@ -155,8 +163,9 @@ export async function POST(request: Request) {
   return new Response(stream, {
     headers: {
       "Content-Type": "text/event-stream",
-      "Cache-Control": "no-cache",
+      "Cache-Control": "no-cache, no-transform",
       Connection: "keep-alive",
+      "X-Accel-Buffering": "no", // Disable nginx/reverse-proxy buffering (Railway, etc.)
     },
   });
 }

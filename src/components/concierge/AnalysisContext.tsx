@@ -60,14 +60,21 @@ export function AnalysisProvider({ children }: { children: ReactNode }) {
           })),
         }));
 
+        const payload = JSON.stringify({ conversations: serializedConversations });
+        const payloadSizeMB = (payload.length / (1024 * 1024)).toFixed(2);
+        console.log(`[Analysis] Sending ${serializedConversations.length} conversations (${payloadSizeMB} MB)`);
+
         const response = await fetch("/api/concierge/analyze", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ conversations: serializedConversations }),
+          body: payload,
           signal: abortRef.current.signal,
         });
 
-        if (!response.ok) throw new Error(`Error del servidor: ${response.status}`);
+        if (!response.ok) {
+          const errorText = await response.text().catch(() => "");
+          throw new Error(`Error del servidor: ${response.status} ${errorText}`);
+        }
 
         const reader = response.body?.getReader();
         if (!reader) throw new Error("No se pudo leer la respuesta");
