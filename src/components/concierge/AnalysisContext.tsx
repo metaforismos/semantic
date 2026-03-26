@@ -22,6 +22,35 @@ interface AnalysisState {
 
 const AnalysisContext = createContext<AnalysisState | null>(null);
 
+// Poll the server for job completion when the stream breaks
+async function pollJobUntilComplete(jobId: string, onProgress: (msg: string) => void): Promise<ConversationAnalysis[]> {
+  const POLL_INTERVAL = 5_000; // 5 seconds
+  const MAX_POLLS = 120; // 10 minutes max
+
+  for (let i = 0; i < MAX_POLLS; i++) {
+    await new Promise((r) => setTimeout(r, POLL_INTERVAL));
+
+    try {
+      const res = await fetch(`/api/concierge/analyze/status?job_id=${jobId}`);
+      if (!res.ok) continue;
+
+      const job = await res.json();
+
+      if (job.status === "complete") {
+        console.log(`[Analysis] Job ${jobId} recovered: ${job.analyses.length} analyses`);
+        return job.analyses;
+      }
+
+      // Still running — update progress
+      onProgress(`Servidor procesando... lote ${job.completed_batches} de ${job.total_batches} (reconectando automáticamente)`);
+    } catch {
+      // Network error during poll — keep trying
+    }
+  }
+
+  throw new Error("El servidor no completó el análisis a tiempo.");
+}
+
 export function AnalysisProvider({ children }: { children: ReactNode }) {
   const [progress, setProgress] = useState<AnalysisProgress | null>(null);
   const [reportData, setReportData] = useState<PilotReportData | null>(null);
@@ -82,35 +111,59 @@ export function AnalysisProvider({ children }: { children: ReactNode }) {
         const decoder = new TextDecoder();
         let allAnalyses: ConversationAnalysis[] = [];
         let buffer = "";
+        let jobId: string | null = null;
+        let streamCompleted = false;
 
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
+        try {
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
 
-          buffer += decoder.decode(value, { stream: true });
-          const lines = buffer.split("\n\n");
-          buffer = lines.pop() || "";
+            buffer += decoder.decode(value, { stream: true });
+            const lines = buffer.split("\n\n");
+            buffer = lines.pop() || "";
 
-          for (const line of lines) {
-            if (!line.startsWith("data: ")) continue;
-            try {
-              const event = JSON.parse(line.slice(6));
-              if (event.type === "progress") {
-                setProgress({ stage: "llm", current_batch: event.current_batch, total_batches: event.total_batches, message: event.message });
-              } else if (event.type === "batch_complete") {
-                if (event.analyses) {
-                  allAnalyses.push(...event.analyses);
+            for (const line of lines) {
+              if (!line.startsWith("data: ")) continue;
+              try {
+                const event = JSON.parse(line.slice(6));
+                if (event.type === "job_id") {
+                  jobId = event.job_id;
+                  console.log(`[Analysis] Job ID: ${jobId}`);
+                } else if (event.type === "progress") {
+                  setProgress({ stage: "llm", current_batch: event.current_batch, total_batches: event.total_batches, message: event.message });
+                } else if (event.type === "batch_complete") {
+                  if (event.analyses) {
+                    allAnalyses.push(...event.analyses);
+                  }
+                  setProgress((prev) => prev ? { ...prev, message: `Lote ${event.batch} completado (${event.count} conversaciones analizadas)` } : prev);
+                } else if (event.type === "batch_error") {
+                  console.warn(`Batch ${event.batch} error:`, event.error);
+                  setProgress((prev) => prev ? { ...prev, message: `Lote ${event.batch} falló: ${event.error}. Continuando...` } : prev);
+                } else if (event.type === "complete") {
+                  streamCompleted = true;
+                  if (event.analyses && allAnalyses.length === 0) {
+                    allAnalyses = event.analyses;
+                  }
                 }
-                setProgress((prev) => prev ? { ...prev, message: `Lote ${event.batch} completado (${event.count} conversaciones analizadas)` } : prev);
-              } else if (event.type === "batch_error") {
-                console.warn(`Batch ${event.batch} error:`, event.error);
-                setProgress((prev) => prev ? { ...prev, message: `Lote ${event.batch} falló: ${event.error}. Continuando...` } : prev);
-              } else if (event.type === "complete") {
-                if (event.analyses && allAnalyses.length === 0) {
-                  allAnalyses = event.analyses;
-                }
-              }
-            } catch { /* skip */ }
+              } catch { /* skip */ }
+            }
+          }
+        } catch (streamErr) {
+          // Stream broke mid-way (ERR_HTTP2_PROTOCOL_ERROR, network error, etc.)
+          // If we have a job ID, poll the server for completion
+          if (jobId && !abortRef.current?.signal.aborted) {
+            console.warn(`[Analysis] Stream broke after receiving ${allAnalyses.length} analyses. Recovering via polling...`);
+            setProgress({ stage: "llm", current_batch: 0, total_batches: 0, message: "Conexión interrumpida. Recuperando del servidor..." });
+
+            const recoveredAnalyses = await pollJobUntilComplete(jobId, (msg) => {
+              setProgress({ stage: "llm", current_batch: 0, total_batches: 0, message: msg });
+            });
+
+            allAnalyses = recoveredAnalyses;
+            streamCompleted = true;
+          } else {
+            throw streamErr;
           }
         }
 
@@ -125,6 +178,17 @@ export function AnalysisProvider({ children }: { children: ReactNode }) {
               }
             } catch { /* skip incomplete data */ }
           }
+        }
+
+        // If stream ended without "complete" event but we have a job ID, try recovery
+        if (!streamCompleted && jobId && allAnalyses.length === 0) {
+          console.warn(`[Analysis] Stream ended without completion. Recovering via polling...`);
+          setProgress({ stage: "llm", current_batch: 0, total_batches: 0, message: "Esperando resultados del servidor..." });
+
+          const recoveredAnalyses = await pollJobUntilComplete(jobId, (msg) => {
+            setProgress({ stage: "llm", current_batch: 0, total_batches: 0, message: msg });
+          });
+          allAnalyses = recoveredAnalyses;
         }
 
         setProgress({ stage: "aggregating", current_batch: 0, total_batches: 0, message: "Generando reporte final..." });

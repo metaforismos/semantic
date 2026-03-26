@@ -2,6 +2,7 @@ import { callLLM } from "@/lib/llm";
 import { safeParseJSON } from "@/lib/parse";
 import { buildAnalysisSystemPrompt, buildAnalysisUserMessage } from "@/lib/concierge/prompts";
 import type { Conversation, ConversationAnalysis } from "@/lib/concierge/types";
+import pool from "@/lib/db";
 
 // Allow up to 5 minutes for large datasets (many batches of LLM calls)
 export const maxDuration = 300;
@@ -37,6 +38,10 @@ function createBatches(conversations: Conversation[]): Conversation[][] {
   return batches;
 }
 
+function generateJobId(): string {
+  return `job_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+}
+
 export async function POST(request: Request) {
   let conversations: Conversation[];
   try {
@@ -61,19 +66,48 @@ export async function POST(request: Request) {
   const batches = createBatches(activeConversations);
   const systemPrompt = buildAnalysisSystemPrompt();
 
+  // Create a job ID so the client can recover results if the stream breaks
+  const jobId = generateJobId();
+
+  // Save initial job state to DB
+  try {
+    await pool.query(
+      `INSERT INTO analysis_jobs (job_id, status, total_batches, completed_batches, analyses, created_at)
+       VALUES ($1, 'running', $2, 0, '[]'::jsonb, NOW())`,
+      [jobId, batches.length]
+    );
+  } catch (err) {
+    console.error("[Analyze] Failed to create job record:", err);
+    // Non-fatal: continue without persistence
+  }
+
   const encoder = new TextEncoder();
   const stream = new ReadableStream({
     async start(controller) {
+      let streamClosed = false;
+
       function send(data: Record<string, unknown>) {
-        controller.enqueue(encoder.encode(`data: ${JSON.stringify(data)}\n\n`));
+        if (streamClosed) return;
+        try {
+          controller.enqueue(encoder.encode(`data: ${JSON.stringify(data)}\n\n`));
+        } catch {
+          streamClosed = true;
+        }
       }
+
+      // Send the job ID first so the client can recover
+      send({ type: "job_id", job_id: jobId });
 
       // Keepalive: send SSE comments periodically to prevent proxy/browser timeouts
       const keepalive = setInterval(() => {
+        if (streamClosed) {
+          clearInterval(keepalive);
+          return;
+        }
         try {
           controller.enqueue(encoder.encode(": keepalive\n\n"));
         } catch {
-          // Stream already closed
+          streamClosed = true;
           clearInterval(keepalive);
         }
       }, KEEPALIVE_INTERVAL_MS);
@@ -142,6 +176,12 @@ export async function POST(request: Request) {
           failedBatches++;
         }
 
+        // Save progress to DB after each batch (non-blocking)
+        pool.query(
+          `UPDATE analysis_jobs SET completed_batches = $1, analyses = $2::jsonb WHERE job_id = $3`,
+          [i + 1, JSON.stringify(allAnalyses), jobId]
+        ).catch((err) => console.error("[Analyze] Failed to save batch progress:", err));
+
         // Delay between batches to avoid rate limiting
         if (i < batches.length - 1) {
           await new Promise((r) => setTimeout(r, 800));
@@ -150,13 +190,26 @@ export async function POST(request: Request) {
 
       clearInterval(keepalive);
 
+      // Mark job as complete in DB (this persists even if stream is broken)
+      try {
+        await pool.query(
+          `UPDATE analysis_jobs SET status = 'complete', completed_batches = $1, analyses = $2::jsonb, failed_batches = $3 WHERE job_id = $4`,
+          [batches.length, JSON.stringify(allAnalyses), failedBatches, jobId]
+        );
+        console.log(`[Analyze] Job ${jobId} complete: ${allAnalyses.length} analyses, ${failedBatches} failed batches`);
+      } catch (err) {
+        console.error("[Analyze] Failed to save final job state:", err);
+      }
+
       send({
         type: "complete",
         total_analyzed: allAnalyses.length,
         failed_batches: failedBatches,
       });
 
-      controller.close();
+      if (!streamClosed) {
+        try { controller.close(); } catch { /* already closed */ }
+      }
     },
   });
 
