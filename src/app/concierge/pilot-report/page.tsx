@@ -1,18 +1,12 @@
 "use client";
 
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { UploadForm } from "@/components/concierge/UploadForm";
 import { ReportPreview } from "@/components/concierge/ReportPreview";
 import { ProgressBar } from "@/components/concierge/ProgressBar";
-import { aggregateReport } from "@/lib/concierge/aggregator";
+import { useAnalysis } from "@/components/concierge/AnalysisContext";
 import { exportToPDF } from "@/lib/concierge/pdf-export";
-import type {
-  CSVParseResult,
-  UploadFormData,
-  AnalysisProgress,
-  ConversationAnalysis,
-  PilotReportData,
-} from "@/lib/concierge/types";
+import type { PilotReportData } from "@/lib/concierge/types";
 
 interface ReportSummary {
   id: number;
@@ -27,13 +21,10 @@ interface ReportSummary {
 }
 
 export default function PilotReportPage() {
-  const [progress, setProgress] = useState<AnalysisProgress | null>(null);
-  const [reportData, setReportData] = useState<PilotReportData | null>(null);
-  const [isProcessing, setIsProcessing] = useState(false);
+  const { progress, reportData, isProcessing, startAnalysis, cancelAnalysis, setReportData, setProgress } = useAnalysis();
   const [jsonCopied, setJsonCopied] = useState(false);
   const [history, setHistory] = useState<ReportSummary[]>([]);
   const [loadingHistory, setLoadingHistory] = useState(true);
-  const abortRef = useRef<AbortController | null>(null);
 
   // Load history on mount
   useEffect(() => {
@@ -44,24 +35,18 @@ export default function PilotReportPage() {
       .finally(() => setLoadingHistory(false));
   }, []);
 
+  // Refresh history when a report finishes generating
+  useEffect(() => {
+    if (progress?.stage === "done" && reportData) {
+      refreshHistory();
+    }
+  }, [progress?.stage, reportData]);
+
   const refreshHistory = () => {
     fetch("/api/concierge/reports")
       .then((r) => r.json())
       .then((data) => setHistory(data.reports || []))
       .catch(() => {});
-  };
-
-  const saveReport = async (report: PilotReportData) => {
-    try {
-      await fetch("/api/concierge/reports", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ report_data: report }),
-      });
-      refreshHistory();
-    } catch (err) {
-      console.error("Failed to save report:", err);
-    }
   };
 
   const loadReport = async (id: number) => {
@@ -84,115 +69,6 @@ export default function PilotReportPage() {
     } catch (err) {
       console.error("Failed to delete report:", err);
     }
-  };
-
-  const handleGenerate = useCallback(
-    async (parseResult: CSVParseResult, formData: UploadFormData) => {
-      setIsProcessing(true);
-      setReportData(null);
-      abortRef.current = new AbortController();
-
-      try {
-        setProgress({ stage: "metrics", current_batch: 0, total_batches: 0, message: "Calculando métricas cuantitativas..." });
-        setProgress({ stage: "llm", current_batch: 0, total_batches: 0, message: "Iniciando análisis con IA..." });
-
-        const serializedConversations = parseResult.conversations.map((c) => ({
-          ...c,
-          messages: c.messages.map((m) => ({
-            ...m,
-            sent_at: m.sent_at instanceof Date ? m.sent_at.toISOString() : m.sent_at,
-          })),
-        }));
-
-        const response = await fetch("/api/concierge/analyze", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ conversations: serializedConversations }),
-          signal: abortRef.current.signal,
-        });
-
-        if (!response.ok) throw new Error(`Error del servidor: ${response.status}`);
-
-        const reader = response.body?.getReader();
-        if (!reader) throw new Error("No se pudo leer la respuesta");
-
-        const decoder = new TextDecoder();
-        let allAnalyses: ConversationAnalysis[] = [];
-        let buffer = "";
-
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-
-          buffer += decoder.decode(value, { stream: true });
-          const lines = buffer.split("\n\n");
-          buffer = lines.pop() || "";
-
-          for (const line of lines) {
-            if (!line.startsWith("data: ")) continue;
-            try {
-              const event = JSON.parse(line.slice(6));
-              if (event.type === "progress") {
-                setProgress({ stage: "llm", current_batch: event.current_batch, total_batches: event.total_batches, message: event.message });
-              } else if (event.type === "batch_complete") {
-                if (event.analyses) {
-                  allAnalyses.push(...event.analyses);
-                }
-                setProgress((prev) => prev ? { ...prev, message: `Lote ${event.batch} completado (${event.count} conversaciones analizadas)` } : prev);
-              } else if (event.type === "batch_error") {
-                console.warn(`Batch ${event.batch} error:`, event.error);
-                setProgress((prev) => prev ? { ...prev, message: `Lote ${event.batch} falló: ${event.error}. Continuando...` } : prev);
-              } else if (event.type === "complete") {
-                // Analyses already accumulated from batch_complete events
-                // Only use complete.analyses as fallback for backward compat
-                if (event.analyses && allAnalyses.length === 0) {
-                  allAnalyses = event.analyses;
-                }
-              }
-            } catch { /* skip */ }
-          }
-        }
-
-        // Flush remaining buffer after stream ends
-        if (buffer.trim()) {
-          const remaining = buffer.trim();
-          if (remaining.startsWith("data: ")) {
-            try {
-              const event = JSON.parse(remaining.slice(6));
-              if (event.type === "batch_complete" && event.analyses) {
-                allAnalyses.push(...event.analyses);
-              }
-            } catch { /* skip incomplete data */ }
-          }
-        }
-
-        setProgress({ stage: "aggregating", current_batch: 0, total_batches: 0, message: "Generando reporte final..." });
-
-        const report = aggregateReport(parseResult.conversations, allAnalyses, formData, parseResult.customer_id, parseResult.customer_name);
-
-        setReportData(report);
-        setProgress({ stage: "done", current_batch: 0, total_batches: 0, message: "Reporte generado exitosamente." });
-
-        // Auto-save to database
-        await saveReport(report);
-      } catch (err) {
-        if ((err as Error).name === "AbortError") {
-          setProgress(null);
-        } else {
-          setProgress({ stage: "error", current_batch: 0, total_batches: 0, message: `Error: ${(err as Error).message}` });
-        }
-      } finally {
-        setIsProcessing(false);
-      }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
-
-  const handleCancel = () => {
-    abortRef.current?.abort();
-    setIsProcessing(false);
-    setProgress(null);
   };
 
   const handleExportPDF = async () => {
@@ -233,9 +109,9 @@ export default function PilotReportPage() {
             <div className="lg:sticky lg:top-6 lg:self-start space-y-4">
               <div className="bg-surface border border-border rounded-xl p-5">
                 <h2 className="text-sm font-semibold text-text mb-4">Datos del Piloto</h2>
-                <UploadForm onParsed={handleGenerate} disabled={isProcessing} />
+                <UploadForm onParsed={startAnalysis} disabled={isProcessing} />
                 {isProcessing && (
-                  <button onClick={handleCancel} className="w-full mt-3 py-2 bg-negative/10 text-negative text-xs font-medium rounded-lg hover:bg-negative/20 transition-colors">
+                  <button onClick={cancelAnalysis} className="w-full mt-3 py-2 bg-negative/10 text-negative text-xs font-medium rounded-lg hover:bg-negative/20 transition-colors">
                     Cancelar
                   </button>
                 )}
