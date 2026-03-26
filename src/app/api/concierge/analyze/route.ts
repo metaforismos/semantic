@@ -219,6 +219,7 @@ export async function POST(request: Request) {
       "Cache-Control": "no-cache, no-transform",
       Connection: "keep-alive",
       "X-Accel-Buffering": "no", // Disable nginx/reverse-proxy buffering (Railway, etc.)
+      "X-Job-Id": jobId, // Job ID in headers so client can recover even if stream breaks immediately
     },
   });
 }
