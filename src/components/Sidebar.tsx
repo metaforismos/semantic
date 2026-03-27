@@ -29,7 +29,7 @@ const sections: NavSection[] = [
   {
     label: "Learning",
     items: [
-      { href: "/learning/trivia", label: "myLearning" },
+      { href: "/learning/trivia", label: "Entrenamiento" },
       { href: "/learning/skills", label: "Skills" },
     ],
   },

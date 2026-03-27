@@ -1,13 +1,10 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import type { GameState, GameSession, TeamMember, LeaderboardEntry, CategoryStat } from "@/lib/learning/types";
-import type { Question } from "@/lib/learning/types";
-import { PRIZE_LADDER } from "@/lib/learning/types";
+import type { GameState, GameSession, TeamMember, Question } from "@/lib/learning/types";
 import dynamic from "next/dynamic";
 import { selectQuestions, getCheckpointScore, getCurrentPrize } from "@/lib/learning/game";
 import { QuestionDisplay } from "@/components/learning/QuestionDisplay";
-import { Leaderboard } from "@/components/learning/Leaderboard";
 import { GameResult } from "@/components/learning/GameResult";
 import { SkillRadar } from "@/components/learning/SkillRadar";
 
@@ -24,28 +21,8 @@ const team = teamData as TeamMember[];
 export default function TriviaPage() {
   const [gameState, setGameState] = useState<GameState>("idle");
   const [session, setSession] = useState<GameSession | null>(null);
-  const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
-  const [selectedPlayerStats, setSelectedPlayerStats] = useState<{
-    player: LeaderboardEntry;
-    category_stats: CategoryStat[];
-  } | null>(null);
   const [saving, setSaving] = useState(false);
   const selectedTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  // Fetch leaderboard
-  const fetchLeaderboard = useCallback(async () => {
-    try {
-      const res = await fetch("/api/learning/scores");
-      const data = await res.json();
-      if (data.scores) setLeaderboard(data.scores);
-    } catch (e) {
-      console.error("Failed to fetch leaderboard", e);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchLeaderboard();
-  }, [fetchLeaderboard]);
 
   // Handle roulette selection
   const handleSelect = useCallback((member: TeamMember) => {
@@ -100,14 +77,13 @@ export default function TriviaPage() {
             })),
           }),
         });
-        await fetchLeaderboard();
       } catch (e) {
         console.error("Failed to save game", e);
       } finally {
         setSaving(false);
       }
     },
-    [fetchLeaderboard]
+    []
   );
 
   // Handle answer
@@ -175,23 +151,6 @@ export default function TriviaPage() {
   const handlePlayAgain = useCallback(() => {
     setSession(null);
     setGameState("idle");
-    setSelectedPlayerStats(null);
-  }, []);
-
-  // View player stats
-  const handleSelectPlayer = useCallback(async (name: string) => {
-    try {
-      const res = await fetch(`/api/learning/scores/${encodeURIComponent(name)}`);
-      const data = await res.json();
-      if (data.player) {
-        setSelectedPlayerStats({
-          player: data.player,
-          category_stats: data.category_stats,
-        });
-      }
-    } catch (e) {
-      console.error("Failed to fetch player stats", e);
-    }
   }, []);
 
   // Cleanup timer
@@ -206,7 +165,7 @@ export default function TriviaPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold text-text">myLearning</h1>
+          <h1 className="text-xl font-bold text-text">Entrenamiento</h1>
           <p className="text-sm text-text-dim mt-0.5">
             Conocimiento de myHotel — {allQuestions.length} preguntas disponibles
           </p>
@@ -296,36 +255,18 @@ export default function TriviaPage() {
           )}
         </div>
 
-        {/* Sidebar: Leaderboard + Player Stats */}
+        {/* Sidebar: Radar overview */}
         <div className="w-full lg:w-96 shrink-0 space-y-6">
           <div className="bg-surface border border-border rounded-lg p-4">
-            <h2 className="text-sm font-semibold text-text mb-3 flex items-center gap-2">
-              <span>Ranking</span>
-              <span className="text-xs text-text-dim font-normal">
-                ({leaderboard.length} jugadores)
-              </span>
-            </h2>
-            <Leaderboard scores={leaderboard} onSelectPlayer={handleSelectPlayer} />
+            <h2 className="text-sm font-semibold text-text mb-1">Áreas de evaluación</h2>
+            <p className="text-xs text-text-dim mb-3">
+              Temas que se cubren en el entrenamiento
+            </p>
+            <SkillRadar
+              categoryStats={[]}
+              playerName="Equipo myHotel"
+            />
           </div>
-
-          {/* Player skill radar */}
-          {selectedPlayerStats && (
-            <div className="bg-surface border border-border rounded-lg p-4 animate-fade-in">
-              <div className="flex items-center justify-between mb-3">
-                <h2 className="text-sm font-semibold text-text">Perfil de habilidades</h2>
-                <button
-                  onClick={() => setSelectedPlayerStats(null)}
-                  className="text-xs text-text-dim hover:text-text"
-                >
-                  Cerrar
-                </button>
-              </div>
-              <SkillRadar
-                categoryStats={selectedPlayerStats.category_stats}
-                playerName={selectedPlayerStats.player.player_name}
-              />
-            </div>
-          )}
         </div>
       </div>
     </div>

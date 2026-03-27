@@ -59,7 +59,7 @@ export function SkillRadar({ categoryStats, playerName }: Props) {
   return (
     <div className="space-y-4">
       <h3 className="text-sm font-semibold text-text">
-        Mapa de habilidades — {playerName}
+        Mapa de conocimientos — {playerName}
       </h3>
 
       <div className="flex justify-center">

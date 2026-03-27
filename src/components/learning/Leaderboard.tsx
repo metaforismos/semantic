@@ -26,7 +26,7 @@ export function Leaderboard({ scores, onSelectPlayer }: Props) {
             <th className="px-3 py-2 w-10">#</th>
             <th className="px-3 py-2">Jugador</th>
             <th className="px-3 py-2 text-right">Puntaje Total</th>
-            <th className="px-3 py-2 text-right hidden sm:table-cell">Juegos</th>
+            <th className="px-3 py-2 text-right hidden sm:table-cell">Respuestas</th>
             <th className="px-3 py-2 text-right hidden sm:table-cell">Mejor</th>
             <th className="px-3 py-2 text-right hidden md:table-cell">Max. Pregunta</th>
           </tr>

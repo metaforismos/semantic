@@ -136,7 +136,7 @@ export default function SkillsPage() {
                         {Number(score.total_score).toLocaleString("es-CL")}
                       </div>
                       <div className="text-[10px] text-text-dim">
-                        {score.games_played} {score.games_played === 1 ? "juego" : "juegos"}
+                        {score.games_played} {score.games_played === 1 ? "respuesta" : "respuestas"}
                       </div>
                     </div>
                   </button>
@@ -235,7 +235,7 @@ export default function SkillsPage() {
                   </div>
                   <div className="bg-surface-2 rounded-lg p-3">
                     <div className="text-lg font-bold text-text">{profile.player.games_played}</div>
-                    <div className="text-[10px] text-text-dim uppercase tracking-wider">Juegos</div>
+                    <div className="text-[10px] text-text-dim uppercase tracking-wider">Respuestas</div>
                   </div>
                   <div className="bg-surface-2 rounded-lg p-3">
                     <div className="text-lg font-bold text-text">{profile.player.highest_question}/15</div>
@@ -248,7 +248,7 @@ export default function SkillsPage() {
               {notFound && (
                 <div className="text-center py-2">
                   <p className="text-xs text-text-dim">
-                    Sin respuestas registradas — juega myLearning para generar datos
+                    Sin respuestas registradas — juega Entrenamiento para generar datos
                   </p>
                 </div>
               )}
