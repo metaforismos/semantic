@@ -26,6 +26,10 @@ const sections: NavSection[] = [
       { href: "/concierge/meta-id", label: "Meta ID" },
     ],
   },
+  {
+    label: "Learning",
+    items: [{ href: "/learning/trivia", label: "Trivia" }],
+  },
 ];
 
 export function Sidebar() {
