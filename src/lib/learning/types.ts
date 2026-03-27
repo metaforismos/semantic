@@ -73,15 +73,19 @@ export const CHECKPOINT_VALUES: Record<number, number> = {
   14: 1_000_000,
 };
 
-// Group 11 categories into 7 radar axes for readability
+// Each myHotel module/area as its own radar axis
 export const RADAR_CATEGORIES = [
   { label: "Online", categories: ["Online"] },
   { label: "OnSite", categories: ["OnSite"] },
-  { label: "Desk & Follow", categories: ["Desk", "FollowUp"] },
+  { label: "Desk", categories: ["Desk"] },
+  { label: "FollowUp", categories: ["FollowUp"] },
   { label: "Concierge", categories: ["Concierge"] },
   { label: "Semántico", categories: ["Semántico"] },
-  { label: "Producto", categories: ["Fidelity General", "Integraciones", "Corporativo"] },
-  { label: "Industria", categories: ["Travel Tech SaaS", "Hotel Knowledge"] },
+  { label: "Fidelity", categories: ["Fidelity General"] },
+  { label: "Integraciones", categories: ["Integraciones"] },
+  { label: "Corporativo", categories: ["Corporativo"] },
+  { label: "Travel Tech", categories: ["Travel Tech SaaS"] },
+  { label: "Hotelería", categories: ["Hotel Knowledge"] },
 ] as const;
 
 export const SEGMENT_COLORS = [

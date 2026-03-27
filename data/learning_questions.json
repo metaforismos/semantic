@@ -1891,17 +1891,17 @@
   },
   {
     "id": "q-desk-012",
-    "question": "¿Cuántas razones de descarte existen en Desk?",
+    "question": "¿Qué diferencia hay entre un caso 'vencido' y uno 'estancado' en Desk?",
     "options": [
-      "3",
-      "5",
-      "6",
-      "8"
+      "No hay diferencia, son sinónimos",
+      "Vencido = se cumplió el plazo; Estancado = sin gestión por tiempo configurable",
+      "Vencido = descartado; Estancado = en proceso",
+      "Vencido es automático; Estancado es manual"
     ],
-    "correct": 3,
+    "correct": 1,
     "difficulty": "hard",
     "category": "Desk",
-    "explanation": "Hay 8 razones de descarte predefinidas en Desk para clasificar casos cerrados que no requieren acción."
+    "explanation": "Un caso vencido es aquel donde se cumplió el plazo establecido para su resolución. Un caso estancado es aquel que no ha tenido gestión durante un tiempo configurable por el hotel. Ambos estados indican problemas de gestión pero por razones distintas."
   },
   {
     "id": "q-desk-013",
@@ -1919,17 +1919,17 @@
   },
   {
     "id": "q-desk-014",
-    "question": "¿Cuál es el estado de un caso 'Estancado' en Desk?",
+    "question": "¿Quién define el tiempo tras el cual un caso se marca como 'Estancado' en Desk?",
     "options": [
-      "Sin actividad por 7 días",
-      "Sin actividad por 30 días",
-      "Rechazado",
-      "En espera de aprobación"
+      "myHotel lo fija en 30 días para todos",
+      "Cada hotel lo configura según sus necesidades",
+      "El usuario que crea el caso elige el plazo",
+      "Se calcula automáticamente según la prioridad"
     ],
     "correct": 1,
     "difficulty": "hard",
     "category": "Desk",
-    "explanation": "Un caso es considerado 'Estancado' cuando no ha tenido actividad durante 7 días de inactividad sin cambios."
+    "explanation": "El tiempo para considerar un caso como 'estancado' es configurable por cada hotel según sus políticas internas de gestión. No es un valor fijo del sistema."
   },
   {
     "id": "q-desk-015",
