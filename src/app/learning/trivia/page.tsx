@@ -206,9 +206,9 @@ export default function TriviaPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold text-text">Trivia myHotel</h1>
+          <h1 className="text-xl font-bold text-text">myLearning</h1>
           <p className="text-sm text-text-dim mt-0.5">
-            ¿Quién quiere ser millonario? — {allQuestions.length} preguntas disponibles
+            Conocimiento de myHotel — {allQuestions.length} preguntas disponibles
           </p>
         </div>
         {gameState !== "idle" && gameState !== "gameOver" && session && (

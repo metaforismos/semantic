@@ -30,7 +30,7 @@ export function GameResult({ session, onPlayAgain }: Props) {
   let title: string;
   let subtitle: string;
   if (isMillionaire) {
-    title = "¡¡¡MILLONARIO!!!";
+    title = "¡¡¡PERFECTO!!!";
     subtitle = `${session.player.name} respondió las 15 preguntas correctamente`;
   } else if (session.walkedAway) {
     title = "¡Buena decisión!";
