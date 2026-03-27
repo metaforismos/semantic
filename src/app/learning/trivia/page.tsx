@@ -4,12 +4,17 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import type { GameState, GameSession, TeamMember, LeaderboardEntry, CategoryStat } from "@/lib/learning/types";
 import type { Question } from "@/lib/learning/types";
 import { PRIZE_LADDER } from "@/lib/learning/types";
+import dynamic from "next/dynamic";
 import { selectQuestions, getCheckpointScore, getCurrentPrize } from "@/lib/learning/game";
-import { RouletteWheel } from "@/components/learning/RouletteWheel";
 import { QuestionDisplay } from "@/components/learning/QuestionDisplay";
 import { Leaderboard } from "@/components/learning/Leaderboard";
 import { GameResult } from "@/components/learning/GameResult";
 import { SkillRadar } from "@/components/learning/SkillRadar";
+
+const RouletteWheel = dynamic(
+  () => import("@/components/learning/RouletteWheel").then((m) => m.RouletteWheel),
+  { ssr: false, loading: () => <div className="w-full max-w-[400px] aspect-square bg-surface-2 rounded-full animate-pulse-slow mx-auto" /> }
+);
 import questionsData from "../../../../data/learning_questions.json";
 import teamData from "../../../../data/learning_team.json";
 
