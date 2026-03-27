@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Sidebar } from "@/components/Sidebar";
+import { SidebarProvider } from "@/components/Sidebar";
 import { PromptProvider } from "@/components/PromptContext";
 import { AnalysisProvider } from "@/components/concierge/AnalysisContext";
+import { MainContent } from "@/components/MainContent";
 
 export const metadata: Metadata = {
   title: "myHotel Labs - Beta Tools for myHotel Team",
@@ -15,10 +16,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen bg-bg text-text antialiased">
         <PromptProvider>
           <AnalysisProvider>
-            <Sidebar />
-            <main className="lg:ml-56 min-h-screen">
-              <div className="mx-auto max-w-[1200px] px-6 pb-16">{children}</div>
-            </main>
+            <SidebarProvider>
+              <MainContent>{children}</MainContent>
+            </SidebarProvider>
           </AnalysisProvider>
         </PromptProvider>
       </body>
