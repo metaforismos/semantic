@@ -49,7 +49,11 @@ export default function SkillsPage() {
       }
     }
 
-    withScore.sort((a, b) => Number(b.score.total_score) - Number(a.score.total_score));
+    withScore.sort((a, b) => {
+      const pctA = a.score.total_answers > 0 ? a.score.correct_answers / a.score.total_answers : 0;
+      const pctB = b.score.total_answers > 0 ? b.score.correct_answers / b.score.total_answers : 0;
+      return pctB - pctA || Number(b.score.total_score) - Number(a.score.total_score);
+    });
     withoutScore.sort((a, b) => a.name.localeCompare(b.name));
 
     return { withScore, withoutScore };
@@ -133,7 +137,7 @@ export default function SkillsPage() {
                     </div>
                     <div className="text-right shrink-0">
                       <div className="text-[13px] font-mono font-semibold text-text">
-                        {Number(score.total_score).toLocaleString("es-CL")}
+                        {score.total_answers > 0 ? Math.round((score.correct_answers / score.total_answers) * 100) : 0}%
                       </div>
                       <div className="text-[10px] text-text-dim">
                         {score.correct_answers} / {score.total_answers} correctas

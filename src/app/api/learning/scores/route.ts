@@ -16,7 +16,7 @@ export async function GET() {
          FROM learning_responses
          GROUP BY player_name
        ) r ON ls.player_name = r.player_name
-       ORDER BY ls.total_score DESC
+       ORDER BY CASE WHEN COALESCE(r.total_answers, 0) > 0 THEN COALESCE(r.correct_answers, 0)::float / r.total_answers ELSE 0 END DESC, ls.total_score DESC
        LIMIT 50`
     );
     return NextResponse.json({ scores: result.rows });

@@ -71,13 +71,14 @@ export function QuestionDisplay({
 
       setSelectedOption(idx);
       setRevealed(true);
-
-      setTimeout(() => {
-        onAnswer(idx, idx === question.correct);
-      }, 2000);
     },
-    [selectedOption, question.correct, onAnswer]
+    [selectedOption]
   );
+
+  const handleNext = useCallback(() => {
+    if (selectedOption === null) return;
+    onAnswer(selectedOption, selectedOption === question.correct);
+  }, [selectedOption, question.correct, onAnswer]);
 
   // Timer color
   const timerPct = timeLeft / TIMER_SECONDS;
@@ -169,11 +170,25 @@ export function QuestionDisplay({
 
       {/* Explanation */}
       {revealed && (
-        <div className="p-4 bg-surface-2 rounded-lg border border-border animate-fade-in">
-          <p className="text-sm text-text-muted">
-            <span className="font-semibold text-text">Explicación: </span>
-            {question.explanation}
-          </p>
+        <div className="animate-fade-in pb-20">
+          <div className="p-4 bg-surface-2 rounded-lg border border-border">
+            <p className="text-sm text-text-muted">
+              <span className="font-semibold text-text">Explicación: </span>
+              {question.explanation}
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Sticky Next button */}
+      {revealed && (
+        <div className="fixed bottom-0 left-0 right-0 p-4 bg-surface/95 backdrop-blur-sm border-t border-border z-50">
+          <button
+            onClick={handleNext}
+            className="w-full max-w-2xl mx-auto block py-3 rounded-lg bg-accent text-white font-semibold text-sm hover:bg-accent/90 transition-colors"
+          >
+            Siguiente →
+          </button>
         </div>
       )}
     </div>
