@@ -42,8 +42,18 @@ export async function GET(
 
     const [playerResult, categoryResult, gamesResult] = await Promise.all([
       pool.query(
-        `SELECT player_name, total_score, games_played, best_score, highest_question, updated_at
-         FROM learning_scores WHERE player_name = $1`,
+        `SELECT ls.player_name, ls.total_score, ls.games_played, ls.best_score, ls.highest_question, ls.max_streak, ls.updated_at,
+                COALESCE(r.total_answers, 0)::int AS total_answers,
+                COALESCE(r.correct_answers, 0)::int AS correct_answers
+         FROM learning_scores ls
+         LEFT JOIN (
+           SELECT player_name,
+                  COUNT(*)::int AS total_answers,
+                  SUM(CASE WHEN is_correct THEN 1 ELSE 0 END)::int AS correct_answers
+           FROM learning_responses
+           GROUP BY player_name
+         ) r ON ls.player_name = r.player_name
+         WHERE ls.player_name = $1`,
         [playerName]
       ),
       pool.query(

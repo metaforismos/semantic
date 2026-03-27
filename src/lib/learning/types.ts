@@ -30,6 +30,8 @@ export interface GameSession {
   correctCount: number;
   totalQuestions: number;
   answers: AnswerRecord[];
+  currentStreak: number;
+  maxStreak: number;
 }
 
 export interface TrainingProgress {
@@ -39,6 +41,8 @@ export interface TrainingProgress {
   current_index: number;
   question_order: string[];
   completed: boolean;
+  current_streak: number;
+  max_streak: number;
 }
 
 export const TIMER_SECONDS = 20;
@@ -52,6 +56,7 @@ export interface LeaderboardEntry {
   updated_at: string;
   total_answers: number;
   correct_answers: number;
+  max_streak: number;
 }
 
 export interface CategoryStat {

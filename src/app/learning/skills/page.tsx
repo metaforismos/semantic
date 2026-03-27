@@ -233,17 +233,19 @@ export default function SkillsPage() {
                 <div className="grid grid-cols-3 gap-3 text-center">
                   <div className="bg-surface-2 rounded-lg p-3">
                     <div className="text-lg font-bold text-text font-mono">
-                      {Number(profile.player.total_score).toLocaleString("es-CL")}
+                      {(profile.player.total_answers ?? 0) > 0
+                        ? `${Math.round(((profile.player.correct_answers ?? 0) / profile.player.total_answers) * 100)}%`
+                        : "—"}
                     </div>
                     <div className="text-[10px] text-text-dim uppercase tracking-wider">Puntaje</div>
                   </div>
                   <div className="bg-surface-2 rounded-lg p-3">
-                    <div className="text-lg font-bold text-text">{profile.player.games_played}</div>
+                    <div className="text-lg font-bold text-text">{profile.player.total_answers ?? 0}</div>
                     <div className="text-[10px] text-text-dim uppercase tracking-wider">Respuestas</div>
                   </div>
                   <div className="bg-surface-2 rounded-lg p-3">
-                    <div className="text-lg font-bold text-text">{profile.player.highest_question}/15</div>
-                    <div className="text-[10px] text-text-dim uppercase tracking-wider">Max nivel</div>
+                    <div className="text-lg font-bold text-text">{profile.player.max_streak ?? 0} 🔥</div>
+                    <div className="text-[10px] text-text-dim uppercase tracking-wider">Máxima racha</div>
                   </div>
                 </div>
               )}

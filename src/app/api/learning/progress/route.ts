@@ -25,8 +25,8 @@ export async function POST(request: NextRequest) {
     if (init && body.question_order) {
       // Initialize or reset training session
       await client.query(
-        `INSERT INTO learning_progress (player_name, question_order, current_index, answered_ids, correct_ids, completed, updated_at)
-         VALUES ($1, $2, 0, ARRAY[]::TEXT[], ARRAY[]::TEXT[], FALSE, NOW())
+        `INSERT INTO learning_progress (player_name, question_order, current_index, answered_ids, correct_ids, completed, current_streak, max_streak, updated_at)
+         VALUES ($1, $2, 0, ARRAY[]::TEXT[], ARRAY[]::TEXT[], FALSE, 0, 0, NOW())
          ON CONFLICT (player_name) DO UPDATE SET
            question_order = CASE
              WHEN learning_progress.completed THEN $2
@@ -47,6 +47,14 @@ export async function POST(request: NextRequest) {
            completed = CASE
              WHEN learning_progress.completed THEN FALSE
              ELSE learning_progress.completed
+           END,
+           current_streak = CASE
+             WHEN learning_progress.completed THEN 0
+             ELSE learning_progress.current_streak
+           END,
+           max_streak = CASE
+             WHEN learning_progress.completed THEN 0
+             ELSE learning_progress.max_streak
            END,
            updated_at = NOW()`,
         [player_name, body.question_order]
@@ -69,25 +77,32 @@ export async function POST(request: NextRequest) {
           current_index: row.current_index,
           question_order: row.question_order || [],
           completed: row.completed,
+          current_streak: row.current_streak || 0,
+          max_streak: row.max_streak || 0,
         },
       });
     }
 
     if (skip && question_id) {
-      // Timeout skip — advance current_index only
+      // Timeout skip — advance current_index only, reset streak
       await client.query(
         `UPDATE learning_progress
-         SET current_index = current_index + 1, updated_at = NOW()
+         SET current_index = current_index + 1, current_streak = 0, updated_at = NOW()
          WHERE player_name = $1`,
         [player_name]
       );
 
       await client.query("COMMIT");
-      return NextResponse.json({ success: true, skipped: true });
+      return NextResponse.json({ success: true, skipped: true, current_streak: 0 });
     }
 
     if (question_id != null && is_correct != null) {
-      // Record answer
+      // Record answer with streak tracking
+      const streakUpdate = is_correct
+        ? `current_streak = current_streak + 1,
+           max_streak = GREATEST(max_streak, current_streak + 1)`
+        : `current_streak = 0`;
+
       const answeredUpdate = is_correct
         ? `answered_ids = array_append(answered_ids, $2),
            correct_ids = array_append(correct_ids, $2)`
@@ -97,12 +112,21 @@ export async function POST(request: NextRequest) {
       await client.query(
         `UPDATE learning_progress
          SET ${answeredUpdate},
+             ${streakUpdate},
              current_index = current_index + 1,
              completed = (current_index + 1 >= array_length(question_order, 1)),
              updated_at = NOW()
          WHERE player_name = $1`,
         [player_name, question_id]
       );
+
+      // Get updated streak values
+      const streakResult = await client.query(
+        `SELECT current_streak, max_streak FROM learning_progress WHERE player_name = $1`,
+        [player_name]
+      );
+      const newStreak = streakResult.rows[0]?.current_streak || 0;
+      const newMaxStreak = streakResult.rows[0]?.max_streak || 0;
 
       // Also insert into learning_responses for radar chart tracking
       // We need a game_id — use a convention: game_id = 0 for training mode
@@ -136,19 +160,20 @@ export async function POST(request: NextRequest) {
           [gameId, player_name, question_id, category, is_correct]
         );
 
-        // Upsert aggregate scores for Skills page
+        // Upsert aggregate scores for Skills page (including max_streak)
         await client.query(
-          `INSERT INTO learning_scores (player_name, total_score, games_played, best_score, highest_question, updated_at)
-           VALUES ($1, CASE WHEN $2 THEN 1 ELSE 0 END, 0, 0, 0, NOW())
+          `INSERT INTO learning_scores (player_name, total_score, games_played, best_score, highest_question, max_streak, updated_at)
+           VALUES ($1, CASE WHEN $2 THEN 1 ELSE 0 END, 0, 0, 0, $3, NOW())
            ON CONFLICT (player_name) DO UPDATE SET
              total_score = CASE WHEN $2 THEN learning_scores.total_score + 1 ELSE learning_scores.total_score END,
+             max_streak = GREATEST(learning_scores.max_streak, $3),
              updated_at = NOW()`,
-          [player_name, is_correct]
+          [player_name, is_correct, newMaxStreak]
         );
       }
 
       await client.query("COMMIT");
-      return NextResponse.json({ success: true, recorded: true });
+      return NextResponse.json({ success: true, recorded: true, current_streak: newStreak, max_streak: newMaxStreak });
     }
 
     await client.query("ROLLBACK");

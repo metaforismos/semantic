@@ -12,7 +12,7 @@ export async function GET(
 
     const result = await pool.query(
       `SELECT player_name, answered_ids, correct_ids, current_index,
-              question_order, completed, updated_at
+              question_order, completed, current_streak, max_streak, updated_at
        FROM learning_progress WHERE player_name = $1`,
       [playerName]
     );
@@ -30,6 +30,8 @@ export async function GET(
         current_index: row.current_index,
         question_order: row.question_order || [],
         completed: row.completed,
+        current_streak: row.current_streak || 0,
+        max_streak: row.max_streak || 0,
         updated_at: row.updated_at,
       },
       answered_count: (row.answered_ids || []).length,

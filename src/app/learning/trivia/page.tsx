@@ -7,6 +7,7 @@ import { createTrainingOrder, buildQuestionMap } from "@/lib/learning/game";
 import { QuestionDisplay } from "@/components/learning/QuestionDisplay";
 import { GameResult } from "@/components/learning/GameResult";
 import { SkillRadar } from "@/components/learning/SkillRadar";
+import { StreakCelebration, STREAK_MILESTONES } from "@/components/learning/StreakCelebration";
 import questionsData from "../../../../data/learning_questions.json";
 import teamData from "../../../../data/learning_team.json";
 
@@ -30,6 +31,7 @@ export default function TriviaPage() {
   const [searchText, setSearchText] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
   const [radarOpen, setRadarOpen] = useState(false);
+  const [celebrateStreak, setCelebrateStreak] = useState<number | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const filteredTeam = searchText.length > 0
@@ -79,6 +81,8 @@ export default function TriviaPage() {
         correctCount: trainingProgress.correct_ids.length,
         totalQuestions: questions.length,
         answers: [],
+        currentStreak: trainingProgress.current_streak || 0,
+        maxStreak: trainingProgress.max_streak || 0,
       });
 
       setGameState("playing");
@@ -101,6 +105,8 @@ export default function TriviaPage() {
       correctCount: 0,
       totalQuestions: 0,
       answers: [],
+      currentStreak: 0,
+      maxStreak: 0,
     });
 
     selectedTimerRef.current = setTimeout(() => {
@@ -130,8 +136,8 @@ export default function TriviaPage() {
 
       const question = session.questions[session.currentIndex];
 
-      // Save to DB
-      await fetch("/api/learning/progress", {
+      // Save to DB (returns streak info)
+      const res = await fetch("/api/learning/progress", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -141,14 +147,21 @@ export default function TriviaPage() {
           category: question.category,
         }),
       });
+      const data = await res.json();
 
       const newAnswered = session.answeredCount + 1;
       const newCorrect = session.correctCount + (isCorrect ? 1 : 0);
       const nextIndex = session.currentIndex + 1;
+      const newStreak = data.current_streak ?? (isCorrect ? session.currentStreak + 1 : 0);
+      const newMaxStreak = data.max_streak ?? Math.max(session.maxStreak, newStreak);
+
+      // Check streak milestone
+      if (isCorrect && STREAK_MILESTONES.includes(newStreak)) {
+        setCelebrateStreak(newStreak);
+      }
 
       if (nextIndex >= session.totalQuestions) {
-        // Training complete!
-        setSession({ ...session, answeredCount: newAnswered, correctCount: newCorrect, currentIndex: nextIndex });
+        setSession({ ...session, answeredCount: newAnswered, correctCount: newCorrect, currentIndex: nextIndex, currentStreak: newStreak, maxStreak: newMaxStreak });
         setGameState("gameOver");
       } else {
         setSession({
@@ -156,6 +169,8 @@ export default function TriviaPage() {
           currentIndex: nextIndex,
           answeredCount: newAnswered,
           correctCount: newCorrect,
+          currentStreak: newStreak,
+          maxStreak: newMaxStreak,
         });
       }
     },
@@ -183,7 +198,7 @@ export default function TriviaPage() {
     if (nextIndex >= session.totalQuestions) {
       setGameState("gameOver");
     } else {
-      setSession({ ...session, currentIndex: nextIndex });
+      setSession({ ...session, currentIndex: nextIndex, currentStreak: 0 });
     }
   }, [session]);
 
@@ -355,6 +370,14 @@ export default function TriviaPage() {
           </div>
         )}
       </div>
+
+      {/* Streak celebration overlay */}
+      {celebrateStreak !== null && (
+        <StreakCelebration
+          streak={celebrateStreak}
+          onDone={() => setCelebrateStreak(null)}
+        />
+      )}
 
       {/* Radar lightbox modal */}
       {radarOpen && (
