@@ -29,6 +29,7 @@ export default function TriviaPage() {
   // Autocomplete state
   const [searchText, setSearchText] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
+  const [radarOpen, setRadarOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const filteredTeam = searchText.length > 0
@@ -331,20 +332,63 @@ export default function TriviaPage() {
           )}
         </div>
 
-        {/* Sidebar: Radar overview */}
-        <div className="w-full lg:w-96 shrink-0 space-y-6">
-          <div className="bg-surface border border-border rounded-lg p-4">
-            <h2 className="text-sm font-semibold text-text mb-1">Áreas de evaluación</h2>
-            <p className="text-xs text-text-dim mb-3">
-              Temas que se cubren en el entrenamiento
-            </p>
+        {/* Sidebar: Radar overview — only on idle */}
+        {gameState === "idle" && (
+          <div className="w-full lg:w-96 shrink-0 space-y-6">
+            <div
+              role="button"
+              tabIndex={0}
+              onClick={() => setRadarOpen(true)}
+              onKeyDown={(e) => { if (e.key === "Enter") setRadarOpen(true); }}
+              className="bg-surface border border-border rounded-lg p-4 hover:border-accent/30 transition-colors cursor-pointer"
+            >
+              <h2 className="text-sm font-semibold text-text mb-1">Áreas de evaluación</h2>
+              <p className="text-xs text-text-dim mb-3">
+                Temas que se cubren en el entrenamiento
+              </p>
+              <SkillRadar
+                categoryStats={[]}
+                playerName="Equipo myHotel"
+              />
+              <p className="text-[10px] text-accent mt-2 text-center">Click para ampliar</p>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Radar lightbox modal */}
+      {radarOpen && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm"
+          onClick={() => setRadarOpen(false)}
+        >
+          <div
+            className="bg-surface rounded-2xl p-8 max-w-lg w-full mx-4 max-h-[90vh] overflow-y-auto animate-scale-in"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <h2 className="text-lg font-bold text-text">Áreas de evaluación</h2>
+                <p className="text-xs text-text-dim">
+                  11 áreas de conocimiento cubiertas en el entrenamiento
+                </p>
+              </div>
+              <button
+                onClick={() => setRadarOpen(false)}
+                className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-2 text-text-dim hover:text-text transition-colors"
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M4 4l8 8M12 4l-8 8" />
+                </svg>
+              </button>
+            </div>
             <SkillRadar
               categoryStats={[]}
               playerName="Equipo myHotel"
             />
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
