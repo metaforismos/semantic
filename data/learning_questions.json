@@ -1352,10 +1352,10 @@
       "WhatsApp y web",
       "Todos los canales"
     ],
-    "correct": 2,
+    "correct": 1,
     "difficulty": "easy",
     "category": "Concierge",
-    "explanation": "Concierge opera principalmente a través de WhatsApp y una interfaz web para comunicación directa con los huéspedes."
+    "explanation": "Concierge opera exclusivamente a través de WhatsApp como canal de comunicación con los huéspedes."
   },
   {
     "id": "q-concierge-014",
