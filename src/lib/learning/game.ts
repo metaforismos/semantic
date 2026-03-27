@@ -1,7 +1,7 @@
-import { Question, PRIZE_LADDER, CHECKPOINT_INDICES } from "./types";
+import type { Question } from "./types";
 
 /** Fisher-Yates shuffle (returns new array) */
-function shuffle<T>(arr: T[]): T[] {
+export function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -10,29 +10,18 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
-/**
- * Select 15 questions: 5 easy, 5 medium, 5 hard.
- * Each tier is shuffled independently, then concatenated in order.
- */
-export function selectQuestions(allQuestions: Question[]): Question[] {
-  const easy = shuffle(allQuestions.filter((q) => q.difficulty === "easy")).slice(0, 5);
-  const medium = shuffle(allQuestions.filter((q) => q.difficulty === "medium")).slice(0, 5);
-  const hard = shuffle(allQuestions.filter((q) => q.difficulty === "hard")).slice(0, 5);
-  return [...easy, ...medium, ...hard];
+/** Create a shuffled order of all question IDs for a full training session */
+export function createTrainingOrder(allQuestions: Question[]): string[] {
+  // Shuffle within difficulty tiers then concatenate: easy → medium → hard
+  const easy = shuffle(allQuestions.filter((q) => q.difficulty === "easy"));
+  const medium = shuffle(allQuestions.filter((q) => q.difficulty === "medium"));
+  const hard = shuffle(allQuestions.filter((q) => q.difficulty === "hard"));
+  return [...easy, ...medium, ...hard].map((q) => q.id);
 }
 
-/** Get the prize for the current question index (0-based) */
-export function getCurrentPrize(index: number): number {
-  return PRIZE_LADDER[index] ?? 0;
-}
-
-/** Get the guaranteed score if the player answers wrong at this question index */
-export function getCheckpointScore(index: number): number {
-  // Walk backwards through checkpoints to find the last one passed
-  for (let i = CHECKPOINT_INDICES.length - 1; i >= 0; i--) {
-    if (index > CHECKPOINT_INDICES[i]) {
-      return PRIZE_LADDER[CHECKPOINT_INDICES[i]];
-    }
-  }
-  return 0;
+/** Build a lookup map from question ID → Question */
+export function buildQuestionMap(questions: Question[]): Map<string, Question> {
+  const map = new Map<string, Question>();
+  for (const q of questions) map.set(q.id, q);
+  return map;
 }

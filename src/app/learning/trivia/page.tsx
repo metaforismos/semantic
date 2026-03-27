@@ -1,164 +1,217 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import type { GameState, GameSession, TeamMember, Question } from "@/lib/learning/types";
+import type { GameState, GameSession, TeamMember, TrainingProgress, Question } from "@/lib/learning/types";
 import dynamic from "next/dynamic";
-import { selectQuestions, getCheckpointScore, getCurrentPrize } from "@/lib/learning/game";
+import { createTrainingOrder, buildQuestionMap } from "@/lib/learning/game";
 import { QuestionDisplay } from "@/components/learning/QuestionDisplay";
 import { GameResult } from "@/components/learning/GameResult";
 import { SkillRadar } from "@/components/learning/SkillRadar";
+import questionsData from "../../../../data/learning_questions.json";
+import teamData from "../../../../data/learning_team.json";
 
 const RouletteWheel = dynamic(
   () => import("@/components/learning/RouletteWheel").then((m) => m.RouletteWheel),
   { ssr: false, loading: () => <div className="w-full max-w-[400px] aspect-square bg-surface-2 rounded-full animate-pulse-slow mx-auto" /> }
 );
-import questionsData from "../../../../data/learning_questions.json";
-import teamData from "../../../../data/learning_team.json";
 
 const allQuestions = questionsData as Question[];
 const team = teamData as TeamMember[];
+const questionMap = buildQuestionMap(allQuestions);
 
 export default function TriviaPage() {
   const [gameState, setGameState] = useState<GameState>("idle");
   const [session, setSession] = useState<GameSession | null>(null);
+  const [progress, setProgress] = useState<TrainingProgress | null>(null);
   const [saving, setSaving] = useState(false);
   const selectedTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Handle roulette selection
-  const handleSelect = useCallback((member: TeamMember) => {
-    setGameState("selected");
-    const questions = selectQuestions(allQuestions);
-    setSession({
-      player: member,
-      questions,
-      currentIndex: 0,
-      score: 0,
-      answers: [],
-      walkedAway: false,
-    });
+  // Autocomplete state
+  const [searchText, setSearchText] = useState("");
+  const [showDropdown, setShowDropdown] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-    // Auto-advance after 2s
-    selectedTimerRef.current = setTimeout(() => {
-      setGameState("playing");
-    }, 2000);
-  }, []);
+  const filteredTeam = searchText.length > 0
+    ? team.filter((m) => m.name.toLowerCase().includes(searchText.toLowerCase()))
+    : [];
 
-  // Handle direct player selection (skip roulette)
-  const handleDirectSelect = useCallback((member: TeamMember) => {
-    const questions = selectQuestions(allQuestions);
-    setSession({
-      player: member,
-      questions,
-      currentIndex: 0,
-      score: 0,
-      answers: [],
-      walkedAway: false,
-    });
-    setGameState("playing");
-  }, []);
+  // Auto-spin trigger for skip
+  const autoSpinRef = useRef(false);
 
-  // Save game results
-  const saveGame = useCallback(
-    async (finalSession: GameSession) => {
-      setSaving(true);
-      try {
-        await fetch("/api/learning/scores", {
+  // Initialize or resume a training session for a player
+  const initSession = useCallback(async (member: TeamMember) => {
+    setSaving(true);
+    try {
+      // Check existing progress
+      const progressRes = await fetch(`/api/learning/progress/${encodeURIComponent(member.name)}`);
+      const progressData = await progressRes.json();
+
+      let trainingProgress: TrainingProgress;
+
+      if (progressData.progress && progressData.progress.question_order.length > 0 && !progressData.progress.completed) {
+        // Resume existing session
+        trainingProgress = progressData.progress;
+      } else {
+        // Create new training order
+        const order = createTrainingOrder(allQuestions);
+        const initRes = await fetch("/api/learning/progress", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            player_name: finalSession.player.name,
-            score: finalSession.score,
-            questions_answered: finalSession.answers.length,
-            walked_away: finalSession.walkedAway,
-            responses: finalSession.answers.map((a) => ({
-              question_id: a.questionId,
-              category: a.category,
-              is_correct: a.isCorrect,
-            })),
-          }),
+          body: JSON.stringify({ player_name: member.name, init: true, question_order: order }),
         });
-      } catch (e) {
-        console.error("Failed to save game", e);
-      } finally {
-        setSaving(false);
+        const initData = await initRes.json();
+        trainingProgress = initData.progress;
       }
-    },
-    []
-  );
+
+      setProgress(trainingProgress);
+
+      // Build question list from order
+      const questions = trainingProgress.question_order
+        .map((id) => questionMap.get(id))
+        .filter((q): q is Question => q != null);
+
+      setSession({
+        player: member,
+        questions,
+        currentIndex: trainingProgress.current_index,
+        answeredCount: trainingProgress.answered_ids.length,
+        correctCount: trainingProgress.correct_ids.length,
+        totalQuestions: questions.length,
+        answers: [],
+      });
+
+      setGameState("playing");
+    } catch (e) {
+      console.error("Failed to init session", e);
+    } finally {
+      setSaving(false);
+    }
+  }, []);
+
+  // Handle roulette selection
+  const handleRouletteSelect = useCallback((member: TeamMember) => {
+    setGameState("selected");
+    // Store member temporarily — auto-advance or skip
+    setSession({
+      player: member,
+      questions: [],
+      currentIndex: 0,
+      answeredCount: 0,
+      correctCount: 0,
+      totalQuestions: 0,
+      answers: [],
+    });
+
+    selectedTimerRef.current = setTimeout(() => {
+      initSession(member);
+    }, 3000);
+  }, [initSession]);
+
+  // Handle skip (absent user)
+  const handleSkip = useCallback(() => {
+    if (selectedTimerRef.current) clearTimeout(selectedTimerRef.current);
+    setSession(null);
+    setGameState("idle");
+    autoSpinRef.current = true;
+  }, []);
+
+  // Handle autocomplete select
+  const handleAutocompleteSelect = useCallback((member: TeamMember) => {
+    setSearchText("");
+    setShowDropdown(false);
+    initSession(member);
+  }, [initSession]);
 
   // Handle answer
   const handleAnswer = useCallback(
-    (_optionIndex: number, isCorrect: boolean) => {
-      if (!session) return;
+    async (_optionIndex: number, isCorrect: boolean) => {
+      if (!session || !progress) return;
 
       const question = session.questions[session.currentIndex];
-      const newAnswers = [
-        ...session.answers,
-        { questionId: question.id, category: question.category, isCorrect },
-      ];
 
-      if (isCorrect) {
-        const newIndex = session.currentIndex + 1;
-        if (newIndex >= 15) {
-          // Won the game!
-          const finalSession: GameSession = {
-            ...session,
-            score: 1_000_000,
-            answers: newAnswers,
-            currentIndex: newIndex,
-          };
-          setSession(finalSession);
-          setGameState("gameOver");
-          saveGame(finalSession);
-        } else {
-          setSession({
-            ...session,
-            currentIndex: newIndex,
-            score: getCurrentPrize(newIndex - 1),
-            answers: newAnswers,
-          });
-        }
-      } else {
-        // Wrong answer — fall to checkpoint
-        const checkpointScore = getCheckpointScore(session.currentIndex);
-        const finalSession: GameSession = {
-          ...session,
-          score: checkpointScore,
-          answers: newAnswers,
-        };
-        setSession(finalSession);
+      // Save to DB
+      await fetch("/api/learning/progress", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          player_name: session.player.name,
+          question_id: question.id,
+          is_correct: isCorrect,
+          category: question.category,
+        }),
+      });
+
+      const newAnswered = session.answeredCount + 1;
+      const newCorrect = session.correctCount + (isCorrect ? 1 : 0);
+      const nextIndex = session.currentIndex + 1;
+
+      if (nextIndex >= session.totalQuestions) {
+        // Training complete!
+        setSession({ ...session, answeredCount: newAnswered, correctCount: newCorrect, currentIndex: nextIndex });
         setGameState("gameOver");
-        saveGame(finalSession);
+      } else {
+        setSession({
+          ...session,
+          currentIndex: nextIndex,
+          answeredCount: newAnswered,
+          correctCount: newCorrect,
+        });
       }
     },
-    [session, saveGame]
+    [session, progress]
   );
 
-  // Handle retire
-  const handleRetire = useCallback(() => {
+  // Handle timeout (auto-skip)
+  const handleTimeout = useCallback(async () => {
     if (!session) return;
-    const finalSession: GameSession = {
-      ...session,
-      walkedAway: true,
-      score: getCurrentPrize(session.currentIndex),
-    };
-    setSession(finalSession);
-    setGameState("gameOver");
-    saveGame(finalSession);
-  }, [session, saveGame]);
+
+    const question = session.questions[session.currentIndex];
+
+    // Skip in DB — advance index only
+    await fetch("/api/learning/progress", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        player_name: session.player.name,
+        question_id: question.id,
+        skip: true,
+      }),
+    });
+
+    const nextIndex = session.currentIndex + 1;
+    if (nextIndex >= session.totalQuestions) {
+      setGameState("gameOver");
+    } else {
+      setSession({ ...session, currentIndex: nextIndex });
+    }
+  }, [session]);
 
   // Play again
   const handlePlayAgain = useCallback(() => {
     setSession(null);
+    setProgress(null);
     setGameState("idle");
+    setSearchText("");
   }, []);
 
-  // Cleanup timer
+  // Cleanup
   useEffect(() => {
     return () => {
       if (selectedTimerRef.current) clearTimeout(selectedTimerRef.current);
     };
   }, []);
+
+  // Auto-spin after skip
+  const rouletteRef = useRef<{ triggerSpin: () => void } | null>(null);
+  useEffect(() => {
+    if (gameState === "idle" && autoSpinRef.current) {
+      autoSpinRef.current = false;
+      // Small delay so roulette renders first
+      setTimeout(() => {
+        rouletteRef.current?.triggerSpin();
+      }, 500);
+    }
+  }, [gameState]);
 
   return (
     <div className="py-8 space-y-8">
@@ -167,12 +220,12 @@ export default function TriviaPage() {
         <div>
           <h1 className="text-xl font-bold text-text">Entrenamiento</h1>
           <p className="text-sm text-text-dim mt-0.5">
-            Conocimiento de myHotel — {allQuestions.length} preguntas disponibles
+            Conocimiento de myHotel — {allQuestions.length} preguntas
           </p>
         </div>
-        {gameState !== "idle" && gameState !== "gameOver" && session && (
+        {gameState === "playing" && session && (
           <div className="text-right">
-            <div className="text-xs text-text-dim">Jugando</div>
+            <div className="text-xs text-text-dim">Entrenando</div>
             <div className="text-sm font-semibold text-text">{session.player.name}</div>
           </div>
         )}
@@ -181,42 +234,57 @@ export default function TriviaPage() {
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Main area */}
         <div className="flex-1 min-w-0">
-          {/* IDLE — Roulette */}
+          {/* IDLE — Roulette + Autocomplete */}
           {gameState === "idle" && (
             <div className="space-y-8">
               <div className="flex flex-col items-center">
-                <RouletteWheel members={team} onSelect={handleSelect} />
+                <RouletteWheel members={team} onSelect={handleRouletteSelect} />
               </div>
 
-              {/* Direct selection */}
-              <div className="space-y-2">
+              {/* Autocomplete name picker */}
+              <div className="max-w-sm mx-auto space-y-2">
                 <p className="text-xs text-text-dim text-center">
-                  O elige directamente:
+                  O busca tu nombre para entrenar:
                 </p>
-                <div className="flex flex-wrap gap-1.5 justify-center">
-                  {team.map((m) => (
-                    <button
-                      key={m.initials}
-                      onClick={() => handleDirectSelect(m)}
-                      className="px-2.5 py-1 text-xs rounded bg-surface-2 text-text-muted hover:bg-accent/10 hover:text-accent transition-colors"
-                      title={`${m.name} — ${m.role}`}
-                    >
-                      {m.initials}
-                    </button>
-                  ))}
+                <div className="relative">
+                  <input
+                    ref={inputRef}
+                    type="text"
+                    value={searchText}
+                    onChange={(e) => {
+                      setSearchText(e.target.value);
+                      setShowDropdown(true);
+                    }}
+                    onFocus={() => setShowDropdown(true)}
+                    onBlur={() => setTimeout(() => setShowDropdown(false), 200)}
+                    placeholder="Escribe tu nombre..."
+                    className="w-full px-4 py-2.5 text-sm bg-surface border border-border rounded-lg text-text placeholder:text-text-dim focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30"
+                  />
+                  {showDropdown && filteredTeam.length > 0 && (
+                    <div className="absolute top-full left-0 right-0 mt-1 bg-surface border border-border rounded-lg shadow-lg max-h-48 overflow-y-auto z-50">
+                      {filteredTeam.map((m) => (
+                        <button
+                          key={m.name}
+                          onMouseDown={() => handleAutocompleteSelect(m)}
+                          className="w-full flex items-center gap-3 px-4 py-2.5 text-left hover:bg-surface-2 transition-colors"
+                        >
+                          <span className="text-sm font-medium text-text">{m.name}</span>
+                          <span className="text-xs text-text-dim">{m.role}</span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
+                {saving && (
+                  <p className="text-center text-xs text-text-dim animate-pulse-slow">
+                    Cargando sesión...
+                  </p>
+                )}
               </div>
             </div>
           )}
 
-          {/* SPINNING — handled by RouletteWheel animation */}
-          {gameState === "spinning" && (
-            <div className="flex flex-col items-center">
-              <RouletteWheel members={team} onSelect={handleSelect} disabled />
-            </div>
-          )}
-
-          {/* SELECTED — Reveal overlay */}
+          {/* SELECTED — Reveal + Skip */}
           {gameState === "selected" && session && (
             <div className="flex flex-col items-center py-16 animate-scale-in">
               <div className="w-24 h-24 rounded-full bg-accent flex items-center justify-center mb-4">
@@ -229,29 +297,37 @@ export default function TriviaPage() {
               <p className="text-xs text-accent mt-3 animate-pulse-slow">
                 Preparando preguntas...
               </p>
+              <button
+                onClick={handleSkip}
+                className="mt-6 px-6 py-2 text-sm text-text-dim border border-border rounded-lg hover:bg-surface-2 hover:text-text transition-colors"
+              >
+                Saltar — no está presente
+              </button>
             </div>
           )}
 
           {/* PLAYING — Question */}
-          {gameState === "playing" && session && (
+          {gameState === "playing" && session && session.currentIndex < session.totalQuestions && (
             <QuestionDisplay
               question={session.questions[session.currentIndex]}
               questionIndex={session.currentIndex}
+              totalQuestions={session.totalQuestions}
+              answeredCount={session.answeredCount}
+              correctCount={session.correctCount}
               onAnswer={handleAnswer}
-              onRetire={handleRetire}
+              onTimeout={handleTimeout}
             />
           )}
 
-          {/* GAME OVER */}
+          {/* GAME OVER — Completion */}
           {gameState === "gameOver" && session && (
-            <div className="space-y-6">
-              <GameResult session={session} onPlayAgain={handlePlayAgain} />
-              {saving && (
-                <p className="text-center text-xs text-text-dim animate-pulse-slow">
-                  Guardando resultado...
-                </p>
-              )}
-            </div>
+            <GameResult
+              playerName={session.player.name}
+              answeredCount={session.answeredCount}
+              correctCount={session.correctCount}
+              totalQuestions={session.totalQuestions}
+              onPlayAgain={handlePlayAgain}
+            />
           )}
         </div>
 

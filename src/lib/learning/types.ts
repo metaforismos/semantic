@@ -26,10 +26,22 @@ export interface GameSession {
   player: TeamMember;
   questions: Question[];
   currentIndex: number;
-  score: number;
+  answeredCount: number;
+  correctCount: number;
+  totalQuestions: number;
   answers: AnswerRecord[];
-  walkedAway: boolean;
 }
+
+export interface TrainingProgress {
+  player_name: string;
+  answered_ids: string[];
+  correct_ids: string[];
+  current_index: number;
+  question_order: string[];
+  completed: boolean;
+}
+
+export const TIMER_SECONDS = 20;
 
 export interface LeaderboardEntry {
   player_name: string;
