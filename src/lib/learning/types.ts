@@ -50,6 +50,8 @@ export interface LeaderboardEntry {
   best_score: number;
   highest_question: number;
   updated_at: string;
+  total_answers: number;
+  correct_answers: number;
 }
 
 export interface CategoryStat {

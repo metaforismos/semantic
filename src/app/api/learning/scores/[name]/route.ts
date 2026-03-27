@@ -1,6 +1,36 @@
 import { NextRequest, NextResponse } from "next/server";
 import pool from "@/lib/db";
 
+// DELETE — remove all data for a player (scores, games, responses, progress)
+export async function DELETE(
+  _request: NextRequest,
+  { params }: { params: Promise<{ name: string }> }
+) {
+  const client = await pool.connect();
+  try {
+    const { name } = await params;
+    const playerName = decodeURIComponent(name);
+
+    await client.query("BEGIN");
+    await client.query("DELETE FROM learning_responses WHERE player_name = $1", [playerName]);
+    await client.query("DELETE FROM learning_games WHERE player_name = $1", [playerName]);
+    await client.query("DELETE FROM learning_progress WHERE player_name = $1", [playerName]);
+    const result = await client.query("DELETE FROM learning_scores WHERE player_name = $1", [playerName]);
+    await client.query("COMMIT");
+
+    if (result.rowCount === 0) {
+      return NextResponse.json({ error: "not_found" }, { status: 404 });
+    }
+    return NextResponse.json({ success: true, player_name: playerName });
+  } catch (err) {
+    await client.query("ROLLBACK").catch(() => {});
+    console.error("[Learning Player DELETE]", err);
+    return NextResponse.json({ error: "db_error" }, { status: 500 });
+  } finally {
+    client.release();
+  }
+}
+
 // GET — player stats + category breakdown for radar chart
 export async function GET(
   _request: NextRequest,

@@ -5,9 +5,18 @@ import pool from "@/lib/db";
 export async function GET() {
   try {
     const result = await pool.query(
-      `SELECT player_name, total_score, games_played, best_score, highest_question, updated_at
-       FROM learning_scores
-       ORDER BY total_score DESC
+      `SELECT ls.player_name, ls.total_score, ls.games_played, ls.best_score, ls.highest_question, ls.updated_at,
+              COALESCE(r.total_answers, 0)::int AS total_answers,
+              COALESCE(r.correct_answers, 0)::int AS correct_answers
+       FROM learning_scores ls
+       LEFT JOIN (
+         SELECT player_name,
+                COUNT(*)::int AS total_answers,
+                SUM(CASE WHEN is_correct THEN 1 ELSE 0 END)::int AS correct_answers
+         FROM learning_responses
+         GROUP BY player_name
+       ) r ON ls.player_name = r.player_name
+       ORDER BY ls.total_score DESC
        LIMIT 50`
     );
     return NextResponse.json({ scores: result.rows });

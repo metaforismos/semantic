@@ -3,12 +3,12 @@
     "id": "q-online-001",
     "question": "¿Cuáles son los tres componentes del IRO (Índice de Reputación Online)?",
     "options": [
-      "Calificación, Cobertura y Reseñas",
-      "NPS, Calificación y Comentarios",
       "Reseñas, Encuestas y Semántico",
-      "Cobertura, NPS y Tasa de Respuesta"
+      "NPS, Calificación y Comentarios",
+      "Cobertura, NPS y Tasa de Respuesta",
+      "Calificación, Cobertura y Reseñas"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "easy",
     "category": "Online",
     "explanation": "El IRO es un promedio ponderado de tres dimensiones: Calificación (rating promedio), Cobertura (% de reseñas respondidas) y Reseñas (volumen de reseñas)."
@@ -17,12 +17,12 @@
     "id": "q-online-002",
     "question": "¿Cuál es el peso de la Calificación en el cálculo del IRO?",
     "options": [
-      "30%",
-      "50%",
+      "20%",
       "40%",
-      "20%"
+      "30%",
+      "50%"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "medium",
     "category": "Online",
     "explanation": "El IRO pondera: Calificación 50%, Cobertura 30%, y Reseñas 20%."
@@ -31,12 +31,12 @@
     "id": "q-online-003",
     "question": "¿En qué rango se mide el IRO?",
     "options": [
-      "1 a 10",
       "0% a 100%",
+      "-100 a +100",
       "1 a 5 estrellas",
-      "-100 a +100"
+      "1 a 10"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "easy",
     "category": "Online",
     "explanation": "El IRO es un indicador exclusivo de myHotel que se mide en una escala de 0% a 100%."
@@ -45,12 +45,12 @@
     "id": "q-online-004",
     "question": "¿Desde cuáles OTAs se pueden responder reseñas directamente desde Fidelity?",
     "options": [
-      "Booking, Google, Expedia y Hotels.com",
       "Tripadvisor, Booking, Google y Expedia",
       "Google, Booking, Tripadvisor y Despegar",
+      "Booking, Google, Expedia y Hotels.com",
       "Booking, Expedia, Tripadvisor y Facebook"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "medium",
     "category": "Online",
     "explanation": "Las 4 OTAs con respuesta directa desde Fidelity son Tripadvisor, Booking, Google y Expedia, siempre que se haya completado el proceso de integración."
@@ -59,12 +59,12 @@
     "id": "q-online-005",
     "question": "¿Cuántas propiedades se pueden incluir en un Set Competitivo de Online?",
     "options": [
-      "Hasta 3",
       "Hasta 10",
       "Hasta 5",
-      "Sin límite"
+      "Sin límite",
+      "Hasta 3"
     ],
-    "correct": 2,
+    "correct": 1,
     "difficulty": "easy",
     "category": "Online",
     "explanation": "El Set Competitivo permite compararse con hasta 5 propiedades en el módulo Online, y es personalizable por el hotel."
@@ -73,12 +73,12 @@
     "id": "q-online-006",
     "question": "¿Cuáles son los 4 estados posibles de una reseña en Online?",
     "options": [
-      "Nueva, En proceso, Respondida, Archivada",
       "Respondida, No respondida, No admite respuesta, En espera de aprobación",
+      "Abierta, Asignada, Respondida, Cerrada",
       "Pendiente, Respondida, Rechazada, Eliminada",
-      "Abierta, Asignada, Respondida, Cerrada"
+      "Nueva, En proceso, Respondida, Archivada"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "hard",
     "category": "Online",
     "explanation": "Los estados son: Respondida (azul), No respondida (amarillo), No admite respuesta (gris), y En espera de aprobación (hasta 72h para Tripadvisor y Booking)."
@@ -87,12 +87,12 @@
     "id": "q-online-007",
     "question": "¿Cuánto tiempo puede durar el estado 'En espera de aprobación' para una respuesta enviada a Tripadvisor?",
     "options": [
-      "24 horas",
-      "48 horas",
       "72 horas",
+      "48 horas",
+      "24 horas",
       "1 semana"
     ],
-    "correct": 2,
+    "correct": 0,
     "difficulty": "hard",
     "category": "Online",
     "explanation": "Las respuestas enviadas a Tripadvisor y Booking quedan en espera de aprobación hasta 72 horas mientras la OTA las revisa y publica."
@@ -101,12 +101,12 @@
     "id": "q-online-008",
     "question": "¿Qué es Collect en myHotel?",
     "options": [
-      "Un módulo para cobrar pagos a huéspedes",
       "Una herramienta para solicitar reseñas en Tripadvisor, Google y Facebook",
-      "Un sistema de recolección de datos del PMS",
-      "Un dashboard de métricas consolidadas"
+      "Un dashboard de métricas consolidadas",
+      "Un módulo para cobrar pagos a huéspedes",
+      "Un sistema de recolección de datos del PMS"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "medium",
     "category": "Online",
     "explanation": "Collect solicita a los huéspedes que dejen reseñas en los perfiles del hotel en Tripadvisor, Google y Facebook, mediante un widget al final de la encuesta y/o un correo post-checkout."
@@ -116,11 +116,11 @@
     "question": "¿Qué sucede con Google si no se realiza el proceso de integración en Online?",
     "options": [
       "Las reseñas llegan pero no se pueden responder",
-      "No se reciben los comentarios de Google My Business",
       "Se reciben con un retraso de 48 horas",
+      "No se reciben los comentarios de Google My Business",
       "Solo se reciben las reseñas con calificación negativa"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "hard",
     "category": "Online",
     "explanation": "Sin integración, las reseñas de Google My Business directamente no se reciben en la plataforma. Para Tripadvisor, Booking y Expedia sí llegan pero deben responderse en el sitio de cada OTA."
@@ -129,12 +129,12 @@
     "id": "q-online-010",
     "question": "¿Qué son las Smart Replies en myHotel?",
     "options": [
-      "Plantillas predefinidas de respuesta",
-      "Respuestas generadas por inteligencia artificial para reseñas o encuestas",
       "Respuestas automáticas por WhatsApp",
-      "Un chatbot de atención al cliente"
+      "Un chatbot de atención al cliente",
+      "Plantillas predefinidas de respuesta",
+      "Respuestas generadas por inteligencia artificial para reseñas o encuestas"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "easy",
     "category": "Online",
     "explanation": "Smart Replies son respuestas generadas por inteligencia artificial para reseñas o encuestas, disponibles en la plataforma Fidelity."
@@ -143,12 +143,12 @@
     "id": "q-online-011",
     "question": "¿Qué dimensión del IRO tiene el mayor peso al considerar la respuesta a detractores?",
     "options": [
-      "Calificación",
-      "Reseñas",
       "Cobertura",
-      "NPS"
+      "Reseñas",
+      "NPS",
+      "Calificación"
     ],
-    "correct": 2,
+    "correct": 0,
     "difficulty": "hard",
     "category": "Online",
     "explanation": "Dentro del componente Cobertura (30% del IRO), la respuesta a los detractores tiene el mayor peso."
@@ -157,12 +157,12 @@
     "id": "q-onsite-001",
     "question": "¿Cuándo se envía una encuesta OnSite?",
     "options": [
-      "Antes de la llegada del huésped",
-      "Durante la estadía del huésped",
+      "Una semana después de la estadía",
       "Después del checkout",
-      "Una semana después de la estadía"
+      "Durante la estadía del huésped",
+      "Antes de la llegada del huésped"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "easy",
     "category": "OnSite",
     "explanation": "OnSite es el módulo de recolección de feedback durante la estadía del huésped en el hotel."
@@ -171,10 +171,10 @@
     "id": "q-onsite-002",
     "question": "En el reporte de Tasa de Datos Válidos de OnSite, ¿qué huéspedes se muestran para un período seleccionado?",
     "options": [
-      "Los que hicieron checkout en ese período",
+      "Los que respondieron encuestas en ese período",
       "Los que estuvieron físicamente en el hotel durante esas fechas",
-      "Los que hicieron check-in en ese período",
-      "Los que respondieron encuestas en ese período"
+      "Los que hicieron checkout en ese período",
+      "Los que hicieron check-in en ese período"
     ],
     "correct": 1,
     "difficulty": "hard",
@@ -185,12 +185,12 @@
     "id": "q-onsite-003",
     "question": "¿Cuál es el largo mínimo de un comentario OnSite para ser analizado por Semántico?",
     "options": [
-      "10 caracteres",
-      "25 caracteres",
       "40 caracteres",
-      "75 caracteres"
+      "75 caracteres",
+      "25 caracteres",
+      "10 caracteres"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "medium",
     "category": "OnSite",
     "explanation": "Los requisitos mínimos de caracteres para Semántico son: OnSite 25, FollowUp 40, Online 75."
@@ -201,10 +201,10 @@
     "options": [
       "Durante la estadía",
       "Antes del check-in",
-      "Después del checkout (post estadía)",
-      "Al momento del check-in"
+      "Al momento del check-in",
+      "Después del checkout (post estadía)"
     ],
-    "correct": 2,
+    "correct": 3,
     "difficulty": "easy",
     "category": "FollowUp",
     "explanation": "FollowUp es el módulo de recolección de feedback post estadía, se envía después de que el huésped hace checkout."
@@ -213,12 +213,12 @@
     "id": "q-followup-002",
     "question": "¿Cuál es el mínimo de caracteres para que un comentario de FollowUp sea analizado por Semántico?",
     "options": [
+      "75 caracteres",
       "25 caracteres",
-      "40 caracteres",
       "50 caracteres",
-      "75 caracteres"
+      "40 caracteres"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "medium",
     "category": "FollowUp",
     "explanation": "FollowUp requiere mínimo 40 caracteres. OnSite requiere 25 y Online requiere 75."
@@ -227,10 +227,10 @@
     "id": "q-followup-003",
     "question": "En el reporte de Tasa de Datos Válidos de FollowUp, ¿qué huéspedes se muestran?",
     "options": [
-      "Los que estuvieron en el hotel durante el período",
       "Los que hicieron check-in en el período",
+      "Todos los huéspedes del mes",
       "Los que hicieron checkout en el período seleccionado",
-      "Todos los huéspedes del mes"
+      "Los que estuvieron en el hotel durante el período"
     ],
     "correct": 2,
     "difficulty": "hard",
@@ -241,12 +241,12 @@
     "id": "q-encuestas-001",
     "question": "En el NPS, ¿qué rango de puntuación (0-10) clasifica a un huésped como Promotor?",
     "options": [
-      "7 a 10",
       "8 a 10",
-      "9 a 10",
-      "Solo 10"
+      "Solo 10",
+      "7 a 10",
+      "9 a 10"
     ],
-    "correct": 2,
+    "correct": 3,
     "difficulty": "easy",
     "category": "OnSite",
     "explanation": "Promotores: 9-10, Pasivos: 7-8, Detractores: 0-6."
@@ -255,12 +255,12 @@
     "id": "q-encuestas-002",
     "question": "¿Cómo se calcula el NPS?",
     "options": [
-      "Promedio de todas las calificaciones",
-      "% Promotores menos % Detractores",
+      "Suma de Promotores menos suma de Detractores",
       "% Promotores dividido por total de respuestas",
-      "Suma de Promotores menos suma de Detractores"
+      "% Promotores menos % Detractores",
+      "Promedio de todas las calificaciones"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "medium",
     "category": "OnSite",
     "explanation": "NPS = % Promotores - % Detractores. El resultado va de -100 a +100."
@@ -284,11 +284,11 @@
     "question": "¿Qué Calificación General (escala 1-5) se considera 'Excelente'?",
     "options": [
       "Mayor a 4.0",
-      "Mayor a 4.5",
       "Mayor a 4.8",
-      "Mayor a 3.5"
+      "Mayor a 3.5",
+      "Mayor a 4.5"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "medium",
     "category": "OnSite",
     "explanation": "Benchmarks: >4.5 Excelente, 4-4.5 Bueno, 3.5-4 Regular, 3-3.5 Deficiente, <3 Muy Deficiente."
@@ -298,9 +298,9 @@
     "question": "¿Qué Tasa de Datos Válidos se considera 'Excelente'?",
     "options": [
       "Mayor a 40%",
-      "Mayor a 50%",
+      "Mayor a 80%",
       "Mayor a 60%",
-      "Mayor a 80%"
+      "Mayor a 50%"
     ],
     "correct": 2,
     "difficulty": "hard",
@@ -311,12 +311,12 @@
     "id": "q-encuestas-006",
     "question": "¿Qué es una encuesta parcial?",
     "options": [
-      "Una encuesta con preguntas opcionales",
       "Una encuesta que fue iniciada pero no completada por el huésped",
+      "Una encuesta enviada a la mitad de los huéspedes",
       "Una encuesta solo de NPS sin áreas",
-      "Una encuesta enviada a la mitad de los huéspedes"
+      "Una encuesta con preguntas opcionales"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "easy",
     "category": "FollowUp",
     "explanation": "Las encuestas parciales son aquellas que el huésped comenzó a responder pero no completó hasta el final."
@@ -325,12 +325,12 @@
     "id": "q-encuestas-007",
     "question": "¿Cuál es el benchmark de Tasa de Contacto a Detractores considerado 'Excelente'?",
     "options": [
-      "Mayor a 80%",
-      "Mayor a 90%",
       "Mayor a 95%",
-      "100%"
+      "100%",
+      "Mayor a 80%",
+      "Mayor a 90%"
     ],
-    "correct": 2,
+    "correct": 0,
     "difficulty": "hard",
     "category": "OnSite",
     "explanation": "Una Tasa de Contacto a Detractores >95% se considera Excelente. Por debajo de 70% es Muy Deficiente."
@@ -339,12 +339,12 @@
     "id": "q-encuestas-008",
     "question": "¿Qué diferencia hay entre el NPS y la Calificación por Áreas?",
     "options": [
+      "Son lo mismo pero con nombres diferentes",
       "El NPS usa escala 1-5 y las Áreas usan 0-10",
       "El NPS mide lealtad/recomendación (0-10) y las Áreas miden experiencia específica (1-5)",
-      "Son lo mismo pero con nombres diferentes",
       "El NPS solo aplica a Online y las Áreas a encuestas"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "medium",
     "category": "OnSite",
     "explanation": "El NPS mide probabilidad de recomendación (escala 0-10) mientras que la Calificación por Áreas evalúa aspectos específicos de la experiencia (escala 1-5). Son complementarios."
@@ -353,12 +353,12 @@
     "id": "q-encuestas-009",
     "question": "¿Por qué canales se puede medir la Tasa de Respuesta?",
     "options": [
-      "Solo por email",
       "Email, WhatsApp y enlaces públicos",
-      "Email y teléfono",
-      "WhatsApp y SMS"
+      "WhatsApp y SMS",
+      "Solo por email",
+      "Email y teléfono"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "medium",
     "category": "FollowUp",
     "explanation": "La Tasa de Respuesta General mide la eficiencia de los canales de recolección: email, WhatsApp y enlaces públicos."
@@ -367,12 +367,12 @@
     "id": "q-semantico-001",
     "question": "¿Qué mide el Índice Semántico?",
     "options": [
-      "El número total de comentarios analizados",
-      "El porcentaje de menciones positivas sobre el total de menciones",
+      "El promedio de sentimiento de las reseñas",
       "La cantidad de temas detectados por comentario",
-      "El promedio de sentimiento de las reseñas"
+      "El porcentaje de menciones positivas sobre el total de menciones",
+      "El número total de comentarios analizados"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "easy",
     "category": "Semántico",
     "explanation": "El Índice Semántico es el porcentaje de menciones positivas encontradas en encuestas y/o reseñas sobre el total de menciones."
@@ -381,12 +381,12 @@
     "id": "q-semantico-002",
     "question": "¿Qué Índice Semántico se considera 'Sobresaliente'?",
     "options": [
-      "Mayor a 85%",
       "Mayor a 90%",
-      "Mayor a 93%",
-      "Mayor a 95%"
+      "Mayor a 95%",
+      "Mayor a 85%",
+      "Mayor a 93%"
     ],
-    "correct": 2,
+    "correct": 3,
     "difficulty": "hard",
     "category": "Semántico",
     "explanation": "Benchmarks del Índice Semántico: 79% Promedio, 88% Aceptable, 93% Sobresaliente."
@@ -395,10 +395,10 @@
     "id": "q-semantico-003",
     "question": "¿Qué es un 'comentario perfecto' en Semántico?",
     "options": [
-      "Un comentario con más de 200 caracteres",
+      "Un comentario en el idioma original del hotel",
       "Un comentario donde el 100% de las menciones son positivas",
-      "Un comentario que menciona todas las áreas del hotel",
-      "Un comentario en el idioma original del hotel"
+      "Un comentario con más de 200 caracteres",
+      "Un comentario que menciona todas las áreas del hotel"
     ],
     "correct": 1,
     "difficulty": "medium",
@@ -423,12 +423,12 @@
     "id": "q-semantico-005",
     "question": "¿Qué es una 'mención' en el contexto de Semántico?",
     "options": [
-      "Cada vez que un huésped nombra al hotel",
-      "Un tema individual detectado dentro de un comentario, clasificado como positivo o negativo",
       "Una referencia al hotel en redes sociales",
-      "El número de veces que aparece una palabra clave"
+      "Cada vez que un huésped nombra al hotel",
+      "El número de veces que aparece una palabra clave",
+      "Un tema individual detectado dentro de un comentario, clasificado como positivo o negativo"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "medium",
     "category": "Semántico",
     "explanation": "Una mención es un tema individual detectado por IA dentro de un comentario. Un solo comentario puede contener múltiples menciones sobre diferentes temas (desayuno, piscina, estadía, etc.), cada una clasificada como positiva o negativa."
@@ -438,11 +438,11 @@
     "question": "¿Cuál es el mínimo de caracteres para que un comentario de Online sea analizado por Semántico?",
     "options": [
       "25 caracteres",
-      "40 caracteres",
+      "75 caracteres",
       "50 caracteres",
-      "75 caracteres"
+      "40 caracteres"
     ],
-    "correct": 3,
+    "correct": 1,
     "difficulty": "medium",
     "category": "Semántico",
     "explanation": "Los mínimos son: OnSite 25 caracteres, FollowUp 40 caracteres, Online 75 caracteres."
@@ -465,12 +465,12 @@
     "id": "q-concierge-002",
     "question": "¿Cuántas áreas predefinidas tiene la base de conocimiento de Concierge?",
     "options": [
-      "8",
       "12",
-      "16",
-      "20"
+      "20",
+      "8",
+      "16"
     ],
-    "correct": 2,
+    "correct": 3,
     "difficulty": "hard",
     "category": "Concierge",
     "explanation": "La base de conocimiento de Concierge tiene 16 áreas predefinidas: Información General, Habitaciones, Reservas, Pagos, Políticas de Estadía, Conectividad, F&B, Servicios, Transporte, Wellness, Eventos, Actividades, Sostenibilidad, Seguridad, Info Turística."
@@ -479,12 +479,12 @@
     "id": "q-concierge-003",
     "question": "¿Qué rol de usuario se necesita para configurar Concierge?",
     "options": [
-      "Cualquier usuario",
       "Coordinador o superior",
       "Administrador",
+      "Cualquier usuario",
       "Gestor"
     ],
-    "correct": 2,
+    "correct": 1,
     "difficulty": "medium",
     "category": "Concierge",
     "explanation": "Solo usuarios con rol de Administrador pueden acceder a la Configuración de Productos donde se configura Concierge."
@@ -493,12 +493,12 @@
     "id": "q-concierge-004",
     "question": "¿Qué aspectos de la personalidad de Concierge se pueden configurar?",
     "options": [
-      "Solo el nombre",
       "Nombre, cargo, estilo de comunicación y uso de emojis",
       "Nombre, idioma y horario de atención",
-      "Nombre, foto y respuestas predefinidas"
+      "Nombre, foto y respuestas predefinidas",
+      "Solo el nombre"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "medium",
     "category": "Concierge",
     "explanation": "En la pestaña Personalidad se configura: nombre, cargo, estilo de comunicación (2 opciones disponibles) y preferencia de uso de emojis."
@@ -507,12 +507,12 @@
     "id": "q-concierge-005",
     "question": "¿De qué formas se puede agregar contenido a la base de conocimiento de Concierge?",
     "options": [
-      "Solo texto manual",
       "Texto manual, subir PDF y importar URL",
+      "Solo texto manual",
       "Solo subir documentos",
       "Texto manual y copiar/pegar de otro sistema"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "hard",
     "category": "Concierge",
     "explanation": "La base de conocimiento acepta: texto manual dentro de combinaciones área-tema, subida de documentos PDF (que se analizan para extracción) e importación de URLs (cuyo contenido se lee automáticamente y es editable)."
@@ -522,11 +522,11 @@
     "question": "¿Qué funcionalidad tienen las Campañas en Concierge?",
     "options": [
       "Enviar emails masivos a huéspedes",
-      "Enviar mensajes dirigidos por WhatsApp a huéspedes",
       "Publicar en redes sociales del hotel",
+      "Enviar mensajes dirigidos por WhatsApp a huéspedes",
       "Generar reportes de satisfacción"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "easy",
     "category": "Concierge",
     "explanation": "Las Campañas de Concierge permiten enviar mensajes dirigidos vía WhatsApp activo, configurando templates, timing y horarios de envío."
@@ -535,12 +535,12 @@
     "id": "q-desk-001",
     "question": "¿Qué es Desk en myHotel?",
     "options": [
-      "Un módulo de reservas",
       "Un módulo de gestión de incidentes y casos",
-      "Un dashboard de métricas",
-      "Un sistema de facturación"
+      "Un módulo de reservas",
+      "Un sistema de facturación",
+      "Un dashboard de métricas"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "easy",
     "category": "Desk",
     "explanation": "Desk es el módulo de gestión de incidentes donde se pueden crear casos desde feedback de huéspedes o solicitudes internas."
@@ -549,10 +549,10 @@
     "id": "q-desk-002",
     "question": "¿De cuántas formas se puede crear un caso en Desk?",
     "options": [
-      "Solo manualmente",
+      "4: encuestas, reseñas, email y manualmente",
       "2: desde encuestas y manualmente",
       "3: desde encuestas, desde reseñas Online, y manualmente",
-      "4: encuestas, reseñas, email y manualmente"
+      "Solo manualmente"
     ],
     "correct": 2,
     "difficulty": "medium",
@@ -563,12 +563,12 @@
     "id": "q-desk-003",
     "question": "¿Cuáles son los tipos de incidente disponibles al crear un caso en Desk?",
     "options": [
-      "Urgente, Normal y Baja prioridad",
+      "Queja, Sugerencia y Felicitación",
       "Bug, Feature y Mejora",
-      "Solicitud, Queja, Sugerencia, Reclamo, Gestión interna y Orden de trabajo",
-      "Queja, Sugerencia y Felicitación"
+      "Urgente, Normal y Baja prioridad",
+      "Solicitud, Queja, Sugerencia, Reclamo, Gestión interna y Orden de trabajo"
     ],
-    "correct": 2,
+    "correct": 3,
     "difficulty": "hard",
     "category": "Desk",
     "explanation": "Los tipos de incidente son: Solicitud, Queja, Sugerencia, Reclamo, Gestión interna y Orden de trabajo."
@@ -577,12 +577,12 @@
     "id": "q-desk-004",
     "question": "¿Cuáles son los niveles de prioridad disponibles en Desk?",
     "options": [
-      "Crítico, Alto, Medio, Bajo",
-      "Urgente y No urgente",
       "Alto, Medio y Bajo",
+      "Urgente y No urgente",
+      "Crítico, Alto, Medio, Bajo",
       "P1, P2, P3, P4"
     ],
-    "correct": 2,
+    "correct": 0,
     "difficulty": "easy",
     "category": "Desk",
     "explanation": "Desk maneja tres niveles de prioridad: Alto, Medio y Bajo."
@@ -591,10 +591,10 @@
     "id": "q-desk-005",
     "question": "¿Qué rol de usuario NO puede gestionar casos en Desk?",
     "options": [
-      "Administrador",
+      "Gestor",
       "Coordinador",
       "Consultor",
-      "Gestor"
+      "Administrador"
     ],
     "correct": 2,
     "difficulty": "hard",
@@ -605,12 +605,12 @@
     "id": "q-integraciones-001",
     "question": "¿Qué datos obtiene myHotel a través de la integración con el PMS?",
     "options": [
+      "Datos de facturación",
       "Datos de tarifas y revenue",
-      "Datos de los huéspedes (reservas, emails, fechas)",
       "Datos de inventario de habitaciones",
-      "Datos de facturación"
+      "Datos de los huéspedes (reservas, emails, fechas)"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "easy",
     "category": "Integraciones",
     "explanation": "La integración PMS es la conexión que se realiza para obtener los datos de los huéspedes, necesarios para el envío de encuestas y campañas."
@@ -619,12 +619,12 @@
     "id": "q-integraciones-002",
     "question": "¿A quién se debe contactar cuando un hotel cambia de PMS?",
     "options": [
-      "soporte@myhotel.cl",
       "integraciones@myhotel.cl",
-      "ventas@myhotel.cl",
-      "Al Customer Success Executive"
+      "soporte@myhotel.cl",
+      "Al Customer Success Executive",
+      "ventas@myhotel.cl"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "medium",
     "category": "Integraciones",
     "explanation": "Los cambios de PMS deben notificarse con anticipación a integraciones@myhotel.cl para evitar interrupciones en el envío de encuestas."
@@ -633,12 +633,12 @@
     "id": "q-integraciones-003",
     "question": "¿Qué riesgo hay si un hotel cambia de PMS sin avisar a myHotel?",
     "options": [
-      "Se pierden las encuestas históricas",
-      "Se interrumpe el envío de encuestas por falta de datos de huéspedes",
       "Se desactiva el módulo Online",
-      "Se eliminan los usuarios de la plataforma"
+      "Se pierden las encuestas históricas",
+      "Se eliminan los usuarios de la plataforma",
+      "Se interrumpe el envío de encuestas por falta de datos de huéspedes"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "medium",
     "category": "Integraciones",
     "explanation": "Sin aviso previo, el envío de encuestas se ve afectado porque myHotel deja de recibir la información de los huéspedes del nuevo PMS."
@@ -647,10 +647,10 @@
     "id": "q-corporativo-001",
     "question": "¿Para quién está diseñado el módulo Corporativo?",
     "options": [
-      "Hoteles independientes grandes",
+      "Todos los clientes de myHotel",
       "Grupos de hoteles y cadenas hoteleras",
       "Agencias de viaje",
-      "Todos los clientes de myHotel"
+      "Hoteles independientes grandes"
     ],
     "correct": 1,
     "difficulty": "easy",
@@ -661,12 +661,12 @@
     "id": "q-corporativo-002",
     "question": "¿Qué permite hacer el módulo Corporativo?",
     "options": [
-      "Gestionar reservas de todas las propiedades",
       "Revisar el desempeño de todas las propiedades para cada producto de forma agrupada",
       "Administrar el inventario de la cadena",
+      "Gestionar reservas de todas las propiedades",
       "Crear campañas de marketing unificadas"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "medium",
     "category": "Corporativo",
     "explanation": "Corporativo permite ver el desempeño consolidado de todas las propiedades de una cadena para cada producto, facilitando comparaciones y decisiones basadas en datos."
@@ -675,12 +675,12 @@
     "id": "q-plataforma-001",
     "question": "¿Cuántos tipos de usuario existen en la plataforma Fidelity?",
     "options": [
+      "8",
       "3",
       "4",
-      "6",
-      "8"
+      "6"
     ],
-    "correct": 2,
+    "correct": 3,
     "difficulty": "medium",
     "category": "Fidelity General",
     "explanation": "Existen 6 tipos: Administrador, Coordinador, Analista, Gestor, Consultor y Financiero."
@@ -689,12 +689,12 @@
     "id": "q-plataforma-002",
     "question": "¿Qué rol tiene acceso exclusivo a la sección de Facturación?",
     "options": [
-      "Administrador",
       "Coordinador",
       "Financiero",
-      "Analista"
+      "Analista",
+      "Administrador"
     ],
-    "correct": 2,
+    "correct": 1,
     "difficulty": "medium",
     "category": "Fidelity General",
     "explanation": "El rol Financiero tiene acceso limitado exclusivamente a la sección de Facturación."
@@ -703,10 +703,10 @@
     "id": "q-plataforma-003",
     "question": "¿Qué diferencia al rol Administrador del Coordinador?",
     "options": [
-      "El Administrador puede responder reseñas",
+      "No hay diferencia funcional",
       "El Administrador puede gestionar usuarios y ver todos los casos de Desk",
       "El Coordinador tiene más permisos que el Administrador",
-      "No hay diferencia funcional"
+      "El Administrador puede responder reseñas"
     ],
     "correct": 1,
     "difficulty": "hard",
@@ -717,10 +717,10 @@
     "id": "q-plataforma-004",
     "question": "¿Qué rol accede a la plataforma exclusivamente mediante API?",
     "options": [
-      "Analista",
       "Gestor",
+      "Financiero",
       "Consultor",
-      "Financiero"
+      "Analista"
     ],
     "correct": 2,
     "difficulty": "hard",
@@ -732,11 +732,11 @@
     "question": "¿Qué significa PMS en la industria hotelera?",
     "options": [
       "Payment Management System",
-      "Property Management System",
+      "Partner Management Service",
       "Performance Monitoring System",
-      "Partner Management Service"
+      "Property Management System"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "easy",
     "category": "Travel Tech SaaS",
     "explanation": "PMS (Property Management System) es el sistema central de gestión hotelera que maneja reservas, check-in/out, asignación de habitaciones, facturación y datos de huéspedes."
@@ -746,11 +746,11 @@
     "question": "¿Cuál es la función principal de un Channel Manager?",
     "options": [
       "Gestionar las redes sociales del hotel",
-      "Distribuir disponibilidad y tarifas en múltiples OTAs simultáneamente",
       "Administrar los canales de TV del hotel",
-      "Gestionar la comunicación interna del equipo"
+      "Gestionar la comunicación interna del equipo",
+      "Distribuir disponibilidad y tarifas en múltiples OTAs simultáneamente"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "easy",
     "category": "Travel Tech SaaS",
     "explanation": "Un Channel Manager sincroniza automáticamente disponibilidad, tarifas y restricciones del hotel en múltiples OTAs y canales de distribución para evitar overbookings."
@@ -759,12 +759,12 @@
     "id": "q-traveltech-003",
     "question": "¿Qué es un RMS en hotelería?",
     "options": [
+      "Rating Management Software",
       "Room Management System",
-      "Revenue Management System",
       "Reservation Marketing Service",
-      "Rating Management Software"
+      "Revenue Management System"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "medium",
     "category": "Travel Tech SaaS",
     "explanation": "RMS (Revenue Management System) optimiza la estrategia de precios del hotel analizando demanda, competencia, estacionalidad y otros factores para maximizar ingresos."
@@ -774,9 +774,9 @@
     "question": "¿Qué es una OTA?",
     "options": [
       "Online Travel Agency — agencia de viajes online",
+      "Online Ticketing Administrator",
       "Operational Technology Application",
-      "Open Tourism Alliance",
-      "Online Ticketing Administrator"
+      "Open Tourism Alliance"
     ],
     "correct": 0,
     "difficulty": "easy",
@@ -801,12 +801,12 @@
     "id": "q-traveltech-006",
     "question": "¿Qué tipo de SaaS es myHotel dentro del ecosistema Travel Tech?",
     "options": [
-      "PMS",
       "Channel Manager",
       "Guest Experience & Reputation Management Platform",
-      "Revenue Management System"
+      "Revenue Management System",
+      "PMS"
     ],
-    "correct": 2,
+    "correct": 1,
     "difficulty": "medium",
     "category": "Travel Tech SaaS",
     "explanation": "myHotel es una plataforma de Guest Experience y Reputation Management que incluye encuestas (OnSite/FollowUp), reputación online, análisis semántico, gestión de casos y asistente virtual."
@@ -815,12 +815,12 @@
     "id": "q-traveltech-007",
     "question": "¿Qué es un CRS (Central Reservation System)?",
     "options": [
-      "Un sistema de gestión de clientes",
-      "Un sistema central que conecta el inventario del hotel con canales de distribución",
       "Un software de contabilidad hotelera",
-      "Un sistema de control de acceso a habitaciones"
+      "Un sistema de control de acceso a habitaciones",
+      "Un sistema central que conecta el inventario del hotel con canales de distribución",
+      "Un sistema de gestión de clientes"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "hard",
     "category": "Travel Tech SaaS",
     "explanation": "El CRS centraliza el inventario de habitaciones y lo conecta con GDS, OTAs y el booking engine propio, siendo el hub de distribución del hotel."
@@ -829,12 +829,12 @@
     "id": "q-traveltech-008",
     "question": "¿Qué es un GDS (Global Distribution System)?",
     "options": [
+      "Un sistema de geolocalización de destinos turísticos",
       "Una base de datos global de huéspedes",
-      "Un sistema de distribución global usado por agencias de viajes para acceder a inventario de hoteles, vuelos y autos",
       "Un estándar de diseño gráfico para sitios de hoteles",
-      "Un sistema de geolocalización de destinos turísticos"
+      "Un sistema de distribución global usado por agencias de viajes para acceder a inventario de hoteles, vuelos y autos"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "hard",
     "category": "Travel Tech SaaS",
     "explanation": "Los GDS (Amadeus, Sabre, Travelport) son redes electrónicas que permiten a agencias de viajes buscar y reservar inventario de hoteles, aerolíneas y rent-a-cars en tiempo real."
@@ -843,12 +843,12 @@
     "id": "q-traveltech-009",
     "question": "¿Por qué un hotel buscaría aumentar sus reservas directas vs. las de OTAs?",
     "options": [
-      "Porque las OTAs tienen mejor servicio al cliente",
       "Para reducir las comisiones pagadas a intermediarios (15-25%)",
       "Porque las OTAs no aceptan todos los métodos de pago",
-      "Para cumplir con regulaciones legales"
+      "Para cumplir con regulaciones legales",
+      "Porque las OTAs tienen mejor servicio al cliente"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "medium",
     "category": "Travel Tech SaaS",
     "explanation": "Las OTAs cobran comisiones del 15-25% por reserva. Las reservas directas (via booking engine propio) eliminan estas comisiones, mejorando la rentabilidad del hotel."
@@ -857,12 +857,12 @@
     "id": "q-hotel-001",
     "question": "¿Qué es el RevPAR?",
     "options": [
-      "Revenue Per Available Room — ingreso por habitación disponible",
-      "Review Performance Average Rating",
+      "Revenue Per Average Rate",
       "Reservation Value Per Account Representative",
-      "Revenue Per Average Rate"
+      "Revenue Per Available Room — ingreso por habitación disponible",
+      "Review Performance Average Rating"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "easy",
     "category": "Hotel Knowledge",
     "explanation": "RevPAR (Revenue Per Available Room) es un KPI clave que mide el ingreso generado por habitación disponible. Se calcula como: ADR × Ocupación, o Ingresos totales de habitaciones / Habitaciones disponibles."
@@ -871,12 +871,12 @@
     "id": "q-hotel-002",
     "question": "¿Cómo se calcula el ADR (Average Daily Rate)?",
     "options": [
-      "Total de ingresos del hotel / total de habitaciones",
       "Ingresos de habitaciones / habitaciones vendidas",
-      "Tarifa rack promedio del hotel",
-      "Precio publicado en Booking / número de noches"
+      "Precio publicado en Booking / número de noches",
+      "Total de ingresos del hotel / total de habitaciones",
+      "Tarifa rack promedio del hotel"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "medium",
     "category": "Hotel Knowledge",
     "explanation": "ADR = Ingresos totales por habitaciones / Número de habitaciones vendidas. Mide el precio promedio al que se vende cada habitación ocupada."
@@ -887,8 +887,8 @@
     "options": [
       "Habitaciones reservadas / habitaciones totales del edificio",
       "Habitaciones vendidas / habitaciones disponibles en un período × 100",
-      "Huéspedes alojados / capacidad máxima de personas",
-      "Noches vendidas / 365 días del año"
+      "Noches vendidas / 365 días del año",
+      "Huéspedes alojados / capacidad máxima de personas"
     ],
     "correct": 1,
     "difficulty": "easy",
@@ -899,12 +899,12 @@
     "id": "q-hotel-004",
     "question": "¿Qué es un 'walk-in' en hotelería?",
     "options": [
+      "Un huésped que se va sin pagar",
       "Un huésped que recorre el hotel sin alojarse",
-      "Un huésped que llega sin reserva previa",
       "Un recorrido guiado por las instalaciones",
-      "Un huésped que se va sin pagar"
+      "Un huésped que llega sin reserva previa"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "easy",
     "category": "Hotel Knowledge",
     "explanation": "Un walk-in es un huésped que llega al hotel sin reserva previa y solicita alojamiento directamente en recepción."
@@ -913,9 +913,9 @@
     "id": "q-hotel-005",
     "question": "¿Qué es un 'no-show' en hotelería?",
     "options": [
-      "Una habitación fuera de servicio",
-      "Un huésped con reserva que no se presenta",
       "Un turno sin personal asignado",
+      "Un huésped con reserva que no se presenta",
+      "Una habitación fuera de servicio",
       "Una OTA sin disponibilidad del hotel"
     ],
     "correct": 1,
@@ -927,12 +927,12 @@
     "id": "q-hotel-006",
     "question": "¿Qué es el 'yield management' en hotelería?",
     "options": [
-      "Gestión del rendimiento del personal",
       "Estrategia de precios dinámicos para maximizar ingresos según demanda",
       "Gestión de la producción de alimentos y bebidas",
+      "Gestión del rendimiento del personal",
       "Control de calidad de las habitaciones"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "medium",
     "category": "Hotel Knowledge",
     "explanation": "Yield Management es la estrategia de ajustar precios dinámicamente según demanda, estacionalidad, competencia y otros factores para maximizar el ingreso por habitación disponible."
@@ -941,10 +941,10 @@
     "id": "q-hotel-007",
     "question": "¿Qué es el 'overbooking' y por qué algunos hoteles lo practican?",
     "options": [
-      "Reservar más de lo que se vende, es ilegal en todos los países",
+      "Vender habitaciones en múltiples OTAs al mismo precio",
       "Aceptar más reservas que habitaciones disponibles para compensar cancelaciones y no-shows",
       "Cobrar de más a los huéspedes en temporada alta",
-      "Vender habitaciones en múltiples OTAs al mismo precio"
+      "Reservar más de lo que se vende, es ilegal en todos los países"
     ],
     "correct": 1,
     "difficulty": "medium",
@@ -956,11 +956,11 @@
     "question": "¿Qué departamento es responsable del 'night audit' en un hotel?",
     "options": [
       "Housekeeping",
+      "Revenue Management",
       "Front Desk / Recepción",
-      "Contabilidad",
-      "Revenue Management"
+      "Contabilidad"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "medium",
     "category": "Hotel Knowledge",
     "explanation": "El night audit es realizado por el personal de recepción/front desk durante el turno nocturno. Cierra el día operativo, concilia cargos, verifica ocupación y genera reportes."
@@ -969,12 +969,12 @@
     "id": "q-hotel-009",
     "question": "¿Qué significa 'upselling' en el contexto hotelero?",
     "options": [
-      "Vender habitaciones a precio más alto que el publicado",
       "Ofrecer al huésped una mejora de categoría o servicios adicionales por un precio mayor",
+      "Vender habitaciones a precio más alto que el publicado",
       "Subir las tarifas en temporada alta",
       "Vender paquetes con todo incluido"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "easy",
     "category": "Hotel Knowledge",
     "explanation": "Upselling es ofrecer al huésped una habitación de categoría superior o servicios adicionales (late checkout, desayuno, spa) por un costo adicional al momento del check-in o durante la estadía."
@@ -983,10 +983,10 @@
     "id": "q-hotel-010",
     "question": "¿Qué es el 'GOP' (Gross Operating Profit) de un hotel?",
     "options": [
-      "La ganancia antes de impuestos y costos financieros",
-      "Los ingresos totales menos todos los costos operativos directos e indirectos del hotel",
       "El margen de ganancia solo de habitaciones",
-      "El presupuesto operativo anual"
+      "Los ingresos totales menos todos los costos operativos directos e indirectos del hotel",
+      "El presupuesto operativo anual",
+      "La ganancia antes de impuestos y costos financieros"
     ],
     "correct": 1,
     "difficulty": "hard",
@@ -997,12 +997,12 @@
     "id": "q-hotel-011",
     "question": "¿Qué es el 'TRevPAR' y en qué se diferencia del RevPAR?",
     "options": [
-      "Son lo mismo, TRevPAR es la versión en español",
       "TRevPAR incluye TODOS los ingresos del hotel (F&B, spa, etc.) no solo habitaciones",
-      "TRevPAR mide los ingresos por temporada",
-      "TRevPAR es el RevPAR ajustado por inflación"
+      "TRevPAR es el RevPAR ajustado por inflación",
+      "Son lo mismo, TRevPAR es la versión en español",
+      "TRevPAR mide los ingresos por temporada"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "hard",
     "category": "Hotel Knowledge",
     "explanation": "TRevPAR (Total Revenue Per Available Room) incluye todos los ingresos del hotel divididos por habitaciones disponibles, no solo los ingresos de habitaciones como el RevPAR tradicional."
@@ -1011,12 +1011,12 @@
     "id": "q-hotel-012",
     "question": "¿Qué es el 'rate parity' en distribución hotelera?",
     "options": [
-      "Que todas las habitaciones tengan la misma tarifa",
-      "Mantener la misma tarifa para el mismo tipo de habitación en todos los canales de distribución",
       "Igualar las tarifas de la competencia",
-      "Que las tarifas de temporada alta y baja sean similares"
+      "Que las tarifas de temporada alta y baja sean similares",
+      "Que todas las habitaciones tengan la misma tarifa",
+      "Mantener la misma tarifa para el mismo tipo de habitación en todos los canales de distribución"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "hard",
     "category": "Hotel Knowledge",
     "explanation": "Rate parity es la política de mantener consistencia de tarifas públicas en todos los canales (web propia, Booking, Expedia, etc.) para evitar conflictos con las OTAs y confusión del consumidor."
@@ -1025,12 +1025,12 @@
     "id": "q-hotel-013",
     "question": "En la estructura de un hotel, ¿qué función cumple el departamento de 'Revenue Management'?",
     "options": [
-      "Gestionar las cuentas por cobrar",
-      "Optimizar la estrategia de precios y distribución para maximizar ingresos",
       "Administrar el presupuesto del hotel",
-      "Manejar las relaciones con inversionistas"
+      "Gestionar las cuentas por cobrar",
+      "Manejar las relaciones con inversionistas",
+      "Optimizar la estrategia de precios y distribución para maximizar ingresos"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "medium",
     "category": "Hotel Knowledge",
     "explanation": "Revenue Management optimiza precios, disponibilidad y canales de distribución analizando demanda, competencia y patrones históricos para maximizar el ingreso total del hotel."
@@ -1039,12 +1039,12 @@
     "id": "q-hotel-014",
     "question": "¿Qué es el 'GOPPAR' en métricas hoteleras?",
     "options": [
+      "Global Online Presence Per Active Review",
       "Gross Operating Profit Per Available Room",
       "General Operations Plan Per Annual Revenue",
-      "Guest Opinion Performance Per Area Rating",
-      "Global Online Presence Per Active Review"
+      "Guest Opinion Performance Per Area Rating"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "hard",
     "category": "Hotel Knowledge",
     "explanation": "GOPPAR (Gross Operating Profit Per Available Room) es una métrica avanzada que mide la rentabilidad operativa por habitación disponible, combinando eficiencia de ingresos y control de costos."
@@ -1053,12 +1053,12 @@
     "id": "q-prestay-001",
     "question": "¿Qué permite hacer el módulo PreStay de myHotel?",
     "options": [
-      "Enviar encuestas antes de la estadía",
-      "Recibir pedidos y web check-ins de huéspedes antes de la estadía",
       "Gestionar reservas directas",
-      "Enviar campañas de marketing por email"
+      "Enviar campañas de marketing por email",
+      "Recibir pedidos y web check-ins de huéspedes antes de la estadía",
+      "Enviar encuestas antes de la estadía"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "easy",
     "category": "Fidelity General",
     "explanation": "PreStay permite a los hoteles recibir pedidos de productos/servicios y web check-ins de huéspedes antes de su llegada."
@@ -1067,10 +1067,10 @@
     "id": "q-prestay-002",
     "question": "¿Qué sucede con los pedidos que los huéspedes realizan en PreStay?",
     "options": [
-      "Se cobran automáticamente a la tarjeta del huésped",
       "Se agregan a la cuenta de la habitación en el PMS",
+      "Se procesan a través de una pasarela de pagos integrada",
       "No se pagan online; el hotel los recibe por email y gestiona el pago directamente",
-      "Se procesan a través de una pasarela de pagos integrada"
+      "Se cobran automáticamente a la tarjeta del huésped"
     ],
     "correct": 2,
     "difficulty": "medium",
@@ -1081,12 +1081,12 @@
     "id": "q-prestay-003",
     "question": "¿Qué pasa con los datos del Web Check-in de PreStay respecto al PMS?",
     "options": [
-      "Se inyectan automáticamente en el PMS",
       "Se sincronizan bidirecccionalmente con el PMS",
       "No se inyectan en el PMS; quedan disponibles para que el hotel los llene manualmente",
-      "Se envían al PMS con un delay de 24 horas"
+      "Se envían al PMS con un delay de 24 horas",
+      "Se inyectan automáticamente en el PMS"
     ],
-    "correct": 2,
+    "correct": 1,
     "difficulty": "hard",
     "category": "Integraciones",
     "explanation": "Los datos del Web Check-in no se inyectan en el PMS automáticamente. Quedan disponibles en la plataforma para que el hotel realice el llenado manualmente."
@@ -1096,11 +1096,11 @@
     "question": "¿Cuáles son las 3 etapas de un caso en Desk?",
     "options": [
       "Nuevo, En revisión, Cerrado",
-      "Pendiente, En proceso, Resuelto",
       "Abierto, Asignado, Completado",
+      "Pendiente, En proceso, Resuelto",
       "Por hacer, Haciendo, Hecho"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "easy",
     "category": "Desk",
     "explanation": "Las etapas de un caso en Desk son: Pendiente (sin gestión), En proceso (al menos una gestión) y Resuelto (marcado como resuelto)."
@@ -1109,12 +1109,12 @@
     "id": "q-desk-007",
     "question": "¿Cuál es la diferencia entre casos manuales e inteligentes en Desk?",
     "options": [
-      "Los manuales son más rápidos de crear",
-      "Los inteligentes son creados por myHotel analizando feedback de huéspedes con IA; los manuales los crea el usuario",
       "Los inteligentes solo se pueden crear desde la app móvil",
-      "No hay diferencia, es solo nomenclatura"
+      "Los manuales son más rápidos de crear",
+      "No hay diferencia, es solo nomenclatura",
+      "Los inteligentes son creados por myHotel analizando feedback de huéspedes con IA; los manuales los crea el usuario"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "medium",
     "category": "Desk",
     "explanation": "Los casos inteligentes (asistidos y automáticos) son creados por myHotel al analizar comentarios de huéspedes con IA. Los manuales los crea el usuario llenando los parámetros."
@@ -1123,12 +1123,12 @@
     "id": "q-desk-008",
     "question": "¿Qué vistas están disponibles para ver los casos en Desk?",
     "options": [
-      "Lista y Calendario",
-      "Kanban y Tabla",
       "Timeline y Mapa",
-      "Cards y Grid"
+      "Lista y Calendario",
+      "Cards y Grid",
+      "Kanban y Tabla"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "easy",
     "category": "Desk",
     "explanation": "Desk ofrece dos vistas para los casos: Kanban (columnas de Pendiente, En proceso y Resuelto) y Tabla (con columnas de detalle)."
@@ -1138,11 +1138,11 @@
     "question": "¿Qué es un caso \"estancado\" en Desk?",
     "options": [
       "Un caso que fue rechazado por el huésped",
-      "Un caso sin gestión durante un tiempo configurable por el hotel",
       "Un caso que lleva más de 30 días abierto",
+      "Un caso sin gestión durante un tiempo configurable por el hotel",
       "Un caso asignado a un usuario inactivo"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "hard",
     "category": "Desk",
     "explanation": "Un caso estancado es aquel que no ha tenido gestión en un tiempo X configurable por el hotel. Los casos también pueden estar \"vencidos\" cuando se cumple el plazo establecido."
@@ -1152,11 +1152,11 @@
     "question": "¿Cuántos motivos de descarte existen para un caso en Desk?",
     "options": [
       "4",
+      "10",
       "6",
-      "8",
-      "10"
+      "8"
     ],
-    "correct": 2,
+    "correct": 3,
     "difficulty": "hard",
     "category": "Desk",
     "explanation": "Los 8 motivos son: Caso duplicado, Problema no existe, No se entiende qué hacer, Ya fue resuelto, Ya se trabaja en la solución, No factible en corto plazo, No se ajusta a protocolos, Otro."
@@ -1165,12 +1165,12 @@
     "id": "q-online-012",
     "question": "¿Qué OTAs están disponibles para comparación en el módulo Online de myHotel?",
     "options": [
-      "Solo Booking y Tripadvisor",
-      "Tripadvisor, Booking, Expedia, Despegar, HolidayCheck, Atrápalo y Airbnb",
       "Booking, Expedia y Google",
-      "Tripadvisor, Booking, Expedia y Hotels.com"
+      "Tripadvisor, Booking, Expedia y Hotels.com",
+      "Solo Booking y Tripadvisor",
+      "Tripadvisor, Booking, Expedia, Despegar, HolidayCheck, Atrápalo y Airbnb"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "hard",
     "category": "Online",
     "explanation": "El módulo de Comparación de Online permite comparar en: IRO, Calificación, Reseñas, Cobertura, Tripadvisor, Booking, Expedia Group, Despegar Group, HolidayCheck, Atrápalo y Airbnb."
@@ -1179,12 +1179,12 @@
     "id": "q-online-013",
     "question": "¿Qué datos demográficos de las reseñas se pueden visualizar en Online?",
     "options": [
-      "Solo país del huésped",
-      "Tipo de huésped, idioma, continente, satisfacción y distribución por OTA",
+      "País y motivo de viaje",
       "Edad y género del huésped",
-      "País y motivo de viaje"
+      "Solo país del huésped",
+      "Tipo de huésped, idioma, continente, satisfacción y distribución por OTA"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "medium",
     "category": "Online",
     "explanation": "La sección Demografía muestra: mapa mundial de reseñas por país, y gráficos de torta con tipo de huésped, idioma, continentes, satisfacción y distribución por OTA."
@@ -1193,12 +1193,12 @@
     "id": "q-onsite-004",
     "question": "¿Cuál es el objetivo principal de OnSite comparado con FollowUp?",
     "options": [
-      "OnSite es más barato",
       "OnSite permite detectar y resolver problemas antes del checkout, evitando detractores post-estadía",
-      "OnSite genera más reseñas en OTAs",
-      "OnSite reemplaza al FollowUp"
+      "OnSite reemplaza al FollowUp",
+      "OnSite es más barato",
+      "OnSite genera más reseñas en OTAs"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "medium",
     "category": "OnSite",
     "explanation": "OnSite permite identificar problemas o requerimientos durante la estadía y eventualmente resolverlos antes del checkout, evitando posibles detractores después."
@@ -1207,12 +1207,12 @@
     "id": "q-onsite-005",
     "question": "¿Qué indicadores se pueden visualizar en la sección Tendencias de OnSite?",
     "options": [
-      "Solo NPS y Tasa de respuesta",
       "NPS, Ranking Tripadvisor, Tasas de correo/respuesta, Encuestas, Promotores/Pasivos/Detractores, Índice semántico y más",
+      "Solo NPS y Tasa de respuesta",
       "Solo calificación por áreas",
       "Solo evolución de reseñas Online"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "hard",
     "category": "OnSite",
     "explanation": "Tendencias permite visualizar hasta 15+ indicadores incluyendo NPS, Ranking Tripadvisor, tasas de correo y respuesta, cantidad de encuestas, promotores/pasivos/detractores, calificación total e índice semántico."
@@ -1221,12 +1221,12 @@
     "id": "q-plataforma-005",
     "question": "¿Qué benchmarks se incluyen en el Ranking IRO del módulo Online?",
     "options": [
-      "Solo el promedio de myHotel",
       "IRO promedio del top 10% de myHotel, del país del hotel y de myHotel general",
+      "Promedio de la cadena hotelera",
       "Solo los 5 hoteles del set competitivo",
-      "Promedio de la cadena hotelera"
+      "Solo el promedio de myHotel"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "hard",
     "category": "Online",
     "explanation": "El Ranking IRO incluye el set competitivo más tres benchmarks: IRO promedio del top 10% de myHotel, IRO promedio del país del hotel, e IRO promedio general de myHotel."
@@ -1235,12 +1235,12 @@
     "id": "q-semantico-007",
     "question": "¿Dónde se encuentra el módulo Semántico dentro de la navegación de Fidelity?",
     "options": [
-      "Es un módulo independiente en el sidebar",
-      "Está dentro del módulo Online",
+      "Es un submódulo de Desk",
       "Está dentro de las encuestas OnSite",
-      "Es un submódulo de Desk"
+      "Es un módulo independiente en el sidebar",
+      "Está dentro del módulo Online"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "medium",
     "category": "Semántico",
     "explanation": "El módulo Semántico se encuentra como subsección dentro del módulo Online en la estructura de navegación de Fidelity."
@@ -1249,12 +1249,12 @@
     "id": "q-traveltech-010",
     "question": "¿Qué es un CRM en el contexto hotelero?",
     "options": [
-      "Central Reservation Manager",
-      "Customer Relationship Management — gestión de la relación con el cliente",
       "Channel Rate Monitor",
-      "Complaint Resolution Module"
+      "Central Reservation Manager",
+      "Complaint Resolution Module",
+      "Customer Relationship Management — gestión de la relación con el cliente"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "easy",
     "category": "Travel Tech SaaS",
     "explanation": "CRM (Customer Relationship Management) gestiona la relación con huéspedes: perfiles, preferencias, historial, comunicaciones y programas de fidelización."
@@ -1263,12 +1263,12 @@
     "id": "q-concierge-007",
     "question": "¿Cuál es el propósito principal de la campaña PreStay en Concierge?",
     "options": [
+      "Realizar seguimiento de satisfacción",
       "Contactar huéspedes durante la estadía",
-      "Preparar al huésped antes de la llegada",
       "Enviar ofertas después del checkout",
-      "Realizar seguimiento de satisfacción"
+      "Preparar al huésped antes de la llegada"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "easy",
     "category": "Concierge",
     "explanation": "La campaña PreStay se envía antes de la llegada del huésped para prepararlo y brindar información útil sobre el hotel."
@@ -1277,12 +1277,12 @@
     "id": "q-concierge-008",
     "question": "¿Cuál es el propósito de la campaña Welcome en Concierge?",
     "options": [
-      "Preparar antes de la llegada",
-      "Dar la bienvenida y ofrecer servicios al llegar",
+      "Recopilar retroalimentación",
       "Hacer seguimiento post-salida",
-      "Recopilar retroalimentación"
+      "Dar la bienvenida y ofrecer servicios al llegar",
+      "Preparar antes de la llegada"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "easy",
     "category": "Concierge",
     "explanation": "La campaña Welcome se activa al check-in para saludar al huésped y ofrecerle servicios y recomendaciones personalizadas."
@@ -1291,10 +1291,10 @@
     "id": "q-concierge-009",
     "question": "¿Cuántos estilos de personalidad diferentes se pueden configurar para Concierge?",
     "options": [
-      "2",
+      "Ilimitados",
       "3",
-      "5",
-      "Ilimitados"
+      "2",
+      "5"
     ],
     "correct": 1,
     "difficulty": "medium",
@@ -1306,11 +1306,11 @@
     "question": "¿Qué información se puede importar a la base de conocimiento de Concierge?",
     "options": [
       "Solo texto plano",
-      "Solo imágenes",
       "PDFs y URLs",
-      "Solo videos"
+      "Solo videos",
+      "Solo imágenes"
     ],
-    "correct": 2,
+    "correct": 1,
     "difficulty": "medium",
     "category": "Concierge",
     "explanation": "La base de conocimiento de Concierge acepta importaciones desde PDFs y URLs para agregar contenido a las 16 áreas predefinidas."
@@ -1320,11 +1320,11 @@
     "question": "¿Cuál es el rol mínimo requerido para crear un código QR de Concierge?",
     "options": [
       "Gestor",
-      "Analista",
+      "Administrador",
       "Coordinador",
-      "Administrador"
+      "Analista"
     ],
-    "correct": 3,
+    "correct": 1,
     "difficulty": "hard",
     "category": "Concierge",
     "explanation": "Solo el rol Administrador puede crear y gestionar códigos QR para acceder a Concierge, asegurando control de acceso."
@@ -1333,12 +1333,12 @@
     "id": "q-concierge-012",
     "question": "¿Cómo se distribuyen las 16 áreas de la base de conocimiento de Concierge?",
     "options": [
+      "Solo por categorías internas",
       "Todas sobre servicios del hotel",
       "4 sobre hotel, 4 ciudad, 4 experiencias, 4 servicios",
-      "Solo por categorías internas",
       "No hay distribución específica"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "hard",
     "category": "Concierge",
     "explanation": "Las 16 áreas se distribuyen equilibradamente: servicios del hotel, información de la ciudad, experiencias locales y servicios adicionales."
@@ -1347,12 +1347,12 @@
     "id": "q-concierge-013",
     "question": "¿Qué canales de comunicación utiliza Concierge?",
     "options": [
-      "Email y SMS",
-      "WhatsApp únicamente",
       "WhatsApp y web",
-      "Todos los canales"
+      "Todos los canales",
+      "WhatsApp únicamente",
+      "Email y SMS"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "easy",
     "category": "Concierge",
     "explanation": "Concierge opera exclusivamente a través de WhatsApp como canal de comunicación con los huéspedes."
@@ -1361,12 +1361,12 @@
     "id": "q-concierge-014",
     "question": "¿Se puede desactivar la configuración de emojis en Concierge?",
     "options": [
-      "No, siempre están activos",
       "Sí, en la configuración de personalidad",
+      "Solo en modo prueba",
       "Solo para ciertos usuarios",
-      "Solo en modo prueba"
+      "No, siempre están activos"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "medium",
     "category": "Concierge",
     "explanation": "Los emojis se pueden habilitar o deshabilitar en la configuración de personalidad de Concierge según las preferencias del hotel."
@@ -1375,10 +1375,10 @@
     "id": "q-concierge-015",
     "question": "¿Cuál es la ventaja de usar el testing de Concierge antes de lanzarlo?",
     "options": [
-      "Ahorrar dinero",
+      "Reducir la base de conocimiento",
       "Verificar que funciona correctamente antes de exponerlo a huéspedes",
-      "Extender la licencia",
-      "Reducir la base de conocimiento"
+      "Ahorrar dinero",
+      "Extender la licencia"
     ],
     "correct": 1,
     "difficulty": "easy",
@@ -1389,12 +1389,12 @@
     "id": "q-concierge-016",
     "question": "¿Qué sucede si se edita la base de conocimiento de Concierge después del lanzamiento?",
     "options": [
-      "Los cambios son inmediatos",
-      "Se requiere re-lanzamiento",
       "Los cambios se aplican en 24 horas",
-      "Los cambios no se aplican"
+      "Se requiere re-lanzamiento",
+      "Los cambios no se aplican",
+      "Los cambios son inmediatos"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "medium",
     "category": "Concierge",
     "explanation": "Los cambios realizados en la base de conocimiento de Concierge son inmediatos y se reflejan en las respuestas del asistente."
@@ -1403,10 +1403,10 @@
     "id": "q-onsite-009",
     "question": "¿Cuál es el benchmark de Tasa de Respuesta considerado 'Aceptable' en OnSite?",
     "options": [
-      "30%",
+      "90%",
       "50%",
-      "70%",
-      "90%"
+      "30%",
+      "70%"
     ],
     "correct": 1,
     "difficulty": "hard",
@@ -1417,12 +1417,12 @@
     "id": "q-onsite-010",
     "question": "¿Cómo se calcula la Tasa de Contacto a Detractores en OnSite?",
     "options": [
-      "Detractores contactados / Total de detractores",
       "Detractores / Total de huéspedes",
-      "Contactos realizados / Total de llamadas",
-      "Casos resueltos / Total de detractores"
+      "Detractores contactados / Total de detractores",
+      "Casos resueltos / Total de detractores",
+      "Contactos realizados / Total de llamadas"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "hard",
     "category": "OnSite",
     "explanation": "La Tasa de Contacto a Detractores se calcula como: Detractores contactados dividido entre el Total de detractores identificados."
@@ -1431,12 +1431,12 @@
     "id": "q-onsite-011",
     "question": "¿Qué rating mínimo tiene una pregunta de área en OnSite?",
     "options": [
-      "1 estrella",
       "2 estrellas",
-      "0 estrellas",
-      "No tiene mínimo"
+      "1 estrella",
+      "No tiene mínimo",
+      "0 estrellas"
     ],
-    "correct": 2,
+    "correct": 3,
     "difficulty": "easy",
     "category": "OnSite",
     "explanation": "Las preguntas de área en OnSite pueden tener rating desde 0 estrellas (neutral) hasta 5 estrellas."
@@ -1445,12 +1445,12 @@
     "id": "q-onsite-012",
     "question": "¿Cuál es el objetivo principal de detectar problemas antes del checkout en OnSite?",
     "options": [
-      "Reducir costos operativos",
-      "Resolver problemas mientras el huésped está en el hotel",
       "Aumentar la población de datos",
-      "Cumplir requisitos regulatorios"
+      "Reducir costos operativos",
+      "Cumplir requisitos regulatorios",
+      "Resolver problemas mientras el huésped está en el hotel"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "easy",
     "category": "OnSite",
     "explanation": "Detectar problemas antes del checkout permite que el hotel pueda resolverlos inmediatamente mientras el huésped aún está presente."
@@ -1459,12 +1459,12 @@
     "id": "q-onsite-013",
     "question": "¿Se puede personalizar el orden de las preguntas en una encuesta OnSite?",
     "options": [
-      "No, siempre es el mismo",
       "Sí, por el rol Administrador",
+      "Solo en modo prueba",
       "Sí, por cualquier usuario",
-      "Solo en modo prueba"
+      "No, siempre es el mismo"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "medium",
     "category": "OnSite",
     "explanation": "El orden de las preguntas en encuestas OnSite puede personalizarse, pero solo el rol Administrador tiene este permiso."
@@ -1473,12 +1473,12 @@
     "id": "q-onsite-014",
     "question": "¿Qué información captura la 'Tasa de Datos Válidos' en OnSite?",
     "options": [
+      "Reservas confirmadas",
       "Huéspedes que respondieron",
       "Encuestas con datos completos y válidos",
-      "Huéspedes registrados en el sistema",
-      "Reservas confirmadas"
+      "Huéspedes registrados en el sistema"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "medium",
     "category": "OnSite",
     "explanation": "La Tasa de Datos Válidos mide el porcentaje de encuestas con respuestas completas y datos suficientemente válidos para análisis."
@@ -1487,12 +1487,12 @@
     "id": "q-onsite-015",
     "question": "¿Cuál es el NPS benchmark considerado 'Aceptable' en OnSite?",
     "options": [
-      "30",
+      "90",
       "50",
-      "70",
-      "90"
+      "30",
+      "70"
     ],
-    "correct": 2,
+    "correct": 3,
     "difficulty": "medium",
     "category": "OnSite",
     "explanation": "El NPS benchmark 'Aceptable' en OnSite es 70 (sobresaliente: 80 o superior)."
@@ -1501,12 +1501,12 @@
     "id": "q-onsite-016",
     "question": "¿Se pueden crear encuestas OnSite públicas con QR/URL?",
     "options": [
+      "Sí, como las FollowUp",
       "No, siempre son privadas",
       "Sí, pero requiere permisos especiales",
-      "Sí, como las FollowUp",
       "Solo para huéspedes registrados"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "hard",
     "category": "OnSite",
     "explanation": "Las encuestas OnSite pueden ser públicas con QR o URL si se configuran adecuadamente, permitiendo a visitantes sin reserva responder."
@@ -1515,10 +1515,10 @@
     "id": "q-followup-010",
     "question": "¿Cuál es el benchmark de Tasa de Respuesta 'Aceptable' en FollowUp?",
     "options": [
-      "15%",
+      "45%",
       "25%",
       "35%",
-      "45%"
+      "15%"
     ],
     "correct": 2,
     "difficulty": "hard",
@@ -1529,12 +1529,12 @@
     "id": "q-followup-011",
     "question": "¿Por cuál canal es más común recibir respuestas de FollowUp?",
     "options": [
-      "Email",
       "WhatsApp",
-      "Enlace público",
-      "SMS"
+      "SMS",
+      "Email",
+      "Enlace público"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "medium",
     "category": "FollowUp",
     "explanation": "Email es el canal más común para enviar invitaciones FollowUp, aunque WhatsApp y enlaces públicos también están disponibles."
@@ -1543,12 +1543,12 @@
     "id": "q-followup-012",
     "question": "¿Cuánto tiempo después del checkout se envía una encuesta FollowUp típicamente?",
     "options": [
-      "Inmediatamente",
+      "30 días",
       "24 horas",
-      "2-7 días",
-      "30 días"
+      "Inmediatamente",
+      "2-7 días"
     ],
-    "correct": 2,
+    "correct": 3,
     "difficulty": "easy",
     "category": "FollowUp",
     "explanation": "Las encuestas FollowUp se envían típicamente 2-7 días después del checkout para permitir reflexión sobre la experiencia."
@@ -1558,9 +1558,9 @@
     "question": "¿Se puede personalizar el contenido de la invitación de FollowUp?",
     "options": [
       "No, es fija",
-      "Sí, incluye nombre del huésped",
+      "Solo emojis pueden cambiar",
       "Sí, completamente personalizable",
-      "Solo emojis pueden cambiar"
+      "Sí, incluye nombre del huésped"
     ],
     "correct": 2,
     "difficulty": "medium",
@@ -1571,12 +1571,12 @@
     "id": "q-followup-014",
     "question": "¿Qué ocurre con los comentarios FollowUp menores a 40 caracteres?",
     "options": [
-      "Se eliminan",
       "No se analizan por Semántico",
+      "Se eliminan",
       "Se analizan igual",
       "Se solicita ampliación al huésped"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "hard",
     "category": "FollowUp",
     "explanation": "Los comentarios FollowUp con menos de 40 caracteres no cumplen el mínimo para análisis semántico."
@@ -1585,12 +1585,12 @@
     "id": "q-followup-015",
     "question": "¿Cuál es la diferencia principal entre OnSite y FollowUp?",
     "options": [
-      "El tipo de preguntas",
       "El momento de envío respecto al checkout",
       "La cantidad de opciones",
-      "El número de huéspedes"
+      "El número de huéspedes",
+      "El tipo de preguntas"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "easy",
     "category": "FollowUp",
     "explanation": "OnSite se envía durante la estadía (antes del checkout), mientras que FollowUp se envía después del checkout."
@@ -1599,12 +1599,12 @@
     "id": "q-followup-016",
     "question": "¿Se pueden incluir ofertas o promociones en las encuestas FollowUp?",
     "options": [
-      "No, está prohibido",
-      "Sí, como incentivo para responder",
       "Solo códigos de descuento",
-      "Solo en hoteles 5 estrellas"
+      "Solo en hoteles 5 estrellas",
+      "Sí, como incentivo para responder",
+      "No, está prohibido"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "medium",
     "category": "FollowUp",
     "explanation": "Las encuestas FollowUp pueden incluir ofertas y promociones como incentivo para incrementar la tasa de respuesta."
@@ -1613,12 +1613,12 @@
     "id": "q-followup-017",
     "question": "¿Cómo se calcula la Tasa de Respuesta en FollowUp a nivel de canales?",
     "options": [
-      "Respuestas totales / Invitaciones totales",
       "Respuestas por canal / Invitaciones por canal",
       "Respuestas / Huéspedes únicos",
+      "Respuestas totales / Invitaciones totales",
       "Respuestas / Reservas"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "hard",
     "category": "FollowUp",
     "explanation": "La Tasa de Respuesta se calcula por canal: respuestas recibidas por cada canal dividido entre invitaciones enviadas por ese canal."
@@ -1627,12 +1627,12 @@
     "id": "q-online-014",
     "question": "¿Cuántas OTAs diferentes se pueden integrar en el módulo Online?",
     "options": [
+      "Sin límite",
       "2",
       "4",
-      "7+",
-      "Sin límite"
+      "7+"
     ],
-    "correct": 2,
+    "correct": 3,
     "difficulty": "medium",
     "category": "Online",
     "explanation": "El módulo Online permite integración con 7 o más OTAs: Tripadvisor, Booking, Google, Expedia, Despegar, HolidayCheck y Atrápalo."
@@ -1641,12 +1641,12 @@
     "id": "q-online-015",
     "question": "¿Qué es el módulo 'Comparador' en Online?",
     "options": [
-      "Herramienta para comparar precios",
       "Comparación de desempeño con competencia",
-      "Análisis de datos de huéspedes",
-      "Sistema de calificación"
+      "Sistema de calificación",
+      "Herramienta para comparar precios",
+      "Análisis de datos de huéspedes"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "easy",
     "category": "Online",
     "explanation": "El Comparador permite analizar el desempeño del hotel comparado con competencia en distintas OTAs."
@@ -1655,12 +1655,12 @@
     "id": "q-online-016",
     "question": "¿Cuál es el máximo de OTAs que se pueden incluir en un Set Competitivo de Online?",
     "options": [
-      "3",
-      "5",
+      "15",
       "10",
-      "15"
+      "5",
+      "3"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "easy",
     "category": "Online",
     "explanation": "El Set Competitivo permite comparación con hasta 5 propiedades competidoras seleccionadas por el hotel."
@@ -1669,12 +1669,12 @@
     "id": "q-online-017",
     "question": "¿Qué información proporciona el módulo Demografía en Online?",
     "options": [
-      "Datos de huéspedes",
-      "Análisis de origen y perfil de reviewers",
+      "Información de competencia",
       "Historial de reservas",
-      "Información de competencia"
+      "Datos de huéspedes",
+      "Análisis de origen y perfil de reviewers"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "medium",
     "category": "Online",
     "explanation": "Demografía analiza el perfil de quiénes escriben reviews: origen geográfico, tipo de viajero, frecuencia, etc."
@@ -1683,12 +1683,12 @@
     "id": "q-online-018",
     "question": "¿De cuántas OTAs se pueden descargar reviews directamente sin integración?",
     "options": [
-      "1",
-      "2",
       "3",
-      "Ninguna, se requiere integración"
+      "1",
+      "Ninguna, se requiere integración",
+      "2"
     ],
-    "correct": 3,
+    "correct": 2,
     "difficulty": "hard",
     "category": "Online",
     "explanation": "Todas las OTAs requieren integración completa para acceder a sus reviews en el módulo Online de myHotel."
@@ -1698,11 +1698,11 @@
     "question": "¿Qué indica un review en estado 'No admite respuesta'?",
     "options": [
       "Fue respondido",
-      "La OTA no permite responder esa reseña",
+      "Fue eliminado",
       "Está pendiente aprobación",
-      "Fue eliminado"
+      "La OTA no permite responder esa reseña"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "medium",
     "category": "Online",
     "explanation": "El estado 'No admite respuesta' significa que la OTA (por sus políticas) no permite que se responda esa reseña específica."
@@ -1711,12 +1711,12 @@
     "id": "q-online-020",
     "question": "¿Cuál es el peso de la Cobertura (respuesta a reviews) en el cálculo del IRO?",
     "options": [
-      "20%",
       "30%",
+      "20%",
       "40%",
       "50%"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "medium",
     "category": "Online",
     "explanation": "El IRO ponddera: Calificación 50%, Cobertura 30%, Reseñas 20%."
@@ -1725,12 +1725,12 @@
     "id": "q-online-021",
     "question": "¿Qué OTAs soportan respuesta automática desde Fidelity?",
     "options": [
-      "Todas las integradas",
       "Solo Booking y Google",
-      "Tripadvisor, Booking, Google y Expedia",
-      "Solo Google"
+      "Solo Google",
+      "Todas las integradas",
+      "Tripadvisor, Booking, Google y Expedia"
     ],
-    "correct": 2,
+    "correct": 3,
     "difficulty": "hard",
     "category": "Online",
     "explanation": "Las 4 OTAs con respuesta directa desde Fidelity son Tripadvisor, Booking, Google y Expedia (con integración completada)."
@@ -1739,12 +1739,12 @@
     "id": "q-online-022",
     "question": "¿Cuál es el mínimo de caracteres para que un review Online sea analizado por Semántico?",
     "options": [
-      "25 caracteres",
-      "40 caracteres",
       "75 caracteres",
+      "40 caracteres",
+      "25 caracteres",
       "100 caracteres"
     ],
-    "correct": 2,
+    "correct": 0,
     "difficulty": "hard",
     "category": "Online",
     "explanation": "Los comentarios Online requieren mínimo 75 caracteres para ser incluidos en el análisis semántico por Semántico."
@@ -1753,12 +1753,12 @@
     "id": "q-online-023",
     "question": "¿Se pueden responder reviews de Airbnb desde Fidelity Online?",
     "options": [
-      "Sí, es una OTA integrada",
-      "No, se responden desde Airbnb directamente",
       "Solo en modo prueba",
-      "Solo comentarios positivos"
+      "Solo comentarios positivos",
+      "Sí, es una OTA integrada",
+      "No, se responden desde Airbnb directamente"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "medium",
     "category": "Online",
     "explanation": "Airbnb no está integrado en el módulo Online de myHotel, las respuestas deben hacerse directamente en la plataforma de Airbnb."
@@ -1767,12 +1767,12 @@
     "id": "q-semántico-008",
     "question": "¿Qué mide el 'Índice de Perfección' en Semántico?",
     "options": [
+      "Tasa de respuesta",
       "Cantidad de comentarios positivos",
       "Porcentaje de comentarios perfectos (100% positivos)",
-      "Promedio de calificación",
-      "Tasa de respuesta"
+      "Promedio de calificación"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "medium",
     "category": "Semántico",
     "explanation": "El Índice de Perfección mide el porcentaje de comentarios donde todos los temas mencionados son positivos."
@@ -1781,12 +1781,12 @@
     "id": "q-semántico-009",
     "question": "¿Cuál es el Índice Semántico benchmark considerado 'Aceptable'?",
     "options": [
-      "79%",
-      "88%",
+      "100%",
       "93%",
-      "100%"
+      "79%",
+      "88%"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "hard",
     "category": "Semántico",
     "explanation": "Benchmarks en Semántico: Promedio 79%, Aceptable 88%, Sobresaliente 93%."
@@ -1796,11 +1796,11 @@
     "question": "¿Cuántos temas diferentes puede identificar Semántico en un comentario?",
     "options": [
       "1",
-      "3",
       "Ilimitados",
+      "3",
       "Hasta 10"
     ],
-    "correct": 2,
+    "correct": 1,
     "difficulty": "hard",
     "category": "Semántico",
     "explanation": "Semántico puede identificar múltiples temas en un solo comentario (sin límite específico)."
@@ -1809,12 +1809,12 @@
     "id": "q-semántico-011",
     "question": "¿Qué son las 'Menciones' en el contexto de Semántico?",
     "options": [
-      "Comentarios en redes sociales",
-      "Referencias a temas específicos dentro de los comentarios",
+      "Calificaciones otorgadas",
       "Respuestas a reviews",
-      "Calificaciones otorgadas"
+      "Referencias a temas específicos dentro de los comentarios",
+      "Comentarios en redes sociales"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "medium",
     "category": "Semántico",
     "explanation": "Las menciones son referencias a temas específicos encontradas dentro de los comentarios (ej: 'personal amable', 'desayuno excelente')."
@@ -1837,10 +1837,10 @@
     "id": "q-semántico-013",
     "question": "¿Qué información proporciona el 'Ranking de Áreas' en Semántico?",
     "options": [
-      "Zonas del hotel con más menciones positivas",
-      "Orden de importancia de todas las áreas",
       "Lugares más visitados por huéspedes",
-      "Áreas con mantenimiento pendiente"
+      "Orden de importancia de todas las áreas",
+      "Áreas con mantenimiento pendiente",
+      "Zonas del hotel con más menciones positivas"
     ],
     "correct": 1,
     "difficulty": "easy",
@@ -1852,9 +1852,9 @@
     "question": "¿Cuál es el Índice Semántico benchmark considerado 'Sobresaliente'?",
     "options": [
       "79%",
-      "88%",
+      "95%",
       "93%",
-      "95%"
+      "88%"
     ],
     "correct": 2,
     "difficulty": "medium",
@@ -1865,10 +1865,10 @@
     "id": "q-semántico-015",
     "question": "¿Se pueden crear alertas basadas en menciones negativas en Semántico?",
     "options": [
-      "No, Semántico es solo análisis",
-      "Sí, se puede configurar en el módulo de alertas",
       "Solo para temas críticos",
-      "Solo en horario de oficina"
+      "Sí, se puede configurar en el módulo de alertas",
+      "Solo en horario de oficina",
+      "No, Semántico es solo análisis"
     ],
     "correct": 1,
     "difficulty": "hard",
@@ -1881,8 +1881,8 @@
     "options": [
       "El origen (survey vs manual)",
       "El sistema asiste en casos inteligentes",
-      "El tiempo de resolución",
-      "La prioridad asignada"
+      "La prioridad asignada",
+      "El tiempo de resolución"
     ],
     "correct": 1,
     "difficulty": "medium",
@@ -1893,12 +1893,12 @@
     "id": "q-desk-012",
     "question": "¿Qué diferencia hay entre un caso 'vencido' y uno 'estancado' en Desk?",
     "options": [
-      "No hay diferencia, son sinónimos",
       "Vencido = se cumplió el plazo; Estancado = sin gestión por tiempo configurable",
+      "No hay diferencia, son sinónimos",
       "Vencido = descartado; Estancado = en proceso",
       "Vencido es automático; Estancado es manual"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "hard",
     "category": "Desk",
     "explanation": "Un caso vencido es aquel donde se cumplió el plazo establecido para su resolución. Un caso estancado es aquel que no ha tenido gestión durante un tiempo configurable por el hotel. Ambos estados indican problemas de gestión pero por razones distintas."
@@ -1907,12 +1907,12 @@
     "id": "q-desk-013",
     "question": "¿Qué tipo de incidente se crea cuando un huésped solicita una recomendación en Desk?",
     "options": [
-      "Queja",
       "Solicitud",
+      "Queja",
       "Sugerencia",
       "Reclamo"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "easy",
     "category": "Desk",
     "explanation": "Una solicitud es un incidente cuando el huésped pide algo específico o información (ej: recomendación de restaurante)."
@@ -1921,10 +1921,10 @@
     "id": "q-desk-014",
     "question": "¿Quién define el tiempo tras el cual un caso se marca como 'Estancado' en Desk?",
     "options": [
-      "myHotel lo fija en 30 días para todos",
+      "Se calcula automáticamente según la prioridad",
       "Cada hotel lo configura según sus necesidades",
-      "El usuario que crea el caso elige el plazo",
-      "Se calcula automáticamente según la prioridad"
+      "myHotel lo fija en 30 días para todos",
+      "El usuario que crea el caso elige el plazo"
     ],
     "correct": 1,
     "difficulty": "hard",
@@ -1935,12 +1935,12 @@
     "id": "q-desk-015",
     "question": "¿Se puede compartir un caso de Desk por WhatsApp?",
     "options": [
-      "No, solo por email",
       "Sí, se genera un enlace para WhatsApp",
+      "No se puede compartir",
       "Solo a través de la app",
-      "No se puede compartir"
+      "No, solo por email"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "medium",
     "category": "Desk",
     "explanation": "Los casos en Desk pueden compartirse mediante WhatsApp, email o un enlace público para colaboración."
@@ -1949,12 +1949,12 @@
     "id": "q-desk-016",
     "question": "¿Cuál es la prioridad por defecto asignada a un nuevo caso en Desk?",
     "options": [
+      "Depende del tipo",
       "Alto",
       "Medio",
-      "Bajo",
-      "Depende del tipo"
+      "Bajo"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "easy",
     "category": "Desk",
     "explanation": "Los nuevos casos en Desk se crean con prioridad 'Medio' por defecto, pero pueden ajustarse según necesidad."
@@ -1965,10 +1965,10 @@
     "options": [
       "Solo Tabla",
       "Solo Kanban",
-      "Kanban y Tabla",
-      "5 vistas diferentes"
+      "5 vistas diferentes",
+      "Kanban y Tabla"
     ],
-    "correct": 2,
+    "correct": 3,
     "difficulty": "easy",
     "category": "Desk",
     "explanation": "Los casos en Desk se pueden visualizar en dos vistas: Kanban (por etapas) y Tabla (listado detallado)."
@@ -1977,10 +1977,10 @@
     "id": "q-desk-018",
     "question": "¿Qué información se puede extraer de un caso expirado en Desk?",
     "options": [
-      "Nada, se elimina",
+      "Solo comentarios",
       "Solo la prioridad",
       "Todos los datos del caso para análisis",
-      "Solo comentarios"
+      "Nada, se elimina"
     ],
     "correct": 2,
     "difficulty": "hard",
@@ -1993,8 +1993,8 @@
     "options": [
       "Pérdida de datos históricos",
       "Desincronización de información de huéspedes",
-      "Problemas de licencia",
-      "Limitación de usuarios"
+      "Limitación de usuarios",
+      "Problemas de licencia"
     ],
     "correct": 1,
     "difficulty": "hard",
@@ -2006,11 +2006,11 @@
     "question": "¿A quién se debe contactar para cambios o configuración de integración PMS?",
     "options": [
       "Al hotel directamente",
+      "Al soporte técnico general",
       "A integraciones@myhotel.cl",
-      "Al proveedor del PMS",
-      "Al soporte técnico general"
+      "Al proveedor del PMS"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "easy",
     "category": "Integraciones",
     "explanation": "Para cambios o configuración de integraciones PMS, se debe contactar a integraciones@myhotel.cl."
@@ -2019,12 +2019,12 @@
     "id": "q-integraciones-006",
     "question": "¿Qué información del PMS es crítica sincronizar con myHotel?",
     "options": [
-      "Solo nombres de huéspedes",
-      "Datos de huéspedes: nombre, email, teléfono, fechas",
       "Solo fechas de reserva",
-      "Información de pagos"
+      "Información de pagos",
+      "Solo nombres de huéspedes",
+      "Datos de huéspedes: nombre, email, teléfono, fechas"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "medium",
     "category": "Integraciones",
     "explanation": "La información crítica incluye: nombre del huésped, email, teléfono, fechas de llegada/salida, número de reserva."
@@ -2033,8 +2033,8 @@
     "id": "q-integraciones-007",
     "question": "¿Qué sucede cuando se integra Google My Business con myHotel?",
     "options": [
-      "Se sincronizan reviews de Google",
       "Se importan horarios y contacto",
+      "Se sincronizan reviews de Google",
       "Se gestiona información del negocio",
       "Todo lo anterior"
     ],
@@ -2047,12 +2047,12 @@
     "id": "q-integraciones-008",
     "question": "¿Cuál es el propósito de integrar Booking con myHotel?",
     "options": [
+      "Gestionar pagos",
       "Aumentar reservas",
       "Sincronizar y responder reviews de Booking",
-      "Cambiar precios",
-      "Gestionar pagos"
+      "Cambiar precios"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "easy",
     "category": "Integraciones",
     "explanation": "La integración con Booking permite sincronizar reviews y responder directamente desde myHotel."
@@ -2061,12 +2061,12 @@
     "id": "q-integraciones-009",
     "question": "¿Se puede usar autenticación Facebook para integrar redes sociales en myHotel?",
     "options": [
+      "Solo en versión premium",
       "No, no es compatible",
       "Sí, como opción de login",
-      "Solo para reportes",
-      "Solo en versión premium"
+      "Solo para reportes"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "medium",
     "category": "Integraciones",
     "explanation": "myHotel soporta autenticación Facebook como opción de login para usuarios y para algunas integraciones sociales."
@@ -2090,11 +2090,11 @@
     "question": "¿Cómo se agrupan los reportes en Corporativo?",
     "options": [
       "Por fecha",
-      "Por módulo (Online, OnSite, etc.)",
       "Por gerente",
+      "Por módulo (Online, OnSite, etc.)",
       "Aleatoriamente"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "medium",
     "category": "Corporativo",
     "explanation": "En Corporativo, el desempeño se agrupa y compara por producto/módulo (Online, OnSite, Semántico, etc.)."
@@ -2104,9 +2104,9 @@
     "question": "¿Cuántas propiedades pueden visualizarse simultáneamente en Corporativo?",
     "options": [
       "5",
-      "10",
+      "Máximo 50",
       "Sin límite",
-      "Máximo 50"
+      "10"
     ],
     "correct": 2,
     "difficulty": "easy",
@@ -2117,12 +2117,12 @@
     "id": "q-corporativo-006",
     "question": "¿Qué tipo de comparación permite Corporativo entre propiedades?",
     "options": [
+      "Solo ocupación",
       "Solo ranking",
-      "Métricas, benchmarks y análisis comparativo",
       "Solo costos",
-      "Solo ocupación"
+      "Métricas, benchmarks y análisis comparativo"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "hard",
     "category": "Corporativo",
     "explanation": "Corporativo permite comparar métricas clave (NPS, IRO, Semántico), benchmarks y análisis entre propiedades."
@@ -2133,10 +2133,10 @@
     "options": [
       "Coordinador",
       "Analista",
-      "Administrador",
-      "Consultor"
+      "Consultor",
+      "Administrador"
     ],
-    "correct": 2,
+    "correct": 3,
     "difficulty": "easy",
     "category": "Fidelity General",
     "explanation": "El rol Administrador tiene los mayores permisos en Fidelity para configurar, gestionar y acceder a todas las funcionalidades."
@@ -2145,10 +2145,10 @@
     "id": "q-fidelitygeneral-006",
     "question": "¿Qué puede hacer un usuario con rol 'Financiero' en Fidelity?",
     "options": [
-      "Gestionar todos los módulos",
-      "Acceder a reportes y análisis financiero",
       "Configurar encuestas",
-      "Responder reviews"
+      "Acceder a reportes y análisis financiero",
+      "Responder reviews",
+      "Gestionar todos los módulos"
     ],
     "correct": 1,
     "difficulty": "medium",
@@ -2159,12 +2159,12 @@
     "id": "q-fidelitygeneral-007",
     "question": "¿Cómo se distribuyen los 6 tipos de usuario en Fidelity?",
     "options": [
-      "Todos tienen permisos iguales",
-      "Según responsabilidad: Admin, Coordinador, Analista, Gestor, Consultor, Financiero",
+      "Depende del hotel",
       "Solo 2 niveles",
-      "Depende del hotel"
+      "Todos tienen permisos iguales",
+      "Según responsabilidad: Admin, Coordinador, Analista, Gestor, Consultor, Financiero"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "hard",
     "category": "Fidelity General",
     "explanation": "Los 6 roles en Fidelity (Admin, Coordinador, Analista, Gestor, Consultor, Financiero) tienen diferentes niveles de acceso según responsabilidades."
@@ -2173,12 +2173,12 @@
     "id": "q-fidelitygeneral-008",
     "question": "¿Dónde se puede acceder a la documentación API de Fidelity?",
     "options": [
-      "Solo por email",
       "En el apartado 'API Documentation' de Fidelity",
       "No está disponible",
-      "Solo para desarrolladores"
+      "Solo para desarrolladores",
+      "Solo por email"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "easy",
     "category": "Fidelity General",
     "explanation": "La documentación API de myHotel Fidelity está disponible en la sección 'API Documentation' dentro de la plataforma."
@@ -2187,12 +2187,12 @@
     "id": "q-fidelitygeneral-009",
     "question": "¿Cuál es el propósito del módulo 'PreStay' en Fidelity?",
     "options": [
-      "Encuestas durante estadía",
       "Órdenes y check-in web antes de llegada",
+      "Encuestas durante estadía",
       "Seguimiento post-salida",
       "Gestión de casos"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "medium",
     "category": "Fidelity General",
     "explanation": "PreStay permite que los huéspedes realicen pre-registro y check-in web, además de realizar órdenes antes de su llegada."
@@ -2201,12 +2201,12 @@
     "id": "q-fidelitygeneral-010",
     "question": "¿Se puede usar una 'whitelist de emails' para restringir acceso a Fidelity?",
     "options": [
+      "Solo en modo beta",
       "No",
       "Sí, como medida de seguridad",
-      "Solo en modo beta",
       "Solo para rol Administrador"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "hard",
     "category": "Fidelity General",
     "explanation": "Una whitelist de emails puede configurarse para restringir qué direcciones email pueden acceder a Fidelity."
@@ -2216,11 +2216,11 @@
     "question": "¿Cómo se restablece la contraseña en Fidelity?",
     "options": [
       "Solo por administrador",
-      "Por email con enlace de recuperación",
       "Por teléfono",
+      "Por email con enlace de recuperación",
       "No se puede cambiar"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "easy",
     "category": "Fidelity General",
     "explanation": "En Fidelity, el restablecimiento de contraseña se realiza mediante enlace enviado al email del usuario."
@@ -2229,12 +2229,12 @@
     "id": "q-fidelitygeneral-012",
     "question": "¿Dónde se pueden configurar alertas y reportes en Fidelity?",
     "options": [
-      "Solo en cada módulo",
-      "En un panel centralizado de alertas/reportes",
+      "Por email solamente",
       "No se pueden configurar",
-      "Por email solamente"
+      "Solo en cada módulo",
+      "En un panel centralizado de alertas/reportes"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "medium",
     "category": "Fidelity General",
     "explanation": "Fidelity cuenta con un panel centralizado donde se configuran alertas, reportes automáticos y notificaciones."
@@ -2243,12 +2243,12 @@
     "id": "q-hotelknowledge-015",
     "question": "¿Cuál es la fórmula del RevPAR?",
     "options": [
-      "ADR × Occupancy",
-      "ADR × Occupancy / 100",
       "Habitaciones disponibles × ADR",
-      "Income total / Noches"
+      "Income total / Noches",
+      "ADR × Occupancy / 100",
+      "ADR × Occupancy"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "medium",
     "category": "Hotel Knowledge",
     "explanation": "RevPAR = ADR × Occupancy % / 100. Es una métrica clave que combina tarifa y ocupación."
@@ -2258,9 +2258,9 @@
     "question": "¿Qué significa ADR en gestión hotelera?",
     "options": [
       "Tarifa Promedio Diaria (Average Daily Rate)",
-      "Ingresos Ajustados por Día",
+      "Análisis Dinámico de Rates",
       "Tasa de Admisión Diaria",
-      "Análisis Dinámico de Rates"
+      "Ingresos Ajustados por Día"
     ],
     "correct": 0,
     "difficulty": "easy",
@@ -2271,10 +2271,10 @@
     "id": "q-hotelknowledge-017",
     "question": "¿Cuál es la diferencia entre un 'walk-in' y una reserva regular?",
     "options": [
-      "La tarifa aplicada",
       "Tiempo de llegada",
+      "Solo el origen",
       "Walk-in llega sin reserva previa",
-      "Solo el origen"
+      "La tarifa aplicada"
     ],
     "correct": 2,
     "difficulty": "easy",
@@ -2285,12 +2285,12 @@
     "id": "q-hotelknowledge-018",
     "question": "¿Cuál es el impacto principal del 'check-in móvil' en la experiencia del huésped?",
     "options": [
-      "Aumenta el tiempo de check-in",
-      "Reduce tiempos de check-in y mejora la experiencia",
       "No tiene impacto significativo",
-      "Solo funciona para VIP"
+      "Solo funciona para VIP",
+      "Reduce tiempos de check-in y mejora la experiencia",
+      "Aumenta el tiempo de check-in"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "medium",
     "category": "Hotel Knowledge",
     "explanation": "El check-in móvil reduce significativamente los tiempos de espera en recepción y mejora la experiencia del huésped."
@@ -2327,9 +2327,9 @@
     "id": "q-hotelknowledge-021",
     "question": "¿Cuál es la diferencia entre 'upselling' y 'cross-selling'?",
     "options": [
-      "Mismo concepto",
-      "Upsell es habitación mejor; cross-sell son servicios adicionales",
       "Opuesto al otro",
+      "Upsell es habitación mejor; cross-sell son servicios adicionales",
+      "Mismo concepto",
       "Depende del hotel"
     ],
     "correct": 1,
@@ -2341,12 +2341,12 @@
     "id": "q-hotelknowledge-022",
     "question": "¿Qué ocurre durante el 'night audit' en un hotel?",
     "options": [
+      "Inspección de habitaciones",
       "Cierre de cuentas",
       "Auditoría contable y conciliación de día",
-      "Inspección de habitaciones",
       "Cambio de turno"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "medium",
     "category": "Hotel Knowledge",
     "explanation": "Night audit es el proceso de conciliación contable realizado al final del día para validar ingresos y movimientos."
@@ -2357,8 +2357,8 @@
     "options": [
       "Igualdad de tarifas en todos los canales",
       "Tarifa base del hotel",
-      "Estrategia de ocupación",
-      "Descuentos corporativos"
+      "Descuentos corporativos",
+      "Estrategia de ocupación"
     ],
     "correct": 0,
     "difficulty": "medium",
@@ -2370,11 +2370,11 @@
     "question": "¿Cuál es la comisión típica pagada a OTAs en comparación con booking directo?",
     "options": [
       "5-10%",
-      "15-25%",
       "30-40%",
-      "50%+"
+      "50%+",
+      "15-25%"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "medium",
     "category": "Hotel Knowledge",
     "explanation": "Las OTAs típicamente cobran comisiones de 15-25% por reserva, vs booking directo que no lleva comisión."
@@ -2383,10 +2383,10 @@
     "id": "q-hotelknowledge-025",
     "question": "¿Qué son los 'metasearch engines' en el contexto hotelero?",
     "options": [
-      "Motores de búsqueda de hoteles",
+      "OTAs agregadas",
       "Plataformas que comparan precios de hoteles",
       "Sistemas de reserva internos",
-      "OTAs agregadas"
+      "Motores de búsqueda de hoteles"
     ],
     "correct": 1,
     "difficulty": "hard",
@@ -2398,11 +2398,11 @@
     "question": "¿Para qué se utiliza un POS en hotelería?",
     "options": [
       "Gestión de huéspedes",
-      "Registro de ventas de F&B y extras",
       "Administración de cuartos",
-      "Contabilidad general"
+      "Contabilidad general",
+      "Registro de ventas de F&B y extras"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "easy",
     "category": "Hotel Knowledge",
     "explanation": "POS (Point of Sale) registra ventas de alimentos, bebidas, servicios adicionales e integra con cuenta de huésped."
@@ -2411,12 +2411,12 @@
     "id": "q-hotelknowledge-027",
     "question": "¿Qué es un 'turndown service' en hoteles?",
     "options": [
-      "Cambio de sábanas",
       "Preparación de habitación para la noche",
-      "Servicio de desayuno",
-      "Limpieza matinal"
+      "Cambio de sábanas",
+      "Limpieza matinal",
+      "Servicio de desayuno"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "easy",
     "category": "Hotel Knowledge",
     "explanation": "Turndown service es cuando se prepara la habitación para la noche (cierra cortinas, prepara cama, deja amenities)."
@@ -2425,12 +2425,12 @@
     "id": "q-hotelknowledge-028",
     "question": "¿Cuántos tipos básicos de habitaciones existen en un hotel promedio?",
     "options": [
-      "1",
-      "2",
+      "Varía mucho",
       "4",
-      "Varía mucho"
+      "1",
+      "2"
     ],
-    "correct": 3,
+    "correct": 0,
     "difficulty": "easy",
     "category": "Hotel Knowledge",
     "explanation": "Los tipos varían, pero generalmente incluyen: Standard, Superior, Suite, Penthouse (en hoteles 4-5 estrellas)."
@@ -2439,12 +2439,12 @@
     "id": "q-hotelknowledge-029",
     "question": "¿Qué significa 'EP' en planes de alojamiento?",
     "options": [
-      "Paquete Ejecutivo",
       "European Plan (sin comidas)",
+      "Paquete Ejecutivo",
       "Plan de Emergencia",
       "Extra Premium"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "hard",
     "category": "Hotel Knowledge",
     "explanation": "EP (European Plan) es solo alojamiento sin comidas incluidas. CP, MAP y AP incluyen desayuno y/o comidas."
@@ -2453,12 +2453,12 @@
     "id": "q-hotelknowledge-030",
     "question": "¿Qué plan de alojamiento incluye desayuno, almuerzo y cena?",
     "options": [
-      "CP",
-      "MAP",
       "AP",
-      "AI"
+      "AI",
+      "CP",
+      "MAP"
     ],
-    "correct": 2,
+    "correct": 0,
     "difficulty": "medium",
     "category": "Hotel Knowledge",
     "explanation": "AP (American Plan) incluye alojamiento, desayuno, almuerzo y cena. AI (All Inclusive) añade bebidas y actividades."
@@ -2468,11 +2468,11 @@
     "question": "¿Cuál es el propósito principal de los loyalty programs en hoteles?",
     "options": [
       "Reducir costos",
-      "Retener huéspedes frecuentes y aumentar ingresos",
       "Mejorar rating",
+      "Retener huéspedes frecuentes y aumentar ingresos",
       "Cumplir regulaciones"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "medium",
     "category": "Hotel Knowledge",
     "explanation": "Los loyalty programs recompensan huéspedes frecuentes para aumentar repetición de compra y lifetime value."
@@ -2481,12 +2481,12 @@
     "id": "q-hotelknowledge-032",
     "question": "¿Cuál es la diferencia entre hotel de franquicia y hotel de gestión?",
     "options": [
-      "Tamaño del hotel",
       "Propiedad vs gestión contratada",
       "Ubicación",
+      "Tamaño del hotel",
       "Precio de habitación"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "hard",
     "category": "Hotel Knowledge",
     "explanation": "Franquicia: propietario opera bajo marca (paga regalías). Gestión: cadena opera hotel ajeno mediante contrato."
@@ -2495,12 +2495,12 @@
     "id": "q-hotelknowledge-033",
     "question": "¿Qué es un 'STR report' en contexto hotelero?",
     "options": [
+      "Reporte de impuestos",
       "Reporte de sistemas",
       "Reporte de datos de mercado hotelero",
-      "Reporte de impuestos",
       "Reporte de seguridad"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "hard",
     "category": "Hotel Knowledge",
     "explanation": "STR (Smith Travel Research) reports son análisis de mercado que comparan desempeño de hoteles con competencia."
@@ -2509,12 +2509,12 @@
     "id": "q-hotelknowledge-034",
     "question": "¿Qué significa 'MICE' en la industria hotelera?",
     "options": [
+      "Sistema de reserva",
       "Tipo de habitación",
       "Meetings, Incentives, Conferences, Exhibitions",
-      "Sistema de reserva",
       "Categoría de servicio"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "hard",
     "category": "Hotel Knowledge",
     "explanation": "MICE es un segmento hotelero importante: reuniones empresariales, viajes de incentivo, conferencias y exposiciones."
@@ -2524,11 +2524,11 @@
     "question": "¿Qué es una 'shoulder season' en hotelería?",
     "options": [
       "Temporada pico",
+      "Mes específico",
       "Temporada entre alta y baja con demanda media",
-      "Temporada baja",
-      "Mes específico"
+      "Temporada baja"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "hard",
     "category": "Hotel Knowledge",
     "explanation": "Shoulder season es el período entre temporada alta y baja, con demanda y precios intermedios (ej: primavera/otoño)."
@@ -2537,12 +2537,12 @@
     "id": "q-traveltechsaas-011",
     "question": "¿Cuál es la función principal de un Channel Manager en hotelería?",
     "options": [
-      "Gestionar reservas de GDS",
       "Distribuir y sincronizar inventario en múltiples canales",
+      "Gestionar reservas de GDS",
       "Procesar pagos",
       "Gestionar huéspedes"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "medium",
     "category": "Travel Tech SaaS",
     "explanation": "Un Channel Manager sincroniza disponibilidad de habitaciones, precios e información entre PMS y múltiples OTAs."
@@ -2551,9 +2551,9 @@
     "id": "q-traveltechsaas-012",
     "question": "¿Qué significan las siglas 'RMS' en sistemas hoteleros?",
     "options": [
-      "Sistema de Reserva de Rooms",
-      "Revenue Management System",
       "Reporting Management Service",
+      "Revenue Management System",
+      "Sistema de Reserva de Rooms",
       "Rate Management Software"
     ],
     "correct": 1,
@@ -2565,12 +2565,12 @@
     "id": "q-traveltechsaas-013",
     "question": "¿Cuál es la función de un GDS en la industria de viajes?",
     "options": [
+      "Base de datos de hoteles",
       "Gestión de datos de huéspedes",
       "Sistema global de distribución que conecta agencias con inventario hotelero",
-      "Base de datos de hoteles",
       "Plataforma de booking"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "hard",
     "category": "Travel Tech SaaS",
     "explanation": "GDS (Global Distribution System) como Amadeus, Sabre, Travelport permite que agencias accedan a inventario hotelero."
@@ -2580,11 +2580,11 @@
     "question": "¿Cuál es la diferencia entre Amadeus y Sabre?",
     "options": [
       "Tamaño de base de datos",
-      "Ambos son GDS competidores principales en distribución hotelera",
       "Uno es más moderno",
+      "Ambos son GDS competidores principales en distribución hotelera",
       "Operan en países diferentes"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "hard",
     "category": "Travel Tech SaaS",
     "explanation": "Amadeus y Sabre son dos de los principales GDS globales que compiten en distribución de viajes y hospedaje."
@@ -2593,12 +2593,12 @@
     "id": "q-traveltechsaas-015",
     "question": "¿Qué es un CMS en el contexto de sistemas hoteleros?",
     "options": [
-      "Central Management System",
-      "Customer Management System (CRM)",
       "Certification Management System",
-      "No existe en hotelería"
+      "Central Management System",
+      "No existe en hotelería",
+      "Customer Management System (CRM)"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "medium",
     "category": "Travel Tech SaaS",
     "explanation": "En hotelería, CMS se refiere a CRM (Customer Relationship Management), sistema para gestionar datos de huéspedes."
@@ -2607,12 +2607,12 @@
     "id": "q-traveltechsaas-016",
     "question": "¿Para qué sirve un PMS hotelero?",
     "options": [
-      "Gestión de marketing",
-      "Sistema de gestión integral de operaciones hoteleras",
       "Procesamiento de pagos",
-      "Publicidad"
+      "Publicidad",
+      "Sistema de gestión integral de operaciones hoteleras",
+      "Gestión de marketing"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "easy",
     "category": "Travel Tech SaaS",
     "explanation": "PMS (Property Management System) es el corazón de la operación hotelera, gestiona reservas, huéspedes y operaciones."
@@ -2621,10 +2621,10 @@
     "id": "q-traveltechsaas-017",
     "question": "¿Cuál es la función principal de un CRS en hotelería?",
     "options": [
-      "Gestión operativa",
+      "Manejo de camarería",
       "Sistema central de reservas conectado con GDS",
       "Control de recepción",
-      "Manejo de camarería"
+      "Gestión operativa"
     ],
     "correct": 1,
     "difficulty": "hard",
@@ -2635,12 +2635,12 @@
     "id": "q-traveltechsaas-018",
     "question": "¿Qué es Travelport?",
     "options": [
-      "Aerolínea",
-      "Tercera plataforma GDS importante en distribución de viajes",
       "OTA",
-      "Hotel management company"
+      "Aerolínea",
+      "Hotel management company",
+      "Tercera plataforma GDS importante en distribución de viajes"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "hard",
     "category": "Travel Tech SaaS",
     "explanation": "Travelport es el tercero de los tres GDS principales, junto a Amadeus y Sabre, en distribución global."
@@ -2649,12 +2649,12 @@
     "id": "q-traveltechsaas-019",
     "question": "¿Cuál es la principal ventaja de una plataforma Guest Experience?",
     "options": [
-      "Reducir costos",
-      "Mejorar experiencia del huésped pre, durante y post-estadía",
+      "Mejor mantenimiento",
       "Aumentar ocupación",
-      "Mejor mantenimiento"
+      "Mejorar experiencia del huésped pre, durante y post-estadía",
+      "Reducir costos"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "medium",
     "category": "Travel Tech SaaS",
     "explanation": "Las plataformas Guest Experience como myHotel mejoran cada etapa del viaje del huésped y su satisfacción."
@@ -2663,10 +2663,10 @@
     "id": "q-traveltechsaas-020",
     "question": "¿Qué es 'direct booking' en el contexto de distribución hotelera?",
     "options": [
-      "Reserva a través de OTA",
+      "Reserva grupo",
       "Reserva directamente con el hotel (sitio propio)",
-      "Reserva por agencia",
-      "Reserva grupo"
+      "Reserva a través de OTA",
+      "Reserva por agencia"
     ],
     "correct": 1,
     "difficulty": "easy",
@@ -2678,11 +2678,11 @@
     "question": "¿Cuál es el mayor beneficio de maximizar direct bookings?",
     "options": [
       "Menos información de huéspedes",
+      "Mayor comisión",
       "Mayores márgenes (sin comisión OTA)",
-      "Menos ingresos",
-      "Mayor comisión"
+      "Menos ingresos"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "medium",
     "category": "Travel Tech SaaS",
     "explanation": "Direct bookings evitan comisiones de OTA (15-25%), mejorando significativamente el margen neto del hotel."
@@ -2692,11 +2692,11 @@
     "question": "¿Qué es una 'OTA' en la industria hotelera?",
     "options": [
       "Oficina de Turismo Americana",
+      "Sistema de operación",
       "Online Travel Agency - plataforma de venta de hospedaje",
-      "Asociación hotelera",
-      "Sistema de operación"
+      "Asociación hotelera"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "easy",
     "category": "Travel Tech SaaS",
     "explanation": "OTA (Online Travel Agency) son plataformas como Booking, Expedia, Tripadvisor que venden hospedaje online."
@@ -2705,12 +2705,12 @@
     "id": "q-traveltechsaas-023",
     "question": "¿Cuál es la función de un Booking Engine hotelero?",
     "options": [
-      "Gestión de reservas internas",
-      "Motor de búsqueda y reserva para el sitio web del hotel",
       "Sistema GDS",
-      "Plataforma de pagos"
+      "Plataforma de pagos",
+      "Motor de búsqueda y reserva para el sitio web del hotel",
+      "Gestión de reservas internas"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "medium",
     "category": "Travel Tech SaaS",
     "explanation": "Un Booking Engine es la herramienta en el sitio web del hotel que permite búsqueda y reserva directa."
@@ -2719,12 +2719,12 @@
     "id": "q-traveltechsaas-024",
     "question": "¿Qué es 'inventory sync' entre PMS y OTAs?",
     "options": [
-      "Sincronización de datos de huéspedes",
-      "Actualización automática de disponibilidad y precios",
       "Integración de reportes",
-      "Sincronización de pagos"
+      "Sincronización de pagos",
+      "Actualización automática de disponibilidad y precios",
+      "Sincronización de datos de huéspedes"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "hard",
     "category": "Travel Tech SaaS",
     "explanation": "Inventory sync mantiene sincronizada la disponibilidad y precios entre PMS y todas las OTAs conectadas."
@@ -2733,12 +2733,12 @@
     "id": "q-traveltechsaas-025",
     "question": "¿Por qué es importante mantener rate parity entre canales?",
     "options": [
-      "Requisito regulatorio",
       "Evitar conflictos con OTAs y mantener confianza",
+      "Reducir costos",
       "Aumentar comisiones",
-      "Reducir costos"
+      "Requisito regulatorio"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "hard",
     "category": "Travel Tech SaaS",
     "explanation": "Rate parity evita que OTAs penalicen al hotel por ofrecer mejores tarifas en otros canales."
@@ -2747,12 +2747,12 @@
     "id": "q-traveltechsaas-026",
     "question": "¿Cuál es el propósito principal de un 'metasearch' en contexto hotelero?",
     "options": [
-      "Reservar directamente",
       "Buscar y comparar precios en múltiples OTAs",
       "Gestionar inventario",
-      "Procesar pagos"
+      "Procesar pagos",
+      "Reservar directamente"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "medium",
     "category": "Travel Tech SaaS",
     "explanation": "Metasearch engines como Google Hotel Search permiten a viajeros comparar precios en múltiples plataformas."
@@ -2761,12 +2761,12 @@
     "id": "q-traveltechsaas-027",
     "question": "¿Qué impacto tiene Google Hotel Search en la distribución hotelera?",
     "options": [
-      "Ninguno",
       "Dirige tráfico a OTAs generando comisiones",
+      "Disminuye reservas",
       "Reemplaza a OTAs",
-      "Disminuye reservas"
+      "Ninguno"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "hard",
     "category": "Travel Tech SaaS",
     "explanation": "Google Hotel Search es un potente metasearch que genera tráfico y reservas a través de OTAs y directo."
@@ -2775,12 +2775,12 @@
     "id": "q-traveltechsaas-028",
     "question": "¿Cuál es el rol del Revenue Manager en una cadena hotelera?",
     "options": [
-      "Limpiar habitaciones",
-      "Optimizar precios y ocupación para maximizar ingresos",
       "Gestionar staff",
-      "Mantenimiento"
+      "Mantenimiento",
+      "Limpiar habitaciones",
+      "Optimizar precios y ocupación para maximizar ingresos"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "medium",
     "category": "Travel Tech SaaS",
     "explanation": "El Revenue Manager usa datos de demanda, competencia y RMS para optimizar estrategia de precios e inventario."
@@ -2789,10 +2789,10 @@
     "id": "q-traveltechsaas-029",
     "question": "¿Qué tecnología permite ajustar precios dinámicamente según demanda?",
     "options": [
-      "PMS",
       "Channel Manager",
+      "Booking Engine",
       "RMS (Revenue Management System) con algoritmos de pricing",
-      "Booking Engine"
+      "PMS"
     ],
     "correct": 2,
     "difficulty": "hard",

@@ -136,7 +136,7 @@ export default function SkillsPage() {
                         {Number(score.total_score).toLocaleString("es-CL")}
                       </div>
                       <div className="text-[10px] text-text-dim">
-                        {score.games_played} {score.games_played === 1 ? "respuesta" : "respuestas"}
+                        {score.correct_answers} / {score.total_answers} correctas
                       </div>
                     </div>
                   </button>
