@@ -216,7 +216,7 @@ export function parseCSV(content: string, options?: { allowMultiHotel?: boolean 
 
     conversations.push({
       conversation_id: convId,
-      customer_id: customerIds[0],
+      customer_id: msgs[0]?.customer_id ?? customerIds[0],
       customer_name: msgs[0]?.customer_name || "",
       messages,
       origin,
