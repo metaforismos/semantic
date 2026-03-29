@@ -5,10 +5,10 @@ import { QualityDashboard } from "@/components/concierge/QualityDashboard";
 import { QualityEvolution } from "@/components/concierge/QualityEvolution";
 import { useQualityAnalysis } from "@/components/concierge/QualityContext";
 import type { CSVParseResult } from "@/lib/concierge/types";
-import type { PromptParseResult, QualityUploadFormData } from "@/lib/concierge/quality-types";
+import type { PromptParseResult, QualityUploadFormData, QualityEvalReport } from "@/lib/concierge/quality-types";
 
 export default function QualityEvalPage() {
-  const { progress, report, isProcessing, startAnalysis, cancelAnalysis } = useQualityAnalysis();
+  const { progress, report, isProcessing, startAnalysis, cancelAnalysis, setReport } = useQualityAnalysis();
 
   const handleParsed = (
     convResult: CSVParseResult,
@@ -16,6 +16,11 @@ export default function QualityEvalPage() {
     formData: QualityUploadFormData
   ) => {
     startAnalysis(convResult, promptResult, formData);
+  };
+
+  const handleViewReport = (historicalReport: QualityEvalReport) => {
+    setReport(historicalReport);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -99,7 +104,7 @@ export default function QualityEvalPage() {
           {!isProcessing && (
             <div className={report ? "mt-8" : ""}>
               <h2 className="text-lg font-semibold mb-4">Evolution History</h2>
-              <QualityEvolution />
+              <QualityEvolution onViewReport={handleViewReport} />
             </div>
           )}
         </div>

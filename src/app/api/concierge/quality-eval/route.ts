@@ -106,19 +106,21 @@ export async function POST(request: Request) {
 
       const allAnalyses: ConversationQualityAnalysis[] = [];
       let failedBatches = 0;
+      let completedBatches = 0;
+      const CONCURRENCY = 4;
 
-      // Phase 1: Evaluate conversations
-      for (let i = 0; i < batches.length; i++) {
-        send({
-          type: "progress",
-          stage: "analyzing",
-          current_batch: i + 1,
-          total_batches: batches.length,
-          message: `Evaluando lote ${i + 1} de ${batches.length} (${batches[i].length} conversaciones)...`,
-        });
+      // Phase 1: Evaluate conversations in parallel waves
+      send({
+        type: "progress",
+        stage: "analyzing",
+        current_batch: 0,
+        total_batches: batches.length,
+        message: `Evaluando ${batches.length} lotes (${CONCURRENCY} en paralelo)...`,
+      });
 
+      async function processBatch(batchIndex: number): Promise<void> {
         try {
-          const userMessage = buildQualityEvalUserMessage(batches[i]);
+          const userMessage = buildQualityEvalUserMessage(batches[batchIndex]);
           const result = await callLLM({
             modelId: "claude-sonnet",
             systemPrompt: evalSystemPrompt,
@@ -130,45 +132,54 @@ export async function POST(request: Request) {
           try {
             parsed = safeParseJSON<ConversationQualityAnalysis[]>(result.text);
           } catch (parseErr) {
-            console.error(`[QualityEval Batch ${i + 1}] JSON parse failed. Raw (500 chars):`, result.text.substring(0, 500));
-            send({ type: "batch_error", batch: i + 1, error: `Error parseando respuesta: ${(parseErr as Error).message}` });
+            console.error(`[QualityEval Batch ${batchIndex + 1}] JSON parse failed. Raw (500 chars):`, result.text.substring(0, 500));
+            send({ type: "batch_error", batch: batchIndex + 1, error: `Error parseando respuesta: ${(parseErr as Error).message}` });
             failedBatches++;
-            continue;
+            return;
           }
 
           if (Array.isArray(parsed) && parsed.length > 0) {
-            // Patch deterministic fields from original conversations (don't trust LLM)
-            const batchConvMap = new Map(batches[i].map((c) => [c.conversation_id, c]));
+            const batchConvMap = new Map(batches[batchIndex].map((c) => [c.conversation_id, c]));
             for (const analysis of parsed) {
               const origConv = batchConvMap.get(analysis.conversation_id);
               if (origConv) {
                 analysis.customer_id = origConv.customer_id;
               }
-              // Compute weighted overall score deterministically
               analysis.overall_quality_score = computeWeightedScore(analysis.dimensions);
             }
             allAnalyses.push(...parsed);
+            completedBatches++;
             send({
               type: "batch_complete",
-              batch: i + 1,
+              batch: batchIndex + 1,
               count: parsed.length,
               model_used: result.modelUsed,
             });
+            send({
+              type: "progress",
+              stage: "analyzing",
+              current_batch: completedBatches,
+              total_batches: batches.length,
+              message: `Lote ${completedBatches} de ${batches.length} completado (${allAnalyses.length} conversaciones evaluadas)...`,
+            });
           } else {
-            console.error(`[QualityEval Batch ${i + 1}] Empty or non-array. Raw:`, result.text.substring(0, 300));
-            send({ type: "batch_error", batch: i + 1, error: "Respuesta vacía o formato inválido." });
+            console.error(`[QualityEval Batch ${batchIndex + 1}] Empty or non-array. Raw:`, result.text.substring(0, 300));
+            send({ type: "batch_error", batch: batchIndex + 1, error: "Respuesta vacía o formato inválido." });
             failedBatches++;
           }
         } catch (err) {
           const errorMsg = err instanceof Error ? err.message : String(err);
-          console.error(`[QualityEval Batch ${i + 1}] LLM call failed:`, errorMsg);
-          send({ type: "batch_error", batch: i + 1, error: errorMsg });
+          console.error(`[QualityEval Batch ${batchIndex + 1}] LLM call failed:`, errorMsg);
+          send({ type: "batch_error", batch: batchIndex + 1, error: errorMsg });
           failedBatches++;
         }
+      }
 
-        if (i < batches.length - 1) {
-          await new Promise((r) => setTimeout(r, 1000));
-        }
+      // Process batches in waves of CONCURRENCY
+      for (let waveStart = 0; waveStart < batches.length; waveStart += CONCURRENCY) {
+        const waveEnd = Math.min(waveStart + CONCURRENCY, batches.length);
+        const waveIndices = Array.from({ length: waveEnd - waveStart }, (_, i) => waveStart + i);
+        await Promise.all(waveIndices.map(processBatch));
       }
 
       // Phase 2: Generate proposals

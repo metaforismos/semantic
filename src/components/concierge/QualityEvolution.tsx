@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { DIMENSION_LABELS } from "@/lib/concierge/quality-types";
-import type { QualityDimension } from "@/lib/concierge/quality-types";
+import type { QualityDimension, QualityEvalReport } from "@/lib/concierge/quality-types";
 
 interface EvalSummary {
   id: number;
@@ -56,12 +56,18 @@ function deltaDisplay(delta: number) {
   return `${sign}${delta.toFixed(2)}`;
 }
 
-export function QualityEvolution() {
+interface QualityEvolutionProps {
+  onViewReport?: (report: QualityEvalReport) => void;
+}
+
+export function QualityEvolution({ onViewReport }: QualityEvolutionProps) {
   const [evaluations, setEvaluations] = useState<EvalSummary[]>([]);
   const [loading, setLoading] = useState(true);
   const [compareIds, setCompareIds] = useState<{ prev: number; curr: number } | null>(null);
   const [evolution, setEvolution] = useState<EvolutionAnalysis | null>(null);
   const [evolutionLoading, setEvolutionLoading] = useState(false);
+  const [loadingReportId, setLoadingReportId] = useState<number | null>(null);
+  const [selectedEvalId, setSelectedEvalId] = useState<number | null>(null);
 
   useEffect(() => {
     async function load() {
@@ -100,6 +106,25 @@ export function QualityEvolution() {
       setEvolutionLoading(false);
     }
   }, []);
+
+  const loadReport = useCallback(async (evalId: number) => {
+    if (!onViewReport) return;
+    setLoadingReportId(evalId);
+    try {
+      const res = await fetch(`/api/concierge/quality-eval/evaluations/${evalId}`);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.report) {
+          setSelectedEvalId(evalId);
+          onViewReport(data.report);
+        }
+      }
+    } catch (err) {
+      console.warn("Failed to load report:", err);
+    } finally {
+      setLoadingReportId(null);
+    }
+  }, [onViewReport]);
 
   if (loading) {
     return <div className="skeleton h-40 rounded-lg" />;
@@ -146,9 +171,17 @@ export function QualityEvolution() {
                   ? "text-positive" : ev.overall_quality_score >= 3
                   ? "text-neutral-sent" : "text-negative";
 
+                const isSelected = selectedEvalId === ev.id;
+                const isLoadingThis = loadingReportId === ev.id;
+
                 return (
-                  <tr key={ev.id} className="hover:bg-surface-2/50">
+                  <tr
+                    key={ev.id}
+                    className={`hover:bg-surface-2/50 cursor-pointer transition-colors ${isSelected ? "bg-accent/10 border-l-2 border-l-accent" : ""}`}
+                    onClick={() => loadReport(ev.id)}
+                  >
                     <td className="px-3 py-2 text-xs">
+                      {isLoadingThis && <span className="inline-block w-2 h-2 rounded-full bg-accent animate-pulse-slow mr-1.5" />}
                       {ev.period_start} → {ev.period_end}
                     </td>
                     <td className="px-3 py-2 text-right">{ev.total_conversations}</td>
@@ -162,7 +195,7 @@ export function QualityEvolution() {
                     <td className="px-3 py-2 text-right">
                       {prevEval && (
                         <button
-                          onClick={() => runComparison(prevEval.id, ev.id)}
+                          onClick={(e) => { e.stopPropagation(); runComparison(prevEval.id, ev.id); }}
                           disabled={evolutionLoading}
                           className="text-[10px] font-medium px-2 py-1 border border-border rounded hover:bg-surface-2 transition-colors disabled:opacity-50"
                         >
