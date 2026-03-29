@@ -186,7 +186,7 @@ export function buildProposalSystemPrompt(activePrompts: PipelinePrompt[]): stri
   const promptsSection = activePrompts
     .map(
       (p) =>
-        `### ${p.prompt_key} (v${p.version})\n**System prompt completo:**\n${p.system_template}\n**User template:**\n${p.user_template}`
+        `### ${p.prompt_key} (v${p.version})\n**System prompt:**\n${p.system_template.slice(0, 3000)}${p.system_template.length > 3000 ? "\n[...truncated...]" : ""}\n**User template:**\n${p.user_template.slice(0, 800)}${p.user_template.length > 800 ? "\n[...truncated...]" : ""}`
     )
     .join("\n\n");
 

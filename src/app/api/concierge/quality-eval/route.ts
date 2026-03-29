@@ -213,10 +213,23 @@ export async function POST(request: Request) {
             maxTokens: 8192,
           });
 
-          const parsed = safeParseJSON<{ proposals: QualityProposal[] }>(result.text);
+          console.log(`[QualityEval] Proposal LLM response (${result.text.length} chars, model: ${result.modelUsed})`);
+
+          let parsed: { proposals: QualityProposal[] };
+          try {
+            parsed = safeParseJSON<{ proposals: QualityProposal[] }>(result.text);
+          } catch (parseErr) {
+            console.error("[QualityEval] Proposal JSON parse failed. Raw (500 chars):", result.text.substring(0, 500));
+            send({ type: "proposals_error", error: `Error parseando propuestas: ${(parseErr as Error).message}` });
+            parsed = { proposals: [] };
+          }
+
           if (parsed.proposals && Array.isArray(parsed.proposals)) {
             proposals = parsed.proposals;
             send({ type: "proposals_complete", count: proposals.length });
+          } else {
+            console.error("[QualityEval] Proposals response missing 'proposals' array. Keys:", Object.keys(parsed));
+            send({ type: "proposals_error", error: "Formato de propuestas inválido" });
           }
         } catch (err) {
           const errorMsg = err instanceof Error ? err.message : String(err);
