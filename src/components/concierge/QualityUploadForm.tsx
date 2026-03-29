@@ -142,6 +142,51 @@ export function QualityUploadForm({ onParsed, disabled }: QualityUploadFormProps
   const promptWarnings = promptErrors.filter((e) => e.type === "warning");
   const canSubmit = convResult && promptResult && convBlocking.length === 0 && promptBlocking.length === 0;
 
+  // Estimate cost before running
+  const costEstimate = (() => {
+    if (!convResult || !promptResult) return null;
+
+    const activeConvs = convResult.conversations.filter((c) => c.is_active);
+    const numConvs = activeConvs.length;
+    const BATCH_SIZE = 5;
+    const numBatches = Math.ceil(numConvs / BATCH_SIZE);
+
+    // Estimate system prompt tokens (~1 token per 4 chars)
+    const systemPromptChars = promptResult.active_prompts.reduce(
+      (sum, p) => sum + Math.min(p.system_template.length, 2000) + Math.min(p.user_template.length, 500), 0
+    ) + 3000; // base prompt instructions
+    const systemTokensPerBatch = Math.ceil(systemPromptChars / 4);
+
+    // Estimate user message tokens (conversation text)
+    const totalConvChars = activeConvs.reduce(
+      (sum, c) => sum + c.messages.reduce((ms, m) => ms + (m.text?.length || 0) + 30, 0), 0
+    );
+    const convTokens = Math.ceil(totalConvChars / 4);
+
+    // Output: ~400 tokens per conversation (dimensions JSON)
+    const outputTokens = numConvs * 400;
+
+    // Eval batches: system prompt repeated per batch + conv tokens spread across batches
+    const totalInputTokens = (systemTokensPerBatch * numBatches) + convTokens;
+
+    // Proposal call: ~2000 input + ~1500 output
+    const proposalInputTokens = systemPromptChars / 4 + 2000;
+    const proposalOutputTokens = 1500;
+
+    // Claude Sonnet pricing: $3/MTok input, $15/MTok output
+    const inputCost = ((totalInputTokens + proposalInputTokens) / 1_000_000) * 3;
+    const outputCost = ((outputTokens + proposalOutputTokens) / 1_000_000) * 15;
+    const totalCost = inputCost + outputCost;
+
+    return {
+      numConvs,
+      numBatches,
+      inputTokensK: Math.round((totalInputTokens + proposalInputTokens) / 1000),
+      outputTokensK: Math.round((outputTokens + proposalOutputTokens) / 1000),
+      totalCost,
+    };
+  })();
+
   return (
     <div className="space-y-5">
       {/* Conversations CSV */}
@@ -272,6 +317,22 @@ export function QualityUploadForm({ onParsed, disabled }: QualityUploadFormProps
           </div>
 
           {/* Submit */}
+          {/* Cost estimate */}
+          {costEstimate && (
+            <div className="border border-border rounded-lg p-3 bg-surface-2/50">
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-xs font-semibold text-text-dim">Costo estimado</span>
+                <span className="text-sm font-bold text-accent">
+                  ~${costEstimate.totalCost < 0.01 ? "<0.01" : costEstimate.totalCost.toFixed(2)} USD
+                </span>
+              </div>
+              <div className="text-[10px] text-text-dim space-y-0.5">
+                <div>{costEstimate.numConvs} conversaciones activas · {costEstimate.numBatches} lotes · {costEstimate.numBatches + 1} llamadas LLM</div>
+                <div>~{costEstimate.inputTokensK}K input tokens · ~{costEstimate.outputTokensK}K output tokens · Claude Sonnet</div>
+              </div>
+            </div>
+          )}
+
           <button
             onClick={handleSubmit}
             disabled={disabled}
@@ -279,9 +340,6 @@ export function QualityUploadForm({ onParsed, disabled }: QualityUploadFormProps
           >
             {disabled ? "Evaluando..." : "Evaluar Calidad"}
           </button>
-          <p className="text-[10px] text-text-dim text-center">
-            Usa Claude Sonnet. Costo estimado: ~$0.05-0.10 por conversación.
-          </p>
         </div>
       )}
     </div>
