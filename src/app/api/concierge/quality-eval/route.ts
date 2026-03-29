@@ -137,6 +137,14 @@ export async function POST(request: Request) {
           }
 
           if (Array.isArray(parsed) && parsed.length > 0) {
+            // Patch customer_id from original conversations (don't trust LLM to echo it)
+            const batchConvMap = new Map(batches[i].map((c) => [c.conversation_id, c.customer_id]));
+            for (const analysis of parsed) {
+              const origCustomerId = batchConvMap.get(analysis.conversation_id);
+              if (origCustomerId !== undefined) {
+                analysis.customer_id = origCustomerId;
+              }
+            }
             allAnalyses.push(...parsed);
             send({
               type: "batch_complete",
