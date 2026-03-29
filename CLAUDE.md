@@ -40,7 +40,7 @@ docs/               # PRDs, taxonomy, prompts, and Claude feature docs
 Each module has a dedicated Claude doc with architecture rules, key files, and anti-patterns:
 
 - **Semantic Analysis Engine** — Three-axis review extraction (Area x Dimension x Sentiment) with 741-subtopic taxonomy. See [`docs/claude/semantic-analysis.md`](docs/claude/semantic-analysis.md)
-- **Concierge Tools** — Meta Business ID verifier and pilot report generator for AI hotel concierge. See [`docs/claude/concierge.md`](docs/claude/concierge.md)
+- **Concierge Tools** — Meta Business ID verifier, pilot report generator, and conversation quality evaluator for AI hotel concierge. See [`docs/claude/concierge.md`](docs/claude/concierge.md)
 - **Learning & Trivia** — Gamified product knowledge training with roulette, quiz, leaderboard, and skill radar. See [`docs/claude/learning-trivia.md`](docs/claude/learning-trivia.md)
 
 ## Global Conventions
@@ -58,4 +58,5 @@ Each module has a dedicated Claude doc with architecture rules, key files, and a
 - `docs/PROMPTS.md` — LLM prompt templates and output schemas
 - `docs/PRD-Learning-Trivia.md` — Learning trivia product requirements
 - `docs/PRD-Concierge-Pilot-Reporte.md` — Concierge pilot report requirements
+- `docs/PRD-Concierge-Quality-Eval.md` — Concierge conversation quality evaluator requirements
 - `docs/PRD-meta-business-id-verifier.md` — Meta Business ID verifier requirements

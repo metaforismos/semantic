@@ -2,6 +2,7 @@
 
 import { QualityUploadForm } from "@/components/concierge/QualityUploadForm";
 import { QualityDashboard } from "@/components/concierge/QualityDashboard";
+import { QualityEvolution } from "@/components/concierge/QualityEvolution";
 import { useQualityAnalysis } from "@/components/concierge/QualityContext";
 import type { CSVParseResult } from "@/lib/concierge/types";
 import type { PromptParseResult, QualityUploadFormData } from "@/lib/concierge/quality-types";
@@ -91,6 +92,14 @@ export default function QualityEvalPage() {
               </div>
               <p className="text-sm text-text-dim mb-1">No evaluation yet</p>
               <p className="text-xs text-text-dim/70">Upload conversations + pipeline prompts CSVs to start</p>
+            </div>
+          )}
+
+          {/* Evolution History */}
+          {!isProcessing && (
+            <div className={report ? "mt-8" : ""}>
+              <h2 className="text-lg font-semibold mb-4">Evolution History</h2>
+              <QualityEvolution />
             </div>
           )}
         </div>

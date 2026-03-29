@@ -10,6 +10,9 @@ Validates Meta Business IDs before Concierge onboarding. Distinguishes between B
 ### Pilot Report Generator (`/concierge/pilot-report`)
 Analyzes Concierge pilot performance from CSV exports. Generates PDF reports with metrics (interaction rate, automation rate, satisfaction, response time) and LLM-powered semantic analysis of conversations.
 
+### Quality Eval (`/concierge/quality-eval`)
+Internal PO tool for evaluating conversation quality across 7 dimensions (hallucination, false agency, avoidable derivation, resolution, tone, language match, continuity). Takes conversation CSVs + pipeline prompts CSV as input. Attributes issues to specific workers, generates quantitative metrics, and proposes concrete prompt changes with evidence. See `docs/PRD-Concierge-Quality-Eval.md`.
+
 ## Key Files
 
 | Purpose | Path |
@@ -43,7 +46,27 @@ Analyzes Concierge pilot performance from CSV exports. Generates PDF reports wit
 - CSV parsing pipeline: upload -> parse (`csv-parser.ts`) -> aggregate (`aggregator.ts`) -> compute metrics (`metrics.ts`) -> optional LLM analysis -> render/export PDF.
 - The analysis API supports async processing with status polling via the `/status` endpoint.
 
+## Concierge Multi-Agent Pipeline
+
+The quality evaluator needs to understand the architecture to attribute issues:
+
+```
+Guest message → INTENT_CLASSIFIER → routes to worker:
+  KNOWLEDGE_QA    → QUERY_REWRITER → RAG → QA_WORKER
+  SMALLTALK       → SMALLTALK_WORKER
+  TOURISM_INFO    → TOUR_GUIDE (web search)
+  SERVICE_REQUEST → SERVICE_REQUEST_WORKER
+  UNKNOWN/BLOCKED → direct response
+  (ambiguous)     → INQUIRER
+→ SYNTHESIZER (polish) → AUDITOR (safety gate) → final response
+```
+
+Parallel: SURVEY_WINDOW_WORKER (independent when survey is active).
+
+Active workers (10): INTENT_CLASSIFIER, QUERY_REWRITER, INQUIRER, QA_WORKER, SERVICE_REQUEST_WORKER, SMALLTALK_WORKER, TOUR_GUIDE, SYNTHESIZER, AUDITOR, SURVEY_WINDOW_WORKER.
+
 ## Reference
 
 - `docs/PRD-Concierge-Pilot-Reporte.md` — Pilot report product requirements
+- `docs/PRD-Concierge-Quality-Eval.md` — Quality evaluator product requirements
 - `docs/PRD-meta-business-id-verifier.md` — Meta ID verifier requirements

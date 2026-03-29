@@ -12,6 +12,7 @@ import type {
 interface QualityState {
   progress: QualityAnalysisProgress | null;
   report: QualityEvalReport | null;
+  savedEvalId: number | null;
   isProcessing: boolean;
   startAnalysis: (
     parseResult: CSVParseResult,
@@ -28,8 +29,26 @@ const QualityContext = createContext<QualityState | null>(null);
 export function QualityProvider({ children }: { children: ReactNode }) {
   const [progress, setProgress] = useState<QualityAnalysisProgress | null>(null);
   const [report, setReport] = useState<QualityEvalReport | null>(null);
+  const [savedEvalId, setSavedEvalId] = useState<number | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
+
+  const saveReport = async (reportData: QualityEvalReport) => {
+    try {
+      const res = await fetch("/api/concierge/quality-eval/evaluations", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ report: reportData }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setSavedEvalId(data.id);
+        console.log(`[QualityEval] Report saved with ID: ${data.id}`);
+      }
+    } catch (err) {
+      console.error("[QualityEval] Failed to save report:", err);
+    }
+  };
 
   const startAnalysis = useCallback(
     async (
@@ -122,11 +141,9 @@ export function QualityProvider({ children }: { children: ReactNode }) {
               } else if (event.type === "report") {
                 setReport(event.report);
                 setProgress({ stage: "done", current_batch: 0, total_batches: 0, message: "Evaluación completada." });
+                saveReport(event.report);
               } else if (event.type === "complete") {
-                if (!report) {
-                  // Report wasn't sent separately — shouldn't happen but handle gracefully
-                  setProgress({ stage: "done", current_batch: 0, total_batches: 0, message: "Evaluación completada." });
-                }
+                setProgress({ stage: "done", current_batch: 0, total_batches: 0, message: "Evaluación completada." });
               }
             } catch { /* skip malformed SSE */ }
           }
@@ -139,6 +156,7 @@ export function QualityProvider({ children }: { children: ReactNode }) {
             if (event.type === "report") {
               setReport(event.report);
               setProgress({ stage: "done", current_batch: 0, total_batches: 0, message: "Evaluación completada." });
+              saveReport(event.report);
             }
           } catch { /* skip */ }
         }
@@ -163,7 +181,7 @@ export function QualityProvider({ children }: { children: ReactNode }) {
 
   return (
     <QualityContext.Provider
-      value={{ progress, report, isProcessing, startAnalysis, cancelAnalysis, setReport, setProgress }}
+      value={{ progress, report, savedEvalId, isProcessing, startAnalysis, cancelAnalysis, setReport, setProgress }}
     >
       {children}
     </QualityContext.Provider>
