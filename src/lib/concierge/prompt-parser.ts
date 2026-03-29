@@ -118,7 +118,7 @@ export function parsePromptCSV(content: string): {
     prompts.push({
       prompt_key: promptKey,
       version,
-      status: /^activ/i.test(status.trim()) ? "Active" : "Inactive",
+      status: /activ/i.test(status) ? "Active" : "Inactive",
       system_template: systemTemplate,
       user_template: userTemplate,
       system_size: isNaN(systemSize) ? systemTemplate.length : systemSize,
