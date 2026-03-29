@@ -26,12 +26,13 @@ export async function GET() {
   try {
     await ensureTable();
 
-    // For each prompt_key, get only the row with the highest version (lexicographic semver)
+    // For each prompt_key, get the latest Active version
     const result = await pool.query(`
       SELECT DISTINCT ON (prompt_key)
         prompt_key, version, status, system_template, user_template,
         system_size, user_size, created_at, updated_at, uploaded_at
       FROM pipeline_prompts
+      WHERE status = 'Active'
       ORDER BY prompt_key, version DESC
     `);
 

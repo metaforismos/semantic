@@ -128,7 +128,16 @@ export function parsePromptCSV(content: string): {
     });
   }
 
-  const activePrompts = prompts.filter((p) => p.status === "Active");
+  // Deduplicate: keep only the latest version per prompt_key among active prompts
+  const activeByKey = new Map<string, typeof prompts[number]>();
+  for (const p of prompts) {
+    if (p.status !== "Active") continue;
+    const existing = activeByKey.get(p.prompt_key);
+    if (!existing || p.version > existing.version) {
+      activeByKey.set(p.prompt_key, p);
+    }
+  }
+  const activePrompts = [...activeByKey.values()];
 
   if (activePrompts.length === 0) {
     errors.push({
