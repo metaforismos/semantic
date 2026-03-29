@@ -1,10 +1,10 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { CSVParseResult, CSVValidationError } from "@/lib/concierge/types";
 import { parseCSV } from "@/lib/concierge/csv-parser";
 import { parsePromptCSV } from "@/lib/concierge/prompt-parser";
-import type { PromptParseResult, PromptValidationError, QualityUploadFormData } from "@/lib/concierge/quality-types";
+import type { PipelinePrompt, PromptParseResult, PromptValidationError, QualityUploadFormData } from "@/lib/concierge/quality-types";
 
 interface QualityUploadFormProps {
   onParsed: (
@@ -25,16 +25,44 @@ export function QualityUploadForm({ onParsed, disabled }: QualityUploadFormProps
   const [convResult, setConvResult] = useState<CSVParseResult | null>(null);
   const [convErrors, setConvErrors] = useState<CSVValidationError[]>([]);
 
-  // Prompts CSV state
+  // Prompts state
   const [promptDragOver, setPromptDragOver] = useState(false);
   const [promptFileName, setPromptFileName] = useState<string | null>(null);
   const [promptResult, setPromptResult] = useState<PromptParseResult | null>(null);
   const [promptErrors, setPromptErrors] = useState<PromptValidationError[]>([]);
+  const [storedPromptsLoading, setStoredPromptsLoading] = useState(true);
+  const [storedPromptsSource, setStoredPromptsSource] = useState<"db" | "csv" | null>(null);
+  const [showPromptUpload, setShowPromptUpload] = useState(false);
 
   // Form fields
   const [periodStart, setPeriodStart] = useState("");
   const [periodEnd, setPeriodEnd] = useState("");
   const [notes, setNotes] = useState("");
+
+  // Auto-load stored prompts on mount
+  useEffect(() => {
+    async function loadStoredPrompts() {
+      try {
+        const res = await fetch("/api/concierge/prompts");
+        if (!res.ok) throw new Error("Failed to fetch");
+        const data = await res.json();
+        const prompts: PipelinePrompt[] = data.prompts || [];
+
+        if (prompts.length > 0) {
+          const activePrompts = prompts.filter((p) => p.status === "Active");
+          if (activePrompts.length > 0) {
+            setPromptResult({ prompts, active_prompts: activePrompts, warnings: [] });
+            setStoredPromptsSource("db");
+          }
+        }
+      } catch (err) {
+        console.warn("[QualityUpload] Could not load stored prompts:", err);
+      } finally {
+        setStoredPromptsLoading(false);
+      }
+    }
+    loadStoredPrompts();
+  }, []);
 
   const handleConvFile = useCallback((file: File) => {
     setConvFileName(file.name);
@@ -65,10 +93,9 @@ export function QualityUploadForm({ onParsed, disabled }: QualityUploadFormProps
   const handlePromptFile = useCallback((file: File) => {
     setPromptFileName(file.name);
     setPromptErrors([]);
-    setPromptResult(null);
 
     const reader = new FileReader();
-    reader.onload = (e) => {
+    reader.onload = async (e) => {
       const content = e.target?.result as string;
       const { result, errors } = parsePromptCSV(content);
 
@@ -81,6 +108,20 @@ export function QualityUploadForm({ onParsed, disabled }: QualityUploadFormProps
       if (result) {
         setPromptResult(result);
         setPromptErrors(errors.filter((e) => e.type === "warning"));
+        setStoredPromptsSource("csv");
+        setShowPromptUpload(false);
+
+        // Save to DB for future use
+        try {
+          await fetch("/api/concierge/prompts", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ prompts: result.prompts }),
+          });
+          console.log("[QualityUpload] Prompts saved to DB");
+        } catch (err) {
+          console.warn("[QualityUpload] Could not save prompts to DB:", err);
+        }
       }
     };
     reader.readAsText(file);
@@ -126,45 +167,76 @@ export function QualityUploadForm({ onParsed, disabled }: QualityUploadFormProps
         <ErrorList blocking={convBlocking} warnings={convWarnings} />
       </div>
 
-      {/* Prompts CSV */}
+      {/* Prompts section */}
       <div>
         <label className="block text-xs font-semibold uppercase tracking-wider text-text-dim mb-2">
-          2. Prompts del Pipeline CSV
+          2. Prompts del Pipeline
         </label>
-        <DropZone
-          inputRef={promptInputRef}
-          dragOver={promptDragOver}
-          setDragOver={setPromptDragOver}
-          onFile={handlePromptFile}
-          fileName={promptFileName}
-          summary={promptResult ? (
-            <>
-              {promptResult.prompts.length} prompts · {promptResult.active_prompts.length} activos
-            </>
-          ) : null}
-          placeholder="CSV de prompts (PromptKey, Version, Status, System_Template...)"
-        />
-        <ErrorList blocking={promptBlocking} warnings={promptWarnings} />
-      </div>
 
-      {/* Form fields — shown after both CSVs parsed */}
-      {canSubmit && (
-        <div className="space-y-4 animate-fade-in">
-          {/* Active prompts summary */}
-          <div>
-            <label className="block text-xs font-medium text-text-dim mb-1">Prompts activos detectados</label>
+        {storedPromptsLoading ? (
+          <div className="skeleton h-16 rounded-lg" />
+        ) : promptResult && !showPromptUpload ? (
+          /* Prompts loaded (from DB or CSV) */
+          <div className="border border-positive/50 bg-positive-muted/30 rounded-lg p-4">
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-positive">
+                  <path d="M13.5 4.5L6.5 11.5L2.5 7.5" />
+                </svg>
+                <span className="text-sm font-medium text-positive">
+                  {storedPromptsSource === "db" ? "Prompts cargados desde BD" : promptFileName || "Prompts cargados"}
+                </span>
+              </div>
+              <button
+                onClick={() => setShowPromptUpload(true)}
+                className="text-[11px] font-medium text-accent-light hover:underline"
+              >
+                Actualizar
+              </button>
+            </div>
             <div className="flex flex-wrap gap-1.5">
               {promptResult.active_prompts.map((p) => (
                 <span
                   key={p.prompt_key}
-                  className="text-[11px] font-mono bg-surface-2 border border-border px-2 py-0.5 rounded"
+                  className="text-[11px] font-mono bg-white/50 border border-positive/20 px-2 py-0.5 rounded"
                 >
                   {p.prompt_key} <span className="text-text-dim">v{p.version}</span>
                 </span>
               ))}
             </div>
+            <div className="text-[10px] text-text-dim mt-2">
+              {promptResult.active_prompts.length} activos de {promptResult.prompts.length} totales
+              {storedPromptsSource === "db" && " · última versión de cada prompt"}
+            </div>
           </div>
+        ) : (
+          /* No stored prompts or user wants to update */
+          <>
+            <DropZone
+              inputRef={promptInputRef}
+              dragOver={promptDragOver}
+              setDragOver={setPromptDragOver}
+              onFile={handlePromptFile}
+              fileName={promptFileName}
+              summary={null}
+              placeholder="CSV de prompts (PromptKey, Version, Status, System_Template...)"
+            />
+            {showPromptUpload && (
+              <button
+                onClick={() => setShowPromptUpload(false)}
+                className="text-[11px] text-text-dim hover:text-text mt-1"
+              >
+                Cancelar y usar prompts guardados
+              </button>
+            )}
+          </>
+        )}
+        <ErrorList blocking={promptBlocking} warnings={promptWarnings} />
+      </div>
 
+      {/* Form fields — shown when both inputs are ready */}
+      {canSubmit && (
+        <div className="space-y-4 animate-fade-in">
           {/* Period */}
           <div className="grid grid-cols-2 gap-3">
             <div>
