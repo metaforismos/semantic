@@ -35,15 +35,20 @@ export function QualityProvider({ children }: { children: ReactNode }) {
 
   const saveReport = async (reportData: QualityEvalReport) => {
     try {
+      const payload = JSON.stringify({ report: reportData });
+      console.log(`[QualityEval] Saving report (${(payload.length / 1024).toFixed(0)} KB)...`);
       const res = await fetch("/api/concierge/quality-eval/evaluations", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ report: reportData }),
+        body: payload,
       });
       if (res.ok) {
         const data = await res.json();
         setSavedEvalId(data.id);
         console.log(`[QualityEval] Report saved with ID: ${data.id}`);
+      } else {
+        const errorText = await res.text().catch(() => "");
+        console.error(`[QualityEval] Save failed (${res.status}):`, errorText);
       }
     } catch (err) {
       console.error("[QualityEval] Failed to save report:", err);

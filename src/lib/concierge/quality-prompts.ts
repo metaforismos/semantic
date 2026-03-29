@@ -97,9 +97,6 @@ Cada dimensión de 1 (crítico) a 5 (excelente):
 - 2: Problemas serios que frustran al huésped
 - 1: Problemas críticos (hallucination, false agency grave, etc.)
 
-### overall_quality_score
-Promedio ponderado sugerido: hallucination(2x), false_agency(2x), resolution(1.5x), continuity(1.5x), avoidable_derivation(1x), tone(1x), language_match(1x).
-
 ### Severity
 - critical: Impacto directo en confianza o satisfacción del huésped
 - high: Problema significativo que degrada la experiencia
@@ -112,13 +109,12 @@ Atribuye cada issue al worker ESPECÍFICO responsable basándote en los prompts 
 ## Formato de salida
 
 Responde SOLO con un JSON array. Sin texto adicional.
+NO incluyas "customer_id" ni "overall_quality_score" — se computan determinísticamente.
 
 \`\`\`json
 [
   {
     "conversation_id": "conv002",
-    "customer_id": 684,
-    "overall_quality_score": 2.5,
     "dimensions": {
       "hallucination": { "score": 5, "issues": [] },
       "false_agency": {
@@ -168,7 +164,8 @@ IMPORTANTE:
 - Si no hay problemas en una dimensión, score = 5 e issues vacío.
 - El text_fragment es opcional pero muy útil para evidencia.
 - message_orders (array) se usa cuando el issue involucra múltiples mensajes.
-- Temperature 0: sé consistente, objetivo, y crítico. No suavices los problemas.`;
+- Temperature 0: sé consistente, objetivo, y crítico. No suavices los problemas.
+- NO incluyas customer_id ni overall_quality_score. Solo conversation_id y dimensions.`;
 }
 
 export function buildQualityEvalUserMessage(conversations: Conversation[]): string {
@@ -179,7 +176,7 @@ export function buildQualityEvalUserMessage(conversations: Conversation[]): stri
           `[${m.message_type}] (order:${m.message_order}) ${m.text}`
       )
       .join("\n");
-    return `--- CONVERSACIÓN: ${conv.conversation_id} (hotel: ${conv.customer_id}) ---\n${msgs}`;
+    return `--- CONVERSACIÓN: ${conv.conversation_id} ---\n${msgs}`;
   });
 
   return `Evalúa la calidad de las siguientes ${conversations.length} conversaciones:\n\n${formatted.join("\n\n")}`;

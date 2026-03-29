@@ -6,7 +6,7 @@ import {
   buildProposalSystemPrompt,
   buildProposalUserMessage,
 } from "@/lib/concierge/quality-prompts";
-import { computeDimensionAverages, aggregateQualityReport } from "@/lib/concierge/quality-aggregator";
+import { computeDimensionAverages, computeWeightedScore, aggregateQualityReport } from "@/lib/concierge/quality-aggregator";
 import type { Conversation } from "@/lib/concierge/types";
 import type {
   PipelinePrompt,
@@ -137,13 +137,15 @@ export async function POST(request: Request) {
           }
 
           if (Array.isArray(parsed) && parsed.length > 0) {
-            // Patch customer_id from original conversations (don't trust LLM to echo it)
-            const batchConvMap = new Map(batches[i].map((c) => [c.conversation_id, c.customer_id]));
+            // Patch deterministic fields from original conversations (don't trust LLM)
+            const batchConvMap = new Map(batches[i].map((c) => [c.conversation_id, c]));
             for (const analysis of parsed) {
-              const origCustomerId = batchConvMap.get(analysis.conversation_id);
-              if (origCustomerId !== undefined) {
-                analysis.customer_id = origCustomerId;
+              const origConv = batchConvMap.get(analysis.conversation_id);
+              if (origConv) {
+                analysis.customer_id = origConv.customer_id;
               }
+              // Compute weighted overall score deterministically
+              analysis.overall_quality_score = computeWeightedScore(analysis.dimensions);
             }
             allAnalyses.push(...parsed);
             send({

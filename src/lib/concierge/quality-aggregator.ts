@@ -30,6 +30,19 @@ const DIMENSION_WEIGHTS: Record<QualityDimension, number> = {
   continuity: 1.5,
 };
 
+/** Compute weighted overall quality score from dimension scores */
+export function computeWeightedScore(dimensions: Record<string, { score: number }>): number {
+  let weightedSum = 0;
+  let totalWeight = 0;
+  for (const dim of DIMENSIONS) {
+    const score = dimensions[dim]?.score ?? 5;
+    const weight = DIMENSION_WEIGHTS[dim];
+    weightedSum += score * weight;
+    totalWeight += weight;
+  }
+  return Math.round((weightedSum / totalWeight) * 100) / 100;
+}
+
 export function aggregateQualityReport(
   analyses: ConversationQualityAnalysis[],
   proposals: QualityProposal[],
