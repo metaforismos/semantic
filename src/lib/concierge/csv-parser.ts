@@ -84,7 +84,7 @@ function parseCSVLines(content: string, separator: string): string[][] {
   return rows;
 }
 
-export function parseCSV(content: string): {
+export function parseCSV(content: string, options?: { allowMultiHotel?: boolean }): {
   result?: CSVParseResult;
   errors: CSVValidationError[];
 } {
@@ -170,9 +170,9 @@ export function parseCSV(content: string): {
     warnings.push(`${rowsWithIssues} filas con datos parciales (incluidas con valores por defecto).`);
   }
 
-  // Check single customer_id
+  // Check single customer_id (unless multi-hotel is allowed)
   const customerIds = [...new Set(rawMessages.map((m) => m.customer_id))];
-  if (customerIds.length > 1) {
+  if (customerIds.length > 1 && !options?.allowMultiHotel) {
     errors.push({
       type: "blocking",
       message: "El CSV contiene datos de múltiples hoteles (customer_id inconsistente).",

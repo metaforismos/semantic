@@ -3,6 +3,7 @@ import "./globals.css";
 import { SidebarProvider } from "@/components/Sidebar";
 import { PromptProvider } from "@/components/PromptContext";
 import { AnalysisProvider } from "@/components/concierge/AnalysisContext";
+import { QualityProvider } from "@/components/concierge/QualityContext";
 import { MainContent } from "@/components/MainContent";
 
 export const metadata: Metadata = {
@@ -16,9 +17,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen bg-bg text-text antialiased">
         <PromptProvider>
           <AnalysisProvider>
-            <SidebarProvider>
-              <MainContent>{children}</MainContent>
-            </SidebarProvider>
+            <QualityProvider>
+              <SidebarProvider>
+                <MainContent>{children}</MainContent>
+              </SidebarProvider>
+            </QualityProvider>
           </AnalysisProvider>
         </PromptProvider>
       </body>
