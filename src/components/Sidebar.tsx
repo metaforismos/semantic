@@ -28,6 +28,12 @@ const sections: NavSection[] = [
     ],
   },
   {
+    label: "Analytics",
+    items: [
+      { href: "/analytics", label: "GA4 Explorer" },
+    ],
+  },
+  {
     label: "Learning",
     items: [
       { href: "/learning/trivia", label: "Entrenamiento" },
