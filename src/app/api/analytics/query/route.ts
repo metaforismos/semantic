@@ -53,6 +53,17 @@ export async function POST(request: Request) {
       });
     }
 
+    // Sanitize: remove dimensions that are actually metric names (LLM occasionally confuses them)
+    const metricNames = new Set(metadata.metrics.map((m) => m.apiName));
+    if (queryResult.query.dimensions) {
+      queryResult.query.dimensions = queryResult.query.dimensions.filter(
+        (d) => !metricNames.has(d.name)
+      );
+      if (queryResult.query.dimensions.length === 0) {
+        delete queryResult.query.dimensions;
+      }
+    }
+
     const response = await runGA4Report(queryResult.query);
     const formatted = formatGA4Response(response as unknown as Record<string, unknown>);
 
