@@ -8,10 +8,10 @@ interface Props {
 
 export default function WhatsAppPreview({ content }: Props) {
   function renderText(text: string) {
-    // Highlight {{n}} variables
-    const parts = text.split(/(\{\{\d+\}\})/g);
+    // Highlight {{named}} and {{n}} variables
+    const parts = text.split(/(\{\{\w+\}\})/g);
     return parts.map((part, i) =>
-      /\{\{\d+\}\}/.test(part) ? (
+      /\{\{\w+\}\}/.test(part) ? (
         <span key={i} className="text-accent font-mono text-xs bg-accent/10 px-0.5 rounded">
           {part}
         </span>

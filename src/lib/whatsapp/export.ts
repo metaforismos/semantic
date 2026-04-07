@@ -1,5 +1,5 @@
 import type { GeneratedTemplate, MetaTemplateSubmission, MetaComponent } from "./types";
-import { META_LANGUAGE_CODES } from "./constants";
+import { META_LANGUAGE_CODES, NAMED_VARIABLES } from "./constants";
 
 export function toMetaFormat(template: GeneratedTemplate): MetaTemplateSubmission {
   const components: MetaComponent[] = [];
@@ -16,12 +16,28 @@ export function toMetaFormat(template: GeneratedTemplate): MetaTemplateSubmissio
     text: template.content.body,
   };
 
-  const bodyVars = template.content.variables.filter((v) =>
-    template.content.body.includes(`{{${v.index}}}`),
-  );
-  if (bodyVars.length > 0) {
+  // Collect all variables used in body: named (from system) + numbered (from LLM)
+  const allExamples: string[] = [];
+  const bodyText = template.content.body;
+
+  // Extract all variable placeholders in order of appearance
+  const varMatches = [...bodyText.matchAll(/\{\{(\w+)\}\}/g)];
+  for (const match of varMatches) {
+    const varName = match[1];
+    // Check if it's a named system variable
+    const namedVar = NAMED_VARIABLES.find((nv) => nv.name === varName);
+    if (namedVar) {
+      allExamples.push(namedVar.example);
+    } else {
+      // Numbered variable — find in template's variables array
+      const numVar = template.content.variables.find((v) => String(v.index) === varName);
+      if (numVar) allExamples.push(numVar.example);
+    }
+  }
+
+  if (allExamples.length > 0) {
     bodyComponent.example = {
-      body_text: [bodyVars.map((v) => v.example)],
+      body_text: [allExamples],
     };
   }
   components.push(bodyComponent);

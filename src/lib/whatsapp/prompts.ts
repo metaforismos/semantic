@@ -30,9 +30,9 @@ The following will cause Meta to auto-reclassify the template as Marketing and p
 
 ### TONE CALIBRATION
 Write like a bank notification or airline boarding pass update. No warmth, no personality, no brand voice. Examples of correct tone:
-- "Reserva {{1}} confirmada. Check-in: {{2}}. Check-out: {{3}}. Habitacion: {{4}}."
-- "Pago de {{1}} procesado. Referencia: {{2}}. Fecha: {{3}}."
-- "Encuesta de estadia disponible. Reserva: {{1}}. Enlace: {{2}}. Valida hasta: {{3}}."
+- "Reserva {{guest_reservation_id}} confirmada. Check-in: {{guest_checkin}}. Check-out: {{guest_checkout}}."
+- "{{guest_name}}, su reserva {{guest_reservation_id}} en {{hotel_name}} esta confirmada. Check-in: {{guest_checkin}}."
+- "Encuesta de estadia disponible. Reserva: {{guest_reservation_id}}. Enlace: {{1}}."
 
 Examples of WRONG tone (causes Marketing reclassification):
 - "We're excited to confirm your booking!" (emotional)
@@ -49,13 +49,24 @@ For survey or feedback events, the template must:
 - Include a link variable for the survey
 - Include a validity period if applicable
 - NEVER use "we'd love to hear", "your opinion matters", "help us improve" — these are marketing
-- Correct: "Encuesta de estadia disponible. Reserva: {{1}}. Acceda al formulario: {{2}}."
+- Correct: "Encuesta de estadia disponible. Reserva: {{guest_reservation_id}}. Acceda al formulario: {{1}}."
 - Wrong: "We'd love your feedback on your recent stay!"
 
-### VARIABLE FORMAT
-Use {{1}}, {{2}}, {{3}} etc. as Meta requires. Maximum 10 variables per template. Each variable must have:
-- A clear description of what data populates it
-- A realistic example value
+### AVAILABLE VARIABLES
+The hotel system provides these named variables. Use them by name in templates. You MUST use these whenever the data they represent is relevant to the template:
+
+| Variable | Description | Example |
+|---|---|---|
+| {{guest_name}} | Guest full name | Maria Lopez |
+| {{hotel_name}} | Hotel name | Hotel Central |
+| {{guest_checkin}} | Check-in date | 15 ene 2025 |
+| {{guest_checkout}} | Check-out date | 18 ene 2025 |
+| {{guest_reservation_id}} | Booking reference ID | RES-2024-78432 |
+| {{concierge_role}} | Concierge role/title | Recepcion |
+| {{concierge_name}} | Concierge agent name | Carlos |
+| {{guest_hours_to_checkin}} | Hours until check-in | 24 |
+
+For any additional data not covered by these variables (e.g., survey links, payment amounts, room type, Wi-Fi passwords), use numbered placeholders {{1}}, {{2}}, etc. Always prefer named variables over numbered ones when the data matches.
 
 ### OUTPUT FORMAT
 Respond with ONLY a JSON array containing exactly 3 template objects (Spanish, English, Portuguese). No text before or after. Each object:
@@ -68,19 +79,21 @@ Respond with ONLY a JSON array containing exactly 3 template objects (Spanish, E
     "category": "UTILITY",
     "use_case": "the event described",
     "content": {
-      "header": "Optional header with {{1}} (max 60 chars)",
-      "body": "Main factual content with {{variables}}. Max 1024 chars.",
+      "header": "Optional header (max 60 chars)",
+      "body": "Main factual content with {{named_variables}} and {{1}} numbered ones. Max 1024 chars.",
       "footer": "Optional footer (max 60 chars)",
       "buttons": [
-        { "type": "URL", "text": "Button text", "url": "https://example.com/{{1}}" }
+        { "type": "URL", "text": "Button text", "url": "https://example.com/{{guest_reservation_id}}" }
       ],
       "variables": [
-        { "index": 1, "description": "What this variable contains", "example": "Example value" }
+        { "index": 1, "description": "What this numbered variable contains", "example": "Example value" }
       ]
     }
   }
 ]
 \`\`\`
+
+IMPORTANT: The "variables" array should ONLY list numbered variables ({{1}}, {{2}}, etc.) — named variables ({{guest_name}}, {{hotel_name}}, etc.) are system-provided and do not need to be listed.
 
 HEADER: max 60 characters. Optional. Purely informational.
 BODY: max 1024 characters. Required. Core transactional content.

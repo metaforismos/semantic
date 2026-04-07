@@ -66,6 +66,18 @@ export const CROSS_SELL_PATTERNS = [
   /conoce\s*nuestro/i, /check\s*out\s*our/i, /conheca\s*nosso/i,
 ];
 
+// Named variables available from the hotel system
+export const NAMED_VARIABLES = [
+  { name: "guest_name", description: "Nombre del huesped", example: "Maria Lopez" },
+  { name: "hotel_name", description: "Nombre del hotel", example: "Hotel Central" },
+  { name: "guest_checkin", description: "Fecha de check-in", example: "15 ene 2025" },
+  { name: "guest_checkout", description: "Fecha de check-out", example: "18 ene 2025" },
+  { name: "guest_reservation_id", description: "ID de reserva", example: "RES-2024-78432" },
+  { name: "concierge_role", description: "Rol del concierge", example: "Recepcion" },
+  { name: "concierge_name", description: "Nombre del concierge", example: "Carlos" },
+  { name: "guest_hours_to_checkin", description: "Horas hasta check-in", example: "24" },
+];
+
 export const META_LANGUAGE_CODES: Record<string, string> = {
   es: "es",
   en: "en_US",

@@ -41,12 +41,12 @@ export function checkCompliance(template: GeneratedTemplate): ComplianceResult {
     }
   }
 
-  // Rule 3: Must contain at least one variable placeholder
-  if (!/\{\{\d+\}\}/.test(content.body)) {
+  // Rule 3: Must contain at least one variable placeholder (numbered or named)
+  if (!/\{\{\w+\}\}/.test(content.body)) {
     violations.push({
       rule: "NO_VARIABLES",
       severity: "error",
-      message: "El body no contiene variables ({{1}}, {{2}}, etc.). Templates Utility deben referenciar datos transaccionales.",
+      message: "El body no contiene variables ({{guest_name}}, {{1}}, etc.). Templates Utility deben referenciar datos transaccionales.",
       location: "body",
     });
   }
