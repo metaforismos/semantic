@@ -40,6 +40,12 @@ const sections: NavSection[] = [
       { href: "/learning/skills", label: "Skills" },
     ],
   },
+  {
+    label: "WhatsApp",
+    items: [
+      { href: "/whatsapp/templates", label: "Template Builder" },
+    ],
+  },
 ];
 
 // Context so layout can read collapsed state
