@@ -32,7 +32,7 @@ The following will cause Meta to auto-reclassify the template as Marketing and p
 Write like a bank notification or airline boarding pass update. No warmth, no personality, no brand voice. Examples of correct tone:
 - "Reserva {{guest_reservation_id}} confirmada. Check-in: {{guest_checkin}}. Check-out: {{guest_checkout}}."
 - "{{guest_name}}, su reserva {{guest_reservation_id}} en {{hotel_name}} esta confirmada. Check-in: {{guest_checkin}}."
-- "Encuesta de estadia disponible. Reserva: {{guest_reservation_id}}. Enlace: {{1}}."
+- "Encuesta de estadia disponible. Reserva: {{guest_reservation_id}}. Hotel: {{hotel_name}}."
 
 Examples of WRONG tone (causes Marketing reclassification):
 - "We're excited to confirm your booking!" (emotional)
@@ -49,7 +49,7 @@ For survey or feedback events, the template must:
 - Include a link variable for the survey
 - Include a validity period if applicable
 - NEVER use "we'd love to hear", "your opinion matters", "help us improve" — these are marketing
-- Correct: "Encuesta de estadia disponible. Reserva: {{guest_reservation_id}}. Acceda al formulario: {{1}}."
+- Correct: "Encuesta de estadia disponible. Reserva: {{guest_reservation_id}}. Hotel: {{hotel_name}}."
 - Wrong: "We'd love your feedback on your recent stay!"
 
 ### AVAILABLE VARIABLES
@@ -66,7 +66,7 @@ The hotel system provides these named variables. Use them by name in templates. 
 | {{concierge_name}} | Concierge agent name | Carlos |
 | {{guest_hours_to_checkin}} | Hours until check-in | 24 |
 
-For any additional data not covered by these variables (e.g., survey links, payment amounts, room type, Wi-Fi passwords), use numbered placeholders {{1}}, {{2}}, etc. Always prefer named variables over numbered ones when the data matches.
+These are the ONLY variables available. Do NOT invent new variables, do NOT use numbered placeholders like {{1}}, {{2}}. Every piece of dynamic data in the template must come from this list. If the event requires data not available in these variables (e.g., a survey link, payment amount, Wi-Fi password), embed it as static text or omit it — do NOT create new variable placeholders.
 
 ### OUTPUT FORMAT
 Respond with ONLY a JSON array containing exactly 3 template objects (Spanish, English, Portuguese). No text before or after. Each object:
@@ -80,20 +80,18 @@ Respond with ONLY a JSON array containing exactly 3 template objects (Spanish, E
     "use_case": "the event described",
     "content": {
       "header": "Optional header (max 60 chars)",
-      "body": "Main factual content with {{named_variables}} and {{1}} numbered ones. Max 1024 chars.",
+      "body": "Main factual content using ONLY {{guest_name}}, {{hotel_name}}, {{guest_checkin}}, {{guest_checkout}}, {{guest_reservation_id}}, {{concierge_role}}, {{concierge_name}}, {{guest_hours_to_checkin}}. Max 1024 chars.",
       "footer": "Optional footer (max 60 chars)",
       "buttons": [
         { "type": "URL", "text": "Button text", "url": "https://example.com/{{guest_reservation_id}}" }
       ],
-      "variables": [
-        { "index": 1, "description": "What this numbered variable contains", "example": "Example value" }
-      ]
+      "variables": []
     }
   }
 ]
 \`\`\`
 
-IMPORTANT: The "variables" array should ONLY list numbered variables ({{1}}, {{2}}, etc.) — named variables ({{guest_name}}, {{hotel_name}}, etc.) are system-provided and do not need to be listed.
+IMPORTANT: The "variables" array must always be empty — all variables are system-provided named variables.
 
 HEADER: max 60 characters. Optional. Purely informational.
 BODY: max 1024 characters. Required. Core transactional content.

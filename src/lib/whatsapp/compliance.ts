@@ -4,7 +4,10 @@ import {
   BANNED_CTA_PATTERNS,
   SUBJECTIVE_PATTERNS,
   CROSS_SELL_PATTERNS,
+  NAMED_VARIABLES,
 } from "./constants";
+
+const ALLOWED_VAR_NAMES = new Set(NAMED_VARIABLES.map((v) => v.name));
 
 export function checkCompliance(template: GeneratedTemplate): ComplianceResult {
   const violations: ComplianceViolation[] = [];
@@ -41,14 +44,29 @@ export function checkCompliance(template: GeneratedTemplate): ComplianceResult {
     }
   }
 
-  // Rule 3: Must contain at least one variable placeholder (numbered or named)
+  // Rule 3: Must contain at least one variable placeholder
   if (!/\{\{\w+\}\}/.test(content.body)) {
     violations.push({
       rule: "NO_VARIABLES",
       severity: "error",
-      message: "El body no contiene variables ({{guest_name}}, {{1}}, etc.). Templates Utility deben referenciar datos transaccionales.",
+      message: "El body no contiene variables ({{guest_name}}, etc.). Templates Utility deben referenciar datos transaccionales.",
       location: "body",
     });
+  }
+
+  // Rule 3b: All variables must be from the allowed set
+  const allVarMatches = [...allText.matchAll(/\{\{(\w+)\}\}/g)];
+  for (const match of allVarMatches) {
+    const varName = match[1];
+    if (!ALLOWED_VAR_NAMES.has(varName)) {
+      violations.push({
+        rule: "UNKNOWN_VARIABLE",
+        severity: "error",
+        message: `Variable no disponible: {{${varName}}}. Solo se permiten: ${[...ALLOWED_VAR_NAMES].map((v) => `{{${v}}}`).join(", ")}.`,
+        location: "body",
+        match: `{{${varName}}}`,
+      });
+    }
   }
 
   // Rule 4: Exclamation marks

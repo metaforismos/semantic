@@ -16,28 +16,16 @@ export function toMetaFormat(template: GeneratedTemplate): MetaTemplateSubmissio
     text: template.content.body,
   };
 
-  // Collect all variables used in body: named (from system) + numbered (from LLM)
-  const allExamples: string[] = [];
-  const bodyText = template.content.body;
+  // Collect example values for all named variables used in body
+  const varMatches = [...template.content.body.matchAll(/\{\{(\w+)\}\}/g)];
+  const examples = varMatches
+    .map((m) => NAMED_VARIABLES.find((nv) => nv.name === m[1]))
+    .filter(Boolean)
+    .map((nv) => nv!.example);
 
-  // Extract all variable placeholders in order of appearance
-  const varMatches = [...bodyText.matchAll(/\{\{(\w+)\}\}/g)];
-  for (const match of varMatches) {
-    const varName = match[1];
-    // Check if it's a named system variable
-    const namedVar = NAMED_VARIABLES.find((nv) => nv.name === varName);
-    if (namedVar) {
-      allExamples.push(namedVar.example);
-    } else {
-      // Numbered variable — find in template's variables array
-      const numVar = template.content.variables.find((v) => String(v.index) === varName);
-      if (numVar) allExamples.push(numVar.example);
-    }
-  }
-
-  if (allExamples.length > 0) {
+  if (examples.length > 0) {
     bodyComponent.example = {
-      body_text: [allExamples],
+      body_text: [examples],
     };
   }
   components.push(bodyComponent);
