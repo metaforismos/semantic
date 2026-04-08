@@ -1,125 +1,63 @@
 "use client";
 
 import { useState } from "react";
-import type { GeneratedTemplate } from "@/lib/whatsapp/types";
-import TemplateRequestForm from "@/components/whatsapp/TemplateRequestForm";
-import TemplateResults from "@/components/whatsapp/TemplateResults";
+import type { GeneratedTemplate, TemplateContent } from "@/lib/whatsapp/types";
+import { checkCompliance } from "@/lib/whatsapp/compliance";
+import { NAMED_VARIABLES } from "@/lib/whatsapp/constants";
+import WhatsAppPreview from "@/components/whatsapp/WhatsAppPreview";
+import ComplianceReport from "@/components/whatsapp/ComplianceReport";
 
 export default function WhatsAppTemplatesPage() {
-  // Form state
-  const [event, setEvent] = useState("");
-  const [description, setDescription] = useState("");
-  const [hotelName, setHotelName] = useState("");
+  const [body, setBody] = useState("");
+  const [header, setHeader] = useState("");
+  const [footer, setFooter] = useState("");
   const [includeButton, setIncludeButton] = useState(false);
   const [buttonText, setButtonText] = useState("");
+  const [evaluated, setEvaluated] = useState(false);
 
-  // Result state
-  const [templates, setTemplates] = useState<GeneratedTemplate[]>([]);
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [isRegenerating, setIsRegenerating] = useState(false);
-  const [isSaving, setIsSaving] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [modelUsed, setModelUsed] = useState<string | null>(null);
-  const [savedMessage, setSavedMessage] = useState<string | null>(null);
+  const canEvaluate = body.trim().length > 0;
 
-  async function handleGenerate() {
-    setIsGenerating(true);
-    setError(null);
-    setTemplates([]);
-    setSavedMessage(null);
-
-    try {
-      const res = await fetch("/api/whatsapp/generate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          event,
-          description,
-          hotel_name: hotelName || undefined,
-          include_button: includeButton,
-          button_text: includeButton ? buttonText : undefined,
-        }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.error || "Error generating templates");
-      }
-
-      setTemplates(data.templates);
-      setModelUsed(data.model_used);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Error desconocido");
-    } finally {
-      setIsGenerating(false);
+  function buildTemplate(): GeneratedTemplate {
+    const content: TemplateContent = {
+      body: body.trim(),
+      variables: [],
+    };
+    if (header.trim()) content.header = header.trim();
+    if (footer.trim()) content.footer = footer.trim();
+    if (includeButton && buttonText.trim()) {
+      content.buttons = [{ type: "QUICK_REPLY", text: buttonText.trim() }];
     }
+    return {
+      name: "user_template",
+      language: "es",
+      category: "UTILITY",
+      use_case: "qualification",
+      content,
+    };
   }
 
-  async function handleRegenerate(feedback: string) {
-    setIsRegenerating(true);
-    setError(null);
-    setSavedMessage(null);
+  const template = buildTemplate();
+  const compliance = evaluated ? checkCompliance(template) : null;
 
-    try {
-      const res = await fetch("/api/whatsapp/generate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          event,
-          description,
-          hotel_name: hotelName || undefined,
-          include_button: includeButton,
-          button_text: includeButton ? buttonText : undefined,
-          previous_templates: templates,
-          feedback,
-        }),
-      });
+  // Detect which named variables are used
+  const allText = [template.content.header, template.content.body, template.content.footer]
+    .filter(Boolean)
+    .join(" ");
+  const usedNamedVars = NAMED_VARIABLES.filter((nv) =>
+    allText.includes(`{{${nv.name}}}`),
+  );
 
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.error || "Error regenerating templates");
-      }
-
-      setTemplates(data.templates);
-      setModelUsed(data.model_used);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Error desconocido");
-    } finally {
-      setIsRegenerating(false);
-    }
+  function handleEvaluate() {
+    setEvaluated(true);
   }
 
-  async function handleMarkApproved() {
-    if (templates.length === 0) return;
-    setIsSaving(true);
-    setSavedMessage(null);
-
-    try {
-      const res = await fetch("/api/whatsapp/approved", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          event,
-          name: templates[0].name,
-          templates,
-          notes: description,
-        }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.error || "Error saving approved template");
-      }
-
-      setSavedMessage("Template guardado como aprobado. Se usara como ejemplo en futuras generaciones.");
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Error al guardar");
-    } finally {
-      setIsSaving(false);
-    }
+  function handleClear() {
+    setBody("");
+    setHeader("");
+    setFooter("");
+    setIncludeButton(false);
+    setButtonText("");
+    setEvaluated(false);
   }
 
   return (
@@ -132,93 +70,216 @@ export default function WhatsAppTemplatesPage() {
           </span>
           <span className="text-text-dim">/</span>
           <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-text-dim">
-            Template Builder
+            Template Qualifier
           </span>
         </div>
         <h1 className="text-xl font-bold text-text tracking-tight">
-          WhatsApp Template Builder
+          WhatsApp Template Qualifier
         </h1>
         <p className="text-sm text-text-muted mt-1 max-w-xl">
-          Genera templates de WhatsApp en 3 idiomas optimizados para clasificacion Utility de Meta.
-          Tono estrictamente transaccional para evitar reclasificacion a Marketing.
+          Pega el texto de tu template de WhatsApp y evalua si cumple con las politicas de Meta
+          para clasificacion Utility. Detecta palabras prohibidas, tono promocional, y problemas estructurales.
         </p>
       </div>
 
       {/* Two-column layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-[420px_1fr] gap-6">
         {/* Left: sticky form */}
         <div className="lg:sticky lg:top-20 lg:self-start">
-          <TemplateRequestForm
-            event={event}
-            setEvent={setEvent}
-            description={description}
-            setDescription={setDescription}
-            hotelName={hotelName}
-            setHotelName={setHotelName}
-            includeButton={includeButton}
-            setIncludeButton={setIncludeButton}
-            buttonText={buttonText}
-            setButtonText={setButtonText}
-            onGenerate={handleGenerate}
-            isGenerating={isGenerating}
-          />
+          <div className="bg-surface border border-border rounded-lg p-5 space-y-4">
+            {/* Body textarea */}
+            <div>
+              <label className="text-[10px] font-semibold uppercase tracking-[0.15em] text-text-dim block mb-1.5">
+                Cuerpo del template <span className="text-negative">*</span>
+              </label>
+              <textarea
+                value={body}
+                onChange={(e) => {
+                  setBody(e.target.value);
+                  if (evaluated) setEvaluated(false);
+                }}
+                rows={6}
+                placeholder={"Ej: Hola {{guest_name}}, tu reserva en {{hotel_name}} esta confirmada.\n\nCheck-in: {{guest_checkin}}\nCheck-out: {{guest_checkout}}\nReserva: {{guest_reservation_id}}"}
+                className="w-full px-3 py-2.5 bg-surface-2 border border-border rounded-md text-sm text-text placeholder:text-text-dim focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-colors resize-y font-mono"
+              />
+              <div className="flex items-center justify-between mt-1">
+                <span className="text-[10px] text-text-dim">
+                  {body.length}/1024 caracteres
+                </span>
+                {body.length > 1024 && (
+                  <span className="text-[10px] text-negative font-medium">
+                    Excede el limite
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {/* Header (optional) */}
+            <div>
+              <label className="text-[10px] font-semibold uppercase tracking-[0.15em] text-text-dim block mb-1.5">
+                Header <span className="opacity-50">(opcional)</span>
+              </label>
+              <input
+                type="text"
+                value={header}
+                onChange={(e) => {
+                  setHeader(e.target.value);
+                  if (evaluated) setEvaluated(false);
+                }}
+                placeholder="Ej: Confirmacion de reserva"
+                className="w-full px-3 py-2.5 bg-surface-2 border border-border rounded-md text-sm text-text placeholder:text-text-dim focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-colors"
+              />
+              <span className="text-[10px] text-text-dim mt-0.5 block">{header.length}/60</span>
+            </div>
+
+            {/* Footer (optional) */}
+            <div>
+              <label className="text-[10px] font-semibold uppercase tracking-[0.15em] text-text-dim block mb-1.5">
+                Footer <span className="opacity-50">(opcional)</span>
+              </label>
+              <input
+                type="text"
+                value={footer}
+                onChange={(e) => {
+                  setFooter(e.target.value);
+                  if (evaluated) setEvaluated(false);
+                }}
+                placeholder="Ej: myHotel — Powered by AI"
+                className="w-full px-3 py-2.5 bg-surface-2 border border-border rounded-md text-sm text-text placeholder:text-text-dim focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-colors"
+              />
+              <span className="text-[10px] text-text-dim mt-0.5 block">{footer.length}/60</span>
+            </div>
+
+            {/* Button toggle */}
+            <div>
+              <div className="flex items-center gap-3 mb-2">
+                <label className="text-[10px] font-semibold uppercase tracking-[0.15em] text-text-dim">
+                  Incluir boton
+                </label>
+                <button
+                  onClick={() => {
+                    setIncludeButton(!includeButton);
+                    if (evaluated) setEvaluated(false);
+                  }}
+                  className={`relative w-9 h-5 rounded-full transition-colors ${
+                    includeButton ? "bg-accent" : "bg-surface-3"
+                  }`}
+                >
+                  <span
+                    className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full transition-transform ${
+                      includeButton ? "translate-x-4" : "translate-x-0"
+                    }`}
+                  />
+                </button>
+              </div>
+              {includeButton && (
+                <input
+                  type="text"
+                  value={buttonText}
+                  onChange={(e) => {
+                    setButtonText(e.target.value);
+                    if (evaluated) setEvaluated(false);
+                  }}
+                  placeholder="Ej: Ver reserva, Descargar comprobante..."
+                  className="w-full px-3 py-2.5 bg-surface-2 border border-border rounded-md text-sm text-text placeholder:text-text-dim focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-colors animate-fade-in"
+                />
+              )}
+            </div>
+
+            {/* Available variables reference */}
+            <details className="group">
+              <summary className="text-[10px] font-semibold uppercase tracking-[0.15em] text-text-dim cursor-pointer select-none flex items-center gap-1">
+                <span className="transition-transform group-open:rotate-90">&#9654;</span>
+                Variables disponibles
+              </summary>
+              <div className="mt-2 space-y-1">
+                {NAMED_VARIABLES.map((v) => (
+                  <div
+                    key={v.name}
+                    className="flex items-center gap-2 text-[11px] px-2 py-1 bg-surface-2 rounded cursor-pointer hover:bg-surface-3 transition-colors"
+                    onClick={() => {
+                      setBody((prev) => prev + `{{${v.name}}}`);
+                      if (evaluated) setEvaluated(false);
+                    }}
+                  >
+                    <span className="font-mono text-accent">{`{{${v.name}}}`}</span>
+                    <span className="text-text-dim">{v.description}</span>
+                  </div>
+                ))}
+              </div>
+            </details>
+
+            {/* Action buttons */}
+            <div className="flex gap-2">
+              <button
+                onClick={handleEvaluate}
+                disabled={!canEvaluate}
+                className="flex-1 py-2.5 bg-accent text-white text-sm font-medium rounded-md hover:bg-accent-light transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                Evaluar Template
+              </button>
+              {(body || header || footer) && (
+                <button
+                  onClick={handleClear}
+                  className="px-4 py-2.5 text-sm text-text-muted border border-border rounded-md hover:bg-surface-2 transition-colors"
+                >
+                  Limpiar
+                </button>
+              )}
+            </div>
+          </div>
         </div>
 
         {/* Right: results */}
         <div className="min-w-0">
-          {/* Loading state */}
-          {isGenerating && (
-            <div className="bg-surface border border-border rounded-lg p-8 flex flex-col items-center justify-center gap-3 animate-fade-in">
-              <svg className="animate-spin h-8 w-8 text-accent" viewBox="0 0 24 24" fill="none">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-              </svg>
-              <p className="text-sm text-text-muted">Generando templates en 3 idiomas...</p>
-              <p className="text-xs text-text-dim">Aplicando reglas de compliance Meta Utility</p>
-            </div>
-          )}
+          {evaluated && compliance ? (
+            <div className="space-y-5 animate-fade-in">
+              {/* Compliance report */}
+              <div className="bg-surface border border-border rounded-lg p-5">
+                <div className="text-[10px] font-semibold uppercase tracking-wide text-text-dim mb-3">
+                  Resultado de Evaluacion
+                </div>
+                <ComplianceReport result={compliance} />
+              </div>
 
-          {/* Error state */}
-          {error && (
-            <div className="bg-negative/5 border border-negative/20 rounded-lg px-4 py-3 text-sm text-negative animate-fade-in">
-              {error}
-            </div>
-          )}
+              {/* WhatsApp preview */}
+              <div className="bg-surface border border-border rounded-lg p-5">
+                <div className="text-[10px] font-semibold uppercase tracking-wide text-text-dim mb-3">
+                  Vista Previa WhatsApp
+                </div>
+                <WhatsAppPreview content={template.content} />
+              </div>
 
-          {/* Saved confirmation */}
-          {savedMessage && (
-            <div className="bg-positive/5 border border-positive/20 rounded-lg px-4 py-3 text-sm text-positive animate-fade-in mb-4">
-              {savedMessage}
-            </div>
-          )}
-
-          {/* Results */}
-          {templates.length > 0 && !isGenerating && (
-            <div>
-              {modelUsed && (
-                <div className="text-[10px] text-text-dim mb-3">
-                  Modelo: <span className="font-mono">{modelUsed}</span>
+              {/* Variables detected */}
+              {usedNamedVars.length > 0 && (
+                <div className="bg-surface border border-border rounded-md overflow-hidden">
+                  <div className="px-3 py-1.5 bg-surface-2 border-b border-border">
+                    <span className="text-[10px] font-semibold uppercase tracking-wide text-text-dim">
+                      Variables detectadas
+                    </span>
+                  </div>
+                  <div className="divide-y divide-border">
+                    {usedNamedVars.map((nv) => (
+                      <div key={nv.name} className="px-3 py-2 flex items-center gap-3 text-xs">
+                        <span className="font-mono text-accent bg-accent/10 px-1.5 py-0.5 rounded shrink-0">
+                          {`{{${nv.name}}}`}
+                        </span>
+                        <span className="text-text flex-1">{nv.description}</span>
+                        <span className="text-text-dim font-mono">{nv.example}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
-              <TemplateResults
-                templates={templates}
-                event={event}
-                onRegenerate={handleRegenerate}
-                isRegenerating={isRegenerating}
-                onMarkApproved={handleMarkApproved}
-                isSaving={isSaving}
-              />
             </div>
-          )}
-
-          {/* Empty state */}
-          {templates.length === 0 && !isGenerating && !error && (
+          ) : (
             <div className="bg-surface border border-border rounded-lg p-8 text-center">
               <div className="text-text-dim text-sm mb-2">
-                Selecciona un evento, describe el template y genera.
+                Pega el texto de tu template y presiona Evaluar.
               </div>
               <div className="text-text-dim text-xs max-w-sm mx-auto">
-                Los templates se generan en espanol, ingles y portugues siguiendo las reglas de Meta para clasificacion Utility.
+                El evaluador verifica compliance con las reglas de Meta para templates Utility:
+                palabras prohibidas, tono promocional, longitud, variables, y mas.
               </div>
             </div>
           )}

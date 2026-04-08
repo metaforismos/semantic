@@ -43,7 +43,7 @@ const sections: NavSection[] = [
   {
     label: "WhatsApp",
     items: [
-      { href: "/whatsapp/templates", label: "Template Builder" },
+      { href: "/whatsapp/templates", label: "Template Qualifier" },
     ],
   },
 ];
