@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import type { GeneratedTemplate, TemplateContent } from "@/lib/whatsapp/types";
 import { checkCompliance } from "@/lib/whatsapp/compliance";
 import { NAMED_VARIABLES } from "@/lib/whatsapp/constants";
@@ -9,6 +9,7 @@ import ComplianceReport from "@/components/whatsapp/ComplianceReport";
 
 export default function WhatsAppTemplatesPage() {
   const [body, setBody] = useState("");
+  const bodyRef = useRef<HTMLTextAreaElement>(null);
   const [header, setHeader] = useState("");
   const [footer, setFooter] = useState("");
   const [includeButton, setIncludeButton] = useState(false);
@@ -46,6 +47,25 @@ export default function WhatsAppTemplatesPage() {
   const usedNamedVars = NAMED_VARIABLES.filter((nv) =>
     allText.includes(`{{${nv.name}}}`),
   );
+
+  function insertAtCursor(variable: string) {
+    const el = bodyRef.current;
+    if (!el) {
+      setBody((prev) => prev + variable);
+    } else {
+      const start = el.selectionStart;
+      const end = el.selectionEnd;
+      const newBody = body.slice(0, start) + variable + body.slice(end);
+      setBody(newBody);
+      if (evaluated) setEvaluated(false);
+      // Restore focus and cursor after the inserted text
+      requestAnimationFrame(() => {
+        el.focus();
+        const pos = start + variable.length;
+        el.setSelectionRange(pos, pos);
+      });
+    }
+  }
 
   function handleEvaluate() {
     setEvaluated(true);
@@ -93,6 +113,7 @@ export default function WhatsAppTemplatesPage() {
                 Cuerpo del template <span className="text-negative">*</span>
               </label>
               <textarea
+                ref={bodyRef}
                 value={body}
                 onChange={(e) => {
                   setBody(e.target.value);
@@ -111,6 +132,23 @@ export default function WhatsAppTemplatesPage() {
                     Excede el limite
                   </span>
                 )}
+              </div>
+              {/* Variable chips — click to insert at cursor */}
+              <div className="mt-2">
+                <span className="text-[10px] text-text-dim block mb-1">Insertar variable:</span>
+                <div className="flex flex-wrap gap-1">
+                  {NAMED_VARIABLES.map((v) => (
+                    <button
+                      key={v.name}
+                      type="button"
+                      title={v.description}
+                      onClick={() => insertAtCursor(`{{${v.name}}}`)}
+                      className="px-1.5 py-0.5 text-[10px] font-mono rounded border border-accent/20 bg-accent/5 text-accent hover:bg-accent/15 hover:border-accent/40 transition-colors"
+                    >
+                      {v.name}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -185,29 +223,6 @@ export default function WhatsAppTemplatesPage() {
                 />
               )}
             </div>
-
-            {/* Available variables reference */}
-            <details className="group">
-              <summary className="text-[10px] font-semibold uppercase tracking-[0.15em] text-text-dim cursor-pointer select-none flex items-center gap-1">
-                <span className="transition-transform group-open:rotate-90">&#9654;</span>
-                Variables disponibles
-              </summary>
-              <div className="mt-2 space-y-1">
-                {NAMED_VARIABLES.map((v) => (
-                  <div
-                    key={v.name}
-                    className="flex items-center gap-2 text-[11px] px-2 py-1 bg-surface-2 rounded cursor-pointer hover:bg-surface-3 transition-colors"
-                    onClick={() => {
-                      setBody((prev) => prev + `{{${v.name}}}`);
-                      if (evaluated) setEvaluated(false);
-                    }}
-                  >
-                    <span className="font-mono text-accent">{`{{${v.name}}}`}</span>
-                    <span className="text-text-dim">{v.description}</span>
-                  </div>
-                ))}
-              </div>
-            </details>
 
             {/* Action buttons */}
             <div className="flex gap-2">
