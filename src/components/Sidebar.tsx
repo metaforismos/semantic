@@ -46,6 +46,12 @@ const sections: NavSection[] = [
       { href: "/whatsapp/templates", label: "Template Qualifier" },
     ],
   },
+  {
+    label: "PIS",
+    items: [
+      { href: "/pis", label: "Initiatives" },
+    ],
+  },
 ];
 
 // Context so layout can read collapsed state
