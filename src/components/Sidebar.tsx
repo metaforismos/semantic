@@ -4,6 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, createContext, useContext } from "react";
 
+const PUBLIC_ROUTES = ["/iniciativas"];
+
 interface NavSection {
   label: string;
   items: { href: string; label: string }[];
@@ -77,6 +79,9 @@ function SidebarInner({
 }) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const isPublic = PUBLIC_ROUTES.some((r) => pathname.startsWith(r));
+
+  if (isPublic) return null;
 
   return (
     <>
