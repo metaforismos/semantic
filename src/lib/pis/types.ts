@@ -10,7 +10,7 @@ export const PIS_PRODUCTS = [
 
 export type PisProduct = (typeof PIS_PRODUCTS)[number];
 
-export type InitiativeStatus = "draft" | "scored" | "archived";
+export type InitiativeStatus = "pre-evaluacion" | "draft" | "scored" | "archived";
 
 export interface KpiImpact {
   kpi_id: number;

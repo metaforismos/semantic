@@ -7,7 +7,7 @@ import { ProductTags } from "./ProductTags";
 import { effortPercent } from "@/lib/pis/types";
 import type { PisInitiativeSummary } from "@/lib/pis/types";
 
-type StatusFilter = "active" | "scored" | "draft" | "archived";
+type StatusFilter = "active" | "pre-evaluacion" | "scored" | "draft" | "archived";
 
 export function InitiativeList() {
   const [initiatives, setInitiatives] = useState<PisInitiativeSummary[]>([]);
@@ -33,7 +33,8 @@ export function InitiativeList() {
   }
 
   const filters: { key: StatusFilter; label: string }[] = [
-    { key: "active", label: "Activas" },
+    { key: "active", label: "Todas" },
+    { key: "pre-evaluacion", label: "Pre-evaluaci\u00f3n" },
     { key: "scored", label: "Evaluadas" },
     { key: "draft", label: "Borradores" },
     { key: "archived", label: "Archivadas" },

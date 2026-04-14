@@ -31,7 +31,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { title, description, hypothesis, products, author, celula, jornadas } = body;
+    const { title, description, hypothesis, products, author, celula, jornadas, status: reqStatus } = body;
 
     if (!title || !description || !hypothesis || !products?.length) {
       return NextResponse.json(
@@ -40,11 +40,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Allow "pre-evaluacion" from public form, default to "draft" for internal
+    const initStatus = reqStatus === "pre-evaluacion" ? "pre-evaluacion" : "draft";
+
     const result = await pool.query(
-      `INSERT INTO pis_initiatives (title, description, hypothesis, products, author, celula, jornadas)
-       VALUES ($1, $2, $3, $4, $5, $6, $7)
+      `INSERT INTO pis_initiatives (title, description, hypothesis, products, author, celula, jornadas, status)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
        RETURNING id, created_at`,
-      [title, description, hypothesis, products, author || "", celula || null, jornadas || null]
+      [title, description, hypothesis, products, author || "", celula || null, jornadas || null, initStatus]
     );
 
     return NextResponse.json(result.rows[0], { status: 201 });

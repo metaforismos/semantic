@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { PIS_PRODUCTS } from "@/lib/pis/types";
-import type { PisProduct } from "@/lib/pis/types";
+import { SCORE_THRESHOLDS } from "@/lib/pis/constants";
+import type { PisProduct, ScoringResult } from "@/lib/pis/types";
 
 const PRODUCT_DESCRIPTIONS: Record<string, string> = {
   PreStay: "Engagement pre-llegada: web check-in, pedidos anticipados",
@@ -62,14 +63,15 @@ export default function PublicInitiativeForm() {
   const [description, setDescription] = useState("");
   const [hypothesis, setHypothesis] = useState("");
   const [products, setProducts] = useState<PisProduct[]>([]);
-  const [celula, setCelula] = useState("");
-  const [jornadas, setJornadas] = useState("");
   const [author, setAuthor] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [scoring, setScoring] = useState(false);
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState<{ title: string; id: number } | null>(
-    null
-  );
+  const [success, setSuccess] = useState<{
+    title: string;
+    id: number;
+    scoring?: ScoringResult;
+  } | null>(null);
 
   function toggleProduct(p: PisProduct) {
     setProducts((prev) =>
@@ -82,8 +84,6 @@ export default function PublicInitiativeForm() {
     setDescription("");
     setHypothesis("");
     setProducts([]);
-    setCelula("");
-    setJornadas("");
     setAuthor("");
     setSuccess(null);
     setError("");
@@ -121,8 +121,7 @@ export default function PublicInitiativeForm() {
           hypothesis: hypothesis.trim(),
           products,
           author: author.trim() || "Anónimo",
-          celula: celula.trim() || null,
-          jornadas: jornadas ? parseFloat(jornadas) : null,
+          status: "pre-evaluacion",
         }),
       });
 
@@ -132,37 +131,169 @@ export default function PublicInitiativeForm() {
       }
 
       const data = await res.json();
-      setSuccess({ title: title.trim(), id: data.id });
+      const initId = data.id;
+      setSuccess({ title: title.trim(), id: initId });
+      setSubmitting(false);
+
+      // Auto-score in background
+      setScoring(true);
+      try {
+        const scoreRes = await fetch(`/api/pis/initiatives/${initId}/score`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ modelId: "gemini-pro" }),
+        });
+        if (scoreRes.ok) {
+          const scoreData = await scoreRes.json();
+          setSuccess((prev) =>
+            prev ? { ...prev, scoring: scoreData.scoring } : prev
+          );
+        }
+      } catch {
+        // Scoring failed silently — initiative is still saved
+      } finally {
+        setScoring(false);
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Error desconocido");
-    } finally {
       setSubmitting(false);
     }
   }
 
+  function scoreColor(score: number) {
+    return score >= SCORE_THRESHOLDS.GREEN
+      ? "text-positive"
+      : score >= SCORE_THRESHOLDS.YELLOW
+        ? "text-neutral-sent"
+        : "text-negative";
+  }
+
+  function scoreBg(score: number) {
+    return score >= SCORE_THRESHOLDS.GREEN
+      ? "bg-positive-muted"
+      : score >= SCORE_THRESHOLDS.YELLOW
+        ? "bg-neutral-muted"
+        : "bg-negative-muted";
+  }
+
   // Success state
   if (success) {
+    const sr = success.scoring;
+
     return (
-      <div className="animate-fade-in">
-        <div className="bg-positive-muted border border-positive/20 rounded-xl p-6 text-center space-y-4">
-          <div className="text-4xl">
-            &#10003;
-          </div>
+      <div className="animate-fade-in space-y-6">
+        {/* Confirmation header */}
+        <div className="bg-positive-muted border border-positive/20 rounded-xl p-5 text-center">
           <h2 className="text-lg font-bold text-text">
-            Iniciativa enviada
+            Iniciativa registrada exitosamente
           </h2>
-          <p className="text-sm text-text-muted leading-relaxed">
-            <strong>&ldquo;{success.title}&rdquo;</strong> ha sido registrada
-            exitosamente. Será evaluada automáticamente por nuestro sistema de
-            inteligencia de producto (PIS) y presentada al comité de producto
-            con un puntaje de priorización.
+          <p className="text-sm text-text-muted mt-1">
+            &ldquo;{success.title}&rdquo; &middot; #{success.id}
           </p>
-          <div className="text-xs text-text-dim">
-            ID de iniciativa: #{success.id}
+        </div>
+
+        {/* Scoring results */}
+        {scoring ? (
+          <div className="bg-surface border border-border rounded-xl p-6 text-center space-y-3">
+            <div className="animate-pulse-slow text-2xl">&#9881;</div>
+            <p className="text-sm text-text-muted">
+              Evaluando tu iniciativa con inteligencia artificial...
+            </p>
+            <p className="text-xs text-text-dim">
+              Esto toma unos segundos. Estamos analizando el impacto potencial
+              en los KPIs 2026 de myHotel.
+            </p>
           </div>
+        ) : sr ? (
+          <div className="space-y-4">
+            <div className="text-[10px] font-semibold uppercase tracking-wider text-text-dim">
+              Evaluación preliminar por IA
+            </div>
+
+            {/* Score cards */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className={`rounded-xl p-4 ${scoreBg(sr.pis_score)} border border-border/50`}>
+                <div className="text-[10px] font-semibold uppercase tracking-wider text-text-dim mb-1">
+                  Puntaje PIS
+                </div>
+                <div className={`text-3xl font-bold ${scoreColor(sr.pis_score)}`}>
+                  {sr.pis_score}%
+                </div>
+                <p className="text-xs text-text-muted mt-2 leading-relaxed">
+                  {sr.score_criteria}
+                </p>
+              </div>
+              <div className={`rounded-xl p-4 ${scoreBg(sr.hypothesis_score)} border border-border/50`}>
+                <div className="text-[10px] font-semibold uppercase tracking-wider text-text-dim mb-1">
+                  Puntaje Hipótesis
+                </div>
+                <div className={`text-3xl font-bold ${scoreColor(sr.hypothesis_score)}`}>
+                  {sr.hypothesis_score}%
+                </div>
+                <p className="text-xs text-text-muted mt-2 leading-relaxed">
+                  {sr.hypothesis_feedback}
+                </p>
+              </div>
+            </div>
+
+            {/* KPI impacts */}
+            {sr.kpi_impact && sr.kpi_impact.length > 0 && (
+              <div className="bg-surface border border-border rounded-xl p-4">
+                <div className="text-[10px] font-semibold uppercase tracking-wider text-text-dim mb-2">
+                  KPIs 2026 impactados
+                </div>
+                <div className="space-y-1.5">
+                  {sr.kpi_impact.map((kpi) => (
+                    <div key={kpi.kpi_id} className="flex items-start gap-2 text-xs">
+                      <span className={`shrink-0 px-1.5 py-0.5 rounded font-semibold ${
+                        kpi.impact === "alto" || kpi.impact === "high"
+                          ? "bg-negative-muted text-negative"
+                          : kpi.impact === "medio" || kpi.impact === "medium"
+                            ? "bg-neutral-muted text-neutral-sent"
+                            : "bg-positive-muted text-positive"
+                      }`}>
+                        {kpi.impact}
+                      </span>
+                      <span className="text-text-muted">
+                        <strong>{kpi.kpi_name}</strong> &mdash; {kpi.explanation}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Recommendation */}
+            {sr.recommendation && (
+              <div className="bg-accent/5 border border-accent/20 rounded-xl p-4">
+                <div className="text-[10px] font-semibold uppercase tracking-wider text-accent mb-1">
+                  Recomendación preliminar
+                </div>
+                <p className="text-sm text-text leading-relaxed">
+                  {sr.recommendation}
+                </p>
+              </div>
+            )}
+
+            <p className="text-[11px] text-text-dim text-center leading-relaxed">
+              Esta es una evaluación preliminar generada por IA. El comité de producto
+              revisará y confirmará la priorización final.
+            </p>
+          </div>
+        ) : (
+          <div className="bg-surface border border-border rounded-xl p-5 text-center">
+            <p className="text-sm text-text-muted">
+              Tu iniciativa será evaluada por el equipo de producto y presentada
+              al comité con un puntaje de priorización.
+            </p>
+          </div>
+        )}
+
+        {/* Action */}
+        <div className="text-center">
           <button
             onClick={resetForm}
-            className="mt-2 px-4 py-2 bg-accent text-white text-sm font-medium rounded-md hover:bg-accent-light transition-colors"
+            className="px-4 py-2 bg-accent text-white text-sm font-medium rounded-md hover:bg-accent-light transition-colors"
           >
             Enviar otra iniciativa
           </button>
@@ -285,47 +416,6 @@ export default function PublicInitiativeForm() {
                 );
               })}
             </div>
-          </div>
-        </div>
-
-        {/* Célula y Jornadas */}
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <FieldLabel
-              label="Célula sugerida"
-              tooltip="El squad o célula de desarrollo que podría trabajar en esta iniciativa. Si no estás seguro, puedes dejarlo vacío."
-            />
-            <input
-              type="text"
-              value={celula}
-              onChange={(e) => setCelula(e.target.value)}
-              placeholder="Ej: Squad AI, Squad CX"
-              className="w-full px-3 py-2.5 bg-surface border border-border rounded-lg text-sm text-text placeholder:text-text-dim/60 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/20 transition-colors"
-            />
-          </div>
-          <div>
-            <FieldLabel
-              label="Jornadas estimadas"
-              tooltip="Estimación en días de desarrollo. Un ciclo de desarrollo tiene 30 días hábiles (6 semanas). Si no estás seguro, puedes dejarlo vacío."
-            />
-            <input
-              type="number"
-              value={jornadas}
-              onChange={(e) => setJornadas(e.target.value)}
-              placeholder="Ej: 10"
-              min="0"
-              step="0.5"
-              className="w-full px-3 py-2.5 bg-surface border border-border rounded-lg text-sm text-text placeholder:text-text-dim/60 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/20 transition-colors"
-            />
-            {jornadas && parseFloat(jornadas) > 0 && (
-              <p className="mt-1 text-[11px] text-text-dim">
-                Equivale al{" "}
-                <strong>
-                  {Math.round((parseFloat(jornadas) / 30) * 100)}%
-                </strong>{" "}
-                de un ciclo de desarrollo
-              </p>
-            )}
           </div>
         </div>
 
