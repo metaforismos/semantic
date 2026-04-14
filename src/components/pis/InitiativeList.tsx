@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ScoreBadge } from "./ScoreBadge";
 import { ProductTags } from "./ProductTags";
+import { effortPercent } from "@/lib/pis/types";
 import type { PisInitiativeSummary } from "@/lib/pis/types";
 
 type StatusFilter = "active" | "scored" | "draft" | "archived";
@@ -96,11 +97,17 @@ export function InitiativeList() {
                 <th className="px-3 py-2.5 text-center text-[10px] font-semibold uppercase tracking-wider text-text-dim w-20">
                   Hipótesis
                 </th>
-                <th className="px-3 py-2.5 text-left text-[10px] font-semibold uppercase tracking-wider text-text-dim w-28">
-                  Autor
+                <th className="px-3 py-2.5 text-left text-[10px] font-semibold uppercase tracking-wider text-text-dim w-24">
+                  Célula
+                </th>
+                <th className="px-3 py-2.5 text-center text-[10px] font-semibold uppercase tracking-wider text-text-dim w-20">
+                  Jornadas
+                </th>
+                <th className="px-3 py-2.5 text-center text-[10px] font-semibold uppercase tracking-wider text-text-dim w-20">
+                  % Ciclo
                 </th>
                 <th className="px-3 py-2.5 text-left text-[10px] font-semibold uppercase tracking-wider text-text-dim w-24">
-                  Fecha
+                  Autor
                 </th>
               </tr>
             </thead>
@@ -130,10 +137,26 @@ export function InitiativeList() {
                     <ScoreBadge score={init.hypothesis_score} size="sm" />
                   </td>
                   <td className="px-3 py-2.5 text-text-muted text-xs">
-                    {init.author}
+                    {init.celula || "—"}
                   </td>
-                  <td className="px-3 py-2.5 text-text-dim text-xs">
-                    {new Date(init.created_at).toLocaleDateString("es-CL")}
+                  <td className="px-3 py-2.5 text-center text-text-muted text-xs">
+                    {init.jornadas != null ? init.jornadas : "—"}
+                  </td>
+                  <td className="px-3 py-2.5 text-center text-xs">
+                    {effortPercent(init.jornadas) != null ? (
+                      <span className={`font-semibold ${
+                        effortPercent(init.jornadas)! > 50
+                          ? "text-negative"
+                          : effortPercent(init.jornadas)! > 25
+                            ? "text-neutral-sent"
+                            : "text-positive"
+                      }`}>
+                        {effortPercent(init.jornadas)}%
+                      </span>
+                    ) : "—"}
+                  </td>
+                  <td className="px-3 py-2.5 text-text-muted text-xs">
+                    {init.author || "—"}
                   </td>
                 </tr>
               ))}

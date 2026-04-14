@@ -18,6 +18,8 @@ export function InitiativeForm({
     initiative?.products || []
   );
   const [author, setAuthor] = useState(initiative?.author || "");
+  const [celula, setCelula] = useState(initiative?.celula || "");
+  const [jornadas, setJornadas] = useState(initiative?.jornadas?.toString() || "");
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
 
@@ -33,8 +35,8 @@ export function InitiativeForm({
     e.preventDefault();
     setError("");
 
-    if (!title || !description || !hypothesis || !products.length || !author) {
-      setError("Todos los campos son obligatorios");
+    if (!title || !description || !hypothesis || !products.length) {
+      setError("Título, descripción, hipótesis y al menos un producto son obligatorios");
       return;
     }
 
@@ -48,7 +50,11 @@ export function InitiativeForm({
       const res = await fetch(url, {
         method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title, description, hypothesis, products, author }),
+        body: JSON.stringify({
+          title, description, hypothesis, products, author,
+          celula: celula || null,
+          jornadas: jornadas ? parseFloat(jornadas) : null,
+        }),
       });
 
       if (!res.ok) {
@@ -148,6 +154,35 @@ export function InitiativeForm({
           placeholder="Nombre del autor"
           className="w-full px-3 py-2 bg-surface border border-border rounded-md text-sm text-text placeholder:text-text-dim focus:outline-none focus:border-accent"
         />
+      </div>
+
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label className="block text-[10px] font-semibold uppercase tracking-wider text-text-dim mb-1">
+            Célula
+          </label>
+          <input
+            type="text"
+            value={celula}
+            onChange={(e) => setCelula(e.target.value)}
+            placeholder="Squad de desarrollo"
+            className="w-full px-3 py-2 bg-surface border border-border rounded-md text-sm text-text placeholder:text-text-dim focus:outline-none focus:border-accent"
+          />
+        </div>
+        <div>
+          <label className="block text-[10px] font-semibold uppercase tracking-wider text-text-dim mb-1">
+            Jornadas estimadas
+          </label>
+          <input
+            type="number"
+            value={jornadas}
+            onChange={(e) => setJornadas(e.target.value)}
+            placeholder="Días de desarrollo"
+            min="0"
+            step="0.5"
+            className="w-full px-3 py-2 bg-surface border border-border rounded-md text-sm text-text placeholder:text-text-dim focus:outline-none focus:border-accent"
+          />
+        </div>
       </div>
 
       <div className="flex gap-3 pt-2">

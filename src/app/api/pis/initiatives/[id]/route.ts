@@ -40,7 +40,7 @@ export async function PUT(
 
   try {
     const body = await request.json();
-    const { title, description, hypothesis, products, author } = body;
+    const { title, description, hypothesis, products, author, celula, jornadas } = body;
 
     const result = await pool.query(
       `UPDATE pis_initiatives
@@ -49,6 +49,8 @@ export async function PUT(
            hypothesis = COALESCE($3, hypothesis),
            products = COALESCE($4, products),
            author = COALESCE($5, author),
+           celula = COALESCE($6, celula),
+           jornadas = COALESCE($7, jornadas),
            pis_score = NULL,
            hypothesis_score = NULL,
            scoring_result = NULL,
@@ -56,9 +58,9 @@ export async function PUT(
            scored_at = NULL,
            status = 'draft',
            updated_at = NOW()
-       WHERE id = $6
+       WHERE id = $8
        RETURNING id, updated_at`,
-      [title, description, hypothesis, products, author, initId]
+      [title, description, hypothesis, products, author, celula, jornadas, initId]
     );
 
     if (result.rows.length === 0) {

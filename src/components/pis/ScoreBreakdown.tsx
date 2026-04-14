@@ -1,5 +1,6 @@
 "use client";
 
+import { effortPercent } from "@/lib/pis/types";
 import type { PisInitiative } from "@/lib/pis/types";
 import { ScoreBadge } from "./ScoreBadge";
 import { KpiImpactTable } from "./KpiImpactTable";
@@ -15,7 +16,19 @@ export function ScoreBreakdown({ initiative }: { initiative: PisInitiative }) {
         <h1 className="text-xl font-bold text-text">{initiative.title}</h1>
         <div className="mt-2 flex items-center gap-3">
           <ProductTags products={initiative.products} />
-          <span className="text-xs text-text-dim">por {initiative.author}</span>
+          {initiative.author && (
+            <span className="text-xs text-text-dim">por {initiative.author}</span>
+          )}
+          {initiative.celula && (
+            <span className="text-xs bg-surface-2 px-1.5 py-0.5 rounded text-text-dim">
+              {initiative.celula}
+            </span>
+          )}
+          {initiative.jornadas != null && (
+            <span className="text-xs text-text-dim">
+              {initiative.jornadas}j · {effortPercent(initiative.jornadas)}% del ciclo
+            </span>
+          )}
         </div>
       </div>
 

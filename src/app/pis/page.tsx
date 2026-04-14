@@ -1,24 +1,46 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { InitiativeList } from "@/components/pis/InitiativeList";
 import { KnowledgeManager } from "@/components/pis/KnowledgeManager";
+import { CsvUpload } from "@/components/pis/CsvUpload";
 
 type Tab = "initiatives" | "knowledge";
 
 export default function PisPage() {
   const [tab, setTab] = useState<Tab>("initiatives");
+  const [showUpload, setShowUpload] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
+
+  const handleUploadComplete = useCallback(() => {
+    setRefreshKey((k) => k + 1);
+    setShowUpload(false);
+  }, []);
 
   return (
     <div className="max-w-[1200px] mx-auto px-6 py-8">
-      <div className="mb-6">
-        <h1 className="text-lg font-bold text-text">
-          Product Intelligence System
-        </h1>
-        <p className="text-xs text-text-dim mt-1">
-          Evalúa y prioriza iniciativas de producto contra los KPIs 2026 de
-          myHotel
-        </p>
+      <div className="flex items-start justify-between mb-6">
+        <div>
+          <h1 className="text-lg font-bold text-text">
+            Product Intelligence System
+          </h1>
+          <p className="text-xs text-text-dim mt-1">
+            Evalúa y prioriza iniciativas de producto contra los KPIs 2026 de
+            myHotel
+          </p>
+        </div>
+        {tab === "initiatives" && (
+          <button
+            onClick={() => setShowUpload(!showUpload)}
+            className={`px-3 py-1.5 text-xs font-medium rounded-md border transition-colors ${
+              showUpload
+                ? "bg-accent/15 border-accent/40 text-accent-light"
+                : "bg-surface border-border text-text-muted hover:border-border-light"
+            }`}
+          >
+            {showUpload ? "Cerrar carga CSV" : "Carga masiva CSV"}
+          </button>
+        )}
       </div>
 
       {/* Tab selector */}
@@ -45,7 +67,14 @@ export default function PisPage() {
         </button>
       </div>
 
-      {tab === "initiatives" ? <InitiativeList /> : <KnowledgeManager />}
+      {tab === "initiatives" ? (
+        <div className="space-y-4">
+          {showUpload && <CsvUpload onComplete={handleUploadComplete} />}
+          <InitiativeList key={refreshKey} />
+        </div>
+      ) : (
+        <KnowledgeManager />
+      )}
     </div>
   );
 }

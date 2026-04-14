@@ -6,7 +6,7 @@ export async function GET(request: NextRequest) {
   const status = searchParams.get("status");
 
   try {
-    let query = `SELECT id, title, products, author, status, pis_score, hypothesis_score,
+    let query = `SELECT id, title, products, author, celula, jornadas, status, pis_score, hypothesis_score,
                         model_used, scored_at, created_at, updated_at
                  FROM pis_initiatives`;
     const values: string[] = [];
@@ -31,20 +31,20 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { title, description, hypothesis, products, author } = body;
+    const { title, description, hypothesis, products, author, celula, jornadas } = body;
 
-    if (!title || !description || !hypothesis || !products?.length || !author) {
+    if (!title || !description || !hypothesis || !products?.length) {
       return NextResponse.json(
-        { error: "All fields are required: title, description, hypothesis, products, author" },
+        { error: "Campos obligatorios: title, description, hypothesis, products" },
         { status: 400 }
       );
     }
 
     const result = await pool.query(
-      `INSERT INTO pis_initiatives (title, description, hypothesis, products, author)
-       VALUES ($1, $2, $3, $4, $5)
+      `INSERT INTO pis_initiatives (title, description, hypothesis, products, author, celula, jornadas)
+       VALUES ($1, $2, $3, $4, $5, $6, $7)
        RETURNING id, created_at`,
-      [title, description, hypothesis, products, author]
+      [title, description, hypothesis, products, author || "", celula || null, jornadas || null]
     );
 
     return NextResponse.json(result.rows[0], { status: 201 });

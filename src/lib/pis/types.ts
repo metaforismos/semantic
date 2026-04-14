@@ -28,6 +28,8 @@ export interface ScoringResult {
   recommendation: string;
 }
 
+export const DEV_CYCLE_DAYS = 30; // 6 weeks = 30 working days
+
 export interface PisInitiative {
   id: number;
   title: string;
@@ -35,6 +37,8 @@ export interface PisInitiative {
   hypothesis: string;
   products: PisProduct[];
   author: string;
+  celula: string | null;
+  jornadas: number | null;
   status: InitiativeStatus;
   pis_score: number | null;
   hypothesis_score: number | null;
@@ -50,12 +54,19 @@ export type PisInitiativeSummary = Omit<
   "scoring_result" | "description" | "hypothesis"
 >;
 
+export function effortPercent(jornadas: number | null): number | null {
+  if (jornadas === null || jornadas === undefined) return null;
+  return Math.round((jornadas / DEV_CYCLE_DAYS) * 100);
+}
+
 export interface CreateInitiativePayload {
   title: string;
   description: string;
   hypothesis: string;
   products: PisProduct[];
   author: string;
+  celula?: string;
+  jornadas?: number;
 }
 
 // Knowledge base — same dimensions as Learning/Skills radar
