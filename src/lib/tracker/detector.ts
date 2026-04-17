@@ -7,10 +7,44 @@ import { detectSelfHosted } from "./selfhosted";
 import type {
   AnalyzeResult,
   Detection,
+  EvidenceTier,
   Rule,
   Signature,
   SignatureType,
 } from "./types";
+
+// Map a signature type to an evidence tier. Stronger signals get lower
+// tier numbers (higher certainty). See EvidenceTier doc in types.ts.
+function tierForSignature(t: SignatureType): EvidenceTier {
+  switch (t) {
+    case "meta_generator":
+      return 1;
+    case "script_src":
+    case "iframe_src":
+    case "link_href":
+      return 2;
+    case "html":
+      return 3;
+    default:
+      return 3;
+  }
+}
+
+function bestTierFromEvidence(
+  evidence: { signature_type: SignatureType | "form_action" | "internal_anchor" | "url_extension" }[]
+): EvidenceTier {
+  let best: EvidenceTier = 3;
+  for (const e of evidence) {
+    const t =
+      e.signature_type === "form_action" ||
+      e.signature_type === "internal_anchor" ||
+      e.signature_type === "url_extension"
+        ? 3
+        : tierForSignature(e.signature_type);
+    if (t < best) best = t;
+  }
+  return best;
+}
 
 const RULES_DIR = path.join(process.cwd(), "data", "tracker", "rules");
 
@@ -215,6 +249,7 @@ export function detect(
         product: rule.product,
         category: rule.category,
         confidence: confidenceFor(rule, evidence.length),
+        tier: bestTierFromEvidence(evidence),
         detected_via: "rule",
         evidence,
       });
@@ -260,6 +295,7 @@ export function detect(
           : "Internal booking page",
       category: "booking_engine",
       confidence: 0.7,
+      tier: 3,
       detected_via: "self_hosted",
       evidence: [
         {
@@ -280,6 +316,7 @@ export function detect(
       product: "Handcoded / self-hosted site",
       category: "cms",
       confidence: 0.6,
+      tier: 3,
       detected_via: "self_hosted",
       evidence: [
         {

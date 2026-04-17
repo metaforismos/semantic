@@ -30,13 +30,33 @@ export type Rule = {
   signatures: Signature[];
 };
 
+// Evidence tiers — stable vocabulary for *how certain* a detection is.
+// Ordered from strongest to weakest evidence. A single category can have
+// multiple detections across tiers; synthesizeStack picks the strongest.
+//
+//   1 — explicit declaration: <meta generator>, HTTP x-powered-by headers
+//   2 — structural fingerprint: script/iframe/link src on vendor domain
+//   3 — contextual pattern: regex in HTML body (wp-emoji-release, __NEXT_DATA__)
+//   4 — resource observation: external domain classified by rule or LLM
+//   5 — cross-category inference: e.g. BE=Cloudbeds ⇒ PMS=Cloudbeds (low conf)
+//   6 — external enrichment: Google Places, human feedback, etc.
+export type EvidenceTier = 1 | 2 | 3 | 4 | 5 | 6;
+
 export type Detection = {
   rule_id: string;
   vendor: string;
   product: string;
   category: DetectionCategory;
   confidence: number;
-  detected_via: "rule" | "wappalyzer" | "llm" | "manual" | "self_hosted";
+  tier: EvidenceTier;
+  detected_via:
+    | "rule"
+    | "wappalyzer"
+    | "llm"
+    | "manual"
+    | "self_hosted"
+    | "inferred"
+    | "external";
   evidence: {
     signature_type: SignatureType | "form_action" | "internal_anchor" | "url_extension";
     pattern: string;
