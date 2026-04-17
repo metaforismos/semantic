@@ -36,6 +36,8 @@ const ROLE_LABEL: Record<string, string> = {
   maps: "Mapas",
   video: "Video",
   social: "Social",
+  consent: "Cookie consent",
+  other: "Otros",
   unknown: "Sin clasificar",
 };
 

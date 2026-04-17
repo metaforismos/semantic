@@ -59,6 +59,8 @@ export type ResourceRole =
   | "pms"
   | "channel_mgr"
   | "ota"
+  | "consent"
+  | "other"
   | "unknown";
 
 export type ResourceContext = {

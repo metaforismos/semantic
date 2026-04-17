@@ -72,6 +72,7 @@ const CATEGORY_LABEL: Record<string, string> = {
   video: "Video",
   social: "Social",
   ota: "OTA",
+  consent: "Cookie consent",
   unknown: "Sin clasificar",
   other: "Otros",
 };
@@ -91,6 +92,7 @@ const CATEGORY_ORDER = [
   "social",
   "cdn",
   "fonts",
+  "consent",
   "unknown",
   "other",
 ];

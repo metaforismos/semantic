@@ -39,6 +39,8 @@ const ROLE_LABEL: Record<string, string> = {
   maps: "Mapas",
   video: "Video",
   social: "Social",
+  consent: "Cookie consent",
+  other: "Otros",
   unknown: "Sin clasificar",
 };
 
@@ -51,6 +53,9 @@ export function TrackerResources() {
   const [classified, setClassified] = useState<"" | "true" | "false">("");
   const [q, setQ] = useState("");
   const [page, setPage] = useState(1);
+
+  const [classifying, setClassifying] = useState(false);
+  const [classifyMsg, setClassifyMsg] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -75,6 +80,31 @@ export function TrackerResources() {
   useEffect(() => {
     const t = setTimeout(() => load(), 150);
     return () => clearTimeout(t);
+  }, [load]);
+
+  const classifyPending = useCallback(async () => {
+    setClassifying(true);
+    setClassifyMsg(null);
+    try {
+      const r = await fetch("/api/tracker/resources/classify", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ batch: true, min_hotels: 1, limit: 20 }),
+      });
+      const d = await r.json();
+      if (!r.ok) {
+        setClassifyMsg(`Error: ${d.error || r.status}`);
+      } else {
+        setClassifyMsg(
+          `Procesados ${d.processed} · ${d.succeeded} clasificados · ${d.failed} fallas · ${Math.round(d.duration_ms / 1000)}s`
+        );
+      }
+      load();
+    } catch (e) {
+      setClassifyMsg(e instanceof Error ? e.message : "error");
+    } finally {
+      setClassifying(false);
+    }
   }, [load]);
 
   const totalPages = data?.total_pages || 1;
@@ -133,24 +163,39 @@ export function TrackerResources() {
             <option value="false">Sin clasificar</option>
           </select>
         </div>
-        <div className="ml-auto text-xs text-text-dim space-y-0.5">
-          {data && (
-            <>
-              <div>
-                Catálogo:{" "}
-                <span className="tabular-nums">
-                  {data.classification.total}
-                </span>{" "}
-                dominios
-              </div>
-              <div className="text-[10px]">
-                {data.classification.classified} clasificados ·{" "}
-                {data.classification.unclassified} sin clasificar
-              </div>
-            </>
-          )}
+        <div className="ml-auto flex items-center gap-3">
+          <div className="text-xs text-text-dim space-y-0.5 text-right">
+            {data && (
+              <>
+                <div>
+                  Catálogo:{" "}
+                  <span className="tabular-nums">
+                    {data.classification.total}
+                  </span>{" "}
+                  dominios
+                </div>
+                <div className="text-[10px]">
+                  {data.classification.classified} clasificados ·{" "}
+                  {data.classification.unclassified} sin clasificar
+                </div>
+              </>
+            )}
+          </div>
+          <button
+            onClick={classifyPending}
+            disabled={
+              classifying || !data || data.classification.unclassified === 0
+            }
+            className="px-3 py-1.5 text-xs font-medium rounded border border-accent/40 bg-accent/10 text-accent-light hover:bg-accent/20 disabled:opacity-50"
+            title="Envía los dominios sin clasificar a Gemini para inferir rol y vendor"
+          >
+            {classifying ? "Clasificando…" : "Clasificar pendientes con LLM"}
+          </button>
         </div>
       </div>
+      {classifyMsg && (
+        <div className="text-xs text-text-muted px-1">{classifyMsg}</div>
+      )}
 
       <div className="border border-border rounded-md bg-surface overflow-hidden">
         <table className="w-full text-sm">
