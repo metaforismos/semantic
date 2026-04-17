@@ -12,6 +12,16 @@ type Detection = {
   evidence: { signature_type: string; pattern: string; matched: string }[];
 };
 
+type RawResource = {
+  host: string;
+  registrable_domain: string;
+  role_hint: string;
+  vendor_name?: string | null;
+  vendor_product?: string | null;
+  classified_by?: "rule" | null;
+  contexts: { type: string; url: string; snippet?: string }[];
+};
+
 type AnalyzeResponse = {
   url: string;
   final_url: string;
@@ -20,6 +30,7 @@ type AnalyzeResponse = {
   title: string | null;
   meta_generator: string | null;
   detections: Detection[];
+  resources: RawResource[];
   script_srcs: string[];
   iframe_srcs: string[];
   outbound_links: string[];
@@ -37,6 +48,13 @@ const CATEGORY_LABEL: Record<string, string> = {
   chat: "Chat",
   reviews: "Reviews",
   ads: "Ads",
+  cdn: "CDN / infra",
+  fonts: "Fonts",
+  maps: "Mapas",
+  video: "Video",
+  social: "Social",
+  ota: "OTA",
+  unknown: "Sin clasificar",
   other: "Otros",
 };
 
@@ -49,6 +67,13 @@ const CATEGORY_ORDER = [
   "chat",
   "ads",
   "analytics",
+  "ota",
+  "maps",
+  "video",
+  "social",
+  "cdn",
+  "fonts",
+  "unknown",
   "other",
 ];
 
@@ -58,6 +83,101 @@ const EXAMPLE_URLS = [
   "https://www.ayresdesalta.com.ar",
   "https://diegodealmagro.cl",
 ];
+
+function ResourcesTable({ resources }: { resources: RawResource[] }) {
+  const grouped = (() => {
+    const byRole = new Map<string, RawResource[]>();
+    for (const r of resources) {
+      const arr = byRole.get(r.role_hint) || [];
+      arr.push(r);
+      byRole.set(r.role_hint, arr);
+    }
+    return CATEGORY_ORDER.filter((c) => byRole.has(c)).map((c) => ({
+      role: c,
+      items: byRole.get(c)!,
+    }));
+  })();
+
+  if (!resources.length) {
+    return (
+      <div className="border border-border rounded-md bg-surface p-4 text-sm text-text-dim">
+        Sin recursos 3rd-party detectados.
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-2">
+      {grouped.map((g) => (
+        <div
+          key={g.role}
+          className="border border-border rounded-md bg-surface overflow-hidden"
+        >
+          <div className="px-3 py-1.5 bg-surface-2 text-[10px] font-semibold uppercase tracking-wider text-text-dim border-b border-border flex items-center justify-between">
+            <span>{CATEGORY_LABEL[g.role] || g.role}</span>
+            <span className="tabular-nums">{g.items.length}</span>
+          </div>
+          <table className="w-full text-sm">
+            <tbody>
+              {g.items.map((r) => (
+                <tr
+                  key={r.host}
+                  className="border-b border-border last:border-0"
+                >
+                  <td className="px-3 py-1.5 align-top">
+                    <div className="font-mono text-xs text-text">{r.host}</div>
+                    <div className="text-[10px] text-text-dim">
+                      {r.registrable_domain}
+                    </div>
+                  </td>
+                  <td className="px-3 py-1.5 align-top w-40">
+                    {r.vendor_name ? (
+                      <>
+                        <div className="text-xs font-medium text-text">
+                          {r.vendor_name}
+                        </div>
+                        {r.vendor_product && (
+                          <div className="text-[10px] text-text-dim">
+                            {r.vendor_product}
+                          </div>
+                        )}
+                        <span className="inline-block mt-0.5 px-1.5 py-0 text-[9px] uppercase tracking-wider bg-accent/10 text-accent-light border border-accent/30 rounded">
+                          rule
+                        </span>
+                      </>
+                    ) : (
+                      <span className="text-[10px] text-text-dim uppercase tracking-wider">
+                        sin clasificar
+                      </span>
+                    )}
+                  </td>
+                  <td className="px-3 py-1.5 align-top text-[11px] text-text-dim">
+                    <div className="flex flex-wrap gap-1">
+                      {r.contexts.slice(0, 4).map((c, i) => (
+                        <span
+                          key={i}
+                          className="px-1.5 py-0 border border-border rounded bg-surface-2 font-mono text-[10px]"
+                          title={c.url}
+                        >
+                          {c.type}
+                        </span>
+                      ))}
+                      {r.contexts.length > 4 && (
+                        <span className="text-[10px]">
+                          +{r.contexts.length - 4}
+                        </span>
+                      )}
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 function ConfidenceBar({ value }: { value: number }) {
   const pct = Math.round(value * 100);
@@ -314,6 +434,20 @@ export function TrackerSearch() {
               ))}
             </div>
           )}
+
+          <section>
+            <div className="flex items-end justify-between mb-2">
+              <h3 className="text-[10px] font-semibold uppercase tracking-[0.15em] text-text-dim">
+                Observaciones crudas ({result.resources.length} hosts 3rd-party)
+              </h3>
+              <span className="text-[11px] text-text-dim">
+                Discovery mode — cada host se clasifica por rol observado. Los
+                que queden &quot;sin clasificar&quot; son candidatos a clasificación
+                LLM.
+              </span>
+            </div>
+            <ResourcesTable resources={result.resources} />
+          </section>
 
           <details className="border border-border rounded-md bg-surface">
             <summary className="px-3 py-2 text-xs text-text-muted cursor-pointer select-none">

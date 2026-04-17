@@ -44,6 +44,39 @@ export type Detection = {
   }[];
 };
 
+export type ResourceRole =
+  | "booking_engine"
+  | "cms"
+  | "analytics"
+  | "chat"
+  | "reviews"
+  | "ads"
+  | "cdn"
+  | "fonts"
+  | "maps"
+  | "video"
+  | "social"
+  | "pms"
+  | "channel_mgr"
+  | "ota"
+  | "unknown";
+
+export type ResourceContext = {
+  type: SignatureType | "anchor_href" | "form_action";
+  url: string;
+  snippet?: string;
+};
+
+export type RawResource = {
+  host: string;
+  registrable_domain: string;
+  role_hint: ResourceRole;
+  vendor_name?: string | null;
+  vendor_product?: string | null;
+  classified_by?: "rule" | null;
+  contexts: ResourceContext[];
+};
+
 export type AnalyzeResult = {
   url: string;
   final_url: string;
@@ -53,7 +86,8 @@ export type AnalyzeResult = {
   title: string | null;
   meta_generator: string | null;
   detections: Detection[];
-  // Surfaced structural data used later (Fase 1C for OTA, 1B for agency)
+  resources: RawResource[];
+  // Surfaced structural data
   script_srcs: string[];
   iframe_srcs: string[];
   link_hrefs: string[];

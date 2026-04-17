@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { extractResources } from "./resources";
 import type {
   AnalyzeResult,
   Detection,
@@ -89,6 +90,23 @@ function extractAnchorHrefs(html: string): string[] {
   return extractAttrs(html, "a", "href");
 }
 
+function extractAnchors(html: string): { href: string; text: string }[] {
+  const re = /<a\b[^>]*\bhref=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi;
+  const out: { href: string; text: string }[] = [];
+  let m: RegExpExecArray | null;
+  let count = 0;
+  while ((m = re.exec(html)) !== null && count < 1000) {
+    const text = m[2].replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+    out.push({ href: m[1], text: text.slice(0, 200) });
+    count++;
+  }
+  return out;
+}
+
+function extractFormActions(html: string): string[] {
+  return extractAttrs(html, "form", "action");
+}
+
 function classifyOutbound(href: string, baseHost: string): string | null {
   try {
     const u = new URL(href, `https://${baseHost}`);
@@ -143,14 +161,19 @@ function confidenceFor(rule: Rule, hits: number): number {
   return Math.min(0.99, rule.confidence_base + bonus);
 }
 
-export function detect(html: string, finalUrl: string): Omit<AnalyzeResult, "url" | "fetched_at" | "duration_ms" | "status"> {
+export function detect(
+  html: string,
+  finalUrl: string
+): Omit<AnalyzeResult, "url" | "fetched_at" | "duration_ms" | "status"> {
   const rules = loadRules();
   const title = extractTitle(html);
   const meta_generator = extractMetaGenerator(html);
   const script_srcs = extractAttrs(html, "script", "src");
   const iframe_srcs = extractAttrs(html, "iframe", "src");
   const link_hrefs = extractAttrs(html, "link", "href");
+  const form_actions = extractFormActions(html);
   const anchor_hrefs = extractAnchorHrefs(html);
+  const anchors = extractAnchors(html);
 
   let baseHost = "";
   try {
@@ -200,6 +223,17 @@ export function detect(html: string, finalUrl: string): Omit<AnalyzeResult, "url
     return b.confidence - a.confidence;
   });
 
+  const resources = extractResources({
+    html,
+    finalUrl,
+    script_srcs,
+    iframe_srcs,
+    link_hrefs,
+    form_actions,
+    anchors,
+    detections,
+  });
+
   return {
     final_url: finalUrl,
     title,
@@ -209,5 +243,6 @@ export function detect(html: string, finalUrl: string): Omit<AnalyzeResult, "url
     link_hrefs: link_hrefs.slice(0, 100),
     outbound_links,
     detections,
+    resources,
   };
 }

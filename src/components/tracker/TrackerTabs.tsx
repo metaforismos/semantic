@@ -8,6 +8,8 @@ const tabs = [
   { href: "/tracker/search", label: "Search" },
   { href: "/tracker/bulk", label: "Bulk" },
   { href: "/tracker/browse", label: "Browse" },
+  { href: "/tracker/resources", label: "Resources" },
+  { href: "/tracker/stats", label: "Stats" },
   { href: "/tracker/discovery", label: "Discovery" },
   { href: "/tracker/prospecting", label: "Prospecting" },
 ];

@@ -140,9 +140,86 @@ async function persistAnalysis(
           title: result.title,
           meta_generator: result.meta_generator,
           detections: result.detections,
+          resources: result.resources.map((r) => ({
+            host: r.host,
+            registrable_domain: r.registrable_domain,
+            role_hint: r.role_hint,
+          })),
         }),
       ]
     );
+
+    // Persist raw resource observations (discovery mode).
+    const touchedDomains = new Set<string>();
+    for (const r of result.resources) {
+      touchedDomains.add(r.registrable_domain);
+      await client.query(
+        `INSERT INTO tracker_hotel_resources
+           (hotel_id, host, registrable_domain, contexts, role_hint, analysis_url)
+         VALUES ($1, $2, $3, $4::jsonb, $5, $6)
+         ON CONFLICT (hotel_id, host) DO UPDATE SET
+           contexts = EXCLUDED.contexts,
+           registrable_domain = EXCLUDED.registrable_domain,
+           role_hint = EXCLUDED.role_hint,
+           analysis_url = EXCLUDED.analysis_url,
+           last_seen_at = NOW()`,
+        [
+          hotelId,
+          r.host,
+          r.registrable_domain,
+          JSON.stringify(r.contexts),
+          r.role_hint,
+          result.final_url,
+        ]
+      );
+    }
+
+    // Upsert global catalog for each touched registrable domain.
+    // observed_hotels + observed_contexts + primary_role (majority) are
+    // recomputed from tracker_hotel_resources — always authoritative.
+    for (const domain of touchedDomains) {
+      await client.query(
+        `WITH agg AS (
+           SELECT
+             COUNT(DISTINCT hotel_id)::int AS observed_hotels,
+             COUNT(*)::int AS observed_contexts,
+             mode() WITHIN GROUP (ORDER BY role_hint) AS primary_role
+           FROM tracker_hotel_resources
+           WHERE registrable_domain = $1
+         )
+         INSERT INTO tracker_resources
+           (registrable_domain, primary_role, observed_hotels, observed_contexts,
+            vendor_name, vendor_product, classified_by, classified_at, last_seen_at)
+         SELECT
+           $1,
+           agg.primary_role,
+           agg.observed_hotels,
+           agg.observed_contexts,
+           $2::text, $3::text,
+           CASE WHEN $2::text IS NOT NULL THEN 'rule' END,
+           CASE WHEN $2::text IS NOT NULL THEN NOW() END,
+           NOW()
+         FROM agg
+         ON CONFLICT (registrable_domain) DO UPDATE SET
+           primary_role = EXCLUDED.primary_role,
+           observed_hotels = EXCLUDED.observed_hotels,
+           observed_contexts = EXCLUDED.observed_contexts,
+           vendor_name = COALESCE(tracker_resources.vendor_name, EXCLUDED.vendor_name),
+           vendor_product = COALESCE(tracker_resources.vendor_product, EXCLUDED.vendor_product),
+           classified_by = COALESCE(tracker_resources.classified_by, EXCLUDED.classified_by),
+           classified_at = COALESCE(tracker_resources.classified_at, EXCLUDED.classified_at),
+           last_seen_at = NOW()`,
+        [
+          domain,
+          result.resources.find(
+            (r) => r.registrable_domain === domain && r.vendor_name
+          )?.vendor_name || null,
+          result.resources.find(
+            (r) => r.registrable_domain === domain && r.vendor_product
+          )?.vendor_product || null,
+        ]
+      );
+    }
 
     await client.query("COMMIT");
     return { hotel_id: hotelId!, created };
