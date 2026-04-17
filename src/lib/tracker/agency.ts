@@ -59,6 +59,26 @@ const PLATFORM_HOSTS = new Set([
   "litespeed.com",
   "godaddy.com",
   "wpengine.com",
+  // WordPress theme / plugin vendors — footer "Powered by X" is theme
+  // attribution, not an agency.
+  "cryoutcreations.eu",
+  "blossomthemes.com",
+  "elegantthemes.com",
+  "themeforest.net",
+  "themeisle.com",
+  "themegrill.com",
+  "template-monster.com",
+  "templatemonster.com",
+  "colorlib.com",
+  "wpoven.com",
+  "wpastra.com",
+  "envato.com",
+  "html5up.net",
+  "styleshout.com",
+  "freehtml5.co",
+  "bootstrapmade.com",
+  "w3layouts.com",
+  "start-bootstrap.com",
 ]);
 
 // Plataformas / CMS / booking engines / themes. "Powered by X" donde X
