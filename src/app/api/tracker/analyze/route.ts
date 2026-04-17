@@ -250,6 +250,7 @@ export async function POST(request: NextRequest) {
       {
         url,
         error: fetched.error,
+        error_code: fetched.error_code ?? null,
         status: fetched.status ?? null,
         duration_ms: fetched.duration_ms,
       },
@@ -258,11 +259,12 @@ export async function POST(request: NextRequest) {
   }
 
   const parsed = detect(fetched.html, fetched.final_url);
-  const result: AnalyzeResult = {
+  const result: AnalyzeResult & { insecure_tls?: boolean } = {
     url,
     fetched_at: new Date().toISOString(),
     duration_ms: fetched.duration_ms,
     status: fetched.status,
+    insecure_tls: fetched.insecure_tls,
     ...parsed,
   };
 

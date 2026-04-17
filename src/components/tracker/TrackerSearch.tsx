@@ -34,9 +34,27 @@ type AnalyzeResponse = {
   script_srcs: string[];
   iframe_srcs: string[];
   outbound_links: string[];
+  insecure_tls?: boolean;
   persisted?: { hotel_id: string; created: boolean } | null;
   persist_error?: string;
   error?: string;
+  error_code?: string | null;
+};
+
+const ERROR_HINTS: Record<string, string> = {
+  UNABLE_TO_VERIFY_LEAF_SIGNATURE:
+    "El sitio tiene la cadena de certificados TLS rota. Reintentamos con TLS relajado.",
+  UNABLE_TO_GET_ISSUER_CERT_LOCALLY:
+    "CA raíz no reconocida. Reintentamos con TLS relajado.",
+  CERT_HAS_EXPIRED: "Certificado TLS expirado.",
+  SELF_SIGNED_CERT_IN_CHAIN: "Certificado auto-firmado en la cadena.",
+  DEPTH_ZERO_SELF_SIGNED_CERT: "Certificado auto-firmado.",
+  ERR_TLS_CERT_ALTNAME_INVALID:
+    "El certificado no corresponde al dominio (altname mismatch).",
+  ENOTFOUND: "Dominio no resuelve (DNS). Verifica que la URL exista.",
+  ECONNREFUSED: "El servidor rechazó la conexión.",
+  ETIMEDOUT: "Timeout: el servidor tardó demasiado.",
+  ECONNRESET: "El servidor cortó la conexión antes de responder.",
 };
 
 const CATEGORY_LABEL: Record<string, string> = {
@@ -217,7 +235,11 @@ export function TrackerSearch() {
         });
         const data = (await r.json()) as AnalyzeResponse;
         if (!r.ok && !save) {
-          setErr(data.error || `error_${r.status}`);
+          const hint = data.error_code ? ERROR_HINTS[data.error_code] : null;
+          const code = data.error_code ? ` [${data.error_code}]` : "";
+          setErr(
+            `${hint || data.error || `error_${r.status}`}${code}`
+          );
           setResult(null);
           return;
         }
@@ -339,6 +361,14 @@ export function TrackerSearch() {
                 <span className="tabular-nums">
                   {result.detections.length} señales
                 </span>
+                {result.insecure_tls && (
+                  <span
+                    className="ml-2 inline-block px-1.5 py-0 text-[9px] font-semibold uppercase tracking-wider bg-neutral-muted text-neutral-sent border border-neutral-sent/30 rounded"
+                    title="La cadena de certificados del sitio no valida; se reintentó con TLS relajado."
+                  >
+                    TLS relajado
+                  </span>
+                )}
               </div>
               {mainSignal && (
                 <div className="mt-2 inline-flex items-center gap-2 px-2 py-1 bg-accent/10 border border-accent/30 rounded">
