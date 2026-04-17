@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import pool from "@/lib/db";
 import { normalizeUrl } from "@/lib/tracker/fetcher";
+// Eagerly load the orchestrator so its module-level self-start side
+// effect fires the first time the tracker bulk UI hits this endpoint.
+// This is a fallback in case instrumentation.ts doesn't run at boot.
+import "@/lib/tracker/bulk-orchestrator";
 
 type BulkItemInput = {
   url: string;

@@ -130,3 +130,22 @@ export function stopOrchestrator(): { stopped: boolean; state: OrchestratorState
 export function getOrchestratorState(): OrchestratorState & { inFlightJobs: string[] } {
   return { ...state, inFlightJobs: Array.from(inFlight) };
 }
+
+// Self-start on module load. instrumentation.ts is the ideal trigger
+// (fires at server boot) but in some runtimes that hook doesn't run
+// reliably. Having the side-effect here means the orchestrator also
+// boots the first time any /api/tracker/bulk route is hit — either way
+// it ends up running without manual intervention.
+if (
+  typeof process !== "undefined" &&
+  process.env.NEXT_RUNTIME === "nodejs" &&
+  process.env.TRACKER_ORCHESTRATOR_AUTOSTART !== "0"
+) {
+  setTimeout(() => {
+    try {
+      startOrchestrator();
+    } catch (err) {
+      console.error("[bulk-orchestrator] autostart failed", err);
+    }
+  }, 500);
+}
