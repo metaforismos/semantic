@@ -1,0 +1,218 @@
+[
+  {
+    "id": "ga4",
+    "vendor": "Google",
+    "product": "Google Analytics 4",
+    "category": "analytics",
+    "confidence_base": 0.95,
+    "signatures": [
+      { "type": "script_src", "pattern": "googletagmanager\\.com/gtag/js" },
+      { "type": "html", "pattern": "gtag\\('config',\\s*'G-" }
+    ]
+  },
+  {
+    "id": "gtm",
+    "vendor": "Google",
+    "product": "Google Tag Manager",
+    "category": "analytics",
+    "confidence_base": 0.95,
+    "signatures": [
+      { "type": "script_src", "pattern": "googletagmanager\\.com/gtm\\.js" },
+      { "type": "html", "pattern": "GTM-[A-Z0-9]+" }
+    ]
+  },
+  {
+    "id": "ga-universal",
+    "vendor": "Google",
+    "product": "Google Analytics (Universal)",
+    "category": "analytics",
+    "confidence_base": 0.8,
+    "signatures": [
+      { "type": "script_src", "pattern": "google-analytics\\.com/analytics\\.js" },
+      { "type": "html", "pattern": "UA-[0-9]{4,}-[0-9]+" }
+    ]
+  },
+  {
+    "id": "hotjar",
+    "vendor": "Hotjar",
+    "product": "Hotjar",
+    "category": "analytics",
+    "confidence_base": 0.95,
+    "signatures": [
+      { "type": "script_src", "pattern": "static\\.hotjar\\.com" },
+      { "type": "html", "pattern": "hjid:\\s*\\d+|hj\\(" }
+    ]
+  },
+  {
+    "id": "clarity",
+    "vendor": "Microsoft",
+    "product": "Clarity",
+    "category": "analytics",
+    "confidence_base": 0.95,
+    "signatures": [
+      { "type": "script_src", "pattern": "clarity\\.ms|www\\.clarity\\.ms" }
+    ]
+  },
+  {
+    "id": "facebook-pixel",
+    "vendor": "Meta",
+    "product": "Meta Pixel",
+    "category": "ads",
+    "confidence_base": 0.95,
+    "signatures": [
+      { "type": "script_src", "pattern": "connect\\.facebook\\.net/.*/fbevents\\.js" },
+      { "type": "html", "pattern": "fbq\\('init'" }
+    ]
+  },
+  {
+    "id": "google-ads",
+    "vendor": "Google",
+    "product": "Google Ads",
+    "category": "ads",
+    "confidence_base": 0.85,
+    "signatures": [
+      { "type": "script_src", "pattern": "googleadservices\\.com|googlesyndication\\.com" },
+      { "type": "html", "pattern": "AW-[0-9]+" }
+    ]
+  },
+  {
+    "id": "tiktok-pixel",
+    "vendor": "TikTok",
+    "product": "TikTok Pixel",
+    "category": "ads",
+    "confidence_base": 0.9,
+    "signatures": [
+      { "type": "script_src", "pattern": "analytics\\.tiktok\\.com" },
+      { "type": "html", "pattern": "ttq\\.load\\(" }
+    ]
+  },
+  {
+    "id": "intercom",
+    "vendor": "Intercom",
+    "product": "Intercom Messenger",
+    "category": "chat",
+    "confidence_base": 0.95,
+    "signatures": [
+      { "type": "script_src", "pattern": "widget\\.intercom\\.io|js\\.intercomcdn\\.com" },
+      { "type": "html", "pattern": "Intercom\\('boot'" }
+    ]
+  },
+  {
+    "id": "zendesk-chat",
+    "vendor": "Zendesk",
+    "product": "Zendesk Chat / Zopim",
+    "category": "chat",
+    "confidence_base": 0.9,
+    "signatures": [
+      { "type": "script_src", "pattern": "static\\.zdassets\\.com|zopim\\.com|v2\\.zopim\\.com" },
+      { "type": "html", "pattern": "zE\\(" }
+    ]
+  },
+  {
+    "id": "crisp",
+    "vendor": "Crisp",
+    "product": "Crisp Chat",
+    "category": "chat",
+    "confidence_base": 0.95,
+    "signatures": [
+      { "type": "script_src", "pattern": "client\\.crisp\\.chat" },
+      { "type": "html", "pattern": "\\$crisp|CRISP_WEBSITE_ID" }
+    ]
+  },
+  {
+    "id": "tawk",
+    "vendor": "Tawk.to",
+    "product": "Tawk.to",
+    "category": "chat",
+    "confidence_base": 0.95,
+    "signatures": [
+      { "type": "script_src", "pattern": "embed\\.tawk\\.to" }
+    ]
+  },
+  {
+    "id": "whatsapp-chat",
+    "vendor": "WhatsApp",
+    "product": "WhatsApp Click-to-Chat",
+    "category": "chat",
+    "confidence_base": 0.6,
+    "signatures": [
+      { "type": "html", "pattern": "wa\\.me/\\d{7,}|api\\.whatsapp\\.com/send" }
+    ]
+  },
+  {
+    "id": "trustyou",
+    "vendor": "TrustYou",
+    "product": "TrustYou Meta-Reviews",
+    "category": "reviews",
+    "confidence_base": 0.95,
+    "signatures": [
+      { "type": "script_src", "pattern": "trustyou\\.com|api\\.trustyou\\." },
+      { "type": "iframe_src", "pattern": "trustyou\\.com" }
+    ]
+  },
+  {
+    "id": "revinate",
+    "vendor": "Revinate",
+    "product": "Revinate",
+    "category": "reviews",
+    "confidence_base": 0.9,
+    "signatures": [
+      { "type": "script_src", "pattern": "revinate\\.com" },
+      { "type": "html", "pattern": "revinate" }
+    ]
+  },
+  {
+    "id": "reviewpro",
+    "vendor": "ReviewPro / Shiji",
+    "product": "ReviewPro",
+    "category": "reviews",
+    "confidence_base": 0.9,
+    "signatures": [
+      { "type": "script_src", "pattern": "reviewpro\\.com|shijigroup\\.com" },
+      { "type": "iframe_src", "pattern": "reviewpro\\.com" }
+    ]
+  },
+  {
+    "id": "myhotel",
+    "vendor": "myHotel",
+    "product": "myHotel Reviews / FollowUp",
+    "category": "reviews",
+    "confidence_base": 0.9,
+    "signatures": [
+      { "type": "script_src", "pattern": "myhotelcx\\.com|myhotel\\.cl" },
+      { "type": "html", "pattern": "myhotelcx" }
+    ]
+  },
+  {
+    "id": "tripadvisor-widget",
+    "vendor": "Tripadvisor",
+    "product": "Tripadvisor Widget",
+    "category": "reviews",
+    "confidence_base": 0.85,
+    "signatures": [
+      { "type": "script_src", "pattern": "jscache\\.com|www\\.jscache\\.com" },
+      { "type": "html", "pattern": "TA_cdsratingsonlywide|tripadvisor\\.com/widget" }
+    ]
+  },
+  {
+    "id": "jquery",
+    "vendor": "jQuery",
+    "product": "jQuery",
+    "category": "other",
+    "confidence_base": 0.7,
+    "signatures": [
+      { "type": "script_src", "pattern": "jquery(\\.min)?\\.js|code\\.jquery\\.com" }
+    ]
+  },
+  {
+    "id": "bootstrap",
+    "vendor": "Bootstrap",
+    "product": "Bootstrap",
+    "category": "other",
+    "confidence_base": 0.7,
+    "signatures": [
+      { "type": "link_href", "pattern": "bootstrap(\\.min)?\\.css" },
+      { "type": "script_src", "pattern": "bootstrap(\\.min)?\\.js" }
+    ]
+  }
+]

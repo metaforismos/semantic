@@ -1,0 +1,196 @@
+[
+  {
+    "id": "siteminder",
+    "vendor": "SiteMinder",
+    "product": "The Booking Button",
+    "category": "booking_engine",
+    "confidence_base": 0.95,
+    "signatures": [
+      { "type": "script_src", "pattern": "book\\.siteminder\\.com" },
+      { "type": "iframe_src", "pattern": "book\\.siteminder\\.com" },
+      { "type": "script_src", "pattern": "thebookingbutton\\.com" },
+      { "type": "iframe_src", "pattern": "thebookingbutton\\.com" },
+      { "type": "html", "pattern": "siteminder\\.com/tbb" }
+    ]
+  },
+  {
+    "id": "cloudbeds",
+    "vendor": "Cloudbeds",
+    "product": "Cloudbeds Booking Engine",
+    "category": "booking_engine",
+    "confidence_base": 0.95,
+    "signatures": [
+      { "type": "script_src", "pattern": "hotels\\.cloudbeds\\.com" },
+      { "type": "iframe_src", "pattern": "hotels\\.cloudbeds\\.com" },
+      { "type": "script_src", "pattern": "cloudbeds\\.com/widget" },
+      { "type": "html", "pattern": "cloudbeds-booking" }
+    ]
+  },
+  {
+    "id": "little-hotelier",
+    "vendor": "Little Hotelier",
+    "product": "Little Hotelier",
+    "category": "booking_engine",
+    "confidence_base": 0.95,
+    "signatures": [
+      { "type": "iframe_src", "pattern": "apac\\.littlehotelier\\.com|eu\\.littlehotelier\\.com|littlehotelier\\.com" },
+      { "type": "script_src", "pattern": "littlehotelier\\.com" }
+    ]
+  },
+  {
+    "id": "mews",
+    "vendor": "Mews",
+    "product": "Mews Distributor",
+    "category": "booking_engine",
+    "confidence_base": 0.9,
+    "signatures": [
+      { "type": "script_src", "pattern": "mews\\.li|mews-booking\\." },
+      { "type": "iframe_src", "pattern": "mews\\.li|distributor\\.mews" },
+      { "type": "html", "pattern": "data-mews-property-id" }
+    ]
+  },
+  {
+    "id": "opera",
+    "vendor": "Oracle Hospitality",
+    "product": "OPERA Cloud / OPERA PMS",
+    "category": "booking_engine",
+    "confidence_base": 0.9,
+    "signatures": [
+      { "type": "iframe_src", "pattern": "hotels\\.operacloud\\.com|be\\.synxis\\.com" },
+      { "type": "html", "pattern": "operacloud" }
+    ]
+  },
+  {
+    "id": "synxis",
+    "vendor": "Sabre",
+    "product": "SynXis Booking Engine",
+    "category": "booking_engine",
+    "confidence_base": 0.95,
+    "signatures": [
+      { "type": "iframe_src", "pattern": "be\\.synxis\\.com|synxis\\.com/cr" },
+      { "type": "script_src", "pattern": "synxis\\.com" },
+      { "type": "html", "pattern": "SynXis" }
+    ]
+  },
+  {
+    "id": "vertical-booking",
+    "vendor": "Vertical Booking",
+    "product": "Vertical Booking",
+    "category": "booking_engine",
+    "confidence_base": 0.95,
+    "signatures": [
+      { "type": "iframe_src", "pattern": "vertical-booking\\.com|booking\\.vertical-booking\\.com" },
+      { "type": "script_src", "pattern": "vertical-booking\\.com" }
+    ]
+  },
+  {
+    "id": "travelclick-iHotelier",
+    "vendor": "TravelClick / Amadeus",
+    "product": "iHotelier",
+    "category": "booking_engine",
+    "confidence_base": 0.95,
+    "signatures": [
+      { "type": "iframe_src", "pattern": "ibe\\.ihotelier\\.com|bookings\\.ihotelier\\.com|reservations\\.travelclick\\.com" },
+      { "type": "script_src", "pattern": "ihotelier\\.com" }
+    ]
+  },
+  {
+    "id": "guestline",
+    "vendor": "Guestline",
+    "product": "Guestline Web Bookings",
+    "category": "booking_engine",
+    "confidence_base": 0.9,
+    "signatures": [
+      { "type": "iframe_src", "pattern": "guestline\\.com|clientweb\\.guestline" },
+      { "type": "script_src", "pattern": "guestline\\.com" }
+    ]
+  },
+  {
+    "id": "roomcloud",
+    "vendor": "RoomCloud",
+    "product": "RoomCloud Booking Engine",
+    "category": "booking_engine",
+    "confidence_base": 0.9,
+    "signatures": [
+      { "type": "iframe_src", "pattern": "secure\\.roomcloud\\.net|roomcloud\\.net" },
+      { "type": "script_src", "pattern": "roomcloud\\.net" }
+    ]
+  },
+  {
+    "id": "profitroom",
+    "vendor": "Profitroom",
+    "product": "Profitroom Booking Engine",
+    "category": "booking_engine",
+    "confidence_base": 0.9,
+    "signatures": [
+      { "type": "iframe_src", "pattern": "hotels\\.profitroom\\.com|profitroom\\.com/be" },
+      { "type": "script_src", "pattern": "profitroom\\.com" }
+    ]
+  },
+  {
+    "id": "hotetec",
+    "vendor": "Hotetec",
+    "product": "Hotetec Booking Engine",
+    "category": "booking_engine",
+    "confidence_base": 0.9,
+    "signatures": [
+      { "type": "iframe_src", "pattern": "hotetec\\.com|reservas\\.hotetec\\." },
+      { "type": "script_src", "pattern": "hotetec\\.com" }
+    ]
+  },
+  {
+    "id": "availpro",
+    "vendor": "Availpro / D-EDGE",
+    "product": "Availpro Booking Suite",
+    "category": "booking_engine",
+    "confidence_base": 0.85,
+    "signatures": [
+      { "type": "iframe_src", "pattern": "availpro\\.com|d-edge\\.com|reservation\\.availpro" },
+      { "type": "script_src", "pattern": "availpro\\.com|d-edge\\.com" }
+    ]
+  },
+  {
+    "id": "pegasus",
+    "vendor": "Pegasus",
+    "product": "Pegasus Reservation Services",
+    "category": "booking_engine",
+    "confidence_base": 0.85,
+    "signatures": [
+      { "type": "iframe_src", "pattern": "pegs\\.pegsinc\\.com|reservations\\.pegsinc" },
+      { "type": "script_src", "pattern": "pegsinc\\.com" }
+    ]
+  },
+  {
+    "id": "omnibees",
+    "vendor": "Omnibees",
+    "product": "Omnibees Booking Engine",
+    "category": "booking_engine",
+    "confidence_base": 0.9,
+    "signatures": [
+      { "type": "iframe_src", "pattern": "omnibees\\.com|bookcore\\.omnibees" },
+      { "type": "script_src", "pattern": "omnibees\\.com" }
+    ]
+  },
+  {
+    "id": "asksuite",
+    "vendor": "Asksuite",
+    "product": "Asksuite (chatbot/IBE)",
+    "category": "booking_engine",
+    "confidence_base": 0.8,
+    "signatures": [
+      { "type": "script_src", "pattern": "asksuite\\.com|chat\\.asksuite" },
+      { "type": "iframe_src", "pattern": "asksuite\\.com" }
+    ]
+  },
+  {
+    "id": "bookingcore",
+    "vendor": "Bookingcore",
+    "product": "Bookingcore IBE",
+    "category": "booking_engine",
+    "confidence_base": 0.8,
+    "signatures": [
+      { "type": "iframe_src", "pattern": "bookingcore\\." },
+      { "type": "script_src", "pattern": "bookingcore\\." }
+    ]
+  }
+]

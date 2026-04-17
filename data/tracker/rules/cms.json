@@ -1,0 +1,104 @@
+[
+  {
+    "id": "wordpress",
+    "vendor": "WordPress",
+    "product": "WordPress",
+    "category": "cms",
+    "confidence_base": 0.9,
+    "signatures": [
+      { "type": "meta_generator", "pattern": "WordPress" },
+      { "type": "link_href", "pattern": "/wp-content/|/wp-includes/" },
+      { "type": "script_src", "pattern": "/wp-content/|/wp-includes/" },
+      { "type": "html", "pattern": "wp-emoji-release" }
+    ]
+  },
+  {
+    "id": "wix",
+    "vendor": "Wix",
+    "product": "Wix",
+    "category": "cms",
+    "confidence_base": 0.95,
+    "signatures": [
+      { "type": "meta_generator", "pattern": "Wix\\.com" },
+      { "type": "script_src", "pattern": "static\\.parastorage\\.com|static\\.wixstatic\\.com" }
+    ]
+  },
+  {
+    "id": "squarespace",
+    "vendor": "Squarespace",
+    "product": "Squarespace",
+    "category": "cms",
+    "confidence_base": 0.95,
+    "signatures": [
+      { "type": "script_src", "pattern": "static1\\.squarespace\\.com|squarespace-cdn\\.com" },
+      { "type": "html", "pattern": "squarespace\\.com" },
+      { "type": "meta_generator", "pattern": "Squarespace" }
+    ]
+  },
+  {
+    "id": "webflow",
+    "vendor": "Webflow",
+    "product": "Webflow",
+    "category": "cms",
+    "confidence_base": 0.95,
+    "signatures": [
+      { "type": "html", "pattern": "data-wf-site|webflow\\.js" },
+      { "type": "script_src", "pattern": "webflow\\.com|assets\\.website-files\\.com" },
+      { "type": "meta_generator", "pattern": "Webflow" }
+    ]
+  },
+  {
+    "id": "shopify",
+    "vendor": "Shopify",
+    "product": "Shopify",
+    "category": "cms",
+    "confidence_base": 0.9,
+    "signatures": [
+      { "type": "script_src", "pattern": "cdn\\.shopify\\.com" },
+      { "type": "html", "pattern": "Shopify\\.theme" }
+    ]
+  },
+  {
+    "id": "drupal",
+    "vendor": "Drupal",
+    "product": "Drupal",
+    "category": "cms",
+    "confidence_base": 0.9,
+    "signatures": [
+      { "type": "meta_generator", "pattern": "Drupal" },
+      { "type": "html", "pattern": "Drupal\\.settings|sites/default/files" }
+    ]
+  },
+  {
+    "id": "joomla",
+    "vendor": "Joomla",
+    "product": "Joomla",
+    "category": "cms",
+    "confidence_base": 0.9,
+    "signatures": [
+      { "type": "meta_generator", "pattern": "Joomla" },
+      { "type": "html", "pattern": "/media/jui/|/components/com_" }
+    ]
+  },
+  {
+    "id": "nextjs",
+    "vendor": "Vercel",
+    "product": "Next.js",
+    "category": "cms",
+    "confidence_base": 0.85,
+    "signatures": [
+      { "type": "html", "pattern": "__NEXT_DATA__|_next/static" },
+      { "type": "script_src", "pattern": "_next/static" }
+    ]
+  },
+  {
+    "id": "gatsby",
+    "vendor": "Gatsby",
+    "product": "Gatsby",
+    "category": "cms",
+    "confidence_base": 0.85,
+    "signatures": [
+      { "type": "html", "pattern": "gatsby-focus-wrapper|___gatsby" }
+    ]
+  }
+]
