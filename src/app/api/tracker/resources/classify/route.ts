@@ -92,10 +92,20 @@ async function persistClassification(
     ]
   );
 
-  // Back-propagate role_hint to tracker_hotel_resources when the LLM was
-  // confident and the DB still has the host as 'unknown'. Keeps the
-  // per-hotel view consistent with the catalog.
-  if (c.confidence >= 0.6) {
+  // Back-propagate role_hint a tracker_hotel_resources. Dos niveles:
+  //   - Confianza ≥0.6: sólo sobrescribimos 'unknown' y 'other' (caso base).
+  //   - Confianza ≥0.85: sobrescribimos cualquier rol heurístico previo.
+  //     Esto corrige casos como tambourine.com (heurística: cdn.*  → cdn)
+  //     que en realidad es una plataforma CMS para hoteles; el LLM
+  //     con alta confianza vale más que la heurística de subdomain.
+  if (c.confidence >= 0.85) {
+    await pool.query(
+      `UPDATE tracker_hotel_resources
+       SET role_hint = $2
+       WHERE registrable_domain = $1`,
+      [registrable_domain, c.role]
+    );
+  } else if (c.confidence >= 0.6) {
     await pool.query(
       `UPDATE tracker_hotel_resources
        SET role_hint = $2

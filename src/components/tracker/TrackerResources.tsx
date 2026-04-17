@@ -85,21 +85,37 @@ export function TrackerResources() {
   const classifyPending = useCallback(async () => {
     setClassifying(true);
     setClassifyMsg(null);
+    let totalSucceeded = 0;
+    let totalFailed = 0;
+    let totalMs = 0;
+    let pass = 0;
+    const MAX_PASSES = 15; // safety: ≤600 clasificados por click
     try {
-      const r = await fetch("/api/tracker/resources/classify", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ batch: true, min_hotels: 1, limit: 20 }),
-      });
-      const d = await r.json();
-      if (!r.ok) {
-        setClassifyMsg(`Error: ${d.error || r.status}`);
-      } else {
+      while (pass < MAX_PASSES) {
+        pass++;
         setClassifyMsg(
-          `Procesados ${d.processed} · ${d.succeeded} clasificados · ${d.failed} fallas · ${Math.round(d.duration_ms / 1000)}s`
+          `Clasificando (pasada ${pass})… ${totalSucceeded} ya clasificados`
         );
+        const r = await fetch("/api/tracker/resources/classify", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ batch: true, min_hotels: 1, limit: 40 }),
+        });
+        const d = await r.json();
+        if (!r.ok) {
+          setClassifyMsg(`Error: ${d.error || r.status}`);
+          return;
+        }
+        totalSucceeded += d.succeeded || 0;
+        totalFailed += d.failed || 0;
+        totalMs += d.duration_ms || 0;
+        // Reload the page data to reflect progress between passes.
+        await load();
+        if (!d.processed || d.processed === 0) break;
       }
-      load();
+      setClassifyMsg(
+        `Listo: ${totalSucceeded} clasificados · ${totalFailed} fallas · ${Math.round(totalMs / 1000)}s (${pass} pasada${pass === 1 ? "" : "s"})`
+      );
     } catch (e) {
       setClassifyMsg(e instanceof Error ? e.message : "error");
     } finally {
