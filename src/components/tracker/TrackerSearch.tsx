@@ -118,6 +118,12 @@ const EXAMPLE_URLS = [
 // at a glance. Tier 1-3 are cheap/deterministic (regex rules); tier 4-5
 // are inferred or LLM-backed and deserve a softer color.
 function tierBadge(tier: number | undefined, via: string): { label: string; cls: string } {
+  if (via === "platform") {
+    return {
+      label: "plataforma",
+      cls: "bg-neutral-muted text-neutral-sent border-neutral-sent/30",
+    };
+  }
   if (!tier) return { label: "regla", cls: "bg-accent/10 text-accent-light border-accent/30" };
   if (tier <= 3) return { label: `regla · T${tier}`, cls: "bg-accent/10 text-accent-light border-accent/30" };
   if (tier === 4) return { label: "LLM · T4", cls: "bg-positive-muted text-positive border-positive/30" };
@@ -218,6 +224,18 @@ function PrimaryCard({
   );
 }
 
+// Plataformas "all-in-one" donde el CMS = quien también construyó el sitio.
+// Cuando detectamos uno de estos, la columna "Agencia web" deja de estar
+// vacía — refleja que la plataforma es el proveedor del sitio. Evita
+// ambigüedades tipo "Designed by Amadeus" que técnicamente es la misma
+// plataforma que ya aparece en CMS.
+const ALL_IN_ONE_CMS_RULES = new Set([
+  "tambourine",
+  "travelclick_websolutions",
+  "profitroom_website",
+  "siteminder_canvas",
+]);
+
 function PrimaryResultsGrid({
   booking,
   cms,
@@ -227,6 +245,55 @@ function PrimaryResultsGrid({
   cms: Detection | null;
   agency: AgencyInfo | null;
 }) {
+  // Cuando el CMS es una plataforma all-in-one, fabricamos un "agency"
+  // implícito con el mismo vendor. Un agency detectado explícitamente
+  // (regex/LLM) siempre gana a este fallback.
+  const cmsIsAllInOne =
+    !!cms && ALL_IN_ONE_CMS_RULES.has(cms.rule_id);
+  const effectiveAgency: {
+    name: string | null;
+    url: string | null;
+    tier: number | undefined;
+    via: string;
+    confidence: number | null;
+    isPlatform: boolean;
+    emptyHint: string;
+    product: string | null;
+  } = agency
+    ? {
+        name: agency.name,
+        url: agency.url,
+        tier:
+          agency.confidence >= 0.8 ? 2 : agency.confidence >= 0.7 ? 3 : 4,
+        via: agency.confidence <= 0.6 ? "llm" : "rule",
+        confidence: agency.confidence,
+        isPlatform: false,
+        emptyHint: "",
+        product: null,
+      }
+    : cmsIsAllInOne
+      ? {
+          name: cms!.vendor,
+          url: null,
+          tier: cms!.tier,
+          via: "platform",
+          confidence: cms!.confidence,
+          isPlatform: true,
+          emptyHint: "",
+          product: "Construido sobre la plataforma CMS",
+        }
+      : {
+          name: null,
+          url: null,
+          tier: undefined,
+          via: "rule",
+          confidence: null,
+          isPlatform: false,
+          emptyHint:
+            "Footer revisado con regex + LLM — no hay crédito de agencia visible.",
+          product: null,
+        };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
       <PrimaryCard
@@ -253,16 +320,18 @@ function PrimaryResultsGrid({
       />
       <PrimaryCard
         title="Agencia web"
-        helper="Quién construyó el sitio"
-        vendor={agency?.name ?? null}
-        product={null}
-        url={agency?.url ?? null}
-        tier={
-          agency ? (agency.confidence >= 0.8 ? 2 : agency.confidence >= 0.7 ? 3 : 4) : undefined
+        helper={
+          effectiveAgency.isPlatform
+            ? "Mismo proveedor (plataforma all-in-one)"
+            : "Quién construyó el sitio"
         }
-        via={agency && agency.confidence <= 0.6 ? "llm" : "rule"}
-        confidence={agency?.confidence ?? null}
-        emptyHint="Footer revisado con regex + LLM — no hay crédito de agencia visible."
+        vendor={effectiveAgency.name}
+        product={effectiveAgency.product}
+        url={effectiveAgency.url}
+        tier={effectiveAgency.tier}
+        via={effectiveAgency.via}
+        confidence={effectiveAgency.confidence}
+        emptyHint={effectiveAgency.emptyHint}
       />
     </div>
   );
