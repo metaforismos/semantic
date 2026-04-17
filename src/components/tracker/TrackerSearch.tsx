@@ -8,8 +8,16 @@ type Detection = {
   product: string;
   category: string;
   confidence: number;
+  tier?: number;
   detected_via: string;
   evidence: { signature_type: string; pattern: string; matched: string }[];
+};
+
+type AgencyInfo = {
+  name: string;
+  url: string | null;
+  phrase: string;
+  confidence: number;
 };
 
 type RawResource = {
@@ -31,6 +39,7 @@ type AnalyzeResponse = {
   meta_generator: string | null;
   detections: Detection[];
   resources: RawResource[];
+  agency: AgencyInfo | null;
   script_srcs: string[];
   iframe_srcs: string[];
   outbound_links: string[];
@@ -104,6 +113,160 @@ const EXAMPLE_URLS = [
   "https://www.ayresdesalta.com.ar",
   "https://diegodealmagro.cl",
 ];
+
+// Converts internal evidence tier + source to a badge the operator reads
+// at a glance. Tier 1-3 are cheap/deterministic (regex rules); tier 4-5
+// are inferred or LLM-backed and deserve a softer color.
+function tierBadge(tier: number | undefined, via: string): { label: string; cls: string } {
+  if (!tier) return { label: "regla", cls: "bg-accent/10 text-accent-light border-accent/30" };
+  if (tier <= 3) return { label: `regla · T${tier}`, cls: "bg-accent/10 text-accent-light border-accent/30" };
+  if (tier === 4) return { label: "LLM · T4", cls: "bg-positive-muted text-positive border-positive/30" };
+  if (tier === 5) return { label: "inferido · T5", cls: "bg-neutral-muted text-neutral-sent border-neutral-sent/30" };
+  if (via === "external") return { label: "externo · T6", cls: "bg-neutral-muted text-neutral-sent border-neutral-sent/30" };
+  return { label: `T${tier}`, cls: "bg-surface-2 text-text-dim border-border" };
+}
+
+type PrimaryCardArgs = {
+  title: string;
+  helper: string;
+  vendor: string | null;
+  product: string | null;
+  url: string | null;
+  tier: number | undefined;
+  via: string;
+  confidence: number | null;
+  emptyHint: string;
+};
+
+function PrimaryCard({
+  title,
+  helper,
+  vendor,
+  product,
+  url,
+  tier,
+  via,
+  confidence,
+  emptyHint,
+}: PrimaryCardArgs) {
+  const detected = Boolean(vendor);
+  return (
+    <div
+      className={`border rounded-md p-4 min-h-[130px] flex flex-col ${
+        detected
+          ? "border-border bg-surface"
+          : "border-dashed border-border bg-surface/60"
+      }`}
+    >
+      <div className="flex items-baseline justify-between gap-2 mb-2">
+        <div className="text-[10px] font-semibold uppercase tracking-[0.15em] text-text-dim">
+          {title}
+        </div>
+        {detected ? (
+          (() => {
+            const b = tierBadge(tier, via);
+            return (
+              <span
+                className={`text-[9px] font-medium uppercase tracking-wider px-1.5 py-0.5 rounded border ${b.cls}`}
+              >
+                {b.label}
+              </span>
+            );
+          })()
+        ) : (
+          <span className="text-[9px] font-medium uppercase tracking-wider px-1.5 py-0.5 rounded border border-border text-text-dim">
+            sin detección
+          </span>
+        )}
+      </div>
+      {detected ? (
+        <>
+          <div className="text-xl font-semibold text-text leading-tight">
+            {vendor}
+          </div>
+          {product && (
+            <div className="text-xs text-text-dim mt-1">{product}</div>
+          )}
+          <div className="flex items-center gap-3 mt-auto pt-2 text-[11px] text-text-dim">
+            {typeof confidence === "number" && (
+              <span className="font-mono tabular-nums">
+                conf {Math.round(confidence * 100)}%
+              </span>
+            )}
+            {url && (
+              <a
+                href={url}
+                target="_blank"
+                rel="noreferrer"
+                className="underline decoration-dotted hover:text-text-muted truncate"
+              >
+                {url.replace(/^https?:\/\/(www\.)?/, "")}
+              </a>
+            )}
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="text-sm text-text-dim italic">No detectado</div>
+          <div className="text-[11px] text-text-dim mt-1">{helper}</div>
+          <div className="mt-auto pt-2 text-[10px] text-text-dim/80">
+            {emptyHint}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+function PrimaryResultsGrid({
+  booking,
+  cms,
+  agency,
+}: {
+  booking: Detection | null;
+  cms: Detection | null;
+  agency: AgencyInfo | null;
+}) {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <PrimaryCard
+        title="Motor de reserva"
+        helper="Booking engine / IBE del sitio oficial"
+        vendor={booking?.vendor ?? null}
+        product={booking?.product ?? null}
+        url={null}
+        tier={booking?.tier}
+        via={booking?.detected_via ?? "rule"}
+        confidence={booking?.confidence ?? null}
+        emptyHint="Sin signature reconocible — posible booking interno o sitio JS-heavy."
+      />
+      <PrimaryCard
+        title="CMS / sitio web"
+        helper="Plataforma o website builder"
+        vendor={cms?.vendor ?? null}
+        product={cms?.product ?? null}
+        url={null}
+        tier={cms?.tier}
+        via={cms?.detected_via ?? "rule"}
+        confidence={cms?.confidence ?? null}
+        emptyHint="Podría ser WordPress/Wix/custom — no emitió generator ni firma clara."
+      />
+      <PrimaryCard
+        title="Agencia web"
+        helper="Quién construyó el sitio"
+        vendor={agency?.name ?? null}
+        product={null}
+        url={agency?.url ?? null}
+        tier={
+          agency ? (agency.confidence >= 0.8 ? 2 : agency.confidence >= 0.7 ? 3 : 4) : undefined
+        }
+        via={agency && agency.confidence <= 0.6 ? "llm" : "rule"}
+        confidence={agency?.confidence ?? null}
+        emptyHint="Footer revisado con regex + LLM — no hay crédito de agencia visible."
+      />
+    </div>
+  );
+}
 
 function ResourcesTable({ resources }: { resources: RawResource[] }) {
   const grouped = (() => {
@@ -284,8 +447,24 @@ export function TrackerSearch() {
   })();
 
   const hasResult = Boolean(result && !result.error);
-  const mainSignal =
-    result?.detections.find((d) => d.category === "booking_engine") || null;
+
+  // Pick the strongest detection per primary category (lowest tier wins,
+  // highest confidence breaks ties). Mirrors synthesizeStack logic so the
+  // UI agrees with what gets persisted.
+  const pickPrimary = (category: string): Detection | null => {
+    if (!result) return null;
+    const candidates = result.detections.filter((d) => d.category === category);
+    if (candidates.length === 0) return null;
+    return candidates.sort((a, b) => {
+      const ta = a.tier ?? 3;
+      const tb = b.tier ?? 3;
+      if (ta !== tb) return ta - tb;
+      return b.confidence - a.confidence;
+    })[0];
+  };
+
+  const primaryBE = pickPrimary("booking_engine");
+  const primaryCMS = pickPrimary("cms");
 
   return (
     <div className="space-y-6">
@@ -381,19 +560,6 @@ export function TrackerSearch() {
                   </span>
                 )}
               </div>
-              {mainSignal && (
-                <div className="mt-2 inline-flex items-center gap-2 px-2 py-1 bg-accent/10 border border-accent/30 rounded">
-                  <span className="text-[10px] font-semibold uppercase tracking-wide text-accent-light">
-                    Booking engine
-                  </span>
-                  <span className="text-sm font-medium text-text">
-                    {mainSignal.vendor}
-                  </span>
-                  <span className="text-xs text-text-dim">
-                    {mainSignal.product}
-                  </span>
-                </div>
-              )}
             </div>
             <div className="flex flex-col items-end gap-2">
               <button
@@ -413,6 +579,12 @@ export function TrackerSearch() {
               )}
             </div>
           </div>
+
+          <PrimaryResultsGrid
+            booking={primaryBE}
+            cms={primaryCMS}
+            agency={result.agency}
+          />
 
           {result.detections.length === 0 ? (
             <div className="border border-border rounded-md bg-surface p-6 text-center text-sm text-text-dim">

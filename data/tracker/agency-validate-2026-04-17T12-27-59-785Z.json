@@ -1,0 +1,359 @@
+{
+  "results": [
+    {
+      "url": "https://illaexperiencehotel.com/",
+      "final_url": "https://illaexperiencehotel.com/",
+      "html_bytes": 162241,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 3,
+      "llm_ms": 2721,
+      "total_ms": 3918
+    },
+    {
+      "url": "https://www.hotelcarmen.net/",
+      "final_url": "https://www.hotelcarmen.net/",
+      "html_bytes": 17527,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 4,
+      "llm_ms": 2533,
+      "total_ms": 4552
+    },
+    {
+      "url": "http://www.pousadabahiabrasil.com.br/",
+      "final_url": "http://www.pousadabahiabrasil.com.br/",
+      "html_bytes": 6499,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 1530,
+      "total_ms": 2117
+    },
+    {
+      "url": "https://oceandreamproperties.wix.com/cabarete",
+      "final_url": "https://oceandreamproperties.wix.com/cabarete",
+      "html_bytes": 3060,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 1787,
+      "total_ms": 2152
+    },
+    {
+      "url": "https://www.hotelerasanrafael.cl/",
+      "final_url": "https://www.hotelerasanrafael.cl/",
+      "html_bytes": 11003,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": {
+        "name": "HTML5 UP",
+        "url": "http://html5up.net/",
+        "confidence": 0.6
+      },
+      "regex_ms": 0,
+      "llm_ms": 1944,
+      "total_ms": 2567
+    },
+    {
+      "url": "http://www.hotelboston.freeservers.com/",
+      "final_url": "http://www.hotelboston.freeservers.com/",
+      "html_bytes": 8084,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 2038,
+      "total_ms": 3152
+    },
+    {
+      "url": "https://www.pierdopontal.com.br/",
+      "final_url": "https://pierdopontal.com.br/",
+      "html_bytes": 140677,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 2,
+      "llm_ms": 3297,
+      "total_ms": 9539
+    },
+    {
+      "url": "https://www.marriott.com/hotels/travel/sclcs-courtyard-santiago-las-condes/?y_source=1_MjgxODU1Mi00NDAtbG9jYXRpb24ud2Vic2l0ZQ==",
+      "final_url": "https://www.marriott.com/hotels/travel/sclcs-courtyard-santiago-las-condes/?y_source=1_MjgxODU1Mi00NDAtbG9jYXRpb24ud2Vic2l0ZQ==",
+      "html_bytes": 217713,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 1,
+      "llm_ms": 1629,
+      "total_ms": 2539
+    },
+    {
+      "url": "https://www.pousadaaconchego.com.br/",
+      "final_url": "https://www.pousadaaconchego.com.br/",
+      "html_bytes": 3060,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 1647,
+      "total_ms": 2371
+    },
+    {
+      "url": "https://hotelbellavista.cl/",
+      "final_url": "https://hotelbellavista.cl/",
+      "html_bytes": 229348,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 2,
+      "llm_ms": 2041,
+      "total_ms": 2868
+    },
+    {
+      "url": "https://www.tierrasur.cl/",
+      "final_url": "https://www.tierrasur.cl/",
+      "html_bytes": 7268,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 1374,
+      "total_ms": 2603
+    },
+    {
+      "url": "https://www.fiestainn.com/fiesta-inn-monterrey-valle",
+      "final_url": "https://www.fiestamericanatravelty.com/fiesta-inn/hoteles/fiesta-inn-monterrey-valle",
+      "html_bytes": 221993,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 1,
+      "llm_ms": 2167,
+      "total_ms": 5477
+    },
+    {
+      "url": "https://goiashotel.placeweb.site/",
+      "final_url": "https://goiashotel.placeweb.site/",
+      "html_bytes": 1089,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 1242,
+      "total_ms": 2035
+    },
+    {
+      "url": "https://www.bestwestern.com/en_US/book/hotel-rooms.77107.html?iata=00171890&ssob=BLBWI0003O",
+      "final_url": "https://www.bestwestern.com/en_US/book/hotel-rooms.77107.html?iata=00171890&ssob=BLBWI0003O",
+      "html_bytes": 778,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 1214,
+      "total_ms": 1637
+    },
+    {
+      "url": "http://www.quintaescondida.com/",
+      "final_url": "http://www.quintaescondida.com/",
+      "html_bytes": 114,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 0,
+      "total_ms": 696
+    },
+    {
+      "url": "https://www.realvillabella.com.br/",
+      "final_url": "https://www.realvillabella.com.br/",
+      "html_bytes": 85042,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 1,
+      "llm_ms": 2669,
+      "total_ms": 5789
+    },
+    {
+      "url": "https://praiamarnatal.com.br/",
+      "final_url": "https://praiamarnatal.com.br/",
+      "html_bytes": 258448,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 1,
+      "llm_ms": 2111,
+      "total_ms": 2778
+    },
+    {
+      "url": "https://pousadatartarugas.com.br/",
+      "final_url": "https://pousadatartarugas.com.br/",
+      "html_bytes": 131941,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": {
+        "name": "ALGO - Marketing Digital",
+        "url": "https://algodigital.com.br/",
+        "confidence": 0.6
+      },
+      "regex_ms": 1,
+      "llm_ms": 2055,
+      "total_ms": 2902
+    },
+    {
+      "url": "https://www.jashitahotel.com/",
+      "final_url": "https://www.jashitahotel.com/",
+      "html_bytes": 393470,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 1,
+      "llm_ms": 1715,
+      "total_ms": 2897
+    },
+    {
+      "url": "https://www.marriott.com/en-us/hotels/pmccy-courtyard-puerto-montt/overview/?gclid=CjwKCAiA2L-dBhACEiwAu8Q9YBckzDAqvtFN-GvfsQ9wYSqZ_5FCIk1qqj-i2DflegOs2zxzMmfdLxoC_hIQAvD_BwE&gbraid=0AAAAADilnidGEZPt6nfyQ9XW_02SSudBq&gclsrc=aw.ds",
+      "final_url": "https://www.marriott.com/en-us/hotels/pmccy-courtyard-puerto-montt/overview/?gclid=CjwKCAiA2L-dBhACEiwAu8Q9YBckzDAqvtFN-GvfsQ9wYSqZ_5FCIk1qqj-i2DflegOs2zxzMmfdLxoC_hIQAvD_BwE&gbraid=0AAAAADilnidGEZPt6nfyQ9XW_02SSudBq&gclsrc=aw.ds",
+      "html_bytes": 458,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 1616,
+      "total_ms": 1714
+    },
+    {
+      "url": "https://www.hoteljandaia.com/",
+      "final_url": "https://www.hoteljandaia.com/",
+      "html_bytes": 476085,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": {
+        "name": "Gath Soluções em TI",
+        "url": "http://www.gathsolucoes.com/",
+        "confidence": 0.6
+      },
+      "regex_ms": 2,
+      "llm_ms": 2227,
+      "total_ms": 3003
+    },
+    {
+      "url": "https://www.bmresidence.com/",
+      "final_url": "https://www.bmresidence.com/",
+      "html_bytes": 1744,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 2066,
+      "total_ms": 3081
+    },
+    {
+      "url": "https://universohotel.com.br/",
+      "final_url": "https://universohotel.com.br/",
+      "html_bytes": 88816,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 2166,
+      "total_ms": 4315
+    },
+    {
+      "url": "https://all.accor.com/hotel/8750/index.en.shtml?y_source=1_MTUzNTk2OTctNDQwLWxvY2F0aW9uLndlYnNpdGU=",
+      "final_url": "https://all.accor.com/hotel/8750/index.en.shtml?y_source=1_MTUzNTk2OTctNDQwLWxvY2F0aW9uLndlYnNpdGU=",
+      "html_bytes": 301321,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 2,
+      "llm_ms": 2170,
+      "total_ms": 3910
+    },
+    {
+      "url": "https://www.arraialdoouro.com.br/",
+      "final_url": "https://irhotelaria.com.br/",
+      "html_bytes": 3858,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": {
+        "name": "Hullen Gonzales",
+        "url": "https://hullen.me/",
+        "confidence": 0.6
+      },
+      "regex_ms": 0,
+      "llm_ms": 1744,
+      "total_ms": 4368
+    },
+    {
+      "url": "https://hotelantofagasta.cl/",
+      "final_url": "https://hotelantofagasta.cl/",
+      "html_bytes": 205962,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 1,
+      "llm_ms": 2342,
+      "total_ms": 6598
+    },
+    {
+      "url": "http://www.alfer.cl/",
+      "final_url": "http://www.alfer.cl/",
+      "html_bytes": 39348,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 1125,
+      "total_ms": 2211
+    },
+    {
+      "url": "http://elrale.cl/servicios.html",
+      "final_url": "http://elrale.cl/servicios.html",
+      "html_bytes": 74938,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 1550,
+      "total_ms": 2267
+    },
+    {
+      "url": "https://www.ritzcarlton.com/en/hotels/puerto-rico/dorado-beach/",
+      "final_url": "https://www.ritzcarlton.com/en/hotels/puerto-rico/dorado-beach/",
+      "html_bytes": 205272,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 1,
+      "llm_ms": 2287,
+      "total_ms": 3302
+    },
+    {
+      "url": "https://www.bourbon.com.br/hoteis-e-resorts/bourbon-rio-de-janeiro-residence/",
+      "final_url": "https://www.bourbon.com.br/hoteis-e-resorts/bourbon-rio-de-janeiro-residence",
+      "html_bytes": 228827,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 1,
+      "llm_ms": 1580,
+      "total_ms": 2391
+    }
+  ],
+  "summary": {
+    "valid": 30,
+    "regexHits": 0,
+    "llmHits": 4,
+    "bothAgree": 0,
+    "llmOnly": 4,
+    "regexOnly": 0,
+    "bothDisagree": 0
+  }
+}

@@ -1,0 +1,229 @@
+{
+  "results": [
+    {
+      "url": "https://viequestropicalguesthouse.com/",
+      "final_url": "https://viequestropicalguesthouse.com/",
+      "html_bytes": 148363,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "Edwebstudio",
+        "url": "https://edwebstudio.com/",
+        "confidence": 0.9
+      },
+      "llm": {
+        "name": "Edwebstudio.com",
+        "url": "https://edwebstudio.com/",
+        "confidence": 0.6
+      },
+      "regex_ms": 4,
+      "llm_ms": 3436,
+      "total_ms": 4997
+    },
+    {
+      "url": "https://www.granhotelpaysandu.com.uy/",
+      "final_url": "https://www.granhotelpaysandu.com.uy/",
+      "html_bytes": 40506,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 3,
+      "llm_ms": 3274,
+      "total_ms": 4716
+    },
+    {
+      "url": "http://www.maruba-spa.com/",
+      "final_url": "http://www.maruba-spa.com/",
+      "html_bytes": 33121,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "Hip Web Design",
+        "url": "http://www.hipwebdesign.com/",
+        "confidence": 0.9
+      },
+      "llm": {
+        "name": "Hip Web Design",
+        "url": "http://www.hipwebdesign.com/",
+        "confidence": 0.6
+      },
+      "regex_ms": 1,
+      "llm_ms": 1769,
+      "total_ms": 3175
+    },
+    {
+      "url": "http://aracoara.com.br/",
+      "final_url": "http://aracoara.com.br/",
+      "html_bytes": 33857,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "Nirvana",
+        "url": "http://www.cryoutcreations.eu/",
+        "confidence": 0.9
+      },
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 2829,
+      "total_ms": 3728
+    },
+    {
+      "url": "https://www.motellacasablanca.cl/",
+      "final_url": "https://www.motellacasablanca.cl/",
+      "html_bytes": 31789,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "Wprochile",
+        "url": "https://web.archive.org/web/20250811101058/http://www.wprochile.com/",
+        "confidence": 0.9
+      },
+      "llm": {
+        "name": "Wprochile",
+        "url": "https://web.archive.org/web/20250811101058/http://www.wprochile.com/",
+        "confidence": 0.6
+      },
+      "regex_ms": 0,
+      "llm_ms": 1964,
+      "total_ms": 2894
+    },
+    {
+      "url": "https://atacamaloft.com/",
+      "final_url": "https://atacamaloft.com/",
+      "html_bytes": 316848,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "UpaDesigners!",
+        "url": "http://www.upadesigners.com/",
+        "confidence": 0.9
+      },
+      "llm": {
+        "name": "UpaDesigners!",
+        "url": "http://www.upadesigners.com/",
+        "confidence": 0.6
+      },
+      "regex_ms": 1,
+      "llm_ms": 2567,
+      "total_ms": 3889
+    },
+    {
+      "url": "https://hotelcasaantigua.com/",
+      "final_url": "https://hotelcasaantigua.com/",
+      "html_bytes": 90778,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "Blossom Themes",
+        "url": "https://blossomthemes.com/",
+        "confidence": 0.9
+      },
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 2919,
+      "total_ms": 6269
+    },
+    {
+      "url": "http://alberguedelcerrolosplaceres.blogspot.com/",
+      "final_url": "http://alberguedelcerrolosplaceres.blogspot.com/",
+      "html_bytes": 28270,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 1,
+      "llm_ms": 1706,
+      "total_ms": 2647
+    },
+    {
+      "url": "https://www.nh-hotels.com/hotel/nh-antofagasta",
+      "final_url": "https://www.nh-hotels.com/en/hotel/nh-antofagasta",
+      "html_bytes": 246700,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 1,
+      "llm_ms": 1879,
+      "total_ms": 2104
+    },
+    {
+      "url": "http://www.hotelpremiumpira.com.br/",
+      "final_url": "http://www.hotelpremiumpira.com.br/",
+      "html_bytes": 15489,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 2430,
+      "total_ms": 12640
+    },
+    {
+      "url": "https://www.hotelcarmel.com.pe/",
+      "final_url": "https://www.hotelcarmel.com.pe/",
+      "html_bytes": 2653,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 1624,
+      "total_ms": 2557
+    },
+    {
+      "url": "https://www.hotelsudoeste.com.br/",
+      "final_url": "https://www.hotelsudoeste.com.br/",
+      "html_bytes": 249195,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 2,
+      "llm_ms": 2921,
+      "total_ms": 4044
+    },
+    {
+      "url": "https://www.hilton.com/en/hotels/quihihf-hilton-colon-quito/",
+      "final_url": "https://www.hilton.com/en/hotels/quihihf-hilton-colon-quito/",
+      "html_bytes": 121901,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 2941,
+      "total_ms": 3129
+    },
+    {
+      "url": "http://www.astore.cl/motel",
+      "final_url": "http://www.astore.cl/motel",
+      "html_bytes": 42403,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 1,
+      "llm_ms": 2747,
+      "total_ms": 5789
+    },
+    {
+      "url": "https://www.wyndhamhotels.com/es-la/hotels/santiago-chile?brand_id=LQ",
+      "final_url": "https://www.wyndhamhotels.com/es-la/hotels/santiago-chile?brand_id=LQ",
+      "html_bytes": 277094,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 1,
+      "llm_ms": 1972,
+      "total_ms": 2169
+    },
+    {
+      "url": "https://cielo-good-luck-xalapa.booked.net/",
+      "final_url": "https://cielo-good-luck-xalapa.booked.net/",
+      "html_bytes": 548,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 1586,
+      "total_ms": 1829
+    }
+  ],
+  "summary": {
+    "valid": 16,
+    "regexHits": 6,
+    "llmHits": 4,
+    "bothAgree": 3,
+    "llmOnly": 0,
+    "regexOnly": 2,
+    "bothDisagree": 1
+  }
+}

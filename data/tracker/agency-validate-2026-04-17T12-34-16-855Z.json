@@ -1,0 +1,1152 @@
+{
+  "results": [
+    {
+      "url": "http://www.lacarta.cl/",
+      "final_url": "http://www.lacarta.cl/",
+      "html_bytes": 56336,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "rodrigomorales",
+        "url": null,
+        "confidence": 0.6
+      },
+      "llm": {
+        "name": "rodrigomorales.cl",
+        "url": "https://rodrigomorales.cl/",
+        "confidence": 0.6
+      },
+      "regex_ms": 3,
+      "llm_ms": 2445,
+      "total_ms": 2762
+    },
+    {
+      "url": "https://granhoteldequeretaro.com.mx/",
+      "final_url": "https://granhoteldequeretaro.com.mx/",
+      "html_bytes": 166354,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "Ad Nest",
+        "url": "https://adnest.com.mx/",
+        "confidence": 0.9
+      },
+      "llm": {
+        "name": "Ad Nest",
+        "url": "https://adnest.com.mx/",
+        "confidence": 0.6
+      },
+      "regex_ms": 4,
+      "llm_ms": 1951,
+      "total_ms": 3617
+    },
+    {
+      "url": "https://curi.cl/",
+      "final_url": "https://curi.cl/",
+      "html_bytes": 225233,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "movilWeb",
+        "url": null,
+        "confidence": 0.6
+      },
+      "llm": {
+        "name": "movilWeb.cl",
+        "url": "https://movilweb.cl/",
+        "confidence": 0.6
+      },
+      "regex_ms": 1,
+      "llm_ms": 2378,
+      "total_ms": 5328
+    },
+    {
+      "url": "https://www.jamaicainn.com/",
+      "final_url": "https://www.jamaicainn.com/",
+      "html_bytes": 45537,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "80 DAYS",
+        "url": "https://www.eighty-days.com/?utm_source=websiteby&amp;utm_medium=credit&amp;utm_campaign=jamaicainn",
+        "confidence": 0.9
+      },
+      "llm": {
+        "name": "80 DAYS",
+        "url": "https://www.eighty-days.com/",
+        "confidence": 0.6
+      },
+      "regex_ms": 1,
+      "llm_ms": 1965,
+      "total_ms": 3818
+    },
+    {
+      "url": "https://www.hotelrepublica.com/",
+      "final_url": "https://www.hotelrepublica.com/",
+      "html_bytes": 294814,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "SQUAD Network",
+        "url": "https://www.squad.com.ec/",
+        "confidence": 0.9
+      },
+      "llm": {
+        "name": "SQUAD Network",
+        "url": "https://www.squad.com.ec/",
+        "confidence": 0.6
+      },
+      "regex_ms": 2,
+      "llm_ms": 1823,
+      "total_ms": 4214
+    },
+    {
+      "url": "http://www.belisariojara.cl/",
+      "final_url": "http://www.belisariojara.cl/",
+      "html_bytes": 1249,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 1393,
+      "total_ms": 1845
+    },
+    {
+      "url": "http://www.hostaljofre.com/",
+      "final_url": "http://www.hostaljofre.com/",
+      "html_bytes": 7420,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "RGB GRAFICA / 211671/ disenorgb@gmail",
+        "url": null,
+        "confidence": 0.6
+      },
+      "llm": {
+        "name": "RGB GRAFICA",
+        "url": null,
+        "confidence": 0.6
+      },
+      "regex_ms": 0,
+      "llm_ms": 1526,
+      "total_ms": 2679
+    },
+    {
+      "url": "https://shankaraholbox.com/",
+      "final_url": "https://shankaraholbox.com/",
+      "html_bytes": 204969,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "ALOCARIBE",
+        "url": "https://alocaribe.com/",
+        "confidence": 0.9
+      },
+      "llm": null,
+      "regex_ms": 2,
+      "llm_ms": 2836,
+      "total_ms": 4071
+    },
+    {
+      "url": "https://lodgeruta181.com/",
+      "final_url": "https://lodgeruta181.com/",
+      "html_bytes": 268413,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "MTurismoCL",
+        "url": "https://mturismo.cl/",
+        "confidence": 0.9
+      },
+      "llm": {
+        "name": "MTurismoCL",
+        "url": "https://mturismo.cl/",
+        "confidence": 0.6
+      },
+      "regex_ms": 2,
+      "llm_ms": 1916,
+      "total_ms": 3050
+    },
+    {
+      "url": "http://www.barrachina.cl/",
+      "final_url": "http://www.barrachina.cl/",
+      "html_bytes": 152682,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "Minimaldiseno",
+        "url": null,
+        "confidence": 0.6
+      },
+      "llm": {
+        "name": "Minimaldiseno.cl",
+        "url": "https://minimaldiseno.cl/",
+        "confidence": 0.6
+      },
+      "regex_ms": 1,
+      "llm_ms": 2066,
+      "total_ms": 5333
+    },
+    {
+      "url": "https://www.hotelvendimiaparador.cl/",
+      "final_url": "https://www.hotelvendimiaparador.cl/",
+      "html_bytes": 35285,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "Upscale Hospitality Management document",
+        "url": null,
+        "confidence": 0.6
+      },
+      "llm": {
+        "name": "Upscale Hospitality Management",
+        "url": "https://upscalehospitalitymanagement.com/",
+        "confidence": 0.6
+      },
+      "regex_ms": 3,
+      "llm_ms": 2396,
+      "total_ms": 3461
+    },
+    {
+      "url": "http://www.discoveryhotel.com.br/",
+      "final_url": "http://www.discoveryhotel.com.br/",
+      "html_bytes": 5863,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "Tecno Informática",
+        "url": "http://www.tecnoinformatica.com.br/",
+        "confidence": 0.9
+      },
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 2209,
+      "total_ms": 2716
+    },
+    {
+      "url": "https://brazilhotelreviews.blogspot.com/2013/03/clan-le-flamboyant-home-service-brazil.html",
+      "final_url": "https://brazilhotelreviews.blogspot.com/2013/03/clan-le-flamboyant-home-service-brazil.html",
+      "html_bytes": 59065,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 1628,
+      "total_ms": 2822
+    },
+    {
+      "url": "https://rustikon.cl/",
+      "final_url": "https://rustikon.cl/",
+      "html_bytes": 70597,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "Marketing Rapel",
+        "url": null,
+        "confidence": 0.6
+      },
+      "llm": {
+        "name": "Marketing Rapel",
+        "url": "https://marketingrapel.cl/",
+        "confidence": 0.6
+      },
+      "regex_ms": 1,
+      "llm_ms": 2197,
+      "total_ms": 3832
+    },
+    {
+      "url": "https://hotelbidasoa.cl/es/",
+      "final_url": "https://hotelbidasoa.cl/es/",
+      "html_bytes": 387282,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "THE b",
+        "url": "https://thebweb.design/",
+        "confidence": 0.9
+      },
+      "llm": null,
+      "regex_ms": 2,
+      "llm_ms": 2101,
+      "total_ms": 3515
+    },
+    {
+      "url": "https://www.elparaisoiguazu.com/",
+      "final_url": "https://www.easycarswelkom.co.za/teams/jaco/",
+      "html_bytes": 104681,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "Seo Aress",
+        "url": null,
+        "confidence": 0.6
+      },
+      "llm": null,
+      "regex_ms": 1,
+      "llm_ms": 3365,
+      "total_ms": 11204
+    },
+    {
+      "url": "https://www.eurotel.cl/providencia/es/",
+      "final_url": "https://www.eurotel.cl/providencia/es/",
+      "html_bytes": 208568,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "Enexum",
+        "url": null,
+        "confidence": 0.6
+      },
+      "llm": {
+        "name": "Enexum",
+        "url": "https://www.enexum.cl/",
+        "confidence": 0.6
+      },
+      "regex_ms": 1,
+      "llm_ms": 2796,
+      "total_ms": 3631
+    },
+    {
+      "url": "https://mahoganyhallbelize.com/",
+      "final_url": "https://mahoganyhallbelize.com/",
+      "html_bytes": 97845,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "NewHome",
+        "url": "http://www.newhome.shop/",
+        "confidence": 0.9
+      },
+      "llm": {
+        "name": "NewHome.Shop",
+        "url": "http://www.newhome.shop/",
+        "confidence": 0.6
+      },
+      "regex_ms": 1,
+      "llm_ms": 1965,
+      "total_ms": 4057
+    },
+    {
+      "url": "https://bluespiritcostarica.com/",
+      "final_url": "https://bluespiritcostarica.com/",
+      "html_bytes": 131231,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "Quadshot Digital",
+        "url": null,
+        "confidence": 0.6
+      },
+      "llm": {
+        "name": "Quadshot Digital",
+        "url": "https://quadshot.com/",
+        "confidence": 0.6
+      },
+      "regex_ms": 1,
+      "llm_ms": 1624,
+      "total_ms": 2965
+    },
+    {
+      "url": "https://www.patagonialefun.cl/",
+      "final_url": "https://www.patagonialefun.cl/",
+      "html_bytes": 153848,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "GrupoIntelecto",
+        "url": "http://grupointelecto.cl/",
+        "confidence": 0.9
+      },
+      "llm": {
+        "name": "GrupoIntelecto",
+        "url": "http://grupointelecto.cl/",
+        "confidence": 0.6
+      },
+      "regex_ms": 1,
+      "llm_ms": 1794,
+      "total_ms": 5337
+    },
+    {
+      "url": "http://www.ayel.cl/",
+      "final_url": "http://www.ayel.cl/",
+      "html_bytes": 20143,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "ElquiWeb",
+        "url": "http://www.elquiweb.com/",
+        "confidence": 0.9
+      },
+      "llm": {
+        "name": "ElquiWeb.com",
+        "url": "http://www.elquiweb.com/",
+        "confidence": 0.6
+      },
+      "regex_ms": 0,
+      "llm_ms": 2823,
+      "total_ms": 6902
+    },
+    {
+      "url": "https://jequitiarahotel.com.br/",
+      "final_url": "https://jequitiarahotel.com.br/",
+      "html_bytes": 113166,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "Staatic (https://staatic",
+        "url": null,
+        "confidence": 0.6
+      },
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 2007,
+      "total_ms": 2398
+    },
+    {
+      "url": "http://www.senlis.cl/",
+      "final_url": "http://www.senlis.cl/",
+      "html_bytes": 18028,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "diegofarias",
+        "url": "http://www.diegofarias.cl/",
+        "confidence": 0.9
+      },
+      "llm": {
+        "name": "diegofarias.cl",
+        "url": "http://www.diegofarias.cl/",
+        "confidence": 0.6
+      },
+      "regex_ms": 1,
+      "llm_ms": 1701,
+      "total_ms": 1907
+    },
+    {
+      "url": "https://villamare.com.br/",
+      "final_url": "https://villamare.com.br/",
+      "html_bytes": 209261,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "OkGo Agencia",
+        "url": null,
+        "confidence": 0.6
+      },
+      "llm": {
+        "name": "OkGo Agencia",
+        "url": "https://okgoagencia.com.br/",
+        "confidence": 0.6
+      },
+      "regex_ms": 2,
+      "llm_ms": 1735,
+      "total_ms": 3107
+    },
+    {
+      "url": "https://hotelcarlosv.com.ar/",
+      "error": "Connect Timeout Error (attempted address: hotelcarlosv.com.ar:443, timeout: 10000ms)",
+      "error_code": "UND_ERR_CONNECT_TIMEOUT",
+      "fetch_ms": 10515
+    },
+    {
+      "url": "https://casamaria.mx/",
+      "final_url": "https://casamaria.mx/",
+      "html_bytes": 116156,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "Consultoría Experto",
+        "url": "https://consultoriaexperto.com/",
+        "confidence": 0.9
+      },
+      "llm": {
+        "name": "Consultoría Experto",
+        "url": "https://consultoriaexperto.com/",
+        "confidence": 0.6
+      },
+      "regex_ms": 1,
+      "llm_ms": 3261,
+      "total_ms": 4748
+    },
+    {
+      "url": "http://pensionyhospedajeencastro-chiloe.blogspot.com/",
+      "final_url": "http://pensionyhospedajeencastro-chiloe.blogspot.com/",
+      "html_bytes": 65950,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 2174,
+      "total_ms": 3276
+    },
+    {
+      "url": "https://posadasantabertha.com/",
+      "final_url": "https://posadasantabertha.com/",
+      "html_bytes": 493743,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "Marketing75",
+        "url": "https://marketing75.com/",
+        "confidence": 0.9
+      },
+      "llm": null,
+      "regex_ms": 3,
+      "llm_ms": 3552,
+      "total_ms": 10342
+    },
+    {
+      "url": "https://barcelocoliving.com/",
+      "final_url": "https://barcelocoliving.com/",
+      "html_bytes": 216659,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "20S Agencia",
+        "url": "https://20sagencia.com/",
+        "confidence": 0.9
+      },
+      "llm": {
+        "name": "20S Agencia",
+        "url": "https://20sagencia.com/",
+        "confidence": 0.6
+      },
+      "regex_ms": 1,
+      "llm_ms": 1963,
+      "total_ms": 3143
+    },
+    {
+      "url": "http://www.tabonko.cl/",
+      "final_url": "http://www.tabonko.cl/",
+      "html_bytes": 4441,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "inblau",
+        "url": "http://www.inblau.cl/",
+        "confidence": 0.9
+      },
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 2685,
+      "total_ms": 3367
+    },
+    {
+      "url": "https://www.hoteldonandres.com/",
+      "final_url": "https://www.hoteldonandres.com/",
+      "html_bytes": 264099,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "marinuswebdesign",
+        "url": "https://marinuswebdesign.nl/",
+        "confidence": 0.9
+      },
+      "llm": {
+        "name": "marinuswebdesign",
+        "url": "https://marinuswebdesign.nl/",
+        "confidence": 0.6
+      },
+      "regex_ms": 1,
+      "llm_ms": 1666,
+      "total_ms": 4543
+    },
+    {
+      "url": "https://www.thesomos.com/",
+      "final_url": "https://www.thesomos.com/",
+      "html_bytes": 219301,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "Mirai",
+        "url": "https://es.mirai.com/",
+        "confidence": 0.9
+      },
+      "llm": null,
+      "regex_ms": 1,
+      "llm_ms": 1990,
+      "total_ms": 2796
+    },
+    {
+      "url": "http://www.hotelplayacaracol.com.mx/",
+      "final_url": "http://www.hotelplayacaracol.com.mx/",
+      "html_bytes": 17052,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "GalloReyna",
+        "url": null,
+        "confidence": 0.6
+      },
+      "llm": {
+        "name": "GalloReyna.com",
+        "url": "http://www.galloreyna.com/",
+        "confidence": 0.6
+      },
+      "regex_ms": 0,
+      "llm_ms": 2234,
+      "total_ms": 2632
+    },
+    {
+      "url": "https://www.elmiradordeguadal.com/",
+      "final_url": "https://www.elmiradordeguadal.com/",
+      "html_bytes": 95864,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 1,
+      "llm_ms": 1838,
+      "total_ms": 3186
+    },
+    {
+      "url": "https://www.extendedsuites.com.mx/",
+      "final_url": "https://www.extendedsuites.com.mx/",
+      "html_bytes": 241422,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 1,
+      "llm_ms": 1982,
+      "total_ms": 2532
+    },
+    {
+      "url": "https://www.boutichic.cl/",
+      "final_url": "https://www.boutichic.cl/",
+      "html_bytes": 55973,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "Jumpseller",
+        "url": null,
+        "confidence": 0.6
+      },
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 1880,
+      "total_ms": 3830
+    },
+    {
+      "url": "https://hoteldecastro.cl/404.html",
+      "final_url": "https://hoteldecastro.cl/404.html",
+      "html_bytes": 56192,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "iP Revenue",
+        "url": null,
+        "confidence": 0.6
+      },
+      "llm": null,
+      "regex_ms": 1,
+      "llm_ms": 2536,
+      "total_ms": 3645
+    },
+    {
+      "url": "https://www.aparthotelaragon.cl/",
+      "final_url": "https://www.aparthotelaragon.cl/",
+      "html_bytes": 189025,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "energiaweb",
+        "url": null,
+        "confidence": 0.6
+      },
+      "llm": {
+        "name": "energiaweb.cl",
+        "url": "https://www.energiaweb.cl/",
+        "confidence": 0.6
+      },
+      "regex_ms": 0,
+      "llm_ms": 2391,
+      "total_ms": 4362
+    },
+    {
+      "url": "http://www.falconhotel.com.ar/",
+      "final_url": "http://www.falconhotel.com.ar/",
+      "html_bytes": 88896,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "Ideas Simples",
+        "url": "http://ideassimples.com/",
+        "confidence": 0.9
+      },
+      "llm": {
+        "name": "Ideas Simples",
+        "url": "http://ideassimples.com/",
+        "confidence": 0.6
+      },
+      "regex_ms": 0,
+      "llm_ms": 1981,
+      "total_ms": 3174
+    },
+    {
+      "url": "https://www.portalpucon.cl/",
+      "final_url": "https://www.portalpucon.cl/",
+      "html_bytes": 21834,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "SoftNetchile",
+        "url": "https://softnetchile.com/",
+        "confidence": 0.9
+      },
+      "llm": {
+        "name": "SoftNetchile.com",
+        "url": "https://softnetchile.com/",
+        "confidence": 0.6
+      },
+      "regex_ms": 1,
+      "llm_ms": 1770,
+      "total_ms": 2887
+    },
+    {
+      "url": "https://hotelorladeararuam.wix.com/hotel-orla",
+      "final_url": "https://hotelorladeararuam.wix.com/hotel-orla",
+      "html_bytes": 3060,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 1732,
+      "total_ms": 2082
+    },
+    {
+      "url": "https://www.hotelembajadores.com.mx/",
+      "final_url": "https://www.hotelembajadores.com.mx/",
+      "html_bytes": 62849,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 2826,
+      "total_ms": 3593
+    },
+    {
+      "url": "https://deltarioparnaiba.com.br/hotel-delta/",
+      "final_url": "https://deltarioparnaiba.com.br/hotel-delta/",
+      "html_bytes": 167510,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 1,
+      "llm_ms": 2024,
+      "total_ms": 3228
+    },
+    {
+      "url": "https://www.hotelsantaprisca.com.mx/",
+      "final_url": "https://www.hotelsantaprisca.com.mx/",
+      "html_bytes": 74203,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 1,
+      "llm_ms": 2097,
+      "total_ms": 3529
+    },
+    {
+      "url": "https://www.rioacima.com.br/",
+      "final_url": "https://www.rioacima.com.br/",
+      "html_bytes": 1014963,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": {
+        "name": "FBR MARKETING",
+        "url": null,
+        "confidence": 0.6
+      },
+      "regex_ms": 4,
+      "llm_ms": 2351,
+      "total_ms": 2978
+    },
+    {
+      "url": "https://pousadagaroupa.com.br/",
+      "final_url": "https://pousadagaroupa.com.br/",
+      "html_bytes": 89005,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 1,
+      "llm_ms": 2005,
+      "total_ms": 2559
+    },
+    {
+      "url": "https://www.brisadocaitapraiahotel.com.br/",
+      "final_url": "https://www.brisadocaitapraiahotel.com.br/",
+      "html_bytes": 1132,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 1340,
+      "total_ms": 2757
+    },
+    {
+      "url": "https://www.casabonitadailha.com/pt",
+      "final_url": "https://www.casabonitadailha.com/pt",
+      "html_bytes": 46320,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": {
+        "name": "Agência Local",
+        "url": "https://www.agencialocal.com.br/",
+        "confidence": 0.6
+      },
+      "regex_ms": 0,
+      "llm_ms": 1862,
+      "total_ms": 3992
+    },
+    {
+      "url": "http://www.acacihotel.com.br",
+      "final_url": "https://acacihotel.com.br/",
+      "html_bytes": 146662,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 1,
+      "llm_ms": 1507,
+      "total_ms": 3010
+    },
+    {
+      "url": "http://www.grandcafehotel.com.br/",
+      "final_url": "http://www.grandcafehotel.com.br/",
+      "html_bytes": 90525,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": {
+        "name": "Informatiza Soluções Empresariais",
+        "url": "https://www.informatizaweb.com.br/",
+        "confidence": 0.6
+      },
+      "regex_ms": 1,
+      "llm_ms": 2191,
+      "total_ms": 6149
+    },
+    {
+      "url": "https://www.pousadaestreladomarilha.com.br/",
+      "final_url": "https://www.pousadaestreladomarilha.com.br/",
+      "html_bytes": 14138,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 2432,
+      "total_ms": 3795
+    },
+    {
+      "url": "https://www.wyndhamhotels.com/es-la/hotels/santiago-chile?brand_id=LQ",
+      "final_url": "https://www.wyndhamhotels.com/es-la/hotels/santiago-chile?brand_id=LQ",
+      "html_bytes": 277094,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 1,
+      "llm_ms": 1889,
+      "total_ms": 2080
+    },
+    {
+      "url": "http://www.candeias.com.br/hoteis/CANDEIAS-GUARATUBA",
+      "final_url": "https://www.clubecandeias.com/hoteis/CANDEIAS-GUARATUBA",
+      "html_bytes": 19910,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 1812,
+      "total_ms": 3014
+    },
+    {
+      "url": "https://pousadatokadoskillo.com.br/",
+      "final_url": "https://pousadatokadoskillo.com.br/",
+      "html_bytes": 2912,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 1978,
+      "total_ms": 6131
+    },
+    {
+      "url": "https://pousadaalpes.com.br/",
+      "final_url": "https://pousadaalpes.com.br/",
+      "html_bytes": 176963,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 1,
+      "llm_ms": 2399,
+      "total_ms": 5768
+    },
+    {
+      "url": "http://granadahotel.com.br/",
+      "final_url": "https://granadahotel.com.br/",
+      "html_bytes": 970,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 5111,
+      "total_ms": 6314
+    },
+    {
+      "url": "https://patagonianativa.cl/",
+      "final_url": "https://patagonianativa.cl/",
+      "html_bytes": 174528,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 2042,
+      "total_ms": 4020
+    },
+    {
+      "url": "https://machepousadaeboutique.com.br/",
+      "final_url": "https://machepousadaeboutique.com.br/",
+      "html_bytes": 176155,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": {
+        "name": "AdMarketing",
+        "url": "https://admarketing.com.br/",
+        "confidence": 0.6
+      },
+      "regex_ms": 1,
+      "llm_ms": 918,
+      "total_ms": 3420
+    },
+    {
+      "url": "https://losmuelles.com/",
+      "final_url": "https://losmuelles.com/",
+      "html_bytes": 233510,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 1,
+      "llm_ms": 767,
+      "total_ms": 3631
+    },
+    {
+      "url": "https://hostalgracielapucon.cl/",
+      "final_url": "https://hostalgracielapucon.cl/",
+      "html_bytes": 181010,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 1,
+      "llm_ms": 2020,
+      "total_ms": 2973
+    },
+    {
+      "url": "https://www.alalmacafe.com/",
+      "final_url": "https://www.alalmacafe.com/",
+      "html_bytes": 867761,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 5,
+      "llm_ms": 3021,
+      "total_ms": 3612
+    },
+    {
+      "url": "http://www.centroeventoslaspalmeras.cl/",
+      "final_url": "http://www.centroeventoslaspalmeras.cl/",
+      "html_bytes": 20767,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": {
+        "name": "GÜERO",
+        "url": "http://www.guero.cl/",
+        "confidence": 0.6
+      },
+      "regex_ms": 0,
+      "llm_ms": 2226,
+      "total_ms": 2448
+    },
+    {
+      "url": "https://www.surfolasaltas.com/",
+      "final_url": "https://surfolasaltas.com.mx/",
+      "html_bytes": 166327,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 1,
+      "llm_ms": 2098,
+      "total_ms": 5528
+    },
+    {
+      "url": "https://www.gaviotahotels.com/en/hotels-in-cuba/havana/hotel-florida",
+      "final_url": "https://www.gaviotahotels.com/en/hotels-in-cuba/havana/hotel-florida",
+      "html_bytes": 43275,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 1671,
+      "total_ms": 5535
+    },
+    {
+      "url": "http://www.bonanithostal.com",
+      "final_url": "http://www.bonanithostal.com/",
+      "html_bytes": 14149,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 2261,
+      "total_ms": 3565
+    },
+    {
+      "url": "https://lachimbahostel.com/",
+      "final_url": "https://lachimbahostel.com/",
+      "html_bytes": 80572,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 1640,
+      "total_ms": 3151
+    },
+    {
+      "url": "https://www.hotelcabanastulum.com/",
+      "final_url": "https://www.hotelcabanastulum.com/",
+      "html_bytes": 177082,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 1,
+      "llm_ms": 2749,
+      "total_ms": 8109
+    },
+    {
+      "url": "https://www.hotelariabrasil.com.br/hotel/matiz-hotel-multi-suites-duque-de-caixas",
+      "final_url": "https://www.hotelariabrasil.com.br/hotel/matiz-hotel-multi-suites-duque-de-caixas",
+      "html_bytes": 100727,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 2501,
+      "total_ms": 3628
+    },
+    {
+      "url": "http://www.hotelallriviera.com",
+      "final_url": "http://www.hotelallriviera.com/",
+      "html_bytes": 6641,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 2101,
+      "total_ms": 3156
+    },
+    {
+      "url": "https://www.anavilhanaslodge.com/",
+      "final_url": "https://www.anavilhanaslodge.com/",
+      "html_bytes": 92387,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 2887,
+      "total_ms": 3539
+    },
+    {
+      "url": "https://hotelboutiquesofia.co/",
+      "final_url": "https://hotelboutiquesofia.co/",
+      "html_bytes": 96947,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": {
+        "name": "Click Masivo",
+        "url": "http://www.clickmasivo.com/",
+        "confidence": 0.6
+      },
+      "regex_ms": 0,
+      "llm_ms": 1758,
+      "total_ms": 3806
+    },
+    {
+      "url": "http://www.catalanas.com.ar/",
+      "final_url": "http://www.catalanas.com.ar/",
+      "html_bytes": 8642,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 2582,
+      "total_ms": 2983
+    },
+    {
+      "url": "https://www.turismocordoba.com.ar/elnuevomolino/",
+      "final_url": "https://www.turismocordoba.com.ar/elnuevomolino/",
+      "html_bytes": 36592,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 2437,
+      "total_ms": 2960
+    },
+    {
+      "url": "https://islabonitayachtclubbelize.com/",
+      "final_url": "https://islabonitayachtclubbelize.com/",
+      "html_bytes": 97560,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 1,
+      "llm_ms": 1709,
+      "total_ms": 2469
+    },
+    {
+      "url": "https://www.alphavilinhachales.com.br/",
+      "final_url": "https://www.alphavilinhachales.com.br/",
+      "html_bytes": 65665,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": {
+        "name": "CRISOFT - Criação de Sites",
+        "url": "https://www.crisoft.com.br/",
+        "confidence": 0.6
+      },
+      "regex_ms": 0,
+      "llm_ms": 2823,
+      "total_ms": 3732
+    },
+    {
+      "url": "https://www.pousadaaltenhaus.com.br/",
+      "final_url": "https://www.pousadaaltenhaus.com.br/",
+      "html_bytes": 462512,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 2,
+      "llm_ms": 2603,
+      "total_ms": 3309
+    },
+    {
+      "url": "https://www.elcid.com/es/el-cid-marina-beach-mazatlan",
+      "final_url": "https://www.elcid.com/es/mazatlan/el-cid-marina-beach-hotel/",
+      "html_bytes": 224717,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": {
+        "name": "Leonardo Worldwide",
+        "url": "https://www.leonardoworldwide.com/hotel-websites/",
+        "confidence": 0.6
+      },
+      "regex_ms": 1,
+      "llm_ms": 1800,
+      "total_ms": 4251
+    },
+    {
+      "url": "https://www.marriott.com.br/hotels/fact-sheet/travel/saobr-renaissance-sao-paulo-hotel",
+      "final_url": "https://www.marriott.com/pt-br/hotels/saobr-renaissance-sao-paulo-hotel/overview/",
+      "html_bytes": 462,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 789,
+      "total_ms": 1170
+    },
+    {
+      "url": "https://www.hilton.com/en/hotels/mtyaphx-hampton-monterrey-airport/",
+      "final_url": "https://www.hilton.com/en/hotels/mtyaphx-hampton-monterrey-airport/",
+      "html_bytes": 121901,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 2160,
+      "total_ms": 2315
+    },
+    {
+      "url": "http://www.chinchorro.itgo.com/tari_e.htm",
+      "final_url": "http://www.chinchorro.itgo.com/tari_e.htm",
+      "html_bytes": 11763,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 0,
+      "llm_ms": 2001,
+      "total_ms": 3011
+    }
+  ],
+  "summary": {
+    "valid": 79,
+    "regexHits": 34,
+    "llmHits": 32,
+    "bothAgree": 13,
+    "llmOnly": 8,
+    "regexOnly": 10,
+    "bothDisagree": 11
+  }
+}

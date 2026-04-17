@@ -46,6 +46,8 @@ const PLATFORM_HOSTS = new Set([
   "litespeed.com",
   "godaddy.com",
   "wpengine.com",
+  "tambourine.com",
+  "tambo.site",
   "cryoutcreations.eu",
   "blossomthemes.com",
   "elegantthemes.com",

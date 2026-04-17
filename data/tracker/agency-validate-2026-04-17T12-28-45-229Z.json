@@ -1,0 +1,28 @@
+{
+  "results": [
+    {
+      "url": "https://villasantacruzbaja.com/",
+      "final_url": "https://villasantacruzbaja.com/",
+      "html_bytes": 360243,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": {
+        "name": "SIT",
+        "url": "https://www.scorpioinfotech.com/",
+        "confidence": 0.6
+      },
+      "regex_ms": 3,
+      "llm_ms": 2514,
+      "total_ms": 3601
+    }
+  ],
+  "summary": {
+    "valid": 1,
+    "regexHits": 0,
+    "llmHits": 1,
+    "bothAgree": 0,
+    "llmOnly": 1,
+    "regexOnly": 0,
+    "bothDisagree": 0
+  }
+}

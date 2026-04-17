@@ -1,0 +1,2352 @@
+{
+  "country": "CL",
+  "sample": 100,
+  "taken_at": "2026-04-17T12:43:01.749Z",
+  "hotels": [
+    {
+      "id": "1cdddd2f-d4b7-48a5-8611-a362e57e8184",
+      "url": "https://www.abbahoteles.com/en/abba-presidente-suites-puerto-montt/hotel",
+      "before": {
+        "canonical_name": "Abba Presidente Suites",
+        "website_url": "https://www.abbahoteles.com/en/abba-presidente-suites-puerto-montt/hotel",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Custom / self-hosted",
+            "category": "booking_engine",
+            "confidence": 0.7,
+            "detected_via": "self_hosted"
+          },
+          {
+            "vendor": "Google",
+            "category": "ads",
+            "confidence": 0.85,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.95,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "474567e5-ced9-4c02-b72e-5a56da7c86c1",
+      "url": "https://www.omz.cl/",
+      "before": {
+        "canonical_name": "OMZ Hotel y Cabañas.",
+        "website_url": "https://www.omz.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Custom / self-hosted",
+            "category": "booking_engine",
+            "confidence": 0.7,
+            "detected_via": "self_hosted"
+          },
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.98,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.99,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Zendesk",
+            "category": "chat",
+            "confidence": 0.9,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "a186b659-22a7-4162-9494-4358aaa22f12",
+      "url": "https://www.ranchoquitapenas.com/",
+      "before": {
+        "canonical_name": "Rancho Quitapenas",
+        "website_url": "https://www.ranchoquitapenas.com/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Squarespace",
+            "category": "cms",
+            "confidence": 0.98,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "f83af9a4-cf21-44da-821f-27ae7265939d",
+      "url": "https://www.hostalaborigen.com/",
+      "before": {
+        "canonical_name": "Hostal Casa Aborigen",
+        "website_url": "https://www.hostalaborigen.com/",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "b02ea007-ac24-4d00-a589-6ecff1adf13e",
+      "url": "http://www.elmiradordevalparaiso.cl/",
+      "before": {
+        "canonical_name": "Bed and Breakfast El Mirador",
+        "website_url": "http://www.elmiradordevalparaiso.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Custom (PHP)",
+            "category": "cms",
+            "confidence": 0.6,
+            "detected_via": "self_hosted"
+          },
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Tripadvisor",
+            "category": "reviews",
+            "confidence": 0.85,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Zendesk",
+            "category": "chat",
+            "confidence": 0.9,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "70106b15-d82d-437c-9fd8-f37db42faa7f",
+      "url": "https://vientopatagonico.cl/",
+      "before": {
+        "canonical_name": "Viento Patagónico Apart Hotel",
+        "website_url": "https://vientopatagonico.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Custom / self-hosted",
+            "category": "booking_engine",
+            "confidence": 0.7,
+            "detected_via": "self_hosted"
+          },
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.99,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "9b2a41f6-bc33-4a4a-8a64-37bafa31d11b",
+      "url": "http://www.lasachiras.com/",
+      "before": {
+        "canonical_name": "Cabañas Las Achiras",
+        "website_url": "http://www.lasachiras.com/",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "1db470c0-7c77-4e7a-b6fd-527a4b6d386e",
+      "url": "https://www.sernatur.cl/",
+      "before": {
+        "canonical_name": "Hostal Lujors",
+        "website_url": "https://www.sernatur.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Bootstrap",
+            "category": "other",
+            "confidence": 0.73,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.8,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Hotjar",
+            "category": "analytics",
+            "confidence": 0.95,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WhatsApp",
+            "category": "chat",
+            "confidence": 0.6,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.96,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Zendesk",
+            "category": "chat",
+            "confidence": 0.9,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "8a30df5e-58a3-48a3-bed7-5456ede539bc",
+      "url": "https://www.aconcaguaparthotel.cl/",
+      "before": {
+        "canonical_name": "Aconcagua Apart Hotel",
+        "website_url": "https://www.aconcaguaparthotel.cl/",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "1d7656d0-a0bc-499a-b415-65e183b1b414",
+      "url": "https://www.cajalosandes.cl/Publico/serena/index.html",
+      "before": {
+        "canonical_name": "Centro Vacacional La Serena",
+        "website_url": "https://www.cajalosandes.cl/Publico/serena/index.html",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.95,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "01d34b48-7952-4bd3-bcd5-b193036d6805",
+      "url": "http://www.pewmanruka.cl/",
+      "before": {
+        "canonical_name": "Hostal Pewmanruka",
+        "website_url": "http://www.pewmanruka.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.8,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "4bd5b22c-5768-4bdf-844b-a63122ccde63",
+      "url": "https://www.hotelmontecarlo.cl/",
+      "before": {
+        "canonical_name": "Hotel Montecarlo",
+        "website_url": "https://www.hotelmontecarlo.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Custom / self-hosted",
+            "category": "booking_engine",
+            "confidence": 0.7,
+            "detected_via": "self_hosted"
+          },
+          {
+            "vendor": "Wix",
+            "category": "cms",
+            "confidence": 0.98,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Zendesk",
+            "category": "chat",
+            "confidence": 0.9,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "a2a88428-98f1-4a7c-90b1-f1e67641232e",
+      "url": "http://www.turismovirtual.cl/viii/canete/aparthotelquimey/",
+      "before": {
+        "canonical_name": "Apart Quimey",
+        "website_url": "http://www.turismovirtual.cl/viii/canete/aparthotelquimey/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.8,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "9850c4c8-7c47-4f27-b6c8-feee9bf28b23",
+      "url": "http://www.hospedajeklickmann.cl/",
+      "before": {
+        "canonical_name": "Hospedaje Clickmann",
+        "website_url": "http://www.hospedajeklickmann.cl/",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "87a8d7de-7dca-41f3-a82c-d428303d51c3",
+      "url": "http://motelcontinental.cl/",
+      "before": {
+        "canonical_name": "Motel Continental",
+        "website_url": "http://motelcontinental.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.8,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.99,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b9ddae15-6093-4d41-b5de-d3c3417db191",
+      "url": "http://www.ajiverde.cl/es/",
+      "before": {
+        "canonical_name": "Aji Verde Hostal",
+        "website_url": "http://www.ajiverde.cl/es/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Bootstrap",
+            "category": "other",
+            "confidence": 0.73,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Cloudbeds",
+            "category": "booking_engine",
+            "confidence": 0.98,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Joomla",
+            "category": "cms",
+            "confidence": 0.9,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Zendesk",
+            "category": "chat",
+            "confidence": 0.9,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2dd3c072-b722-41e5-9afa-383f5481af60",
+      "url": "https://hotelavenida.cl/",
+      "before": {
+        "canonical_name": "Hotel avenida",
+        "website_url": "https://hotelavenida.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.96,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "6a505e5d-04f9-42bc-ba5f-3b52a8412b3a",
+      "url": "https://www.lunahoteis.com/en/",
+      "before": {
+        "canonical_name": "Luna de Pirque",
+        "website_url": "https://www.lunahoteis.com/en/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.8,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Meta",
+            "category": "ads",
+            "confidence": 0.95,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Zendesk",
+            "category": "chat",
+            "confidence": 0.9,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "65f1bda8-c45b-4612-9f3b-16b5e5d6f9a4",
+      "url": "http://www.southernchilexp.com/",
+      "before": {
+        "canonical_name": "The Yan Kee Way Lodge",
+        "website_url": "http://www.southernchilexp.com/",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "dfdc742c-4588-40d7-8dc8-5f4d614abc5c",
+      "url": "http://www.puntaarenas.com/",
+      "before": {
+        "canonical_name": "Hotel Tierra Del Fuego",
+        "website_url": "http://www.puntaarenas.com/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WhatsApp",
+            "category": "chat",
+            "confidence": 0.6,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.96,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "512f3f2f-d9d6-4669-8d13-8104a8f05207",
+      "url": "https://www.vorticechile.com/",
+      "before": {
+        "canonical_name": "Vortice Eco Lodge Chile",
+        "website_url": "https://www.vorticechile.com/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Google",
+            "category": "ads",
+            "confidence": 0.85,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.95,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WhatsApp",
+            "category": "chat",
+            "confidence": 0.6,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.99,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "0ae4b5a1-4904-431a-a03a-a2adf43c2a2c",
+      "url": "http://www.cabanassantafe.cl/",
+      "before": {
+        "canonical_name": "Cabañas Santa Fe",
+        "website_url": "http://www.cabanassantafe.cl/",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "96356772-7c65-41b0-937a-9511af92172d",
+      "url": "http://lacasablancahostal.blogspot.com/",
+      "before": {
+        "canonical_name": "Hostal la Casa Blanca",
+        "website_url": "http://lacasablancahostal.blogspot.com/",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "af457378-b5de-4927-8550-b0a397dac923",
+      "url": "https://www.hospedaje-magallanes.com/",
+      "before": {
+        "canonical_name": "hostal magallanes",
+        "website_url": "https://www.hospedaje-magallanes.com/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Custom / self-hosted",
+            "category": "booking_engine",
+            "confidence": 0.7,
+            "detected_via": "self_hosted"
+          },
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.8,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.99,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "c836796d-ade4-4b7a-aebf-f857489f9373",
+      "url": "https://hotelcolonialcalbuco.cl/",
+      "before": {
+        "canonical_name": "Hotel Colonial",
+        "website_url": "https://hotelcolonialcalbuco.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.99,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "904dbb14-1028-49cc-995a-75d578d81803",
+      "url": "https://theveathotel.com/",
+      "before": {
+        "canonical_name": "Hotel IF Patagonia",
+        "website_url": "https://theveathotel.com/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Drupal",
+            "category": "cms",
+            "confidence": 0.9,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.98,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WhatsApp",
+            "category": "chat",
+            "confidence": 0.6,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "78759472-8ffe-43ce-ab91-7d74bca613f7",
+      "url": "https://www.sonesta.com/",
+      "before": {
+        "canonical_name": "Sonesta Hotel Osorno",
+        "website_url": "https://www.sonesta.com/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Bootstrap",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Custom / self-hosted",
+            "category": "booking_engine",
+            "confidence": 0.7,
+            "detected_via": "self_hosted"
+          },
+          {
+            "vendor": "Gatsby",
+            "category": "cms",
+            "confidence": 0.85,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.95,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "0d57ca8b-487f-4ec3-b6cd-57452591c9c9",
+      "url": "https://www.hostallasluces.com/",
+      "before": {
+        "canonical_name": "Hostal Las Luces",
+        "website_url": "https://www.hostallasluces.com/",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "ee6c7f31-8c69-4cf4-b476-5e7af2f9454a",
+      "url": "https://www.bleublanchotel.com/",
+      "before": {
+        "canonical_name": "Bleu Blanc",
+        "website_url": "https://www.bleublanchotel.com/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Wix",
+            "category": "cms",
+            "confidence": 0.98,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Zendesk",
+            "category": "chat",
+            "confidence": 0.9,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ff535901-c135-41d0-bdcf-8f1774a1354c",
+      "url": "http://hostalentretenido.blogspot.com/",
+      "before": {
+        "canonical_name": "Hostal Entretenido",
+        "website_url": "http://hostalentretenido.blogspot.com/",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "ae510f1c-3224-4c35-bcb8-d5b5551c187d",
+      "url": "https://puertadelsur.cl/",
+      "before": {
+        "canonical_name": "Puerta Del Sol",
+        "website_url": "https://puertadelsur.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Google",
+            "category": "ads",
+            "confidence": 0.85,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.95,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Meta",
+            "category": "ads",
+            "confidence": 0.95,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WhatsApp",
+            "category": "chat",
+            "confidence": 0.6,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.99,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "9f99ad3e-dd1e-4592-bf2f-3f5c697078e6",
+      "url": "https://altomelimoyu.cl/es/inicio/",
+      "before": {
+        "canonical_name": "Alto Melimoyu",
+        "website_url": "https://altomelimoyu.cl/es/inicio/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Custom / self-hosted",
+            "category": "booking_engine",
+            "confidence": 0.7,
+            "detected_via": "self_hosted"
+          },
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.98,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.93,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "408ee07b-53e3-4f7c-8153-825391da6d18",
+      "url": "https://www.ecolodgecasaverde.cl/",
+      "before": {
+        "canonical_name": "Hostal Casa Verde",
+        "website_url": "https://www.ecolodgecasaverde.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Asksuite",
+            "category": "booking_engine",
+            "confidence": 0.8,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Google",
+            "category": "ads",
+            "confidence": 0.85,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.95,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Zendesk",
+            "category": "chat",
+            "confidence": 0.9,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "c00625aa-7357-455d-a4a3-1c5345b11687",
+      "url": "https://hotelgervasoni.com/",
+      "before": {
+        "canonical_name": "Gran Hotel Gervasoni",
+        "website_url": "https://hotelgervasoni.com/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Custom / self-hosted",
+            "category": "booking_engine",
+            "confidence": 0.7,
+            "detected_via": "self_hosted"
+          },
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.95,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.93,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b3769c3f-7b44-4e67-852f-5b5aa9fc52ea",
+      "url": "https://casapando.cl/",
+      "before": {
+        "canonical_name": "Hotel Casa Pando",
+        "website_url": "https://casapando.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WhatsApp",
+            "category": "chat",
+            "confidence": 0.6,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.99,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "06d74f93-751c-48a7-9c65-46d8d76b42ed",
+      "url": "http://www.andessuite.cl/",
+      "before": {
+        "canonical_name": "Andes Suite Home",
+        "website_url": "http://www.andessuite.cl/",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "0c5d1e91-6e70-4288-8314-52040db87354",
+      "url": "http://entrepatagones.cl/restaurant",
+      "before": {
+        "canonical_name": "Entre Patagones",
+        "website_url": "http://entrepatagones.cl/restaurant",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "7065ef7d-3935-455e-931e-bd5ed9b792b7",
+      "url": "https://waminka-hotel.weebly.com/",
+      "before": {
+        "canonical_name": "Waminka Hotel",
+        "website_url": "https://waminka-hotel.weebly.com/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.8,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "12c05ff3-ab65-4c09-81f6-1f3dd524b42d",
+      "url": "https://www.ajihostel.com/",
+      "before": {
+        "canonical_name": "Aji Hostel",
+        "website_url": "https://www.ajihostel.com/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Squarespace",
+            "category": "cms",
+            "confidence": 0.98,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WhatsApp",
+            "category": "chat",
+            "confidence": 0.6,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2907a3d9-7067-4c22-b016-b24231d02bd5",
+      "url": "https://www.altiplanico.cl/pt-br/altiplanico-sao-pedro-de-atacama",
+      "before": {
+        "canonical_name": "Altiplanico Hotel San Pedro De Atacama",
+        "website_url": "https://www.altiplanico.cl/pt-br/altiplanico-sao-pedro-de-atacama",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Google",
+            "category": "ads",
+            "confidence": 0.85,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.98,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Meta",
+            "category": "ads",
+            "confidence": 0.95,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.99,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fb916cff-fd99-463d-9644-e9b0dbf3b372",
+      "url": "https://www.casaestablo.cl/",
+      "before": {
+        "canonical_name": "Hotel Boutique CasaEstablo",
+        "website_url": "https://www.casaestablo.cl/",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "9fbc16c8-9898-4769-a204-6852c17f929d",
+      "url": "https://kolping.cl/",
+      "before": {
+        "canonical_name": "Obra Kolping Chile",
+        "website_url": "https://kolping.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.96,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Zendesk",
+            "category": "chat",
+            "confidence": 0.9,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "a66e09a3-c2a9-43c0-84d3-40561f7bbdf4",
+      "url": "https://hotel777.cl/",
+      "before": {
+        "canonical_name": "Motel 777",
+        "website_url": "https://hotel777.cl/",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "cd7451e3-315c-4868-8f22-275ed00e41cd",
+      "url": "https://www.hostalrioamazonas.cl/",
+      "before": {
+        "canonical_name": "Hostal Rio Amazonas Barrio Brasil",
+        "website_url": "https://www.hostalrioamazonas.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.99,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "8341e0b2-3e59-4883-9276-c7bf87dd7795",
+      "url": "http://www.aparthotelmelipilla.cl/",
+      "before": {
+        "canonical_name": "Apart Hotel Melipilla",
+        "website_url": "http://www.aparthotelmelipilla.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Bootstrap",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Google",
+            "category": "ads",
+            "confidence": 0.85,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.95,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WhatsApp",
+            "category": "chat",
+            "confidence": 0.6,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "51f051ce-e685-4ce9-b3fe-2cdaae7d41f1",
+      "url": "https://turismeleirl.cl/wrp/inicio/apart-hotel-posada-del-mar/",
+      "before": {
+        "canonical_name": "Cabañas Posada Del Mar",
+        "website_url": "https://turismeleirl.cl/wrp/inicio/apart-hotel-posada-del-mar/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.99,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2466676d-fb4d-4205-973d-ccc1aaf4b841",
+      "url": "https://www.marinaserena.cl/CT/eng/index.html",
+      "before": {
+        "canonical_name": "Marina Serena Centro Turistico",
+        "website_url": "https://www.marinaserena.cl/CT/eng/index.html",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "f7555ea3-d26d-4b39-9cfa-aff8017a8d47",
+      "url": "https://www.aparthotelpuertovaras.cl/",
+      "before": {
+        "canonical_name": "Apart Hotel Puerto Varas",
+        "website_url": "https://www.aparthotelpuertovaras.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.95,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.99,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "a5448015-58c7-4bc9-82ab-4ef4ac44b436",
+      "url": "http://manutarabh.blogspot.com/",
+      "before": {
+        "canonical_name": "Manutara",
+        "website_url": "http://manutarabh.blogspot.com/",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "ca453698-252e-4b31-bc6d-d69006b50181",
+      "url": "https://www.explora.com/patagonia-travel-argentina-chile/",
+      "before": {
+        "canonical_name": "Explora Patagonia, Hotel Salto Chico",
+        "website_url": "https://www.explora.com/patagonia-travel-argentina-chile/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.95,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Meta",
+            "category": "ads",
+            "confidence": 0.95,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WhatsApp",
+            "category": "chat",
+            "confidence": 0.6,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.9,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "c473492b-ada0-4e06-b410-b92445ae11e1",
+      "url": "https://dunamar.cl/",
+      "before": {
+        "canonical_name": "Cabanas Dunamar",
+        "website_url": "https://dunamar.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Custom / self-hosted",
+            "category": "booking_engine",
+            "confidence": 0.7,
+            "detected_via": "self_hosted"
+          },
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.99,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fc16c39b-b0c7-4a76-bc7e-4d248a09176b",
+      "url": "https://elbienvalp.cl/",
+      "before": {
+        "canonical_name": "Hotel Mare Nostrum",
+        "website_url": "https://elbienvalp.cl/",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "dbd61d1a-bb30-485c-be06-b9876579e1d0",
+      "url": "https://hotelpalmeras.cl/",
+      "before": {
+        "canonical_name": "Soc Hotelera Palmeras Limitada",
+        "website_url": "https://hotelpalmeras.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.95,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.99,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "c5bbe8c6-d5e8-418b-9b8a-fb9eac5b317d",
+      "url": "https://www.enjoy.cl/enjoy-santiago",
+      "before": {
+        "canonical_name": "Hotel del Valle",
+        "website_url": "https://www.enjoy.cl/enjoy-santiago",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "e64dfc01-b5d6-4f22-ac8f-886e77153e1a",
+      "url": "http://www.wildhostel.com/",
+      "before": {
+        "canonical_name": "Wild Hostel",
+        "website_url": "http://www.wildhostel.com/",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "ebfce894-0fb4-4d19-92ee-e81e9755f78f",
+      "url": "https://www.turbus.cl/",
+      "before": {
+        "canonical_name": "Tur Hotel Express Santiago",
+        "website_url": "https://www.turbus.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Bootstrap",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.95,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Vercel",
+            "category": "cms",
+            "confidence": 0.88,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WhatsApp",
+            "category": "chat",
+            "confidence": 0.6,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "0ac8c483-0d76-4793-85ea-280a98883320",
+      "url": "http://www.thegrandhouse.cl/",
+      "before": {
+        "canonical_name": "The Grand House",
+        "website_url": "http://www.thegrandhouse.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Custom (PHP)",
+            "category": "cms",
+            "confidence": 0.6,
+            "detected_via": "self_hosted"
+          }
+        ]
+      }
+    },
+    {
+      "id": "6552e911-af6b-4b17-a606-fd172c4a49de",
+      "url": "https://www.amgapartments.cl/",
+      "before": {
+        "canonical_name": "Amg Apartments",
+        "website_url": "https://www.amgapartments.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Zendesk",
+            "category": "chat",
+            "confidence": 0.9,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "3d6ab946-2a0d-43e5-b2d1-74540f8f5772",
+      "url": "https://pampalodgepatagonia.com/",
+      "before": {
+        "canonical_name": "Pampa Lodge, Quincho & Caballos",
+        "website_url": "https://pampalodgepatagonia.com/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Asksuite",
+            "category": "booking_engine",
+            "confidence": 0.8,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.95,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.96,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "137e1614-2348-4341-a5d9-b79f014e12e2",
+      "url": "https://www.terrazasdellago.cl/",
+      "before": {
+        "canonical_name": "Hotel y Cabañas Terrazas del Lago",
+        "website_url": "https://www.terrazasdellago.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Custom (PHP)",
+            "category": "cms",
+            "confidence": 0.6,
+            "detected_via": "self_hosted"
+          },
+          {
+            "vendor": "Google",
+            "category": "ads",
+            "confidence": 0.85,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.8,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Meta",
+            "category": "ads",
+            "confidence": 0.95,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WhatsApp",
+            "category": "chat",
+            "confidence": 0.6,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Zendesk",
+            "category": "chat",
+            "confidence": 0.9,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d3f985cd-5aa1-49da-aae7-489364797b00",
+      "url": "https://www.hotelmitampi.cl/",
+      "before": {
+        "canonical_name": "Hotel Mitampi",
+        "website_url": "https://www.hotelmitampi.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Wix",
+            "category": "cms",
+            "confidence": 0.98,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Zendesk",
+            "category": "chat",
+            "confidence": 0.9,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cce1de55-2e10-4ca0-b64f-e8010df742e8",
+      "url": "http://www.littlecastle.cl/es/",
+      "before": {
+        "canonical_name": "Hostal Little Castle (Cerro Castillo)",
+        "website_url": "http://www.littlecastle.cl/es/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Bootstrap",
+            "category": "other",
+            "confidence": 0.73,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Custom / self-hosted",
+            "category": "booking_engine",
+            "confidence": 0.7,
+            "detected_via": "self_hosted"
+          },
+          {
+            "vendor": "Joomla",
+            "category": "cms",
+            "confidence": 0.93,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Tripadvisor",
+            "category": "reviews",
+            "confidence": 0.85,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Zendesk",
+            "category": "chat",
+            "confidence": 0.9,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "03c87fa5-4000-4e54-ae37-e9867cdf3997",
+      "url": "http://www.motelsky.cl/",
+      "before": {
+        "canonical_name": "Motel Sky",
+        "website_url": "http://www.motelsky.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Bootstrap",
+            "category": "other",
+            "confidence": 0.73,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.95,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Meta",
+            "category": "ads",
+            "confidence": 0.95,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Zendesk",
+            "category": "chat",
+            "confidence": 0.9,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "65a151e2-c401-445c-8fdb-4d031cc0f3df",
+      "url": "http://www.turismoroller.com/",
+      "before": {
+        "canonical_name": "Cabañas Roller",
+        "website_url": "http://www.turismoroller.com/",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "9f4b8f6b-4438-4ac8-b4e0-adfca7011bed",
+      "url": "https://www.alessandria.cl/",
+      "before": {
+        "canonical_name": "Alessandria",
+        "website_url": "https://www.alessandria.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Custom / self-hosted",
+            "category": "booking_engine",
+            "confidence": 0.7,
+            "detected_via": "self_hosted"
+          },
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.8,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.99,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "6a4bbfce-24fc-4512-8505-57700c05132d",
+      "url": "https://www.nh-hotels.com/hotel/nh-collection-plaza-santiago",
+      "before": {
+        "canonical_name": "Hotel NH Collection Plaza Santiago",
+        "website_url": "https://www.nh-hotels.com/hotel/nh-collection-plaza-santiago",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "b4787286-2c4d-4587-9567-90d564e0d07d",
+      "url": "https://www.amarillas.cl/",
+      "before": {
+        "canonical_name": "Motel y Cabañas Bellavista",
+        "website_url": "https://www.amarillas.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.98,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Vercel",
+            "category": "cms",
+            "confidence": 0.88,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WhatsApp",
+            "category": "chat",
+            "confidence": 0.6,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "9fdf031f-fb9d-4f93-bcb6-57ecafc7734d",
+      "url": "https://www.hotelcasablanca.cl/",
+      "before": {
+        "canonical_name": "Hotel CasaBlanca",
+        "website_url": "https://www.hotelcasablanca.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Wix",
+            "category": "cms",
+            "confidence": 0.95,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "bba929ef-ef3b-459a-9392-dd5bfb94c361",
+      "url": "http://www.hotelalmeria.cl/",
+      "before": {
+        "canonical_name": "Hotel Almería",
+        "website_url": "http://www.hotelalmeria.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Bootstrap",
+            "category": "other",
+            "confidence": 0.73,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WhatsApp",
+            "category": "chat",
+            "confidence": 0.6,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "e96dfba5-566c-46ca-a723-0bffd1a1acd4",
+      "url": "http://www.mm450.cl/",
+      "before": {
+        "canonical_name": "Hostel Boutique mm 450",
+        "website_url": "http://www.mm450.cl/",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "40ccdc69-8958-440a-8168-90ec3efef051",
+      "url": "https://hotelpalacecopiapo.cl/",
+      "before": {
+        "canonical_name": "Hotel Palace Copiapo",
+        "website_url": "https://hotelpalacecopiapo.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.99,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "c8b22b22-3d13-43c9-8233-7a9a0d00108a",
+      "url": "https://hotelgoblin.cl/",
+      "before": {
+        "canonical_name": "Hotel Boutique Goblin's House",
+        "website_url": "https://hotelgoblin.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Custom / self-hosted",
+            "category": "booking_engine",
+            "confidence": 0.7,
+            "detected_via": "self_hosted"
+          },
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WhatsApp",
+            "category": "chat",
+            "confidence": 0.6,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.99,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "f8412670-e207-4a27-ba49-13bffc91a55c",
+      "url": "http://www.astore.cl/motel",
+      "before": {
+        "canonical_name": "Motel Mediterraneo",
+        "website_url": "http://www.astore.cl/motel",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Bootstrap",
+            "category": "other",
+            "confidence": 0.73,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.99,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b0f3c134-8df2-4c97-842d-5cca8d3a663f",
+      "url": "https://orgicianjur.org/",
+      "before": {
+        "canonical_name": "Espacio Kau",
+        "website_url": "https://orgicianjur.org/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.83,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "8d41abb0-d8e5-490b-a86b-4ada197aed19",
+      "url": "http://www.hotelsoberania.cl/",
+      "before": {
+        "canonical_name": "Hotel Soberania",
+        "website_url": "http://www.hotelsoberania.cl/",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "4756c334-82d8-4d94-a825-19e011504048",
+      "url": "https://hotelaltodelsol.com/",
+      "before": {
+        "canonical_name": "Hotel Alto Del Sol",
+        "website_url": "https://hotelaltodelsol.com/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Bootstrap",
+            "category": "other",
+            "confidence": 0.73,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.83,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Meta",
+            "category": "ads",
+            "confidence": 0.95,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.99,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "906d5208-e018-47de-bda4-8c20637df3e1",
+      "url": "http://www.blendhostel.com/",
+      "before": {
+        "canonical_name": "Blend Hostel",
+        "website_url": "http://www.blendhostel.com/",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "37fced3c-7fb6-451d-ac75-d772ee09cc2b",
+      "url": "https://lunasonrisa.cl/",
+      "before": {
+        "canonical_name": "Hostel Luna Sonrisa",
+        "website_url": "https://lunasonrisa.cl/",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "4e35aa2e-406e-4097-96e1-36780d095161",
+      "url": "https://www.geronimo.cl/",
+      "before": {
+        "canonical_name": "Hostal Gerónimo",
+        "website_url": "https://www.geronimo.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Custom / self-hosted",
+            "category": "booking_engine",
+            "confidence": 0.7,
+            "detected_via": "self_hosted"
+          },
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.95,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WhatsApp",
+            "category": "chat",
+            "confidence": 0.6,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.96,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Zendesk",
+            "category": "chat",
+            "confidence": 0.9,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "c38f717e-1f6c-4d9e-a938-26aff23ec530",
+      "url": "http://www.elrefugiodelacuenca.com/",
+      "before": {
+        "canonical_name": "El Refugio De La Cuenca",
+        "website_url": "http://www.elrefugiodelacuenca.com/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Meta",
+            "category": "ads",
+            "confidence": 0.95,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WhatsApp",
+            "category": "chat",
+            "confidence": 0.6,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "26190422-28e2-4654-a2f4-ca9f92dd3fc1",
+      "url": "http://www.hotel66.cl/",
+      "before": {
+        "canonical_name": "Hotel 66",
+        "website_url": "http://www.hotel66.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Bootstrap",
+            "category": "other",
+            "confidence": 0.73,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.8,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "3858d686-91e7-4bdb-95c8-a923afbe31be",
+      "url": "http://www.heidelberghaus.cl/",
+      "before": {
+        "canonical_name": "Heidelberg Haus Apart Hotel",
+        "website_url": "http://www.heidelberghaus.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Bootstrap",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.8,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Tripadvisor",
+            "category": "reviews",
+            "confidence": 0.85,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "952357cd-ca2e-44ea-b2fe-860c7317851a",
+      "url": "https://relicura-lofts.negocio.site/",
+      "before": {
+        "canonical_name": "Relicura Lofts",
+        "website_url": "https://relicura-lofts.negocio.site/",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "de6ed10e-99dc-4247-b941-64bcf9f5f975",
+      "url": "https://www.lomaselalto.cl/",
+      "before": {
+        "canonical_name": "Cabañas Lomas El Alto",
+        "website_url": "https://www.lomaselalto.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Wix",
+            "category": "cms",
+            "confidence": 0.98,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Zendesk",
+            "category": "chat",
+            "confidence": 0.9,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "30fd8544-0cf1-495c-b9b2-75ed20132bd9",
+      "url": "http://www.amstelhuischili.com/",
+      "before": {
+        "canonical_name": "Amstelhuis Apartaments",
+        "website_url": "http://www.amstelhuischili.com/",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "7b655b9d-6618-4054-be67-56c7ccef31d7",
+      "url": "https://carinoporteno.cl/",
+      "before": {
+        "canonical_name": "Cariño Porteño",
+        "website_url": "https://carinoporteno.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Bootstrap",
+            "category": "other",
+            "confidence": 0.73,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.99,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "90e24ba3-942d-4f05-9f32-2c11e1faf875",
+      "url": "https://www.bahiaceleste.cl/",
+      "before": {
+        "canonical_name": "Cabanas Bahia Celeste",
+        "website_url": "https://www.bahiaceleste.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Bootstrap",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Custom / self-hosted",
+            "category": "booking_engine",
+            "confidence": 0.7,
+            "detected_via": "self_hosted"
+          },
+          {
+            "vendor": "WhatsApp",
+            "category": "chat",
+            "confidence": 0.6,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "efda1d61-8379-47b3-bb91-d7a51ea08815",
+      "url": "http://www.laleonera.cl/historia_hotel.php",
+      "before": {
+        "canonical_name": "Hotel La Leonera",
+        "website_url": "http://www.laleonera.cl/historia_hotel.php",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "f90b6291-1005-48e8-8a8f-36d1102b4632",
+      "url": "https://clublaserena.com/",
+      "before": {
+        "canonical_name": "La Serena Club Resort Hotel",
+        "website_url": "https://clublaserena.com/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Asksuite",
+            "category": "booking_engine",
+            "confidence": 0.8,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.95,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Meta",
+            "category": "ads",
+            "confidence": 0.95,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.96,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ebcb5c83-637a-4b53-bcb9-724887531a6a",
+      "url": "http://www.surfhostal.com/",
+      "before": {
+        "canonical_name": "Pichilemu Surf Hostal",
+        "website_url": "http://www.surfhostal.com/",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "d1554264-3df1-4dab-b7c5-23b1421363f5",
+      "url": "http://www.hostalperezrosales.cl/",
+      "before": {
+        "canonical_name": "Hostal Perez Rosales",
+        "website_url": "http://www.hostalperezrosales.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Bootstrap",
+            "category": "other",
+            "confidence": 0.73,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WhatsApp",
+            "category": "chat",
+            "confidence": 0.6,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "63b46896-f1f6-4ab3-920e-8114d095c7b3",
+      "url": "http://hostaldonluismariquina.webnode.cl/",
+      "before": {
+        "canonical_name": "Hostal Don Luis - Mariquina.",
+        "website_url": "http://hostaldonluismariquina.webnode.cl/",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "22eb7ebf-a361-470d-ba8c-3ce2df921493",
+      "url": "https://www.chileagenda.cl/hoteles-antofagasta.htm",
+      "before": {
+        "canonical_name": "Hoteles en Antofagasta",
+        "website_url": "https://www.chileagenda.cl/hoteles-antofagasta.htm",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Google",
+            "category": "ads",
+            "confidence": 0.85,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.98,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "c7c4dee4-6d4c-4f10-9d83-6549337a85ec",
+      "url": "http://hosteriadelapatagonia.cl/",
+      "before": {
+        "canonical_name": "Hosteria de La Patagonia",
+        "website_url": "http://hosteriadelapatagonia.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WhatsApp",
+            "category": "chat",
+            "confidence": 0.6,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.99,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Zendesk",
+            "category": "chat",
+            "confidence": 0.9,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "482246e5-8859-41cd-b38b-520deebc4efc",
+      "url": "https://motelelpaso.cl/",
+      "before": {
+        "canonical_name": "Motel el Paso",
+        "website_url": "https://motelelpaso.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "Google",
+            "category": "ads",
+            "confidence": 0.85,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "Google",
+            "category": "analytics",
+            "confidence": 0.95,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WhatsApp",
+            "category": "chat",
+            "confidence": 0.6,
+            "detected_via": "rule"
+          },
+          {
+            "vendor": "WordPress",
+            "category": "cms",
+            "confidence": 0.99,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "f00e4b2f-b622-4994-9f7c-20bd885ea208",
+      "url": "https://www.jukuhostal.cl/",
+      "before": {
+        "canonical_name": "Juku Hostal",
+        "website_url": "https://www.jukuhostal.cl/",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "97a7aa50-d834-49ab-9ba5-3af0055fc002",
+      "url": "http://www.hotelhuelen.cl/",
+      "before": {
+        "canonical_name": "Hotelera Huelén y Compañía Ltda",
+        "website_url": "http://www.hotelhuelen.cl/",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "02be3f83-2377-4edf-84bd-c35c86d76ab6",
+      "url": "https://www.ihg.com/holidayinnexpress/hotels/us/en/concepcion/ccnch/hoteldetail",
+      "before": {
+        "canonical_name": "Holiday Inn Express",
+        "website_url": "https://www.ihg.com/holidayinnexpress/hotels/us/en/concepcion/ccnch/hoteldetail",
+        "agencies": [],
+        "stack": []
+      }
+    },
+    {
+      "id": "78cb873e-3ece-4efc-9191-2758dddc446b",
+      "url": "http://www.rivierahotel.cl/",
+      "before": {
+        "canonical_name": "Riviera Hotel",
+        "website_url": "http://www.rivierahotel.cl/",
+        "agencies": [],
+        "stack": [
+          {
+            "vendor": "jQuery",
+            "category": "other",
+            "confidence": 0.7,
+            "detected_via": "rule"
+          }
+        ]
+      }
+    },
+    {
+      "id": "63fbae77-5915-4650-98c3-6369bb9c016d",
+      "url": "http://www.4elementos.cl/english/index.htm",
+      "before": {
+        "canonical_name": "4elements Bed & Breakfast",
+        "website_url": "http://www.4elementos.cl/english/index.htm",
+        "agencies": [],
+        "stack": []
+      }
+    }
+  ]
+}

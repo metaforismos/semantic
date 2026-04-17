@@ -1,0 +1,58 @@
+{
+  "results": [
+    {
+      "url": "https://villasantacruzbaja.com/",
+      "final_url": "https://villasantacruzbaja.com/",
+      "html_bytes": 360243,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": {
+        "name": "SIT",
+        "url": "https://www.scorpioinfotech.com/",
+        "confidence": 0.6
+      },
+      "regex_ms": 4,
+      "llm_ms": 2830,
+      "total_ms": 4828
+    },
+    {
+      "url": "http://www.ecoboxandino.cl/",
+      "final_url": "https://www.ecoboxandino.cl/",
+      "html_bytes": 120321,
+      "rendered_via_browser": false,
+      "regex": {
+        "name": "Hotelero",
+        "url": "https://www.hotelero.cl/",
+        "confidence": 0.9
+      },
+      "llm": {
+        "name": "Hotelero",
+        "url": "https://www.hotelero.cl/",
+        "confidence": 0.6
+      },
+      "regex_ms": 3,
+      "llm_ms": 1960,
+      "total_ms": 3105
+    },
+    {
+      "url": "https://hotelcasajaguar.com/",
+      "final_url": "https://hotelcasajaguar.com/",
+      "html_bytes": 220210,
+      "rendered_via_browser": false,
+      "regex": null,
+      "llm": null,
+      "regex_ms": 1,
+      "llm_ms": 2,
+      "total_ms": 1999
+    }
+  ],
+  "summary": {
+    "valid": 3,
+    "regexHits": 1,
+    "llmHits": 2,
+    "bothAgree": 1,
+    "llmOnly": 1,
+    "regexOnly": 0,
+    "bothDisagree": 0
+  }
+}

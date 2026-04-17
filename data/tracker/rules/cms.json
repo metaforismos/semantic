@@ -136,5 +136,29 @@
       { "type": "script_src", "pattern": "blogger\\.com|blogspot\\.com" },
       { "type": "html", "pattern": "blogspot\\.com/static" }
     ]
+  },
+  {
+    "id": "tambourine",
+    "vendor": "Tambourine",
+    "product": "Tambourine (hotel website platform)",
+    "category": "cms",
+    "confidence_base": 0.9,
+    "signatures": [
+      { "type": "script_src", "pattern": "tambourine\\.com|tambo\\.site" },
+      { "type": "link_href", "pattern": "tambourine\\.com|tambo\\.site" },
+      { "type": "html", "pattern": "Tambourine is the exclusive owner|frontend\\.cdn\\.tambourine\\.com|tambo\\.site" }
+    ]
+  },
+  {
+    "id": "travelclick_websolutions",
+    "vendor": "TravelClick / Amadeus",
+    "product": "TravelClick Web Solutions",
+    "category": "cms",
+    "confidence_base": 0.9,
+    "signatures": [
+      { "type": "script_src", "pattern": "travelclick-websolutions\\.com" },
+      { "type": "link_href", "pattern": "travelclick-websolutions\\.com" },
+      { "type": "html", "pattern": "travelclick-websolutions\\.com|dynamic\\.travelclick-websolutions" }
+    ]
   }
 ]

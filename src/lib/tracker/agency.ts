@@ -59,6 +59,8 @@ const PLATFORM_HOSTS = new Set([
   "litespeed.com",
   "godaddy.com",
   "wpengine.com",
+  "tambourine.com",
+  "tambo.site",
   // WordPress theme / plugin vendors — footer "Powered by X" is theme
   // attribution, not an agency.
   "cryoutcreations.eu",
@@ -298,10 +300,106 @@ function isPlatform(name: string): boolean {
   return false;
 }
 
+// Atribución vía <meta> tags en el <head>. Más fuerte que el footer
+// porque el autor del sitio lo pone explícitamente y persiste aunque
+// rediseñen el template. Ejemplos: <meta name="author" content="...">,
+// <meta name="owner" content="contato@uaal.com.br">.
+function detectAgencyFromMeta(html: string): AgencyInfo | null {
+  const head = html.slice(0, Math.min(html.length, 16_000));
+  const re =
+    /<meta\b[^>]*\bname\s*=\s*["']?(author|owner|copyright|designer|web[-_ ]?designer|web[-_ ]?author)["']?[^>]*\bcontent\s*=\s*["']([^"']{2,200})["']/gi;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(head)) !== null) {
+    const raw = m[2].trim();
+    if (!raw) continue;
+
+    // Extract agency domain / URL from the content. Could be:
+    //  - raw URL: "http://www.uaal.com.br" / "uaal.com.br"
+    //  - email:   "contato@uaal.com.br"  → domain = uaal.com.br
+    //  - label:   "Agencia X"
+    let url: string | null = null;
+    let name: string | null = null;
+
+    const urlMatch = raw.match(
+      /https?:\/\/[a-z0-9.-]+\.[a-z]{2,}(?:\/[^\s"'<>]*)?/i
+    );
+    if (urlMatch) url = urlMatch[0];
+
+    if (!url) {
+      const emailMatch = raw.match(/([a-z0-9._%+-]+)@([a-z0-9.-]+\.[a-z]{2,})/i);
+      if (emailMatch) url = `https://${emailMatch[2]}`;
+    }
+
+    if (!url) {
+      const bareHost = raw.match(/\b([a-z0-9-]+(?:\.[a-z0-9-]+)+)\b/i);
+      if (bareHost && !bareHost[1].includes(" ")) {
+        url = `https://${bareHost[1]}`;
+      }
+    }
+
+    // Validate target host — skip self, social, platforms.
+    let targetHost: string | null = null;
+    if (url) {
+      try {
+        targetHost = new URL(url).hostname.toLowerCase().replace(/^www\./, "");
+      } catch {
+        /* ignore */
+      }
+    }
+    if (!targetHost) continue;
+    if (hostIsPlatform(targetHost)) continue;
+    if (
+      /facebook|instagram|twitter|x\.com|linkedin|tiktok|youtube|pinterest/i.test(
+        targetHost
+      )
+    ) {
+      continue;
+    }
+
+    // Name: take the first bare word from the text portion of the meta
+    // (not the URL/email). Fallback: the second-level domain of the URL.
+    const textOnly = raw
+      .replace(/https?:\/\/\S+/gi, "")
+      .replace(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/gi, "")
+      .trim();
+    if (textOnly.length >= 3 && !/^\W+$/.test(textOnly)) {
+      name = textOnly.slice(0, 80);
+    } else {
+      const sld = targetHost.split(".")[0];
+      if (sld && sld.length >= 3) name = sld;
+    }
+    if (!name) continue;
+
+    return {
+      name,
+      url: `https://${targetHost}`,
+      phrase: `meta[name=${m[1].toLowerCase()}]: ${raw.slice(0, 120)}`,
+      // Confidence 0.85 — direct author declaration, very strong.
+      confidence: 0.85,
+    };
+  }
+  return null;
+}
+
 export function detectAgency(
   html: string,
   baseHost: string
 ): AgencyInfo | null {
+  // Primera pasada: meta tags en el HEAD. Si el autor del sitio lo
+  // declaró explícitamente, ganamos un tier-1 barato y evitamos el
+  // costo del LLM fallback después.
+  const metaHit = detectAgencyFromMeta(html);
+  if (metaHit) {
+    // Aún así chequeamos que el URL no apunte al propio hotel (edge case:
+    // algunos templates ponen <meta owner> con el dominio del hotel).
+    try {
+      const u = new URL(metaHit.url!);
+      if (u.hostname !== baseHost) return metaHit;
+    } catch {
+      return metaHit;
+    }
+  }
+
   // Sólo miramos el tercio inferior del HTML — las menciones de agencia
   // viven en el footer. Acota el costo y reduce falsos positivos
   // (ej. "designed by our team" en el body, "services on your own" que

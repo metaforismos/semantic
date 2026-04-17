@@ -84,14 +84,27 @@
     ]
   },
   {
+    "id": "reservhotel",
+    "vendor": "ReservHotel",
+    "product": "ReservHotel Booking Engine",
+    "category": "booking_engine",
+    "confidence_base": 0.9,
+    "signatures": [
+      { "type": "iframe_src", "pattern": "reservhotel\\.com" },
+      { "type": "script_src", "pattern": "reservhotel\\.com" },
+      { "type": "html", "pattern": "www\\.reservhotel\\.com|reservhotel\\.com/win/owa" }
+    ]
+  },
+  {
     "id": "travelclick-iHotelier",
     "vendor": "TravelClick / Amadeus",
     "product": "iHotelier",
     "category": "booking_engine",
     "confidence_base": 0.95,
     "signatures": [
-      { "type": "iframe_src", "pattern": "ibe\\.ihotelier\\.com|bookings\\.ihotelier\\.com|reservations\\.travelclick\\.com" },
-      { "type": "script_src", "pattern": "ihotelier\\.com" }
+      { "type": "iframe_src", "pattern": "ibe\\.ihotelier\\.com|bookings\\.ihotelier\\.com|reservations\\.travelclick\\.com|bookings\\.travelclick\\.com" },
+      { "type": "script_src", "pattern": "ihotelier\\.com|travelclick\\.com" },
+      { "type": "html", "pattern": "bookings\\.travelclick\\.com|reservations\\.travelclick\\.com|bookings\\.ihotelier\\.com|ibe\\.ihotelier\\.com" }
     ]
   },
   {
@@ -168,15 +181,16 @@
     "confidence_base": 0.9,
     "signatures": [
       { "type": "iframe_src", "pattern": "omnibees\\.com|bookcore\\.omnibees" },
-      { "type": "script_src", "pattern": "omnibees\\.com" }
+      { "type": "script_src", "pattern": "omnibees\\.com" },
+      { "type": "html", "pattern": "book\\.omnibees\\.com|hotels\\.omnibees\\.com|bookcore\\.omnibees|omnibees\\.com/(?:hotel|chain)results|flatpickr-omnibees" }
     ]
   },
   {
     "id": "asksuite",
     "vendor": "Asksuite",
-    "product": "Asksuite (chatbot/IBE)",
-    "category": "booking_engine",
-    "confidence_base": 0.8,
+    "product": "Asksuite (conversational AI for hotels)",
+    "category": "chat",
+    "confidence_base": 0.85,
     "signatures": [
       { "type": "script_src", "pattern": "asksuite\\.com|chat\\.asksuite" },
       { "type": "iframe_src", "pattern": "asksuite\\.com" }
