@@ -70,12 +70,18 @@ export async function verifyAgency(args: {
     .filter(Boolean)
     .join("\n");
 
-  const res = await callLLM({
-    modelId: args.modelId ?? "gemini-flash",
-    systemPrompt: SYSTEM,
-    userMessage: prompt,
-    maxTokens: 800,
-  });
+  // Timeout duro — mismo razonamiento que llm-classifier.
+  const res = await Promise.race([
+    callLLM({
+      modelId: args.modelId ?? "gemini-flash",
+      systemPrompt: SYSTEM,
+      userMessage: prompt,
+      maxTokens: 800,
+    }),
+    new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error("llm_timeout_25s")), 25000)
+    ),
+  ]);
 
   const parsed = parseJsonLoose(res.text) as Record<string, unknown>;
   const rawVerdict = typeof parsed.verdict === "string" ? parsed.verdict : "";

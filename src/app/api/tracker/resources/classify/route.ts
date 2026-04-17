@@ -126,6 +126,9 @@ async function classifyOne(registrable_domain: string) {
     return { registrable_domain, classification };
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
+    console.warn(
+      `[tracker.classify] ${registrable_domain} failed: ${msg}`
+    );
     return { registrable_domain, error: msg };
   }
 }
@@ -169,9 +172,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(result);
   }
 
-  // Batch mode
+  // Batch mode — limit conservador para evitar 502 cuando hay varios
+  // batches auto-classify corriendo en paralelo + rate-limit de Gemini.
   const minHotels = Math.max(1, body.min_hotels ?? 1);
-  const limit = Math.max(1, Math.min(50, body.limit ?? 10));
+  const limit = Math.max(1, Math.min(30, body.limit ?? 15));
 
   const whereClassified = body.reclassify
     ? "TRUE"
@@ -187,9 +191,12 @@ export async function POST(request: NextRequest) {
   );
 
   const started = Date.now();
+  // Concurrencia 2 en vez de 3: Gemini Flash en prod bajo carga
+  // (varios batches auto-classify al mismo tiempo) devolvía 502
+  // cuando saturábamos con 3.
   const results = await runWithConcurrency(
     candidates.rows.map((r) => r.registrable_domain),
-    3,
+    2,
     (d) => classifyOne(d)
   );
   const duration_ms = Date.now() - started;

@@ -469,7 +469,7 @@ export function TrackerBulk() {
           const r = await fetch("/api/tracker/resources/classify", {
             method: "POST",
             headers: { "content-type": "application/json" },
-            body: JSON.stringify({ batch: true, min_hotels: 1, limit: 40 }),
+            body: JSON.stringify({ batch: true, min_hotels: 1, limit: 15 }),
           });
           const d = await r.json();
           if (!r.ok) {

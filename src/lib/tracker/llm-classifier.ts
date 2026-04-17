@@ -139,14 +139,21 @@ export async function classifyDomain(
   ev: DomainEvidence,
   { modelId = "gemini-flash" }: { modelId?: string } = {}
 ): Promise<LlmClassification> {
-  // Gemini 2.5 Flash uses thinking tokens out of the same budget, so
-  // maxOutputTokens needs to be generous to leave room for the final JSON.
-  const res = await callLLM({
-    modelId,
-    systemPrompt: SYSTEM_PROMPT,
-    userMessage: buildUserPrompt(ev),
-    maxTokens: 2000,
-  });
+  // Timeout duro por llamada LLM: bajo carga (varios batches
+  // auto-classify a la vez) Gemini puede colgarse, y si el await no
+  // tiene timeout la ruta entera se muere con 502. 25s es margen
+  // suficiente para thinking + output.
+  const res = await Promise.race([
+    callLLM({
+      modelId,
+      systemPrompt: SYSTEM_PROMPT,
+      userMessage: buildUserPrompt(ev),
+      maxTokens: 2000,
+    }),
+    new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error("llm_timeout_25s")), 25000)
+    ),
+  ]);
 
   const parsed = parseJsonLoose(res.text) as Record<string, unknown>;
   const roleRaw = typeof parsed.role === "string" ? parsed.role : "other";
