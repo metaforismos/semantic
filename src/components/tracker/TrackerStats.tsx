@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 type StatsResponse = {
   hotels: { total: number; analyzed: number; analyzed_pct: number };
@@ -14,7 +14,9 @@ type StatsResponse = {
     agency_name: string;
     agency_url: string | null;
     hotels: number;
+    verified: number;
   }[];
+  agencies_pending_verify?: number;
   roles: {
     role: string;
     hotels_with: number;
@@ -80,18 +82,66 @@ function Bar({ value, max = 1 }: { value: number; max?: number }) {
 export function TrackerStats() {
   const [data, setData] = useState<StatsResponse | null>(null);
   const [err, setErr] = useState<string | null>(null);
+  const [verifying, setVerifying] = useState(false);
+  const [verifyMsg, setVerifyMsg] = useState<string | null>(null);
+
+  const load = useCallback(async () => {
+    try {
+      const r = await fetch("/api/tracker/stats");
+      if (!r.ok) throw new Error(`stats ${r.status}`);
+      setData(await r.json());
+    } catch (e) {
+      setErr(e instanceof Error ? e.message : "error");
+    }
+  }, []);
 
   useEffect(() => {
-    (async () => {
-      try {
-        const r = await fetch("/api/tracker/stats");
-        if (!r.ok) throw new Error(`stats ${r.status}`);
-        setData(await r.json());
-      } catch (e) {
-        setErr(e instanceof Error ? e.message : "error");
+    load();
+  }, [load]);
+
+  const verifyAgencies = useCallback(async () => {
+    setVerifying(true);
+    setVerifyMsg(null);
+    let totAgency = 0;
+    let totPlatform = 0;
+    let totNoise = 0;
+    let totFailed = 0;
+    let totMs = 0;
+    let pass = 0;
+    const MAX_PASSES = 20; // safety: ≤400 verificadas por click
+    try {
+      while (pass < MAX_PASSES) {
+        pass++;
+        setVerifyMsg(
+          `Verificando agencias (pasada ${pass})… ${totAgency} válidas, ${totPlatform} plataformas, ${totNoise} ruido`
+        );
+        const r = await fetch("/api/tracker/agencies/verify", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ limit: 20 }),
+        });
+        const d = await r.json();
+        if (!r.ok) {
+          setVerifyMsg(`Error: ${d.error || r.status}`);
+          return;
+        }
+        totAgency += d.agencies || 0;
+        totPlatform += d.platforms || 0;
+        totNoise += d.noise || 0;
+        totFailed += d.failed || 0;
+        totMs += d.duration_ms || 0;
+        await load();
+        if (!d.processed || d.processed === 0) break;
       }
-    })();
-  }, []);
+      setVerifyMsg(
+        `Listo: ${totAgency} agencias · ${totPlatform} plataformas (excluidas) · ${totNoise} ruido (borradas) · ${totFailed} fallas · ${Math.round(totMs / 1000)}s (${pass} pasadas)`
+      );
+    } catch (e) {
+      setVerifyMsg(e instanceof Error ? e.message : "error");
+    } finally {
+      setVerifying(false);
+    }
+  }, [load]);
 
   if (err)
     return (
@@ -162,15 +212,41 @@ export function TrackerStats() {
 
       {data.agencies && data.agencies.length > 0 && (
         <section>
-          <h2 className="text-[10px] font-semibold uppercase tracking-[0.15em] text-text-dim mb-2">
-            Top agencias web (quién construye los sitios)
-          </h2>
+          <div className="flex items-end justify-between mb-2 gap-3 flex-wrap">
+            <h2 className="text-[10px] font-semibold uppercase tracking-[0.15em] text-text-dim">
+              Top agencias web (quién construye los sitios)
+            </h2>
+            <div className="flex items-center gap-2">
+              {typeof data.agencies_pending_verify === "number" &&
+                data.agencies_pending_verify > 0 && (
+                  <span className="text-[11px] text-text-dim">
+                    {data.agencies_pending_verify} sin verificar por LLM
+                  </span>
+                )}
+              <button
+                onClick={verifyAgencies}
+                disabled={
+                  verifying ||
+                  !data.agencies_pending_verify ||
+                  data.agencies_pending_verify === 0
+                }
+                className="px-3 py-1.5 text-xs font-medium rounded border border-accent/40 bg-accent/10 text-accent-light hover:bg-accent/20 disabled:opacity-50"
+                title="Gemini Flash verifica cada candidato: agencia real vs plataforma vs ruido. Las ruidosas se borran."
+              >
+                {verifying ? "Verificando…" : "Verificar con LLM"}
+              </button>
+            </div>
+          </div>
+          {verifyMsg && (
+            <div className="text-xs text-text-muted px-1 mb-2">{verifyMsg}</div>
+          )}
           <div className="border border-border rounded-md bg-surface overflow-hidden">
             <table className="w-full text-sm">
               <thead className="bg-surface-2 border-b border-border">
                 <tr className="text-left text-[10px] uppercase tracking-wider text-text-dim">
                   <th className="px-3 py-2">Agencia</th>
                   <th className="px-3 py-2">URL</th>
+                  <th className="px-3 py-2">Verif. LLM</th>
                   <th className="px-3 py-2 text-right">Hoteles</th>
                 </tr>
               </thead>
@@ -195,6 +271,17 @@ export function TrackerStats() {
                         </a>
                       ) : (
                         "—"
+                      )}
+                    </td>
+                    <td className="px-3 py-1.5">
+                      {a.verified > 0 ? (
+                        <span className="px-1.5 py-0 text-[10px] uppercase tracking-wider bg-positive-muted text-positive border border-positive/30 rounded">
+                          verif
+                        </span>
+                      ) : (
+                        <span className="px-1.5 py-0 text-[10px] uppercase tracking-wider bg-surface-2 text-text-dim border border-border rounded">
+                          pendiente
+                        </span>
                       )}
                     </td>
                     <td className="px-3 py-1.5 text-right tabular-nums">

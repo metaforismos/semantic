@@ -107,19 +107,28 @@ export async function GET() {
     const hotelsTotal = hotels.rows[0].total;
     const hotelsAnalyzed = analyzed.rows[0].analyzed;
 
+    // Incluye sólo agencias sin verificar OR verificadas como "agency".
+    // "platform" / "noise" se filtran (noise también se borra).
     const agenciesRes = await pool.query<{
       agency_name: string;
       agency_url: string | null;
       hotels: number;
+      verified: number;
     }>(
       `SELECT
          agency_name,
          MIN(agency_url) AS agency_url,
-         COUNT(DISTINCT hotel_id)::int AS hotels
+         COUNT(DISTINCT hotel_id)::int AS hotels,
+         COUNT(*) FILTER (WHERE verified_at IS NOT NULL)::int AS verified
        FROM tracker_hotel_agency
+       WHERE llm_verdict IS NULL OR llm_verdict = 'agency'
        GROUP BY agency_name
        ORDER BY hotels DESC, agency_name
        LIMIT 20`
+    );
+
+    const agencyVerifyPending = await pool.query<{ n: number }>(
+      `SELECT COUNT(*)::int AS n FROM tracker_hotel_agency WHERE verified_at IS NULL`
     );
 
     const chainsRes = await pool.query<{
@@ -213,6 +222,7 @@ export async function GET() {
         chain_pct: chainKnown > 0 ? chainStats.chains / chainKnown : 0,
       },
       agencies: agenciesRes.rows,
+      agencies_pending_verify: agencyVerifyPending.rows[0].n,
       roles,
       classification: classification.rows[0],
       penetration,
