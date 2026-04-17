@@ -43,6 +43,118 @@ const samplePerCountry = flags["sample-per-country"]
   ? parseInt(flags["sample-per-country"], 10)
   : null;
 
+// OTAs / agregadores / redes sociales — url_N que matchee estos dominios
+// no se usa como website_url. El sitio "oficial" es la primera url_N
+// cuyo dominio NO está en esta lista.
+const OTA_DOMAINS = new Set([
+  "booking.com",
+  "expedia.com",
+  "expedia.cl",
+  "expedia.com.ar",
+  "expedia.com.br",
+  "expedia.mx",
+  "hotels.com",
+  "tripadvisor.com",
+  "tripadvisor.cl",
+  "tripadvisor.com.ar",
+  "tripadvisor.com.br",
+  "tripadvisor.com.mx",
+  "tripadvisor.es",
+  "airbnb.com",
+  "airbnb.cl",
+  "airbnb.com.ar",
+  "airbnb.com.br",
+  "airbnb.com.mx",
+  "vrbo.com",
+  "agoda.com",
+  "despegar.com",
+  "despegar.com.ar",
+  "despegar.cl",
+  "despegar.com.mx",
+  "decolar.com",
+  "kayak.com",
+  "trivago.com",
+  "trivago.cl",
+  "trivago.com.ar",
+  "trivago.com.mx",
+  "trivago.com.br",
+  "travelocity.com",
+  "priceline.com",
+  "orbitz.com",
+  "facebook.com",
+  "instagram.com",
+  "twitter.com",
+  "x.com",
+  "youtube.com",
+  "pinterest.com",
+  "wikipedia.org",
+  "google.com",
+  "maps.google.com",
+  "goo.gl",
+  "bing.com",
+  "yandex.com",
+  "yelp.com",
+  "foursquare.com",
+  "hoteles.com",
+  "hotelscombined.com",
+  "hotelbeds.com",
+  "cuponatic.com",
+  "groupon.com",
+  "linkedin.com",
+  "wa.me",
+  "t.me",
+]);
+
+function extractHost(url) {
+  if (!url) return null;
+  try {
+    const u = new URL(url.startsWith("http") ? url : `https://${url}`);
+    return u.hostname.toLowerCase().replace(/^www\./, "");
+  } catch {
+    return null;
+  }
+}
+
+function isOta(host) {
+  if (!host) return true;
+  if (OTA_DOMAINS.has(host)) return true;
+  return [...OTA_DOMAINS].some((o) => host.endsWith("." + o));
+}
+
+function canonicalizeUrl(url) {
+  if (!url) return null;
+  let s = url.trim();
+  if (!/^https?:\/\//i.test(s)) s = `https://${s}`;
+  try {
+    const u = new URL(s);
+    const host = u.hostname.toLowerCase().replace(/^www\./, "");
+    const path = u.pathname.replace(/\/+$/, "");
+    const params = [...u.searchParams.entries()]
+      .filter(([k]) => !/^(utm_|fbclid|gclid|mc_|ref|ref_source)$/i.test(k))
+      .sort(([a], [b]) => a.localeCompare(b));
+    const qs = params.length
+      ? "?" + params.map(([k, v]) => `${k}=${v}`).join("&")
+      : "";
+    return `${host}${path}${qs}`;
+  } catch {
+    return null;
+  }
+}
+
+function pickOfficialUrl(fields, urlIdxList) {
+  for (const idx of urlIdxList) {
+    if (idx < 0) continue;
+    const url = (fields[idx] || "").trim();
+    if (!url) continue;
+    const host = extractHost(url);
+    if (!host || isOta(host)) continue;
+    // Normaliza: agrega scheme si falta
+    const withScheme = /^https?:\/\//i.test(url) ? url : `https://${url}`;
+    return withScheme;
+  }
+  return null;
+}
+
 if (!fs.existsSync(csvPath)) {
   console.error(`csv not found: ${csvPath}`);
   process.exit(2);

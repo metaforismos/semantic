@@ -1,7 +1,7 @@
 import type { PoolClient } from "pg";
 import pool from "@/lib/db";
 import { detect } from "./detector";
-import { fetchHtml, normalizeUrl } from "./fetcher";
+import { canonicalizeUrl, fetchHtml, normalizeUrl } from "./fetcher";
 import type { AnalyzeResult, RawResource, ResourceRole } from "./types";
 
 export type AnalyzePrefill = {
@@ -50,8 +50,11 @@ async function resolveHotel(
     return { hotel_id: explicit_hotel_id, created: false };
   }
 
-  // Match priority: external_id (if provided) → existing tracker_hotel_urls
-  // by URL → create new.
+  // Cascade de identificación (ver PRD §8 + identifier scheme 1D.9):
+  //   1. external_id (si viene del prefill)
+  //   2. website_url_canonical (dedup por sitio oficial)
+  //   3. tracker_hotel_urls.url exacta (re-análisis del mismo link)
+  //   4. crear nuevo
   if (prefill?.external_id) {
     const byExt = await client.query<{ id: string }>(
       `SELECT id FROM tracker_hotels WHERE external_id = $1 LIMIT 1`,
@@ -59,6 +62,17 @@ async function resolveHotel(
     );
     if (byExt.rowCount) {
       return { hotel_id: byExt.rows[0].id, created: false };
+    }
+  }
+
+  const canonicalUrl = canonicalizeUrl(final_url);
+  if (canonicalUrl) {
+    const byCanonical = await client.query<{ id: string }>(
+      `SELECT id FROM tracker_hotels WHERE website_url_canonical = $1 LIMIT 1`,
+      [canonicalUrl]
+    );
+    if (byCanonical.rowCount) {
+      return { hotel_id: byCanonical.rows[0].id, created: false };
     }
   }
 
@@ -85,12 +99,13 @@ async function resolveHotel(
   ).slice(0, 300);
 
   const ins = await client.query<{ id: string }>(
-    `INSERT INTO tracker_hotels (canonical_name, website_url, country, region, city, is_customer, external_id)
-     VALUES ($1, $2, $3, $4, $5, $6, $7)
+    `INSERT INTO tracker_hotels (canonical_name, website_url, website_url_canonical, country, region, city, is_customer, external_id)
+     VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
      RETURNING id`,
     [
       canonical,
       final_url,
+      canonicalUrl,
       prefill?.country ?? null,
       prefill?.region ?? null,
       prefill?.city ?? null,
@@ -132,10 +147,13 @@ async function persistAnalysis(
       detected_at: new Date().toISOString(),
     });
 
+    const canonicalForUpdate = canonicalizeUrl(result.final_url);
+
     if (created) {
       await client.query(
         `UPDATE tracker_hotels
          SET website_url = COALESCE(website_url, $2),
+             website_url_canonical = COALESCE(website_url_canonical, $6),
              is_chain = $3,
              property_count_estimate = $4,
              chain_signals = $5::jsonb,
@@ -148,6 +166,7 @@ async function persistAnalysis(
           result.chain.is_chain,
           result.chain.property_count_estimate,
           chainPayload,
+          canonicalForUpdate,
         ]
       );
     } else {
@@ -156,6 +175,8 @@ async function persistAnalysis(
          SET is_chain = $2,
              property_count_estimate = $3,
              chain_signals = $4::jsonb,
+             website_url = COALESCE(website_url, $5),
+             website_url_canonical = COALESCE(website_url_canonical, $6),
              last_enriched_at = NOW(),
              updated_at = NOW()
          WHERE id = $1`,
@@ -164,6 +185,8 @@ async function persistAnalysis(
           result.chain.is_chain,
           result.chain.property_count_estimate,
           chainPayload,
+          result.final_url,
+          canonicalForUpdate,
         ]
       );
       if (typeof options.prefill?.is_customer === "boolean") {

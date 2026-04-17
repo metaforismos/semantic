@@ -166,3 +166,33 @@ export function normalizeUrl(input: string): string | null {
     return null;
   }
 }
+
+/**
+ * Canonicaliza una URL a una clave estable para dedup:
+ *   - host en minúsculas, sin "www."
+ *   - path sin trailing slash (root "/" queda vacío)
+ *   - query strings ordenados, sin trackers (utm_*, fbclid, gclid, mc_*)
+ *   - fragment removido
+ *   - protocolo ignorado (http y https se dedup como el mismo hotel)
+ *
+ * Devuelve null si el input no es una URL parseable.
+ */
+export function canonicalizeUrl(url: string | null | undefined): string | null {
+  if (!url) return null;
+  const normalized = normalizeUrl(url);
+  if (!normalized) return null;
+  try {
+    const u = new URL(normalized);
+    const host = u.hostname.toLowerCase().replace(/^www\./, "");
+    const path = u.pathname.replace(/\/+$/, "");
+    const params = [...u.searchParams.entries()]
+      .filter(([k]) => !/^(utm_|fbclid|gclid|mc_|ref|ref_source)$/i.test(k))
+      .sort(([a], [b]) => a.localeCompare(b));
+    const qs = params.length
+      ? "?" + params.map(([k, v]) => `${k}=${v}`).join("&")
+      : "";
+    return `${host}${path}${qs}`;
+  } catch {
+    return null;
+  }
+}
